@@ -21,6 +21,8 @@
 		E0BF3AB7276F566B00FC902E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3A89276F566B00FC902E /* Persistence.swift */; };
 		E0BF3AB8276F566B00FC902E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0BF3A8A276F566B00FC902E /* Assets.xcassets */; };
 		E0BF3AB9276F566B00FC902E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0BF3A8A276F566B00FC902E /* Assets.xcassets */; };
+		E0BF3ACA276F575F00FC902E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E0BF3AC8276F575F00FC902E /* README.md */; };
+		E0BF3ACB276F575F00FC902E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0BF3AC9276F575F00FC902E /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		E0BF3AA8276F566B00FC902E /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3AAC276F566B00FC902E /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		E0BF3AAE276F566B00FC902E /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		E0BF3AC8276F575F00FC902E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E0BF3AC9276F575F00FC902E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 		E0BF3A7F276F566A00FC902E = {
 			isa = PBXGroup;
 			children = (
+				E0BF3AC9276F575F00FC902E /* .gitignore */,
+				E0BF3AC8276F575F00FC902E /* README.md */,
 				E0BF3A84276F566A00FC902E /* Shared */,
 				E0BF3A96276F566B00FC902E /* macOS */,
 				E0BF3A9F276F566B00FC902E /* Tests iOS */,
@@ -274,6 +280,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0BF3ACA276F575F00FC902E /* README.md in Resources */,
+				E0BF3ACB276F575F00FC902E /* .gitignore in Resources */,
 				E0BF3AB8276F566B00FC902E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
