@@ -7,11 +7,11 @@
 
 import Foundation
 
-// MARK: - Properties
+// MARK: - ExpenseProperty
 struct ExpenseProperty: Codable {
+    let id: TitleProperty?
     let yearMonth: RelationProperty?
     let note: RichTextProperty?
-    let id: TitleProperty?
     let value: NumberProperty?
     let duration, paymentVia, type: SingleSelectProperty?
     let date: DateProperty?

@@ -29,6 +29,19 @@ struct ResultProperty<T : Codable>: Codable {
     }
 }
 
+// MARK: - Query
+struct Query: Codable {
+    var startCursor: String? = nil
+    var pageSize: Int? = nil
+    var sorts: [Sort]? = nil
+    
+    enum CodingKeys: String, CodingKey {
+        case startCursor = "start_cursor"
+        case pageSize = "page_size"
+        case sorts
+    }
+}
+
 // MARK: - Sort
 struct Sort: Codable {
     let property, direction: String?

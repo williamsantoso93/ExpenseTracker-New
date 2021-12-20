@@ -9,11 +9,11 @@ import Foundation
 
 // MARK: - IncomeProperty
 struct IncomeProperty: Codable {
-    let id: Title?
+    let id: TitleProperty?
     let yearMonth: RelationProperty?
     let value: NumberProperty?
     let type: SingleSelectProperty?
-    let note: RichText?
+    let note: RichTextProperty?
     
     enum CodingKeys: String, CodingKey {
         case yearMonth = "Year/Month"

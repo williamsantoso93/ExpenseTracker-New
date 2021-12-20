@@ -20,7 +20,3 @@ struct YearMonthProperty: Codable {
     }
 }
 
-// MARK: - YearMonthQuery
-struct YearMonthQuery: Codable {
-    let sorts: [Sort]?
-}

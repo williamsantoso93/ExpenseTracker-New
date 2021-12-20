@@ -17,3 +17,5 @@ struct TypeProperty: Codable {
         case name = "Name"
     }
 }
+
+

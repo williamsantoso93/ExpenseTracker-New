@@ -7,6 +7,24 @@
 
 import Foundation
 
+extension String {
+    func toDate(format: String = "yyyy-MM-dd") -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        
+        return dateFormatter.date(from: self)
+    }
+}
+
+extension Date {
+    func toString(format: String = "yyyy-MM-dd") -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        
+        return dateFormatter.string(from: self)
+    }
+}
+
 extension URLResponse {
     func getStatusCode() -> Int? {
         if let httpResponse = self as? HTTPURLResponse {

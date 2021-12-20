@@ -11,14 +11,14 @@ struct SummaryScreen: View {
     var body: some View {
         NavigationView{
             Form {
+                NavigationLink("YearMonth") {
+                    YearMonthScreen()
+                }
                 NavigationLink("Income") {
-                    Text("Hello")
+                    IncomeScreen()
                 }
                 NavigationLink("Expense") {
                     ExpenseScreen()
-                }
-                Button("get") {
-                    getData()
                 }
                 Button("post") {
                     post()
@@ -26,13 +26,6 @@ struct SummaryScreen: View {
             }
             .navigationTitle("Summary")
         }
-        .onAppear {
-            getData()
-        }
-    }
-    
-    func getData() {
-        Networking.shared.getYearMonth()
     }
     
     func post() {

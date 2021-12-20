@@ -117,29 +117,6 @@ class Networking {
             return completionResponse(.success(decoded), response, data, true)
         }.resume()
     }
-        
-    func getYearMonth() {
-        let urlString = baseDatabase + DatabaseID.yearMonthDatabaseID.rawValue + "/query"
-        
-        let post = YearMonthQuery(sorts: [
-            Sort(property: "Name", direction: SortDirection.ascending.rawValue)
-        ])
-        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<YearMonthProperty>, NetworkError>, response, dataResponse, isSuccess) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    let results = data.results
-                    for result in results {
-                        print(result.properties.name.title.first?.text.content)
-                        print(result.properties.month.select.name)
-                        print(result.properties.year.select.name)
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-    }
     
     func postYearMonth() {
         let urlString = basePage
