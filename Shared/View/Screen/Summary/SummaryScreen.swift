@@ -17,9 +17,26 @@ struct SummaryScreen: View {
                 NavigationLink("Expense") {
                     ExpenseScreen()
                 }
+                Button("get") {
+                    getData()
+                }
+                Button("post") {
+                    post()
+                }
             }
             .navigationTitle("Summary")
         }
+        .onAppear {
+            getData()
+        }
+    }
+    
+    func getData() {
+        Networking.shared.getYearMonth()
+    }
+    
+    func post() {
+        Networking.shared.postYearMonth()
     }
 }
 

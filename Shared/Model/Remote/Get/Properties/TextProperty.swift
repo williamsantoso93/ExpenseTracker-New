@@ -37,9 +37,11 @@ struct RichTextProperty: Codable {
 
 // MARK: - RichText
 struct RichText: Codable {
+    let type: String?
     let text: TextContent
     
     enum CodingKeys: String, CodingKey {
+        case type
         case text
     }
 }
