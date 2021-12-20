@@ -1,0 +1,29 @@
+//
+//  ExpenseProperty.swift
+//  ExpenseTracker
+//
+//  Created by Ruangguru on 20/12/21.
+//
+
+import Foundation
+
+// MARK: - Properties
+struct ExpenseProperty: Codable {
+    let yearMonth: RelationProperty?
+    let note: RichTextProperty?
+    let id: TitleProperty?
+    let value: NumberProperty?
+    let duration, paymentVia, type: SingleSelectProperty?
+    let date: DateProperty?
+    
+    enum CodingKeys: String, CodingKey {
+        case yearMonth = "Year/Month"
+        case note = "Note"
+        case id
+        case value = "Value"
+        case duration = "Duration"
+        case paymentVia = "Payment Via"
+        case date = "Date"
+        case type = "Type"
+    }
+}
