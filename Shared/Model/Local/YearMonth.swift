@@ -8,5 +8,5 @@
 import Foundation
 
 struct YearMonth {
-    let name, month, year: String
+    let id, name, month, year: String
 }

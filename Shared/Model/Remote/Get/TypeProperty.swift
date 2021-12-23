@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - TypeProperty
 struct TypeProperty: Codable {
-    let name: Title
+    let name: TitleProperty
     let category: SingleSelectProperty
     
     enum CodingKeys: String, CodingKey {

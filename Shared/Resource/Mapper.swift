@@ -11,12 +11,13 @@ struct Mapper {
     //MARK: - YearMonth
     static func mapYearMonthListRemoteToLocal(_ remote: [ResultProperty<YearMonthProperty>]) -> [YearMonth] {
         remote.map { result in
-            yearMonthListRemoteToLocal(result.properties)
+            yearMonthListRemoteToLocal(result.id, result.properties)
         }
     }
     
-    static func yearMonthListRemoteToLocal(_ remote: YearMonthProperty) -> YearMonth {
+    static func yearMonthListRemoteToLocal(_ id: String, _ remote: YearMonthProperty) -> YearMonth {
         YearMonth(
+            id: id,
             name: remote.name.title.first?.text.content ?? "",
             month: remote.month.select.name,
             year: remote.year.select.name
@@ -66,8 +67,8 @@ struct Mapper {
     static func expenseLocalToRemote(_ local: Expense) -> ExpenseProperty {
         ExpenseProperty(
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
-            yearMonth: RelationProperty(relation: [Relation(id: local.yearMonth ?? "")]),
-            note: RichTextProperty(richText: [RichText(type: "Text", text: TextContent(content: local.note ?? ""))]),
+            yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
+            note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
             value: NumberProperty(number: local.value ?? 0),
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
             paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
@@ -102,12 +103,17 @@ struct Mapper {
     }
     
     //MARK: - Type
-    static func mapTypeRemoteToLocal() {
-        
+    static func mapTypeRemoteToLocal(_ remote: [ResultProperty<TypeProperty>]) -> [TypeModel] {
+        remote.map { result in
+            typeRemoteToLocal(result.properties)
+        }
     }
     
-    static func typeRemoteToLocal() {
-        
+    static func typeRemoteToLocal(_ remote: TypeProperty) -> TypeModel {
+        TypeModel(
+            name: remote.name.title.first?.text.content ?? "",
+            category: remote.category.select.name
+        )
     }
     
     static func mapTypeLocalToRemote() {

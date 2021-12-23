@@ -23,6 +23,16 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
+    
+    func toYearMonthString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM MMMM"
+        
+        // US English Locale (en_US)
+        dateFormatter.locale = Locale(identifier: "en_US")
+        
+        return dateFormatter.string(from: self)
+    }
 }
 
 extension URLResponse {

@@ -22,9 +22,11 @@ struct DefaultResponse<T : Codable>: Codable {
 
 // MARK: - Result
 struct ResultProperty<T : Codable>: Codable {
+    let id: String
     let properties: T
     
     enum CodingKeys: String, CodingKey {
+        case id
         case properties
     }
 }

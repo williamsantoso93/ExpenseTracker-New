@@ -10,11 +10,11 @@ import Foundation
 import Foundation
 
 class YearMonthViewModel: ObservableObject {
-    @Published var yearMonths: [YearMonth] = []
+    @Published var yearMonths: [YearMonth] = GlobalData.shared.yearMonths
     var startCursor: String? = nil
     
     init() {
-        loadNewData()
+//        loadNewData()
     }
     
     func loadNewData() {

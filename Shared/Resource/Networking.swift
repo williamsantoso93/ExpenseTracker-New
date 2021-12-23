@@ -16,6 +16,7 @@ enum NetworkError: Error {
     case errorMessage(String)
     case statusCode(Int?)
     case errorResponse(ErrorResponse)
+    case dataNotComplete
 }
 
 class Networking {
@@ -118,7 +119,33 @@ class Networking {
         }.resume()
     }
     
-    func postYearMonth() {
+    //MARK: - Post Data
+    func postExpense(_ expense: Expense, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let urlString = basePage
+                
+        let post = DefaultPost(
+            parent: Parent(databaseID: DatabaseID.expenseDatabaseID.rawValue),
+            properties: Mapper.expenseLocalToRemote(expense)
+        )
+        
+        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let success):
+                    print(success)
+                    return completion(isSuccess)
+                case .failure(let failure):
+                    if isSuccess {
+                        return completion(isSuccess)
+                    } else {
+                        print(failure)
+                    }
+                }
+            }
+        }
+    }
+        
+    func postYearMonth(_ expense: Expense, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
         let post = DefaultPost(
@@ -133,6 +160,51 @@ class Networking {
         postData(to: urlString, postData: post) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in
             DispatchQueue.main.async {
                 print(isSuccess)
+            }
+        }
+    }
+    
+    //MARK: - Get Data
+    func getYearMonth(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<YearMonthProperty>, NetworkError>) -> Void) {
+        let urlString = baseDatabase + DatabaseID.yearMonthDatabaseID.rawValue + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<YearMonthProperty>, NetworkError>, response, dataResponse, isSuccess) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    return completion(.success(data))
+                case .failure(let error):
+                    return completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    func getTypes(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<TypeProperty>, NetworkError>) -> Void) {
+        let urlString = baseDatabase + DatabaseID.typeDatabaseID.rawValue + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<TypeProperty>, NetworkError>, response, dataResponse, isSuccess) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    return completion(.success(data))
+                case .failure(let error):
+                    return completion(.failure(error))
+                }
             }
         }
     }

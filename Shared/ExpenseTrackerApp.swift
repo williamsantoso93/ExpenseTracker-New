@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct ExpenseTrackerApp: App {
     let persistenceController = PersistenceController.shared
+    let globalData = GlobalData.shared
 
     var body: some Scene {
         WindowGroup {

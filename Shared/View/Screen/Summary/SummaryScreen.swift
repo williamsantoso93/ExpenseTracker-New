@@ -20,16 +20,12 @@ struct SummaryScreen: View {
                 NavigationLink("Expense") {
                     ExpenseScreen()
                 }
-                Button("post") {
-                    post()
+                NavigationLink("Type") {
+                    TypeScreen()
                 }
             }
             .navigationTitle("Summary")
         }
-    }
-    
-    func post() {
-        Networking.shared.postYearMonth()
     }
 }
 

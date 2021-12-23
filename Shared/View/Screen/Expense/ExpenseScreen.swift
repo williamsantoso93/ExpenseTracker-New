@@ -11,21 +11,29 @@ struct ExpenseScreen: View {
     @State private var isShowAddScreen = false
     @StateObject private var viewModel = ExpenseViewModel()
     
+    @State private var selectedExpense: Expense?
+    
     var body: some View {
         Form {
             if !viewModel.expenses.isEmpty {
                 ForEach(viewModel.expenses.indices, id:\.self) {index in
                     let expense = viewModel.expenses[index]
-                    VStack(alignment: .leading) {
-                        Text("id : \(expense.id)")
-                        Text("yearMonth : \(expense.yearMonth ?? "")")
-                        Text("note : \(expense.note ?? "")")
-                        Text("value : \(expense.value ?? 0)")
-                        Text("duration : \(expense.duration ?? "")")
-                        Text("paymentVia : \(expense.paymentVia ?? "")")
-                        Text("type : \(expense.type ?? "")")
-                        Text("date : \(expense.date ?? Date())")
+                    Button {
+                        selectedExpense = viewModel.expenses[index]
+                        isShowAddScreen.toggle()
+                    } label: {
+                        VStack(alignment: .leading) {
+//                            Text("id : \(expense.id)")
+//                            Text("yearMonth : \(expense.yearMonth ?? "")")
+                            Text("note : \(expense.note ?? "")")
+                            Text("value : \(expense.value ?? 0)")
+                            Text("duration : \(expense.duration ?? "")")
+                            Text("paymentVia : \(expense.paymentVia ?? "")")
+                            Text("type : \(expense.type ?? "")")
+                            Text("date : \((expense.date ?? Date()).toString())")
+                        }
                     }
+
                 }
             }
         }
@@ -44,9 +52,10 @@ struct ExpenseScreen: View {
             }
         }
         .sheet(isPresented: $isShowAddScreen) {
-            
+            viewModel.loadNewData()
+            selectedExpense = nil
         } content: {
-            AddExpenseScreen()
+            AddExpenseScreen(expense: selectedExpense)
         }
 
     }
