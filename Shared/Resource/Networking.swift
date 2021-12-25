@@ -122,7 +122,7 @@ class Networking {
     //MARK: - Post Data
     func postExpense(_ expense: Expense, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
-                
+        
         let post = DefaultPost(
             parent: Parent(databaseID: DatabaseID.expenseDatabaseID.rawValue),
             properties: Mapper.expenseLocalToRemote(expense)
@@ -144,27 +144,129 @@ class Networking {
             }
         }
     }
-        
-    func postYearMonth(_ expense: Expense, completion: @escaping (_ isSuccess: Bool) -> Void) {
+    
+    func postIncome(_ income: Income, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
         let post = DefaultPost(
-            parent: Parent(databaseID: DatabaseID.yearMonthDatabaseID.rawValue),
-            properties: YearMonthPostProperty(
-                name: TitleProperty(title: [Title(text: TextContent(content: "2024/01 January"))]),
-                year: SingleSelectProperty(select: Select(name: "2024")),
-                month: SingleSelectProperty(select: Select(name: "01 January"))
-            )
+            parent: Parent(databaseID: DatabaseID.incomeDatabaseID.rawValue),
+            properties: Mapper.incomeLocalToRemote(income)
         )
         
         postData(to: urlString, postData: post) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in
             DispatchQueue.main.async {
-                print(isSuccess)
+                switch result {
+                case .success(let success):
+                    print(success)
+                    return completion(isSuccess)
+                case .failure(let failure):
+                    if isSuccess {
+                        return completion(isSuccess)
+                    } else {
+                        print(failure)
+                    }
+                }
+            }
+        }
+    }
+    
+    func postYearMonth(_ yearMonth: YearMonth, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let urlString = basePage
+        
+        let post = DefaultPost(
+            parent: Parent(databaseID: DatabaseID.yearMonthDatabaseID.rawValue),
+            properties: Mapper.yearMonthLocalToRemote(yearMonth)
+        )
+        
+        
+        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let success):
+                    print(success)
+                    return completion(isSuccess)
+                case .failure(let failure):
+                    if isSuccess {
+                        return completion(isSuccess)
+                    } else {
+                        print(failure)
+                    }
+                }
+            }
+        }
+    }
+    
+    func postType(_ typeModel: TypeModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let urlString = basePage
+        
+        let post = DefaultPost(
+            parent: Parent(databaseID: DatabaseID.typeDatabaseID.rawValue),
+            properties: Mapper.typeLocalToRemote(typeModel)
+        )
+        
+        
+        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let success):
+                    print(success)
+                    return completion(isSuccess)
+                case .failure(let failure):
+                    if isSuccess {
+                        return completion(isSuccess)
+                    } else {
+                        print(failure)
+                    }
+                }
             }
         }
     }
     
     //MARK: - Get Data
+    func getIncome(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<IncomeProperty>, NetworkError>) -> Void) {
+        let urlString = baseDatabase + DatabaseID.incomeDatabaseID.rawValue + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "id", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<IncomeProperty>, NetworkError>, response, dataResponse, isSuccess) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    return completion(.success(data))
+                case .failure(let error):
+                    return completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    func getExpense(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<ExpenseProperty>, NetworkError>) -> Void) {
+        let urlString = baseDatabase + DatabaseID.expenseDatabaseID.rawValue + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "id", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<ExpenseProperty>, NetworkError>, response, dataResponse, isSuccess) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    return completion(.success(data))
+                case .failure(let error):
+                    return completion(.failure(error))
+                }
+            }
+        }
+    }
+    
     func getYearMonth(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<YearMonthProperty>, NetworkError>) -> Void) {
         let urlString = baseDatabase + DatabaseID.yearMonthDatabaseID.rawValue + "/query"
         

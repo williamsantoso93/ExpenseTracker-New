@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - Type
 struct TypeModel: Codable {
-    let name: String
-    let category: String
+    var name: String
+    var category: String
 }
 
 struct Types: Codable {
@@ -32,7 +32,7 @@ struct Types: Codable {
         self.allTypes = allTypes
     }
     
-    enum TypeCategory: String {
+    enum TypeCategory: String, CaseIterable {
         case income
         case expense
         case payment

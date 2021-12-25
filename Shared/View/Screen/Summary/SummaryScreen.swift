@@ -26,6 +26,17 @@ struct SummaryScreen: View {
             }
             .navigationTitle("Summary")
         }
+        .refreshable {
+            GlobalData.shared.getTypes()
+            GlobalData.shared.getYearMonth()
+        }
+        .overlay(
+            Group {
+                if GlobalData.shared.isLoading {
+                    ProgressView()
+                }
+            }
+        )
     }
 }
 

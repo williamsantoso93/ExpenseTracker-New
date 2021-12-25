@@ -64,15 +64,18 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        expense.yearMonthID = GlobalData.shared.getYearMonthID(date)
         expense.note = note
         expense.value = value
         expense.duration = selectedDuration
         expense.paymentVia = selectedPayment
         expense.type = selectedType
         expense.date = date
-        Networking.shared.postExpense(expense) { isSuccess in
-            return completion(isSuccess)
+        
+        YearMonthCheck.shared.getYearMonthID(date) { id in
+            self.expense.yearMonthID = id
+            Networking.shared.postExpense(self.expense) { isSuccess in
+                return completion(isSuccess)
+            }
         }
     }
 }

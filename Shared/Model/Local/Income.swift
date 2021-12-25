@@ -11,7 +11,9 @@ import Foundation
 struct Income: Codable {
     var id: String = UUID().uuidString
     var yearMonth: String?
+    var yearMonthID: String? = nil
     var value: Int?
     var type: String?
     var note: String?
+    var date: Date?
 }

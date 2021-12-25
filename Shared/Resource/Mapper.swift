@@ -90,16 +90,26 @@ struct Mapper {
             yearMonth: remote.yearMonth?.relation.first?.id,
             value: remote.value?.number,
             type: remote.type?.select.name,
-            note: remote.note?.richText.first?.text.content
+            note: remote.note?.richText.first?.text.content,
+            date: remote.date?.date.start.toDate()
         )
     }
     
-    static func mapIncomeLocalToRemote() {
-        
+    static func mapIncomeLocalToRemote(_ local: [Income]) -> [IncomeProperty] {
+        local.map { result in
+            incomeLocalToRemote(result)
+        }
     }
     
-    static func incomeLocalToRemote() {
-        
+    static func incomeLocalToRemote(_ local: Income) -> IncomeProperty {
+        IncomeProperty(
+            id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
+            yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
+            value: NumberProperty(number: local.value ?? 0),
+            type: SingleSelectProperty(select: Select(name: local.type ?? "")),
+            note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
+            date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
+        )
     }
     
     //MARK: - Type
@@ -116,11 +126,16 @@ struct Mapper {
         )
     }
     
-    static func mapTypeLocalToRemote() {
-        
+    static func mapTypeLocalToRemote(_ local: [TypeModel]) -> [TypeProperty] {
+        local.map { result in
+            typeLocalToRemote(result)
+        }
     }
-
-    static func typeLocalToRemote() {
-        
+    
+    static func typeLocalToRemote(_ local: TypeModel) -> TypeProperty {
+        TypeProperty(
+            name: TitleProperty(title: [Title(text: TextContent(content: local.name))]),
+            category: SingleSelectProperty(select: Select(name: local.category))
+        )
     }
 }

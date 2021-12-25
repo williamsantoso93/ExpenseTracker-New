@@ -13,39 +13,26 @@ struct YearMonthScreen: View {
     
     var body: some View {
         Form {
-            if !viewModel.yearMonths.isEmpty {
-                ForEach(viewModel.yearMonths.indices, id:\.self) {index in
-                    let yearMonth = viewModel.yearMonths[index]
-                    VStack(alignment: .leading) {
-                        Text("name : \(yearMonth.name)")
-                        Text("year : \(yearMonth.year)")
-                        Text("month : \(yearMonth.month)")
-                    }
-                    .onAppear {
-                        viewModel.loadMoreList(of: index)
+            if !viewModel.displayYearMonths.isEmpty {
+                ForEach(viewModel.displayYearMonths.indices, id:\.self) {index in
+                    let displayYearMonth = viewModel.displayYearMonths[index]
+                    
+                    Section(header: Text(displayYearMonth.year)) {
+                        ForEach(displayYearMonth.months.indices, id:\.self) { index in
+                            let month = displayYearMonth.months[index]
+                            
+                            VStack(alignment: .leading) {
+                                Text(month)
+                            }
+                        }
                     }
                 }
             }
         }
         .refreshable {
-            viewModel.loadNewData()
+            GlobalData.shared.getYearMonth()
         }
         .navigationTitle("YearMonth")
-        .toolbar {
-            ToolbarItem {
-                Button {
-                    isShowAddScreen.toggle()
-                } label: {
-                    Image(systemName: "plus")
-                }
-                
-            }
-        }
-        .sheet(isPresented: $isShowAddScreen) {
-            
-        } content: {
-            AddExpenseScreen()
-        }
     }}
 
 struct YearMonthScreen_Previews: PreviewProvider {

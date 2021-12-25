@@ -23,17 +23,8 @@ class IncomeViewModel: ObservableObject {
         }
     }
     
-    func getList(completion: @escaping ([Income]) -> Void) {
-        let urlString = Networking.shared.baseDatabase + Networking.DatabaseID.incomeDatabaseID.rawValue + "/query"
-        
-        let post = Query(
-            startCursor: startCursor,
-            pageSize: 5,
-            sorts: [
-                Sort(property: "id", direction: Networking.SortDirection.ascending.rawValue)
-            ]
-        )
-        Networking.shared.postData(to: urlString, postData: post) { (result: Result<DefaultResponse<IncomeProperty>, NetworkError>, response, dataResponse, isSuccess) in
+    func getList(startCursor: String? = nil, completion: @escaping ([Income]) -> Void) {
+        Networking.shared.getIncome(startCursor: startCursor) { (result: Result<DefaultResponse<IncomeProperty>, NetworkError>) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):

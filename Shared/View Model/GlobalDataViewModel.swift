@@ -10,6 +10,12 @@ import Foundation
 class GlobalData: ObservableObject {
     @Published var types = Types()
     @Published var yearMonths = [YearMonth]()
+    @Published var isLoadingTypes = false
+    @Published var isLoadingYearMonths = false
+    
+    var isLoading: Bool {
+        !(isLoadingTypes && isLoadingYearMonths)
+    }
     
     static let shared = GlobalData()
     
@@ -23,9 +29,17 @@ class GlobalData: ObservableObject {
         getTypes()
     }
     
-    func getTypes(startCursor: String? = nil, newData: Bool = false) {
+    func loadNewYearMonths() {
+        yearMonths.removeAll()
+        getYearMonth()
+    }
+    
+    func getTypes(startCursor: String? = nil) {
+        let newData = startCursor == nil
+        isLoadingTypes = true
         Networking.shared.getTypes(startCursor: startCursor) { (result: Result<DefaultResponse<TypeProperty>, NetworkError>) in
             DispatchQueue.main.async {
+                self.isLoadingTypes = false
                 switch result {
                 case .success(let data):
                     let results = Mapper.mapTypeRemoteToLocal(data.results)
@@ -46,9 +60,12 @@ class GlobalData: ObservableObject {
         }
     }
     
-    func getYearMonth(startCursor: String? = nil, newData: Bool = false) {
+    func getYearMonth(startCursor: String? = nil, completion: (() -> Void)? = nil) {
+        let newData = startCursor == nil
+        isLoadingYearMonths = true
         Networking.shared.getYearMonth(startCursor: startCursor) { (result: Result<DefaultResponse<YearMonthProperty>, NetworkError>) in
             DispatchQueue.main.async {
+                self.isLoadingYearMonths = false
                 switch result {
                 case .success(let data):
                     let results = Mapper.mapYearMonthListRemoteToLocal(data.results)
@@ -60,6 +77,10 @@ class GlobalData: ObservableObject {
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
                             self.getYearMonth(startCursor: nextCursor)
+                        }
+                    } else {
+                        if let completion = completion {
+                            return completion()
                         }
                     }
                 case .failure(let error):

@@ -1,18 +1,18 @@
 //
-//  AddExpenseScreen.swift
-//  ExpenseTracker
+//  AddInvoiceScreen.swift
+//  ExpenseTracker (iOS)
 //
-//  Created by Ruangguru on 20/12/21.
+//  Created by Ruangguru on 25/12/21.
 //
 
 import SwiftUI
 
-struct AddExpenseScreen: View {
+struct AddInvoiceScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: AddExpenseViewModel
+    @StateObject var viewModel: AddIncomeViewModel
     
-    init(expense: Expense? = nil) {
-        self._viewModel = StateObject(wrappedValue: AddExpenseViewModel(expense: expense))
+    init(income: Income? = nil) {
+        self._viewModel = StateObject(wrappedValue: AddIncomeViewModel(income: income))
     }
     
     var body: some View {
@@ -21,17 +21,7 @@ struct AddExpenseScreen: View {
                 TextFiedForm(title: "Value", prompt: "50000", value: $viewModel.valueString)
                     .keyboardType(.numberPad)
                 Picker("Type", selection: $viewModel.selectedType) {
-                    ForEach(viewModel.expenseType, id: \.self) {
-                        Text($0)
-                    }
-                }
-                Picker("Payment Via", selection: $viewModel.selectedPayment) {
-                    ForEach(viewModel.paymentType, id: \.self) {
-                        Text($0)
-                    }
-                }
-                Picker("Duration", selection: $viewModel.selectedDuration) {
-                    ForEach(viewModel.durationType, id: \.self) {
+                    ForEach(viewModel.incomeType, id: \.self) {
                         Text($0)
                     }
                 }
@@ -70,22 +60,8 @@ struct AddExpenseScreen: View {
     }
 }
 
-struct AddExpenseScreen_Previews: PreviewProvider {
+struct AddInvoiceScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddExpenseScreen()
-    }
-}
-
-struct TextFiedForm: View {
-    var title: String
-    var prompt: String = ""
-    @Binding var value: String
-    
-    var body: some View {
-        HStack {
-            Text(title)
-            TextField(prompt, text: $value)
-                .multilineTextAlignment(.trailing)
-        }
+        AddInvoiceScreen()
     }
 }

@@ -11,17 +11,24 @@ struct IncomeScreen: View {
     @State private var isShowAddScreen = false
     @StateObject private var viewModel = IncomeViewModel()
     
+    @State private var selectedIncome: Income?
+    
     var body: some View {
         Form {
             if !viewModel.incomes.isEmpty {
                 ForEach(viewModel.incomes.indices, id:\.self) {index in
                     let income = viewModel.incomes[index]
-                    VStack(alignment: .leading) {
-                        Text("id : \(income.id)")
-                        Text("yearMonth : \(income.yearMonth ?? "")")
-                        Text("value : \(income.value ?? 0)")
-                        Text("type : \(income.type ?? "")")
-                        Text("note : \(income.note ?? "")")
+                    Button {
+                        selectedIncome = viewModel.incomes[index]
+                        isShowAddScreen.toggle()
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text("id : \(income.id)")
+                            Text("yearMonth : \(income.yearMonth ?? "")")
+                            Text("value : \(income.value ?? 0)")
+                            Text("type : \(income.type ?? "")")
+                            Text("note : \(income.note ?? "")")
+                        }
                     }
                     .onAppear {
                         viewModel.loadMoreList(of: index)
@@ -44,9 +51,10 @@ struct IncomeScreen: View {
             }
         }
         .sheet(isPresented: $isShowAddScreen) {
-            
+            viewModel.loadNewData()
+            selectedIncome = nil
         } content: {
-            AddExpenseScreen()
+            AddInvoiceScreen(income: selectedIncome)
         }
     }
 }

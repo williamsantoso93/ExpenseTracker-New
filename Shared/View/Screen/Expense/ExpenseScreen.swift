@@ -33,7 +33,9 @@ struct ExpenseScreen: View {
                             Text("date : \((expense.date ?? Date()).toString())")
                         }
                     }
-
+                    .onAppear {
+                        viewModel.loadMoreList(of: index)
+                    }
                 }
             }
         }

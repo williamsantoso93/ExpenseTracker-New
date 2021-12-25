@@ -24,21 +24,18 @@ class ExpenseViewModel: ObservableObject {
     }
     
     func getList(completion: @escaping ([Expense]) -> Void) {
-        let urlString = Networking.shared.baseDatabase + Networking.DatabaseID.expenseDatabaseID.rawValue + "/query"
-        
-        let post = Query(
-            startCursor: startCursor,
-            pageSize: 5,
-            sorts: [
-                Sort(property: "id", direction: Networking.SortDirection.ascending.rawValue)
-            ]
-        )
-        
-        Networking.shared.postData(to: urlString, postData: post) { (result: Result<DefaultResponse<ExpenseProperty>, NetworkError>, response, dataResponse, isSuccess) in
+        Networking.shared.getExpense(startCursor: startCursor) { (result: Result<DefaultResponse<ExpenseProperty>, NetworkError>) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
-                    self.expenses = Mapper.mapExpenseRemoteToLocal(data.results)
+                    if data.hasMore {
+                        if let nextCursor = data.nextCursor {
+                            self.startCursor = nextCursor
+                        }
+                    } else {
+                        self.startCursor = nil
+                    }
+                    return completion(Mapper.mapExpenseRemoteToLocal(data.results))
                 case .failure(let error):
                     print(error)
                 }
