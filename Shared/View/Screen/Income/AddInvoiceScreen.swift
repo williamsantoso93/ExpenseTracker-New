@@ -36,6 +36,7 @@ struct AddInvoiceScreen: View {
                         .frame(height: 150.0)
                 }
             }
+            .loadingView(viewModel.isLoading)
             .navigationTitle("Add")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)

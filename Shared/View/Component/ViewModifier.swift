@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoadingViewModifier: ViewModifier {
     var isLoading: Bool
-    var isNeedDisable = true
+    var isNeedDisable: Bool
     
     init(_ isLoading: Bool, isNeedDisable: Bool) {
         self.isLoading = isLoading
@@ -63,7 +63,7 @@ struct LoadingWithNoDataButtonViewModifier: ViewModifier {
 }
 
 extension View {
-    func loadingView(_ isLoading: Bool, isNeedDisable: Bool) -> some View {
+    func loadingView(_ isLoading: Bool, isNeedDisable: Bool = true) -> some View {
         modifier(LoadingViewModifier(isLoading, isNeedDisable: isNeedDisable))
     }
     

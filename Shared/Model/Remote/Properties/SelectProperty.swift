@@ -12,6 +12,15 @@ struct SingleSelectProperty: Codable {
     let select: Select
 }
 
+// MARK: - MultiSelectProperty
+struct MultiSelectProperty: Codable {
+    var multiSelect: [Select]
+    
+    enum CodingKeys: String, CodingKey {
+        case multiSelect = "multi_select"
+    }
+}
+
 // MARK: - Select
 struct Select: Codable {
     let name: String

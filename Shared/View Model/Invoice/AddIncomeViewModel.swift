@@ -10,6 +10,7 @@ import Foundation
 class AddIncomeViewModel: ObservableObject {
     @Published var income: Income
     @Published var types = GlobalData.shared.types
+    @Published var isLoading = false
     
     var incomeType: [String] {
         types.incomeTypes.map { result in
@@ -62,12 +63,15 @@ class AddIncomeViewModel: ObservableObject {
         YearMonthCheck.shared.getYearMonthID(date) { id in
             self.income.yearMonthID = id
             
+            self.isLoading = true
             if self.isUpdate {
                 Networking.shared.updateIncome(self.income) { isSuccess in
+                    self.isLoading = false
                     return completion(isSuccess)
                 }
             } else {
                 Networking.shared.postIncome(self.income) { isSuccess in
+                    self.isLoading = false
                     return completion(isSuccess)
                 }
             }

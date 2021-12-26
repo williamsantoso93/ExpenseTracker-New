@@ -38,6 +38,7 @@ class Networking {
         case incomeDatabaseID = "e5e0a95e277748b69def274e17e4f693"
         case yearMonthDatabaseID = "741f8897815542cba0f20110fe0c2adc"
         case typeDatabaseID = "030a40c2dfed4ed08d42950d25af4466"
+        case templateExpenseDatabaseID = "ddf9d34742994bc1a568d8aff356f737"
     }
     
     enum SortDirection: String {

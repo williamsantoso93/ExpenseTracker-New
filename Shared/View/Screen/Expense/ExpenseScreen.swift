@@ -11,7 +11,7 @@ struct ExpenseScreen: View {
     @State private var isShowAddScreen = false
     @StateObject private var viewModel = ExpenseViewModel()
     
-    @State private var selectedExpense: Expense?
+    @State private var selectedExpense: Expense? = nil
     
     var body: some View {
         Form {
@@ -20,7 +20,11 @@ struct ExpenseScreen: View {
                     let expense = viewModel.expenses[index]
                     Button {
                         selectedExpense = viewModel.expenses[index]
-                        isShowAddScreen.toggle()
+                        print(selectedExpense)
+                        print(viewModel.expenses[index])
+                        if let selectedExpense = selectedExpense {
+                            isShowAddScreen.toggle()
+                        }
                     } label: {
                         VStack(alignment: .leading) {
 //                            Text("id : \(expense.id)")

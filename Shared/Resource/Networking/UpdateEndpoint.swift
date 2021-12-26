@@ -17,18 +17,8 @@ extension Networking {
         )
         
         patchData(to: urlString, patchData: update) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let success):
-                    print(success)
-                    return completion(isSuccess)
-                case .failure(let failure):
-                    if isSuccess {
-                        return completion(isSuccess)
-                    } else {
-                        print(failure)
-                    }
-                }
+            self.defaultResultIsSuccess(result, isSuccess) { isSuccess in
+                return completion(isSuccess)
             }
         }
     }
@@ -41,18 +31,8 @@ extension Networking {
         )
         
         patchData(to: urlString, patchData: update) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let success):
-                    print(success)
-                    return completion(isSuccess)
-                case .failure(let failure):
-                    if isSuccess {
-                        return completion(isSuccess)
-                    } else {
-                        print(failure)
-                    }
-                }
+            self.defaultResultIsSuccess(result, isSuccess) { isSuccess in
+                return completion(isSuccess)
             }
         }
     }
@@ -65,18 +45,22 @@ extension Networking {
         )
         
         patchData(to: urlString, patchData: update) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let success):
-                    print(success)
-                    return completion(isSuccess)
-                case .failure(let failure):
-                    if isSuccess {
-                        return completion(isSuccess)
-                    } else {
-                        print(failure)
-                    }
-                }
+            self.defaultResultIsSuccess(result, isSuccess) { isSuccess in
+                return completion(isSuccess)
+            }
+        }
+    }
+    
+    func updateTemplateExpense(_ templateExpense: TemplateExpense, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let urlString = basePage + templateExpense.blockID
+        
+        let update = DefaultUpdate(
+            properties: Mapper.templateExpenseLocalToRemote(templateExpense)
+        )
+        
+        patchData(to: urlString, patchData: update) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in
+            self.defaultResultIsSuccess(result, isSuccess) { isSuccess in
+                return completion(isSuccess)
             }
         }
     }

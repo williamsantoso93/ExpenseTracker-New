@@ -25,14 +25,16 @@ struct SummaryScreen: View {
                 NavigationLink("Type") {
                     TypeScreen()
                 }
+                NavigationLink("Template") {
+                    TemplateScreen()
+                }
             }
+            .loadingView(globalData.isLoading, isNeedDisable: false)
             .navigationTitle("Summary")
         }
         .refreshable {
-            globalData.getTypes()
-            globalData.getYearMonth()
+            globalData.loadAll()
         }
-        .loadingView(globalData.isLoading, isNeedDisable: false)
     }
 }
 

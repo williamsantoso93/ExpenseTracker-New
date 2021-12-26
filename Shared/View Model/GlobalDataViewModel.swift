@@ -10,19 +10,26 @@ import Foundation
 class GlobalData: ObservableObject {
     @Published var types = Types()
     @Published var yearMonths = [YearMonth]()
+    @Published var templateExpenses = [TemplateExpense]()
     @Published var isLoadingTypes = false
     @Published var isLoadingYearMonths = false
+    @Published var isLoadingTemplateExpense = false
     
     @Published var isLoadingDisplay: Bool = false
     var isLoading: Bool {
-        isLoadingTypes || isLoadingYearMonths || isLoadingDisplay
+        isLoadingTypes || isLoadingYearMonths || isLoadingTemplateExpense || isLoadingDisplay
     }
     
     static let shared = GlobalData()
     
     init() {
+        loadAll()
+    }
+    
+    func loadAll() {
         getTypes()
         getYearMonth()
+        getTemplateExpense()
         isLoadingDisplay = false
     }
     
@@ -34,6 +41,11 @@ class GlobalData: ObservableObject {
     func loadNewYearMonths() {
         yearMonths.removeAll()
         getYearMonth()
+    }
+    
+    func loadNewTemplateExpenses() {
+        templateExpenses.removeAll()
+        getTemplateExpense()
     }
     
     func getTypes(startCursor: String? = nil) {
@@ -79,6 +91,36 @@ class GlobalData: ObservableObject {
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
                             self.getYearMonth(startCursor: nextCursor)
+                        }
+                    } else {
+                        if let completion = completion {
+                            return completion()
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func getTemplateExpense(startCursor: String? = nil, completion: (() -> Void)? = nil) {
+        let newData = startCursor == nil
+        isLoadingTemplateExpense = true
+        Networking.shared.getTemplateExpense(startCursor: startCursor) { (result: Result<DefaultResponse<TemplateExpenseProperty>, NetworkError>) in
+            DispatchQueue.main.async {
+                self.isLoadingTemplateExpense = false
+                switch result {
+                case .success(let data):
+                    let results = Mapper.mapTemplateExpenseRemoteToLocal(data.results)
+                    if self.templateExpenses.isEmpty || newData {
+                        self.templateExpenses = results
+                    } else {
+                        self.templateExpenses.append(contentsOf: results)
+                    }
+                    if data.hasMore {
+                        if let nextCursor = data.nextCursor {
+                            self.getTemplateExpense(startCursor: nextCursor)
                         }
                     } else {
                         if let completion = completion {

@@ -141,4 +141,38 @@ struct Mapper {
             category: SingleSelectProperty(select: Select(name: local.category))
         )
     }
+    
+    //MARK: - Setting
+    static func mapTemplateExpenseRemoteToLocal(_ remote: [ResultProperty<TemplateExpenseProperty>]) -> [TemplateExpense] {
+        remote.map { result in
+            templateExpenseRemoteToLocal(result.id, result.properties)
+        }
+    }
+    
+    static func templateExpenseRemoteToLocal(_ id: String, _ remote: TemplateExpenseProperty) -> TemplateExpense {
+        TemplateExpense(
+            blockID: id,
+            name: remote.name?.title.first?.text.content,
+            duration: remote.duration?.select.name,
+            paymentVia: remote.paymentVia?.select.name,
+            type: remote.type?.select.name,
+            value: remote.value?.number
+        )
+    }
+    
+    static func mapTemplateExpenseLocalToRemote(_ local: [TemplateExpense]) -> [TemplateExpenseProperty] {
+        local.map { result in
+            templateExpenseLocalToRemote(result)
+        }
+    }
+    
+    static func templateExpenseLocalToRemote(_ local: TemplateExpense) -> TemplateExpenseProperty {
+        TemplateExpenseProperty(
+            name: TitleProperty(title: [Title(text: TextContent(content: local.name ?? ""))]),
+            duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
+            paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
+            type: SingleSelectProperty(select: Select(name: local.type ?? "")),
+            value: NumberProperty(number: local.value ?? 0)
+        )
+    }
 }

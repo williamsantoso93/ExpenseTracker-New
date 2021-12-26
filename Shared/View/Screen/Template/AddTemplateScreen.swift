@@ -1,22 +1,19 @@
 //
-//  AddExpenseScreen.swift
+//  AddTemplateScreen.swift
 //  ExpenseTracker
 //
-//  Created by Ruangguru on 20/12/21.
+//  Created by Ruangguru on 26/12/21.
 //
 
 import SwiftUI
 
-struct AddExpenseScreen: View {
+struct AddTemplateScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: AddExpenseViewModel
+    @StateObject var viewModel: AddTemplateViewModel
     var refesh: () -> Void
     
-    @State private var selectedTemplateIndex = -1
-    
-    init(expense: Expense? = nil, refesh: @escaping () -> Void) {
-        print(expense)
-        self._viewModel = StateObject(wrappedValue: AddExpenseViewModel(expense: expense))
+    init(templateExpense: TemplateExpense? = nil, refesh: @escaping () -> Void) {
+        self._viewModel = StateObject(wrappedValue: AddTemplateViewModel(templateExpense: templateExpense))
         self.refesh = refesh
     }
     
@@ -24,6 +21,7 @@ struct AddExpenseScreen: View {
         NavigationView {
             Form {
                 Section {
+                    TextFiedForm(title: "Name", prompt: "Netflix", value: $viewModel.name)
                     NumberTextFiedForm(title: "Value", prompt: "50000", value: $viewModel.valueString)
 #if os(iOS)
                         .keyboardType(.numberPad)
@@ -42,25 +40,6 @@ struct AddExpenseScreen: View {
                         ForEach(viewModel.durationType, id: \.self) {
                             Text($0)
                         }
-                    }
-                    DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
-                    VStack(alignment: .leading, spacing: 2.0) {
-                        Text("Note")
-                        TextEditor(text: $viewModel.note)
-                            .frame(height: 150.0)
-                    }
-                }
-
-                Section {
-                    Picker("Template", selection: $selectedTemplateIndex) {
-                        ForEach(viewModel.templateExpenses.indices, id: \.self) { index in
-                            let templateExpense = viewModel.templateExpenses[index]
-                            Text(templateExpense.name ?? "")
-                                .tag(index)
-                        }
-                    }
-                    .onChange(of: selectedTemplateIndex) { index in
-                        viewModel.applyTemplate(at: index)
                     }
                 }
             }
@@ -96,8 +75,8 @@ struct AddExpenseScreen: View {
     }
 }
 
-struct AddExpenseScreen_Previews: PreviewProvider {
+struct AddTemplateScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddExpenseScreen() {}
+        AddTemplateScreen() {}
     }
 }

@@ -10,6 +10,8 @@ import Foundation
 class AddExpenseViewModel: ObservableObject {
     @Published var expense: Expense
     @Published var types = GlobalData.shared.types
+    @Published var templateExpenses = GlobalData.shared.templateExpenses
+    @Published var isLoading = false
     
     var expenseType: [String] {
         types.expenseTypes.map { result in
@@ -34,6 +36,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var selectedType = ""
     @Published var selectedPayment = ""
     @Published var selectedDuration = ""
+    @Published var selectedTemplateExpense: TemplateExpense? = nil
     @Published var note = ""
     @Published var date = Date()
     
@@ -80,15 +83,41 @@ class AddExpenseViewModel: ObservableObject {
         YearMonthCheck.shared.getYearMonthID(date) { id in
             self.expense.yearMonthID = id
             
+            self.isLoading = true
             if self.isUpdate {
                 Networking.shared.updateExpense(self.expense) { isSuccess in
+                    self.isLoading = false
                     return completion(isSuccess)
                 }
             } else {
                 Networking.shared.postExpense(self.expense) { isSuccess in
+                    self.isLoading = false
                     return completion(isSuccess)
                 }
             }
+        }
+    }
+    
+    func applyTemplate(at index: Int) {
+        guard index >= 0 else {
+            return
+        }
+        let selectedTemplateExpense = templateExpenses[index]
+        
+        if let name = selectedTemplateExpense.name {
+            note = name
+        }
+        if let selectedDuration = selectedTemplateExpense.duration {
+            self.selectedDuration = selectedDuration
+        }
+        if let selectedType = selectedTemplateExpense.type {
+            self.selectedType = selectedType
+        }
+        if let selectedPayment = selectedTemplateExpense.paymentVia {
+            self.selectedPayment = selectedPayment
+        }
+        if let valueString = selectedTemplateExpense.value {
+            self.valueString = valueString.splitDigit()
         }
     }
 }

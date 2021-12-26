@@ -9,6 +9,17 @@ import Foundation
 
 //MARK: - Get Data
 extension Networking {
+    func defaultReturnData<T: Codable>(_ result: Result<DefaultResponse<T>, NetworkError>, completion: @escaping (Result<DefaultResponse<T>, NetworkError>) -> Void) {
+        DispatchQueue.main.async {
+            switch result {
+            case .success(let data):
+                return completion(.success(data))
+            case .failure(let error):
+                return completion(.failure(error))
+            }
+        }
+    }
+    
     func getIncome(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<IncomeProperty>, NetworkError>) -> Void) {
         let urlString = baseDatabase + DatabaseID.incomeDatabaseID.rawValue + "/query"
         
@@ -20,13 +31,8 @@ extension Networking {
         )
         
         postData(to: urlString, postData: post) { (result: Result<DefaultResponse<IncomeProperty>, NetworkError>, response, dataResponse, isSuccess) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    return completion(.success(data))
-                case .failure(let error):
-                    return completion(.failure(error))
-                }
+            self.defaultReturnData(result) { result in
+                return completion(result)
             }
         }
     }
@@ -42,13 +48,8 @@ extension Networking {
         )
         
         postData(to: urlString, postData: post) { (result: Result<DefaultResponse<ExpenseProperty>, NetworkError>, response, dataResponse, isSuccess) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let data):
-                    return completion(.success(data))
-                case .failure(let error):
-                    return completion(.failure(error))
-                }
+            self.defaultReturnData(result) { result in
+                return completion(result)
             }
         }
     }
@@ -93,6 +94,23 @@ extension Networking {
                 case .failure(let error):
                     return completion(.failure(error))
                 }
+            }
+        }
+    }
+    
+    func getTemplateExpense(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<TemplateExpenseProperty>, NetworkError>) -> Void) {
+        let urlString = baseDatabase + DatabaseID.templateExpenseDatabaseID.rawValue + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<TemplateExpenseProperty>, NetworkError>, response, dataResponse, isSuccess) in
+            self.defaultReturnData(result) { result in
+                return completion(result)
             }
         }
     }
