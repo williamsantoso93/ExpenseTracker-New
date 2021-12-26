@@ -10,15 +10,17 @@ import SwiftUI
 struct AddExpenseScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: AddExpenseViewModel
+    var refesh: () -> Void
     
-    init(expense: Expense? = nil) {
+    init(expense: Expense? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddExpenseViewModel(expense: expense))
+        self.refesh = refesh
     }
     
     var body: some View {
         NavigationView {
             Form {
-                TextFiedForm(title: "Value", prompt: "50000", value: $viewModel.valueString)
+                NumberTextFiedForm(title: "Value", prompt: "50000", value: $viewModel.valueString)
                     .keyboardType(.numberPad)
                 Picker("Type", selection: $viewModel.selectedType) {
                     ForEach(viewModel.expenseType, id: \.self) {
@@ -58,6 +60,7 @@ struct AddExpenseScreen: View {
                     Button {
                         viewModel.save { isSuccess in
                             if isSuccess {
+                                refesh()
                                 presentationMode.wrappedValue.dismiss()
                             }
                         }
@@ -72,20 +75,6 @@ struct AddExpenseScreen: View {
 
 struct AddExpenseScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddExpenseScreen()
-    }
-}
-
-struct TextFiedForm: View {
-    var title: String
-    var prompt: String = ""
-    @Binding var value: String
-    
-    var body: some View {
-        HStack {
-            Text(title)
-            TextField(prompt, text: $value)
-                .multilineTextAlignment(.trailing)
-        }
+        AddExpenseScreen() {}
     }
 }

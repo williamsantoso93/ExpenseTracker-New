@@ -23,11 +23,12 @@ struct IncomeScreen: View {
                         isShowAddScreen.toggle()
                     } label: {
                         VStack(alignment: .leading) {
-                            Text("id : \(income.id)")
-                            Text("yearMonth : \(income.yearMonth ?? "")")
+//                            Text("id : \(income.id)")
+//                            Text("yearMonth : \(income.yearMonth ?? "")")
                             Text("value : \(income.value ?? 0)")
                             Text("type : \(income.type ?? "")")
                             Text("note : \(income.note ?? "")")
+                            Text("date : \((income.date ?? Date()).toString())")
                         }
                     }
                     .onAppear {
@@ -51,10 +52,11 @@ struct IncomeScreen: View {
             }
         }
         .sheet(isPresented: $isShowAddScreen) {
-            viewModel.loadNewData()
             selectedIncome = nil
         } content: {
-            AddInvoiceScreen(income: selectedIncome)
+            AddInvoiceScreen(income: selectedIncome) {
+                viewModel.loadNewData()
+            }
         }
     }
 }

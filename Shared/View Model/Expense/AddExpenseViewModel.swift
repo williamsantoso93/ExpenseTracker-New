@@ -29,7 +29,7 @@ class AddExpenseViewModel: ObservableObject {
     
     @Published var valueString = ""
     var value: Int {
-        Int(valueString) ?? 0
+        valueString.toInt()
     }
     @Published var selectedType = ""
     @Published var selectedPayment = ""

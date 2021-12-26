@@ -7,6 +7,32 @@
 
 import Foundation
 
+
+extension String {
+    func splitDigit() -> String {
+        if !self.isEmpty {
+            if let number = Int(self.replacingOccurrences(of: ".", with: "")) {
+                return number.splitDigit()
+            }
+            return self
+        }
+        return self
+    }
+    
+    func toInt() -> Int {
+        Int(self.replacingOccurrences(of: ".", with: "")) ?? 0
+    }
+}
+
+extension Int {
+    func splitDigit() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.groupingSeparator = "."
+        return numberFormatter.string(from: NSNumber(value: self)) ?? ""
+    }
+}
+
 extension String {
     func toDate(format: String = "yyyy-MM-dd") -> Date? {
         let dateFormatter = DateFormatter()

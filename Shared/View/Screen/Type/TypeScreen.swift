@@ -52,10 +52,11 @@ struct TypeScreen: View {
             }
         }
         .sheet(isPresented: $isShowAddScreen) {
-            globalData.getTypes()
             selectedType = nil
         } content: {
-            AddTypeScreen(typeModel: selectedType)
+            AddTypeScreen(typeModel: selectedType) {
+                globalData.getTypes()
+            }
         }
     }
 }

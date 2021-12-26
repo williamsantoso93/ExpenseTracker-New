@@ -10,9 +10,11 @@ import SwiftUI
 struct AddTypeScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: AddTypeViewModel
+    var refesh: () -> Void
         
-    init(typeModel: TypeModel? = nil) {
+    init(typeModel: TypeModel? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddTypeViewModel(typeModel: typeModel))
+        self.refesh = refesh
     }
     
     var body: some View {
@@ -23,7 +25,7 @@ struct AddTypeScreen: View {
                         Text($0)
                     }
                 }
-                TextFiedForm(title: "Name", prompt: "IPL", value: $viewModel.name)
+                NumberTextFiedForm(title: "Name", prompt: "IPL", value: $viewModel.name)
             }
             .navigationTitle("Add")
             .navigationBarTitleDisplayMode(.inline)
@@ -41,6 +43,7 @@ struct AddTypeScreen: View {
                     Button {
                         viewModel.save { isSuccess in
                             if isSuccess {
+                                refesh()
                                 presentationMode.wrappedValue.dismiss()
                             }
                         }
@@ -55,6 +58,6 @@ struct AddTypeScreen: View {
 
 struct AddTypeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddTypeScreen()
+        AddTypeScreen() {}
     }
 }

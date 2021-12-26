@@ -54,10 +54,11 @@ struct ExpenseScreen: View {
             }
         }
         .sheet(isPresented: $isShowAddScreen) {
-            viewModel.loadNewData()
             selectedExpense = nil
         } content: {
-            AddExpenseScreen(expense: selectedExpense)
+            AddExpenseScreen(expense: selectedExpense) {
+                viewModel.loadNewData()
+            }
         }
 
     }

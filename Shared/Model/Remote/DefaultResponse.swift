@@ -54,3 +54,23 @@ struct ErrorResponse: Codable {
     let status: Int
     let code, message: String
 }
+
+// MARK: - DefaultPost
+struct DefaultPost<T: Codable>: Codable {
+    let parent: Parent
+    let properties: T
+}
+
+// MARK: - Parent
+struct Parent: Codable {
+    let databaseID: String
+    
+    enum CodingKeys: String, CodingKey {
+        case databaseID = "database_id"
+    }
+}
+
+// MARK: - DefaultUpdate
+struct DefaultUpdate<T: Codable>: Codable {
+    let properties: T
+}
