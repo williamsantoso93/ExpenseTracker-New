@@ -21,7 +21,9 @@ struct AddExpenseScreen: View {
         NavigationView {
             Form {
                 NumberTextFiedForm(title: "Value", prompt: "50000", value: $viewModel.valueString)
+#if os(iOS)
                     .keyboardType(.numberPad)
+#endif
                 Picker("Type", selection: $viewModel.selectedType) {
                     ForEach(viewModel.expenseType, id: \.self) {
                         Text($0)
@@ -45,7 +47,9 @@ struct AddExpenseScreen: View {
                 }
             }
             .navigationTitle("Add")
+#if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+#endif
             .toolbar {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {

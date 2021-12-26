@@ -47,7 +47,9 @@ struct TypeScreen: View {
         .toolbar {
             ToolbarItem {
                 HStack {
+#if os(iOS)
                     EditButton()
+#endif
                     
                     Button {
                         isShowAddScreen.toggle()

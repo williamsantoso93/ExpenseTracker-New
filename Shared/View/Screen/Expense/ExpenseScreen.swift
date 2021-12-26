@@ -47,8 +47,9 @@ struct ExpenseScreen: View {
         .toolbar {            
             ToolbarItem {
                 HStack {
+#if os(iOS)
                     EditButton()
-                    
+#endif
                     Button {
                         isShowAddScreen.toggle()
                     } label: {

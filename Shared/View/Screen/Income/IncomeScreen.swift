@@ -45,7 +45,9 @@ struct IncomeScreen: View {
         .toolbar {
             ToolbarItem {
                 HStack {
+#if os(iOS)
                     EditButton()
+#endif
                     
                     Button {
                         isShowAddScreen.toggle()

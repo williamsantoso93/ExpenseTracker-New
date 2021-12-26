@@ -28,7 +28,9 @@ struct AddTypeScreen: View {
                 NumberTextFiedForm(title: "Name", prompt: "IPL", value: $viewModel.name)
             }
             .navigationTitle("Add")
-            .navigationBarTitleDisplayMode(.inline)
+#if os(iOS)
+                .navigationBarTitleDisplayMode(.inline)
+#endif
             .toolbar {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {

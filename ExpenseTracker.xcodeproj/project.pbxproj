@@ -31,6 +31,36 @@
 		E08178C82770901000F358D9 /* TypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C72770901000F358D9 /* TypeViewModel.swift */; };
 		E08178CA2770903000F358D9 /* IncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C92770903000F358D9 /* IncomeScreen.swift */; };
 		E08178CF2770959C00F358D9 /* YearMonthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178CE2770959C00F358D9 /* YearMonthScreen.swift */; };
+		E09030BF27781FBC003ED6B5 /* YearMonthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178CE2770959C00F358D9 /* YearMonthScreen.swift */; };
+		E09030C027781FBF003ED6B5 /* IncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C92770903000F358D9 /* IncomeScreen.swift */; };
+		E09030C127781FC2003ED6B5 /* AddInvoiceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */; };
+		E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A762776B46E002E685F /* AddTypeScreen.swift */; };
+		E09030C327781FD5003ED6B5 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0050C352778058400396C36 /* TextField.swift */; };
+		E09030C427781FD8003ED6B5 /* AddTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */; };
+		E09030C527781FE0003ED6B5 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */; };
+		E09030C627781FE0003ED6B5 /* YearMonthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6F2776B433002E685F /* YearMonthCheck.swift */; };
+		E09030C727781FE0003ED6B5 /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006435927740F7000B5108D /* SummaryViewModel.swift */; };
+		E09030C827781FE0003ED6B5 /* IncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C327708FFC00F358D9 /* IncomeViewModel.swift */; };
+		E09030C927781FE0003ED6B5 /* AddIncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */; };
+		E09030CA27781FE0003ED6B5 /* YearMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C52770900900F358D9 /* YearMonthViewModel.swift */; };
+		E09030CB27781FE0003ED6B5 /* TypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C72770901000F358D9 /* TypeViewModel.swift */; };
+		E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006435B27740F8C00B5108D /* GlobalDataViewModel.swift */; };
+		E09030CD27781FE0003ED6B5 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C1277087D100F358D9 /* ExpenseViewModel.swift */; };
+		E09030CE27781FF0003ED6B5 /* ExpenseProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF222770232700DF12AD /* ExpenseProperty.swift */; };
+		E09030CF27781FF0003ED6B5 /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70D2770731C0093F5DA /* Income.swift */; };
+		E09030D027781FF0003ED6B5 /* TypeProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF342770266000DF12AD /* TypeProperty.swift */; };
+		E09030D127781FF0003ED6B5 /* YearMonthProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF162770201B00DF12AD /* YearMonthProperty.swift */; };
+		E09030D227781FF0003ED6B5 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70F277073220093F5DA /* Expense.swift */; };
+		E09030D327781FF0003ED6B5 /* YearMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70B2770722E0093F5DA /* YearMonth.swift */; };
+		E09030D427781FF0003ED6B5 /* IncomeProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF312770259F00DF12AD /* IncomeProperty.swift */; };
+		E09030D527781FF0003ED6B5 /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D711277073760093F5DA /* TypeModel.swift */; };
+		E09030D627781FF0003ED6B5 /* DefaultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF1327701C1A00DF12AD /* DefaultResponse.swift */; };
+		E09030D727781FF7003ED6B5 /* GetEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0050C2D2778006600396C36 /* GetEndpoint.swift */; };
+		E09030D827781FF7003ED6B5 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D713277074BB0093F5DA /* Mapper.swift */; };
+		E09030D927781FF7003ED6B5 /* PostEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0050C2B2778005A00396C36 /* PostEndpoint.swift */; };
+		E09030DA27781FF7003ED6B5 /* DeleteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0050C312778007600396C36 /* DeleteEndpoint.swift */; };
+		E09030DB27781FF7003ED6B5 /* UpdateEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0050C2F2778006C00396C36 /* UpdateEndpoint.swift */; };
+		E09030DC27781FF7003ED6B5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF37277028CB00DF12AD /* Networking.swift */; };
 		E097D70C2770722E0093F5DA /* YearMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70B2770722E0093F5DA /* YearMonth.swift */; };
 		E097D70E2770731C0093F5DA /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70D2770731C0093F5DA /* Income.swift */; };
 		E097D710277073220093F5DA /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70F277073220093F5DA /* Expense.swift */; };
@@ -648,19 +678,49 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E09030C127781FC2003ED6B5 /* AddInvoiceScreen.swift in Sources */,
+				E09030C927781FE0003ED6B5 /* AddIncomeViewModel.swift in Sources */,
+				E09030CA27781FE0003ED6B5 /* YearMonthViewModel.swift in Sources */,
+				E09030BF27781FBC003ED6B5 /* YearMonthScreen.swift in Sources */,
+				E09030D827781FF7003ED6B5 /* Mapper.swift in Sources */,
 				E0D6EF2D277023FE00DF12AD /* DateProperty.swift in Sources */,
+				E09030CE27781FF0003ED6B5 /* ExpenseProperty.swift in Sources */,
+				E09030CB27781FE0003ED6B5 /* TypeViewModel.swift in Sources */,
+				E09030C727781FE0003ED6B5 /* SummaryViewModel.swift in Sources */,
+				E09030D727781FF7003ED6B5 /* GetEndpoint.swift in Sources */,
 				E006AA352770179E00980302 /* ExpenseScreen.swift in Sources */,
+				E09030D127781FF0003ED6B5 /* YearMonthProperty.swift in Sources */,
 				E0BF3AB1276F566B00FC902E /* ExpenseTracker.xcdatamodeld in Sources */,
 				E0D6EF1E277021F000DF12AD /* SelectProperty.swift in Sources */,
+				E09030D627781FF0003ED6B5 /* DefaultResponse.swift in Sources */,
+				E09030D227781FF0003ED6B5 /* Expense.swift in Sources */,
 				E0BF3AB7276F566B00FC902E /* Persistence.swift in Sources */,
+				E09030DB27781FF7003ED6B5 /* UpdateEndpoint.swift in Sources */,
 				E006AA312770175A00980302 /* SummaryScreen.swift in Sources */,
+				E09030C427781FD8003ED6B5 /* AddTypeViewModel.swift in Sources */,
 				E0107A40277457EA00825484 /* TypeScreen.swift in Sources */,
+				E09030CD27781FE0003ED6B5 /* ExpenseViewModel.swift in Sources */,
+				E09030C027781FBF003ED6B5 /* IncomeScreen.swift in Sources */,
+				E09030DC27781FF7003ED6B5 /* Networking.swift in Sources */,
+				E09030D327781FF0003ED6B5 /* YearMonth.swift in Sources */,
 				E0D6EF0B27701B1400DF12AD /* AddExpenseScreen.swift in Sources */,
+				E09030D527781FF0003ED6B5 /* TypeModel.swift in Sources */,
+				E09030C327781FD5003ED6B5 /* TextField.swift in Sources */,
 				E0BF3AB3276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
+				E09030D027781FF0003ED6B5 /* TypeProperty.swift in Sources */,
+				E09030C827781FE0003ED6B5 /* IncomeViewModel.swift in Sources */,
+				E09030DA27781FF7003ED6B5 /* DeleteEndpoint.swift in Sources */,
+				E09030C627781FE0003ED6B5 /* YearMonthCheck.swift in Sources */,
 				E0BF3AB5276F566B00FC902E /* ContentView.swift in Sources */,
+				E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */,
 				E0D6EF21277021F800DF12AD /* TextProperty.swift in Sources */,
+				E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */,
+				E09030C527781FE0003ED6B5 /* AddExpenseViewModel.swift in Sources */,
+				E09030D427781FF0003ED6B5 /* IncomeProperty.swift in Sources */,
+				E09030CF27781FF0003ED6B5 /* Income.swift in Sources */,
 				E0D6EF302770240900DF12AD /* RelationProperty.swift in Sources */,
 				E0D6EF3D27702DE400DF12AD /* Extension.swift in Sources */,
+				E09030D927781FF7003ED6B5 /* PostEndpoint.swift in Sources */,
 				E0D6EF27277023CB00DF12AD /* NumberProperty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
