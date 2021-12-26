@@ -8,7 +8,7 @@
 import Foundation
 
 class AddTemplateViewModel: ObservableObject {
-    @Published var templateExpense: TemplateModel
+    @Published var templateModel: TemplateModel
     @Published var types = GlobalData.shared.types
     
     var expenseType: [String] {
@@ -35,25 +35,33 @@ class AddTemplateViewModel: ObservableObject {
     @Published var selectedType = ""
     @Published var selectedPayment = ""
     @Published var selectedDuration = ""
+    @Published var selectedCategory = ""
     
     @Published var saveTitle = "Save"
     var isUpdate: Bool = false
     
-    init(templateExpense: TemplateModel? = nil) {
-        if let templateExpense = templateExpense {
-            self.templateExpense = templateExpense
-            name = templateExpense.name ?? ""
-            if let value = templateExpense.value {
+    var category: [String] {
+        [
+            "Income",
+            "Expense",
+        ]
+    }
+    
+    init(templateModel: TemplateModel? = nil) {
+        if let templateModel = templateModel {
+            self.templateModel = templateModel
+            name = templateModel.name ?? ""
+            if let value = templateModel.value {
                 valueString = value.splitDigit()
             }
-            selectedDuration = templateExpense.duration ?? ""
-            selectedPayment = templateExpense.paymentVia ?? ""
-            selectedType = templateExpense.type ?? ""
+            selectedDuration = templateModel.duration ?? ""
+            selectedPayment = templateModel.paymentVia ?? ""
+            selectedType = templateModel.type ?? ""
             
             isUpdate = true
             saveTitle = "Update"
         } else {
-            self.templateExpense = TemplateModel(
+            self.templateModel = TemplateModel(
                 blockID: "",
                 name: "",
                 duration: "",
@@ -67,20 +75,21 @@ class AddTemplateViewModel: ObservableObject {
     @Published var isLoading = false
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        templateExpense.name = name
-        templateExpense.value = value
-        templateExpense.duration = selectedDuration
-        templateExpense.paymentVia = selectedPayment
-        templateExpense.type = selectedType
+        templateModel.name = name
+        templateModel.value = value
+        templateModel.duration = selectedDuration
+        templateModel.paymentVia = selectedPayment
+        templateModel.type = selectedType
+        templateModel.category = selectedCategory
         
         isLoading = true
         if isUpdate {
-            Networking.shared.updateTemplateExpense(templateExpense) { isSuccess in
+            Networking.shared.updateTemplateModel(templateModel) { isSuccess in
                 self.isLoading = false
                 return completion(isSuccess)
             }
         } else {
-            Networking.shared.postTemplateExpense(templateExpense) { isSuccess in
+            Networking.shared.postTemplateModel(templateModel) { isSuccess in
                 self.isLoading = false
                 return completion(isSuccess)
             }

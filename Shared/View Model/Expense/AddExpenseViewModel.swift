@@ -10,7 +10,7 @@ import Foundation
 class AddExpenseViewModel: ObservableObject {
     @Published var expense: Expense
     @Published var types = GlobalData.shared.types
-    @Published var templates = GlobalData.shared.templateModels.filter { result in
+    @Published var templateModels = GlobalData.shared.templateModels.filter { result in
         result.category == "Expense"
     }
     @Published var isLoading = false
@@ -104,21 +104,21 @@ class AddExpenseViewModel: ObservableObject {
         guard index >= 0 else {
             return
         }
-        let selectedTemplate = templates[index]
+        let selectedTemplateModel = templateModels[index]
         
-        if let name = selectedTemplate.name {
+        if let name = selectedTemplateModel.name {
             note = name
         }
-        if let selectedDuration = selectedTemplate.duration {
+        if let selectedDuration = selectedTemplateModel.duration {
             self.selectedDuration = selectedDuration
         }
-        if let selectedType = selectedTemplate.type {
+        if let selectedType = selectedTemplateModel.type {
             self.selectedType = selectedType
         }
-        if let selectedPayment = selectedTemplate.paymentVia {
+        if let selectedPayment = selectedTemplateModel.paymentVia {
             self.selectedPayment = selectedPayment
         }
-        if let valueString = selectedTemplate.value {
+        if let valueString = selectedTemplateModel.value {
             self.valueString = valueString.splitDigit()
         }
     }

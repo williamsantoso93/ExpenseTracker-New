@@ -143,13 +143,13 @@ struct Mapper {
     }
     
     //MARK: - Setting
-    static func mapTemplateExpenseRemoteToLocal(_ remote: [ResultProperty<TemplateExpenseProperty>]) -> [TemplateModel] {
+    static func mapTemplateModelRemoteToLocal(_ remote: [ResultProperty<TemplateModelProperty>]) -> [TemplateModel] {
         remote.map { result in
-            templateExpenseRemoteToLocal(result.id, result.properties)
+            templateModelRemoteToLocal(result.id, result.properties)
         }
     }
     
-    static func templateExpenseRemoteToLocal(_ id: String, _ remote: TemplateExpenseProperty) -> TemplateModel {
+    static func templateModelRemoteToLocal(_ id: String, _ remote: TemplateModelProperty) -> TemplateModel {
         TemplateModel(
             blockID: id,
             name: remote.name?.title.first?.text.content,
@@ -161,14 +161,14 @@ struct Mapper {
         )
     }
     
-    static func mapTemplateExpenseLocalToRemote(_ local: [TemplateModel]) -> [TemplateExpenseProperty] {
+    static func mapTemplateModelLocalToRemote(_ local: [TemplateModel]) -> [TemplateModelProperty] {
         local.map { result in
-            templateExpenseLocalToRemote(result)
+            templateModelLocalToRemote(result)
         }
     }
     
-    static func templateExpenseLocalToRemote(_ local: TemplateModel) -> TemplateExpenseProperty {
-        TemplateExpenseProperty(
+    static func templateModelLocalToRemote(_ local: TemplateModel) -> TemplateModelProperty {
+        TemplateModelProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name ?? ""))]),
             category: SingleSelectProperty(select: Select(name: local.category ?? "")),
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),

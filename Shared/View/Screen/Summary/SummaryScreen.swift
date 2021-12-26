@@ -26,7 +26,7 @@ struct SummaryScreen: View {
                     TypeScreen()
                 }
                 NavigationLink("Template") {
-                    TemplateScreen()
+                    templateModelscreen()
                 }
             }
             .loadingView(globalData.isLoading, isNeedDisable: false)

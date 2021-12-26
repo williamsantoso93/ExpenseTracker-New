@@ -98,8 +98,8 @@ extension Networking {
         }
     }
     
-    func getTemplateExpense(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<TemplateExpenseProperty>, NetworkError>) -> Void) {
-        let urlString = baseDatabase + DatabaseID.templateExpenseDatabaseID.rawValue + "/query"
+    func getTemplateModel(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<TemplateModelProperty>, NetworkError>) -> Void) {
+        let urlString = baseDatabase + DatabaseID.templateModelDatabaseID.rawValue + "/query"
         
         let post = Query(
             startCursor: startCursor,
@@ -108,7 +108,7 @@ extension Networking {
             ]
         )
         
-        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<TemplateExpenseProperty>, NetworkError>, response, dataResponse, isSuccess) in
+        postData(to: urlString, postData: post) { (result: Result<DefaultResponse<TemplateModelProperty>, NetworkError>, response, dataResponse, isSuccess) in
             self.defaultReturnData(result) { result in
                 return completion(result)
             }

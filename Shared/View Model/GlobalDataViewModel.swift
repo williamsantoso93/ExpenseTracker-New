@@ -13,11 +13,11 @@ class GlobalData: ObservableObject {
     @Published var templateModels = [TemplateModel]()
     @Published var isLoadingTypes = false
     @Published var isLoadingYearMonths = false
-    @Published var isLoadingTemplateExpense = false
+    @Published var isLoadingTemplateModel = false
     
     @Published var isLoadingDisplay: Bool = false
     var isLoading: Bool {
-        isLoadingTypes || isLoadingYearMonths || isLoadingTemplateExpense || isLoadingDisplay
+        isLoadingTypes || isLoadingYearMonths || isLoadingTemplateModel || isLoadingDisplay
     }
     
     static let shared = GlobalData()
@@ -29,7 +29,7 @@ class GlobalData: ObservableObject {
     func loadAll() {
         getTypes()
         getYearMonth()
-        getTemplateExpense()
+        getTemplateModel()
         isLoadingDisplay = false
     }
     
@@ -43,9 +43,9 @@ class GlobalData: ObservableObject {
         getYearMonth()
     }
     
-    func loadNewTemplateExpenses() {
+    func loadNewTemplateModels() {
         templateModels.removeAll()
-        getTemplateExpense()
+        getTemplateModel()
     }
     
     func getTypes(startCursor: String? = nil) {
@@ -104,15 +104,15 @@ class GlobalData: ObservableObject {
         }
     }
     
-    func getTemplateExpense(startCursor: String? = nil, completion: (() -> Void)? = nil) {
+    func getTemplateModel(startCursor: String? = nil, completion: (() -> Void)? = nil) {
         let newData = startCursor == nil
-        isLoadingTemplateExpense = true
-        Networking.shared.getTemplateExpense(startCursor: startCursor) { (result: Result<DefaultResponse<TemplateExpenseProperty>, NetworkError>) in
+        isLoadingTemplateModel = true
+        Networking.shared.getTemplateModel(startCursor: startCursor) { (result: Result<DefaultResponse<TemplateModelProperty>, NetworkError>) in
             DispatchQueue.main.async {
-                self.isLoadingTemplateExpense = false
+                self.isLoadingTemplateModel = false
                 switch result {
                 case .success(let data):
-                    let results = Mapper.mapTemplateExpenseRemoteToLocal(data.results)
+                    let results = Mapper.mapTemplateModelRemoteToLocal(data.results)
                     if self.templateModels.isEmpty || newData {
                         self.templateModels = results
                     } else {
@@ -120,7 +120,7 @@ class GlobalData: ObservableObject {
                     }
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
-                            self.getTemplateExpense(startCursor: nextCursor)
+                            self.getTemplateModel(startCursor: nextCursor)
                         }
                     } else {
                         if let completion = completion {

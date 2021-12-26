@@ -1,5 +1,5 @@
 //
-//  TemplateScreen.swift
+//  templateModelscreen.swift
 //  ExpenseTracker
 //
 //  Created by Ruangguru on 26/12/21.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct TemplateScreen: View {
+struct templateModelscreen: View {
     @ObservedObject var globalData = GlobalData.shared
     @State private var isShowAddScreen = false
-    @State private var selectedTemplate: TemplateModel?
+    @State private var selectedTemplateModel: TemplateModel?
     
     @StateObject var viewModel = TemplateViewModel()
     
@@ -18,24 +18,24 @@ struct TemplateScreen: View {
         Form {
             if !globalData.templateModels.isEmpty {
                 ForEach(viewModel.category, id:\.self) { category in
-                    let templates = viewModel.filterTemplate(category)
+                    let templateModels = viewModel.filterTemplate(category)
                     
                     Section(header: Text(category)) {
-                        ForEach(templates.indices, id:\.self) { index in
-                            let templateExpense = templates[index]
+                        ForEach(templateModels.indices, id:\.self) { index in
+                            let templateModel = templateModels[index]
                             
                             Button {
-                                selectedTemplate = templateExpense
-                                if selectedTemplate != nil {
+                                selectedTemplateModel = templateModel
+                                if selectedTemplateModel != nil {
                                     isShowAddScreen.toggle()
                                 }
                             } label: {
                                 VStack(alignment: .leading) {
-                                    Text("name : \(templateExpense.name ?? "")")
-                                    Text("value : \(templateExpense.value ?? 0)")
-                                    Text("duration : \(templateExpense.duration ?? "")")
-                                    Text("paymentVia : \(templateExpense.paymentVia ?? "")")
-                                    Text("type : \(templateExpense.type ?? "")")
+                                    Text("name : \(templateModel.name ?? "")")
+                                    Text("value : \(templateModel.value ?? 0)")
+                                    Text("duration : \(templateModel.duration ?? "")")
+                                    Text("paymentVia : \(templateModel.paymentVia ?? "")")
+                                    Text("type : \(templateModel.type ?? "")")
                                 }
                             }
                         }
@@ -45,7 +45,7 @@ struct TemplateScreen: View {
         }
         .loadingView(GlobalData.shared.isLoading, isNeedDisable: false)
         .refreshable {
-            GlobalData.shared.getTemplateExpense()
+            GlobalData.shared.getTemplateModel()
         }
         .navigationTitle("Template")
         .toolbar {
@@ -64,17 +64,17 @@ struct TemplateScreen: View {
             }
         }
         .sheet(isPresented: $isShowAddScreen) {
-            selectedTemplate = nil
+            selectedTemplateModel = nil
         } content: {
-            AddTemplateScreen(templateExpense: selectedTemplate) {
-                globalData.getTemplateExpense()
+            AddTemplatescreen(templateModel: selectedTemplateModel) {
+                globalData.getTemplateModel()
             }
         }
     }
 }
 
-struct TemplateScreen_Previews: PreviewProvider {
+struct templateModelscreen_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateScreen()
+        templateModelscreen()
     }
 }

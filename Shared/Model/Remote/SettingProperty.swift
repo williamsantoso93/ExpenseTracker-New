@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - TemplateExpenseProperty
-struct TemplateExpenseProperty: Codable {
+// MARK: - TemplateModelProperty
+struct TemplateModelProperty: Codable {
     let name: TitleProperty?
     let category, duration, paymentVia, type: SingleSelectProperty?
     let value: NumberProperty?

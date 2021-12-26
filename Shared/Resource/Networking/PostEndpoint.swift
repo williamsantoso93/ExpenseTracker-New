@@ -85,12 +85,12 @@ extension Networking {
         }
     }
     
-    func postTemplateExpense(_ templateExpense: TemplateModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func postTemplateModel(_ templateModel: TemplateModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
         let post = DefaultPost(
-            parent: Parent(databaseID: DatabaseID.templateExpenseDatabaseID.rawValue),
-            properties: Mapper.templateExpenseLocalToRemote(templateExpense)
+            parent: Parent(databaseID: DatabaseID.templateModelDatabaseID.rawValue),
+            properties: Mapper.templateModelLocalToRemote(templateModel)
         )
         
         postData(to: urlString, postData: post) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in

@@ -1,5 +1,5 @@
 //
-//  AddTemplateScreen.swift
+//  AddTemplatescreen.swift
 //  ExpenseTracker
 //
 //  Created by Ruangguru on 26/12/21.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct AddTemplateScreen: View {
+struct AddTemplatescreen: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var viewModel: AddTemplateViewModel
     var refesh: () -> Void
     
-    init(templateExpense: TemplateModel? = nil, refesh: @escaping () -> Void) {
-        self._viewModel = StateObject(wrappedValue: AddTemplateViewModel(templateExpense: templateExpense))
+    init(templateModel: TemplateModel? = nil, refesh: @escaping () -> Void) {
+        self._viewModel = StateObject(wrappedValue: AddTemplateViewModel(templateModel: templateModel))
         self.refesh = refesh
     }
     
@@ -38,6 +38,11 @@ struct AddTemplateScreen: View {
                     }
                     Picker("Duration", selection: $viewModel.selectedDuration) {
                         ForEach(viewModel.durationType, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("Category", selection: $viewModel.selectedCategory) {
+                        ForEach(viewModel.category, id: \.self) {
                             Text($0)
                         }
                     }
@@ -75,8 +80,8 @@ struct AddTemplateScreen: View {
     }
 }
 
-struct AddTemplateScreen_Previews: PreviewProvider {
+struct AddtemplateModelscreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddTemplateScreen() {}
+        AddTemplatescreen() {}
     }
 }

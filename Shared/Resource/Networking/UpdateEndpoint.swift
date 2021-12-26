@@ -51,11 +51,11 @@ extension Networking {
         }
     }
     
-    func updateTemplateExpense(_ templateExpense: TemplateModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
-        let urlString = basePage + templateExpense.blockID
+    func updateTemplateModel(_ templateModel: TemplateModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let urlString = basePage + templateModel.blockID
         
         let update = DefaultUpdate(
-            properties: Mapper.templateExpenseLocalToRemote(templateExpense)
+            properties: Mapper.templateModelLocalToRemote(templateModel)
         )
         
         patchData(to: urlString, patchData: update) { (result: Result<DefaultResponse<Bool>, NetworkError>, response, dataResponse, isSuccess) in

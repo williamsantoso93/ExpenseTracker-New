@@ -51,9 +51,9 @@ struct AddExpenseScreen: View {
 
                 Section {
                     Picker("Template", selection: $viewModel.selectedTemplateIndex) {
-                        ForEach(viewModel.templates.indices, id: \.self) { index in
-                            let templateExpense = viewModel.templates[index]
-                            Text(templateExpense.name ?? "")
+                        ForEach(viewModel.templateModels.indices, id: \.self) { index in
+                            let templateModel = viewModel.templateModels[index]
+                            Text(templateModel.name ?? "")
                                 .tag(index)
                         }
                     }
