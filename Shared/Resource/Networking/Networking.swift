@@ -20,8 +20,16 @@ enum NetworkError: Error {
 }
 
 class Networking {
-    let baseDatabase = "https://api.notion.com/v1/databases/"
-    let basePage = "https://api.notion.com/v1/pages/"
+    let base = "https://api.notion.com/v1/"
+    var baseDatabase: String {
+        return base + "databases/"
+    }
+    var basePage: String {
+        return base + "pages/"
+    }
+    var baseBlock: String {
+        return base + "blocks/"
+    }
     let bearerToken = "secret_yUINPEksksZKF6AMsyzhCKX03fSmKeD1FVblA41DoCu"
     let notionVersion = "2021-05-13"
     
@@ -164,6 +172,41 @@ class Networking {
             }
             
             return completionResponse(.success(decoded), response, data, true)
+        }.resume()
+    }
+    
+    func deleteData<T:Codable>(from urlString: String, completion: @escaping (Result<T, NetworkError>, URLResponse?, Data?, Bool) -> Void) {
+        guard let url = URL(string: urlString) else {
+            return completion(.failure(.badUrl), nil, nil, false)
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("\(notionVersion)", forHTTPHeaderField: "Notion-Version")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else {
+                print(urlString)
+                return completion(.failure(.noData), response, nil, false)
+            }
+            
+            guard let decoded = try? JSONDecoder().decode(T.self, from: data) else {
+                if let response = response {
+                    if response.isStatusOK() {
+                        return completion(.failure(.decodingError(data.jsonToString())), response, data, true)
+                    }
+                }
+                print(urlString)
+                print(String(data: data, encoding: .utf8) ?? "no data")
+                
+                if let errorResponseDecoded = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                    return completion(.failure(.errorResponse(errorResponseDecoded)), response, data, false)
+                }
+                
+                return completion(.failure(.errorMessage(data.jsonToString())), response, data, false)
+            }
+            completion(.success(decoded), response, data, true)
         }.resume()
     }
 }

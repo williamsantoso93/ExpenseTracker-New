@@ -187,8 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				E0D6EF37277028CB00DF12AD /* Networking.swift */,
-				E0050C2B2778005A00396C36 /* PostEndpoint.swift */,
 				E0050C2D2778006600396C36 /* GetEndpoint.swift */,
+				E0050C2B2778005A00396C36 /* PostEndpoint.swift */,
 				E0050C2F2778006C00396C36 /* UpdateEndpoint.swift */,
 				E0050C312778007600396C36 /* DeleteEndpoint.swift */,
 			);
