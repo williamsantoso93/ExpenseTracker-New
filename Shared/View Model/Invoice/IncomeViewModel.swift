@@ -53,4 +53,16 @@ class IncomeViewModel: ObservableObject {
             self.incomes.append(contentsOf: incomes)
         }
     }
+    
+    func delete(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let id = self.incomes[index].blockID
+            
+            Networking.shared.delete(id: id) { isSuccess in
+                if isSuccess {
+                    self.incomes.remove(at: index)
+                }
+            }
+        }
+    }
 }

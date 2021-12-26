@@ -35,6 +35,7 @@ struct IncomeScreen: View {
                         viewModel.loadMoreList(of: index)
                     }
                 }
+                .onDelete(perform: viewModel.delete)
             }
         }
         .refreshable {
@@ -43,12 +44,15 @@ struct IncomeScreen: View {
         .navigationTitle("Income")
         .toolbar {
             ToolbarItem {
-                Button {
-                    isShowAddScreen.toggle()
-                } label: {
-                    Image(systemName: "plus")
+                HStack {
+                    EditButton()
+                    
+                    Button {
+                        isShowAddScreen.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
-                
             }
         }
         .sheet(isPresented: $isShowAddScreen) {

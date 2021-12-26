@@ -53,4 +53,16 @@ class ExpenseViewModel: ObservableObject {
             self.expenses.append(contentsOf: expenses)
         }
     }
+    
+    func delete(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let id = self.expenses[index].blockID
+            
+            Networking.shared.delete(id: id) { isSuccess in
+                if isSuccess {
+                    self.expenses.remove(at: index)
+                }
+            }
+        }
+    }
 }

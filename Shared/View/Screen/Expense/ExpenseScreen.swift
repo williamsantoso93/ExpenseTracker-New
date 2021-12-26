@@ -16,7 +16,7 @@ struct ExpenseScreen: View {
     var body: some View {
         Form {
             if !viewModel.expenses.isEmpty {
-                ForEach(viewModel.expenses.indices, id:\.self) {index in
+                ForEach(viewModel.expenses.indices, id:\.self) { index in
                     let expense = viewModel.expenses[index]
                     Button {
                         selectedExpense = viewModel.expenses[index]
@@ -37,6 +37,7 @@ struct ExpenseScreen: View {
                         viewModel.loadMoreList(of: index)
                     }
                 }
+                .onDelete(perform: viewModel.delete)
             }
         }
         .refreshable {
@@ -45,12 +46,15 @@ struct ExpenseScreen: View {
         .navigationTitle("Expense")
         .toolbar {            
             ToolbarItem {
-                Button {
-                    isShowAddScreen.toggle()
-                } label: {
-                    Image(systemName: "plus")
+                HStack {
+                    EditButton()
+                    
+                    Button {
+                        isShowAddScreen.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
-
             }
         }
         .sheet(isPresented: $isShowAddScreen) {

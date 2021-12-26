@@ -33,6 +33,9 @@ struct TypeScreen: View {
                                 }
                             }
                         }
+                        .onDelete { offsets in
+                            viewModel.delete(types, at: offsets)
+                        }
                     }
                 }
             }
@@ -43,12 +46,15 @@ struct TypeScreen: View {
         }
         .toolbar {
             ToolbarItem {
-                Button {
-                    isShowAddScreen.toggle()
-                } label: {
-                    Image(systemName: "plus")
+                HStack {
+                    EditButton()
+                    
+                    Button {
+                        isShowAddScreen.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
-                
             }
         }
         .sheet(isPresented: $isShowAddScreen) {

@@ -181,6 +181,7 @@ class Networking {
         }
         
         var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
         request.setValue("\(notionVersion)", forHTTPHeaderField: "Notion-Version")
