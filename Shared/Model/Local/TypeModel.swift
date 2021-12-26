@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - Type
 struct TypeModel: Codable {
+    var blockID: String
     var name: String
     var category: String
 }

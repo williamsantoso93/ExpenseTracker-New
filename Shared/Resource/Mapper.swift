@@ -41,12 +41,13 @@ struct Mapper {
     //MARK: - Expense
     static func mapExpenseRemoteToLocal(_ remote: [ResultProperty<ExpenseProperty>]) -> [Expense] {
         remote.map { result in
-            expenseRemoteToLocal(result.properties)
+            expenseRemoteToLocal(result.id, result.properties)
         }
     }
     
-    static func expenseRemoteToLocal(_ remote: ExpenseProperty) -> Expense {
+    static func expenseRemoteToLocal(_ id: String, _ remote: ExpenseProperty) -> Expense {
         Expense(
+            blockID: id,
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
             note: remote.note?.richText.first?.text.content,
@@ -80,12 +81,13 @@ struct Mapper {
     //MARK: - Income
     static func mapIncomeRemoteToLocal(_ remote: [ResultProperty<IncomeProperty>]) -> [Income] {
         remote.map { result in
-            incomeRemoteToLocal(result.properties)
+            incomeRemoteToLocal(result.id, result.properties)
         }
     }
     
-    static func incomeRemoteToLocal(_ remote: IncomeProperty) -> Income {
+    static func incomeRemoteToLocal(_ id: String, _ remote: IncomeProperty) -> Income {
         Income(
+            blockID: id,
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
             value: remote.value?.number,
@@ -115,12 +117,13 @@ struct Mapper {
     //MARK: - Type
     static func mapTypeRemoteToLocal(_ remote: [ResultProperty<TypeProperty>]) -> [TypeModel] {
         remote.map { result in
-            typeRemoteToLocal(result.properties)
+            typeRemoteToLocal(result.id, result.properties)
         }
     }
     
-    static func typeRemoteToLocal(_ remote: TypeProperty) -> TypeModel {
+    static func typeRemoteToLocal(_ id: String, _ remote: TypeProperty) -> TypeModel {
         TypeModel(
+            blockID: id,
             name: remote.name.title.first?.text.content ?? "",
             category: remote.category.select.name
         )

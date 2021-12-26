@@ -27,6 +27,7 @@ class AddTypeViewModel: ObservableObject {
             selectedCategory = typeModel.category
         } else {
             self.typeModel = TypeModel(
+                blockID: "",
                 name: "",
                 category: ""
             )

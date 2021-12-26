@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - Expense
 struct Expense: Codable {
+    var blockID: String
     var id: String = UUID().uuidString
     var yearMonth: String?
     var yearMonthID: String? = nil

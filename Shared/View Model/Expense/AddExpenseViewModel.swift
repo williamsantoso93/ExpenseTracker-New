@@ -51,6 +51,7 @@ class AddExpenseViewModel: ObservableObject {
             date = expense.date ?? Date()
         } else {
             self.expense = Expense(
+                blockID: "",
                 id: UUID().uuidString,
                 yearMonth: "",
                 note: "",
