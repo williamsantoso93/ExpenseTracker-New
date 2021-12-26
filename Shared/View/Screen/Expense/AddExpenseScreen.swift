@@ -65,7 +65,7 @@ struct AddExpenseScreen: View {
                             }
                         }
                     } label: {
-                        Text("Save")
+                        Text(viewModel.saveTitle)
                     }
                 }
             }

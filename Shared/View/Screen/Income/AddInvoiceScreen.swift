@@ -55,7 +55,7 @@ struct AddInvoiceScreen: View {
                             }
                         }
                     } label: {
-                        Text("Save")
+                        Text(viewModel.saveTitle)
                     }
                 }
             }

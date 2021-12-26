@@ -19,12 +19,18 @@ class AddTypeViewModel: ObservableObject {
         }
     }
     
+    @Published var saveTitle = "Save"
+    var isUpdate: Bool = false
+    
     init(typeModel: TypeModel? = nil) {
         if let typeModel = typeModel {
             self.typeModel = typeModel
             
             name = typeModel.name
             selectedCategory = typeModel.category
+            
+            isUpdate = true
+            saveTitle = "Update"
         } else {
             self.typeModel = TypeModel(
                 blockID: "",
@@ -37,8 +43,15 @@ class AddTypeViewModel: ObservableObject {
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         typeModel.name = name
         typeModel.category = selectedCategory
-        Networking.shared.postType(typeModel) { isSuccess in
-            return completion(isSuccess)
+        
+        if isUpdate {
+            Networking.shared.updateType(typeModel) { isSuccess in
+                return completion(isSuccess)
+            }
+        } else {
+            Networking.shared.postType(typeModel) { isSuccess in
+                return completion(isSuccess)
+            }
         }
     }
 }

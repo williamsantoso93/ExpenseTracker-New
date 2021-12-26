@@ -9,8 +9,8 @@ import Foundation
 
 //MARK: - Update Data
 extension Networking {
-    func updateExpense(id: String, expense: Expense, completion: @escaping (_ isSuccess: Bool) -> Void) {
-        let urlString = basePage + id
+    func updateExpense(_ expense: Expense, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let urlString = basePage + expense.blockID
         
         let update = DefaultUpdate(
             properties: Mapper.expenseLocalToRemote(expense)
@@ -33,8 +33,8 @@ extension Networking {
         }
     }
     
-    func updateIncome(id: String, income: Income, completion: @escaping (_ isSuccess: Bool) -> Void) {
-        let urlString = basePage + id
+    func updateIncome(_ income: Income, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let urlString = basePage + income.blockID
         
         let update = DefaultUpdate(
             properties: Mapper.incomeLocalToRemote(income)
@@ -57,8 +57,8 @@ extension Networking {
         }
     }
     
-    func updateType(id: String, typeModel: TypeModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
-        let urlString = basePage + id
+    func updateType(_ typeModel: TypeModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let urlString = basePage + typeModel.blockID
         
         let update = DefaultUpdate(
             properties: Mapper.typeLocalToRemote(typeModel)

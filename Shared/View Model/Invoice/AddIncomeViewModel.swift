@@ -26,15 +26,21 @@ class AddIncomeViewModel: ObservableObject {
     @Published var note = ""
     @Published var date = Date()
     
+    @Published var saveTitle = "Save"
+    var isUpdate: Bool = false
+    
     init(income: Income? = nil) {
         if let income = income {
             self.income = income
             note = income.note ?? ""
             if let value = income.value {
-                valueString = String(value)
+                valueString = value.splitDigit()
             }
             selectedType = income.type ?? ""
             date = Date()
+            
+            isUpdate = false
+            saveTitle = "Update"
         } else {
             self.income = Income(
                 blockID: "",
@@ -55,8 +61,15 @@ class AddIncomeViewModel: ObservableObject {
         
         YearMonthCheck.shared.getYearMonthID(date) { id in
             self.income.yearMonthID = id
-            Networking.shared.postIncome(self.income) { isSuccess in
-                return completion(isSuccess)
+            
+            if self.isUpdate {
+                Networking.shared.updateIncome(self.income) { isSuccess in
+                    return completion(isSuccess)
+                }
+            } else {
+                Networking.shared.postIncome(self.income) { isSuccess in
+                    return completion(isSuccess)
+                }
             }
         }
     }

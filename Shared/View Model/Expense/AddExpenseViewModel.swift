@@ -37,18 +37,23 @@ class AddExpenseViewModel: ObservableObject {
     @Published var note = ""
     @Published var date = Date()
     
+    @Published var saveTitle = "Save"
+    var isUpdate: Bool = false
     
     init(expense: Expense? = nil) {
         if let expense = expense {
             self.expense = expense
             note = expense.note ?? ""
             if let value = expense.value {
-                valueString = String(value)
+                valueString = value.splitDigit()
             }
             selectedDuration = expense.duration ?? ""
             selectedPayment = expense.paymentVia ?? ""
             selectedType = expense.type ?? ""
             date = expense.date ?? Date()
+            
+            isUpdate = true
+            saveTitle = "Update"
         } else {
             self.expense = Expense(
                 blockID: "",
@@ -74,8 +79,15 @@ class AddExpenseViewModel: ObservableObject {
         
         YearMonthCheck.shared.getYearMonthID(date) { id in
             self.expense.yearMonthID = id
-            Networking.shared.postExpense(self.expense) { isSuccess in
-                return completion(isSuccess)
+            
+            if self.isUpdate {
+                Networking.shared.updateExpense(self.expense) { isSuccess in
+                    return completion(isSuccess)
+                }
+            } else {
+                Networking.shared.postExpense(self.expense) { isSuccess in
+                    return completion(isSuccess)
+                }
             }
         }
     }

@@ -48,7 +48,7 @@ struct AddTypeScreen: View {
                             }
                         }
                     } label: {
-                        Text("Save")
+                        Text(viewModel.saveTitle)
                     }
                 }
             }

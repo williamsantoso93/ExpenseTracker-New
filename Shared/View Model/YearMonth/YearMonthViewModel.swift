@@ -34,7 +34,9 @@ class YearMonthViewModel: ObservableObject {
             displayYearMonths.append(DisplayYearMonth(year: year, months: months))
         }
         
-        return displayYearMonths
+        return displayYearMonths.sorted {
+            $0.year < $1.year
+        }
     }
     
     func getMonths(year: String) -> [String] {
@@ -44,6 +46,6 @@ class YearMonthViewModel: ObservableObject {
         
         return filteredYearMonths.map { result in
             result.month
-        }
+        }.sorted()
     }
 }
