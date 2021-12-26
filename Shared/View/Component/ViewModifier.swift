@@ -9,14 +9,16 @@ import SwiftUI
 
 struct LoadingViewModifier: ViewModifier {
     var isLoading: Bool
+    var isNeedDisable = true
     
-    init(_ isLoading: Bool) {
+    init(_ isLoading: Bool, isNeedDisable: Bool) {
         self.isLoading = isLoading
+        self.isNeedDisable = isNeedDisable
     }
     
     func body(content: Content) -> some View {
         content
-            .disabled(isLoading)
+            .disabled(isLoading && isNeedDisable)
             .overlay(
                 Group {
                     if isLoading {
@@ -61,8 +63,8 @@ struct LoadingWithNoDataButtonViewModifier: ViewModifier {
 }
 
 extension View {
-    func loadingView(_ isLoading: Bool) -> some View {
-        modifier(LoadingViewModifier(isLoading))
+    func loadingView(_ isLoading: Bool, isNeedDisable: Bool) -> some View {
+        modifier(LoadingViewModifier(isLoading, isNeedDisable: isNeedDisable))
     }
     
     func loadingWithNoDataButton(_ isLoading: Bool, isShowNoData: Bool, action: @escaping () -> Void) -> some View {

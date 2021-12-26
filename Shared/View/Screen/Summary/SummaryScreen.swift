@@ -32,7 +32,7 @@ struct SummaryScreen: View {
             globalData.getTypes()
             globalData.getYearMonth()
         }
-        .loadingView(globalData.isLoading)
+        .loadingView(globalData.isLoading, isNeedDisable: false)
     }
 }
 
