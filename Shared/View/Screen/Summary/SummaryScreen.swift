@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SummaryScreen: View {
+    @ObservedObject private var globalData = GlobalData.shared
+    @State private var isLoading = false
     var body: some View {
         NavigationView{
             Form {
@@ -27,16 +29,10 @@ struct SummaryScreen: View {
             .navigationTitle("Summary")
         }
         .refreshable {
-            GlobalData.shared.getTypes()
-            GlobalData.shared.getYearMonth()
+            globalData.getTypes()
+            globalData.getYearMonth()
         }
-        .overlay(
-            Group {
-                if GlobalData.shared.isLoading {
-                    ProgressView()
-                }
-            }
-        )
+        .loadingView(globalData.isLoading)
     }
 }
 

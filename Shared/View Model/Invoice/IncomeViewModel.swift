@@ -10,13 +10,16 @@ import Foundation
 class IncomeViewModel: ObservableObject {
     @Published var incomes: [Income] = []
     var startCursor: String? = nil
+    @Published var isLoading = false
+    var isNowShowData: Bool {
+        incomes.isEmpty
+    }
     
     init() {
         loadNewData()
     }
     
     func loadNewData() {
-        incomes.removeAll()
         startCursor = nil
         getList { incomes in
             self.incomes = incomes
@@ -24,8 +27,10 @@ class IncomeViewModel: ObservableObject {
     }
     
     func getList(startCursor: String? = nil, completion: @escaping ([Income]) -> Void) {
+        isLoading = true
         Networking.shared.getIncome(startCursor: startCursor) { (result: Result<DefaultResponse<IncomeProperty>, NetworkError>) in
             DispatchQueue.main.async {
+                self.isLoading = false
                 switch result {
                 case .success(let data):
                     if data.hasMore {

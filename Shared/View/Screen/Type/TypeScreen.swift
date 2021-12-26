@@ -40,6 +40,9 @@ struct TypeScreen: View {
                 }
             }
         }
+        .loadingWithNoDataButton(globalData.isLoading, isShowNoData: viewModel.isNowShowData, action: {
+            isShowAddScreen.toggle()
+        })
         .navigationTitle("Types")
         .refreshable {
             globalData.getTypes()

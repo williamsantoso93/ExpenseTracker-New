@@ -9,6 +9,11 @@ import Foundation
 
 class TypeViewModel: ObservableObject {
     @Published var globalData = GlobalData.shared
+    @Published var isLoading = false
+    var isNowShowData: Bool {
+        globalData.types.allTypes.isEmpty
+    }
+    
     func filterType(_ category: Types.TypeCategory) -> [TypeModel] {
         globalData.types.allTypes.filter { type in
             type.category == category.rawValue.capitalized

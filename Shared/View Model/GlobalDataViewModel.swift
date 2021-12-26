@@ -13,8 +13,9 @@ class GlobalData: ObservableObject {
     @Published var isLoadingTypes = false
     @Published var isLoadingYearMonths = false
     
+    @Published var isLoadingDisplay: Bool = false
     var isLoading: Bool {
-        !(isLoadingTypes && isLoadingYearMonths)
+        isLoadingTypes || isLoadingYearMonths || isLoadingDisplay
     }
     
     static let shared = GlobalData()
@@ -22,6 +23,7 @@ class GlobalData: ObservableObject {
     init() {
         getTypes()
         getYearMonth()
+        isLoadingDisplay = false
     }
     
     func loadNewType() {

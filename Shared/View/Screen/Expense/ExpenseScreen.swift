@@ -40,6 +40,9 @@ struct ExpenseScreen: View {
                 .onDelete(perform: viewModel.delete)
             }
         }
+        .loadingWithNoDataButton(viewModel.isLoading, isShowNoData: viewModel.isNowShowData, action: {
+            isShowAddScreen.toggle()
+        })
         .refreshable {
             viewModel.loadNewData()
         }

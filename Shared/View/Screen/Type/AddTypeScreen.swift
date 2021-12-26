@@ -29,7 +29,7 @@ struct AddTypeScreen: View {
             }
             .navigationTitle("Add")
 #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline)
 #endif
             .toolbar {
 #if os(iOS)

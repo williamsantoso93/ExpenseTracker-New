@@ -10,13 +10,16 @@ import Foundation
 class ExpenseViewModel: ObservableObject {
     @Published var expenses: [Expense] = []
     var startCursor: String? = nil
+    @Published var isLoading = false
+    var isNowShowData: Bool {
+        expenses.isEmpty
+    }
     
     init() {
         loadNewData()
     }
     
     func loadNewData() {
-        expenses.removeAll()
         startCursor = nil
         getList { expenses in
             self.expenses = expenses
@@ -24,8 +27,10 @@ class ExpenseViewModel: ObservableObject {
     }
     
     func getList(completion: @escaping ([Expense]) -> Void) {
+        isLoading = true
         Networking.shared.getExpense(startCursor: startCursor) { (result: Result<DefaultResponse<ExpenseProperty>, NetworkError>) in
             DispatchQueue.main.async {
+                self.isLoading = false
                 switch result {
                 case .success(let data):
                     if data.hasMore {
