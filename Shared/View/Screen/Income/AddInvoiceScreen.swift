@@ -20,20 +20,35 @@ struct AddInvoiceScreen: View {
     var body: some View {
         NavigationView {
             Form {
-                NumberTextFiedForm(title: "Value", prompt: "50000", value: $viewModel.valueString)
+                Section {
+                    NumberTextFiedForm(title: "Value", prompt: "50000".splitDigit(), value: $viewModel.valueString)
 #if os(iOS)
-                    .keyboardType(.numberPad)
+                        .keyboardType(.numberPad)
 #endif
-                Picker("Type", selection: $viewModel.selectedType) {
-                    ForEach(viewModel.incomeType, id: \.self) {
-                        Text($0)
+                    Picker("Type", selection: $viewModel.selectedType) {
+                        ForEach(viewModel.incomeType, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
+                    VStack(alignment: .leading, spacing: 2.0) {
+                        Text("Note")
+                        TextEditor(text: $viewModel.note)
+                            .frame(height: 150.0)
                     }
                 }
-                DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
-                VStack(alignment: .leading, spacing: 2.0) {
-                    Text("Note")
-                    TextEditor(text: $viewModel.note)
-                        .frame(height: 150.0)
+                
+                Section {
+                    Picker("Template", selection: $viewModel.selectedTemplateIndex) {
+                        ForEach(viewModel.templates.indices, id: \.self) { index in
+                            let templateExpense = viewModel.templates[index]
+                            Text(templateExpense.name ?? "")
+                                .tag(index)
+                        }
+                    }
+                    .onChange(of: viewModel.selectedTemplateIndex) { index in
+                        viewModel.applyTemplate(at: index)
+                    }
                 }
             }
             .loadingView(viewModel.isLoading)

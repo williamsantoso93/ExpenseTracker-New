@@ -7,10 +7,10 @@
 
 import Foundation
 
-// MARK: - TemplateExpense
-struct TemplateExpense: Codable, Hashable {
+// MARK: - TemplateModel
+struct TemplateModel: Codable, Hashable {
     var blockID: String
     var name: String?
-    var duration, paymentVia, type: String?
+    var category, duration, paymentVia, type: String?
     var value: Int?
 }

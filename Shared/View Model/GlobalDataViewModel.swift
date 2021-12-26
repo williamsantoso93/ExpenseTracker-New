@@ -10,7 +10,7 @@ import Foundation
 class GlobalData: ObservableObject {
     @Published var types = Types()
     @Published var yearMonths = [YearMonth]()
-    @Published var templateExpenses = [TemplateExpense]()
+    @Published var templateModels = [TemplateModel]()
     @Published var isLoadingTypes = false
     @Published var isLoadingYearMonths = false
     @Published var isLoadingTemplateExpense = false
@@ -44,7 +44,7 @@ class GlobalData: ObservableObject {
     }
     
     func loadNewTemplateExpenses() {
-        templateExpenses.removeAll()
+        templateModels.removeAll()
         getTemplateExpense()
     }
     
@@ -113,10 +113,10 @@ class GlobalData: ObservableObject {
                 switch result {
                 case .success(let data):
                     let results = Mapper.mapTemplateExpenseRemoteToLocal(data.results)
-                    if self.templateExpenses.isEmpty || newData {
-                        self.templateExpenses = results
+                    if self.templateModels.isEmpty || newData {
+                        self.templateModels = results
                     } else {
-                        self.templateExpenses.append(contentsOf: results)
+                        self.templateModels.append(contentsOf: results)
                     }
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {

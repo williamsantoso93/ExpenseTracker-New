@@ -8,7 +8,7 @@
 import Foundation
 
 class AddTemplateViewModel: ObservableObject {
-    @Published var templateExpense: TemplateExpense
+    @Published var templateExpense: TemplateModel
     @Published var types = GlobalData.shared.types
     
     var expenseType: [String] {
@@ -39,7 +39,7 @@ class AddTemplateViewModel: ObservableObject {
     @Published var saveTitle = "Save"
     var isUpdate: Bool = false
     
-    init(templateExpense: TemplateExpense? = nil) {
+    init(templateExpense: TemplateModel? = nil) {
         if let templateExpense = templateExpense {
             self.templateExpense = templateExpense
             name = templateExpense.name ?? ""
@@ -53,7 +53,7 @@ class AddTemplateViewModel: ObservableObject {
             isUpdate = true
             saveTitle = "Update"
         } else {
-            self.templateExpense = TemplateExpense(
+            self.templateExpense = TemplateModel(
                 blockID: "",
                 name: "",
                 duration: "",

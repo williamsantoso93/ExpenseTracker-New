@@ -85,7 +85,7 @@ extension Networking {
         }
     }
     
-    func postTemplateExpense(_ templateExpense: TemplateExpense, completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func postTemplateExpense(_ templateExpense: TemplateModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
         let post = DefaultPost(

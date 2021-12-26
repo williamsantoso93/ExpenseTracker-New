@@ -21,7 +21,7 @@ struct TypeScreen: View {
                     let types = viewModel.filterType(type)
                     
                     Section(header: Text(type.rawValue)) {
-                        ForEach(types.indices, id:\.self) {index in
+                        ForEach(types.indices, id:\.self) { index in
                             let type = types[index]
                             
                             Button {

@@ -143,16 +143,17 @@ struct Mapper {
     }
     
     //MARK: - Setting
-    static func mapTemplateExpenseRemoteToLocal(_ remote: [ResultProperty<TemplateExpenseProperty>]) -> [TemplateExpense] {
+    static func mapTemplateExpenseRemoteToLocal(_ remote: [ResultProperty<TemplateExpenseProperty>]) -> [TemplateModel] {
         remote.map { result in
             templateExpenseRemoteToLocal(result.id, result.properties)
         }
     }
     
-    static func templateExpenseRemoteToLocal(_ id: String, _ remote: TemplateExpenseProperty) -> TemplateExpense {
-        TemplateExpense(
+    static func templateExpenseRemoteToLocal(_ id: String, _ remote: TemplateExpenseProperty) -> TemplateModel {
+        TemplateModel(
             blockID: id,
             name: remote.name?.title.first?.text.content,
+            category: remote.category?.select.name,
             duration: remote.duration?.select.name,
             paymentVia: remote.paymentVia?.select.name,
             type: remote.type?.select.name,
@@ -160,15 +161,16 @@ struct Mapper {
         )
     }
     
-    static func mapTemplateExpenseLocalToRemote(_ local: [TemplateExpense]) -> [TemplateExpenseProperty] {
+    static func mapTemplateExpenseLocalToRemote(_ local: [TemplateModel]) -> [TemplateExpenseProperty] {
         local.map { result in
             templateExpenseLocalToRemote(result)
         }
     }
     
-    static func templateExpenseLocalToRemote(_ local: TemplateExpense) -> TemplateExpenseProperty {
+    static func templateExpenseLocalToRemote(_ local: TemplateModel) -> TemplateExpenseProperty {
         TemplateExpenseProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name ?? ""))]),
+            category: SingleSelectProperty(select: Select(name: local.category ?? "")),
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
             paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
             type: SingleSelectProperty(select: Select(name: local.type ?? "")),

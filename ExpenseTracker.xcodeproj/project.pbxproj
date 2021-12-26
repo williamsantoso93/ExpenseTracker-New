@@ -43,6 +43,8 @@
 		E08178C82770901000F358D9 /* TypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C72770901000F358D9 /* TypeViewModel.swift */; };
 		E08178CA2770903000F358D9 /* IncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C92770903000F358D9 /* IncomeScreen.swift */; };
 		E08178CF2770959C00F358D9 /* YearMonthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178CE2770959C00F358D9 /* YearMonthScreen.swift */; };
+		E08DD5062778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */; };
+		E08DD5072778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */; };
 		E09030BF27781FBC003ED6B5 /* YearMonthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178CE2770959C00F358D9 /* YearMonthScreen.swift */; };
 		E09030C027781FBF003ED6B5 /* IncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C92770903000F358D9 /* IncomeScreen.swift */; };
 		E09030C127781FC2003ED6B5 /* AddInvoiceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */; };
@@ -162,6 +164,7 @@
 		E08178C72770901000F358D9 /* TypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeViewModel.swift; sourceTree = "<group>"; };
 		E08178C92770903000F358D9 /* IncomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeScreen.swift; sourceTree = "<group>"; };
 		E08178CE2770959C00F358D9 /* YearMonthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthScreen.swift; sourceTree = "<group>"; };
+		E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViewModel.swift; sourceTree = "<group>"; };
 		E097D70B2770722E0093F5DA /* YearMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonth.swift; sourceTree = "<group>"; };
 		E097D70D2770731C0093F5DA /* Income.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		E097D70F277073220093F5DA /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -293,6 +296,7 @@
 				E01A2A682776B3D3002E685F /* Invoice */,
 				E0F617EE2771759900C546B7 /* Expense */,
 				E01A2A6A2776B3E4002E685F /* Type */,
+				E08DD5042778BADB001DB5F0 /* Template */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -366,7 +370,6 @@
 			children = (
 				E08178C72770901000F358D9 /* TypeViewModel.swift */,
 				E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */,
-				E002E2BE2778B17E00A7A1C5 /* AddTemplateViewModel.swift */,
 			);
 			path = Type;
 			sourceTree = "<group>";
@@ -386,6 +389,15 @@
 				E08178CE2770959C00F358D9 /* YearMonthScreen.swift */,
 			);
 			path = YearMonth;
+			sourceTree = "<group>";
+		};
+		E08DD5042778BADB001DB5F0 /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */,
+				E002E2BE2778B17E00A7A1C5 /* AddTemplateViewModel.swift */,
+			);
+			path = Template;
 			sourceTree = "<group>";
 		};
 		E097D70A277072090093F5DA /* Local */ = {
@@ -681,6 +693,7 @@
 				E0D6EF232770232700DF12AD /* ExpenseProperty.swift in Sources */,
 				E08178C82770901000F358D9 /* TypeViewModel.swift in Sources */,
 				E0050C2C2778005A00396C36 /* PostEndpoint.swift in Sources */,
+				E08DD5062778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */,
 				E08178CF2770959C00F358D9 /* YearMonthScreen.swift in Sources */,
 				E0F617F0277175AD00C546B7 /* AddExpenseViewModel.swift in Sources */,
 				E097D712277073760093F5DA /* TypeModel.swift in Sources */,
@@ -738,6 +751,7 @@
 				E09030D227781FF0003ED6B5 /* Expense.swift in Sources */,
 				E0BF3AB7276F566B00FC902E /* Persistence.swift in Sources */,
 				E09030DB27781FF7003ED6B5 /* UpdateEndpoint.swift in Sources */,
+				E08DD5072778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */,
 				E006AA312770175A00980302 /* SummaryScreen.swift in Sources */,
 				E09030C427781FD8003ED6B5 /* AddTypeViewModel.swift in Sources */,
 				E0107A40277457EA00825484 /* TypeScreen.swift in Sources */,

@@ -10,6 +10,9 @@ import Foundation
 class AddIncomeViewModel: ObservableObject {
     @Published var income: Income
     @Published var types = GlobalData.shared.types
+    @Published var templates = GlobalData.shared.templateModels.filter { result in
+        result.category == "Income"
+    }
     @Published var isLoading = false
     
     var incomeType: [String] {
@@ -25,6 +28,7 @@ class AddIncomeViewModel: ObservableObject {
     }
     @Published var selectedType = ""
     @Published var note = ""
+    @Published var selectedTemplateIndex = -1
     @Published var date = Date()
     
     @Published var saveTitle = "Save"
@@ -75,6 +79,23 @@ class AddIncomeViewModel: ObservableObject {
                     return completion(isSuccess)
                 }
             }
+        }
+    }
+    
+    func applyTemplate(at index: Int) {
+        guard index >= 0 else {
+            return
+        }
+        let selectedTemplate = templates[index]
+        
+        if let name = selectedTemplate.name {
+            note = name
+        }
+        if let selectedType = selectedTemplate.type {
+            self.selectedType = selectedType
+        }
+        if let valueString = selectedTemplate.value {
+            self.valueString = valueString.splitDigit()
         }
     }
 }

@@ -10,28 +10,34 @@ import SwiftUI
 struct TemplateScreen: View {
     @ObservedObject var globalData = GlobalData.shared
     @State private var isShowAddScreen = false
-    @State private var selectedTemplate: TemplateExpense?
+    @State private var selectedTemplate: TemplateModel?
     
-//    @StateObject var viewModel = TypeViewModel()
+    @StateObject var viewModel = TemplateViewModel()
     
     var body: some View {
         Form {
-            if !globalData.templateExpenses.isEmpty {
-                ForEach(globalData.templateExpenses.indices, id:\.self) {index in
-                    let templateExpense = globalData.templateExpenses[index]
+            if !globalData.templateModels.isEmpty {
+                ForEach(viewModel.category, id:\.self) { category in
+                    let templates = viewModel.filterTemplate(category)
                     
-                    Button {
-                        selectedTemplate = templateExpense
-                        if let selectedTemplate = selectedTemplate {
-                            isShowAddScreen.toggle()
-                        }
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text("name : \(templateExpense.name ?? "")")
-                            Text("value : \(templateExpense.value ?? 0)")
-                            Text("duration : \(templateExpense.duration ?? "")")
-                            Text("paymentVia : \(templateExpense.paymentVia ?? "")")
-                            Text("type : \(templateExpense.type ?? "")")
+                    Section(header: Text(category)) {
+                        ForEach(templates.indices, id:\.self) { index in
+                            let templateExpense = templates[index]
+                            
+                            Button {
+                                selectedTemplate = templateExpense
+                                if selectedTemplate != nil {
+                                    isShowAddScreen.toggle()
+                                }
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Text("name : \(templateExpense.name ?? "")")
+                                    Text("value : \(templateExpense.value ?? 0)")
+                                    Text("duration : \(templateExpense.duration ?? "")")
+                                    Text("paymentVia : \(templateExpense.paymentVia ?? "")")
+                                    Text("type : \(templateExpense.type ?? "")")
+                                }
+                            }
                         }
                     }
                 }

@@ -51,7 +51,7 @@ extension Networking {
         }
     }
     
-    func updateTemplateExpense(_ templateExpense: TemplateExpense, completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func updateTemplateExpense(_ templateExpense: TemplateModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage + templateExpense.blockID
         
         let update = DefaultUpdate(

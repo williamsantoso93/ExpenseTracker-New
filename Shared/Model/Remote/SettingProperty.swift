@@ -10,11 +10,12 @@ import Foundation
 // MARK: - TemplateExpenseProperty
 struct TemplateExpenseProperty: Codable {
     let name: TitleProperty?
-    let duration, paymentVia, type: SingleSelectProperty?
+    let category, duration, paymentVia, type: SingleSelectProperty?
     let value: NumberProperty?
     
     enum CodingKeys: String, CodingKey {
         case name = "Name"
+        case category = "Category"
         case duration = "Duration"
         case paymentVia = "Payment Via"
         case type = "Type"

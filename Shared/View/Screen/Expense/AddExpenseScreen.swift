@@ -12,8 +12,6 @@ struct AddExpenseScreen: View {
     @StateObject var viewModel: AddExpenseViewModel
     var refesh: () -> Void
     
-    @State private var selectedTemplateIndex = -1
-    
     init(expense: Expense? = nil, refesh: @escaping () -> Void) {
         print(expense)
         self._viewModel = StateObject(wrappedValue: AddExpenseViewModel(expense: expense))
@@ -24,7 +22,7 @@ struct AddExpenseScreen: View {
         NavigationView {
             Form {
                 Section {
-                    NumberTextFiedForm(title: "Value", prompt: "50000", value: $viewModel.valueString)
+                    NumberTextFiedForm(title: "Value", prompt: "50000".splitDigit(), value: $viewModel.valueString)
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
@@ -52,14 +50,14 @@ struct AddExpenseScreen: View {
                 }
 
                 Section {
-                    Picker("Template", selection: $selectedTemplateIndex) {
-                        ForEach(viewModel.templateExpenses.indices, id: \.self) { index in
-                            let templateExpense = viewModel.templateExpenses[index]
+                    Picker("Template", selection: $viewModel.selectedTemplateIndex) {
+                        ForEach(viewModel.templates.indices, id: \.self) { index in
+                            let templateExpense = viewModel.templates[index]
                             Text(templateExpense.name ?? "")
                                 .tag(index)
                         }
                     }
-                    .onChange(of: selectedTemplateIndex) { index in
+                    .onChange(of: viewModel.selectedTemplateIndex) { index in
                         viewModel.applyTemplate(at: index)
                     }
                 }

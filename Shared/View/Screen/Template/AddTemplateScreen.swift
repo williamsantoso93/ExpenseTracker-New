@@ -12,7 +12,7 @@ struct AddTemplateScreen: View {
     @StateObject var viewModel: AddTemplateViewModel
     var refesh: () -> Void
     
-    init(templateExpense: TemplateExpense? = nil, refesh: @escaping () -> Void) {
+    init(templateExpense: TemplateModel? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddTemplateViewModel(templateExpense: templateExpense))
         self.refesh = refesh
     }
