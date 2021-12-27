@@ -170,11 +170,34 @@ struct Mapper {
     static func templateModelLocalToRemote(_ local: TemplateModel) -> TemplateModelProperty {
         TemplateModelProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name ?? ""))]),
-            category: SingleSelectProperty(select: Select(name: local.category ?? "")),
-            duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
-            paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
-            type: SingleSelectProperty(select: Select(name: local.type ?? "")),
-            value: NumberProperty(number: local.value ?? 0)
+            category: textToSingleSelectProperty(local.category),
+            duration: textToSingleSelectProperty(local.duration),
+            paymentVia: textToSingleSelectProperty(local.paymentVia),
+            type: textToSingleSelectProperty(local.type),
+            value: numberToNumberProperty(local.value)
         )
+    }
+    
+    //MARK: - To Property
+    static func textToSingleSelectProperty(_ text: String?) -> SingleSelectProperty? {
+        guard let text = text else {
+            return nil
+        }
+        guard !text.isEmpty else {
+            return nil
+        }
+        
+        return SingleSelectProperty(select: Select(name: text))
+    }
+    
+    static func numberToNumberProperty(_ value: Int?) -> NumberProperty? {
+        guard let value = value else {
+            return nil
+        }
+        guard value != 0 else {
+            return nil
+        }
+        
+        return NumberProperty(number: value)
     }
 }

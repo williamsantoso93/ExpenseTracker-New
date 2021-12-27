@@ -34,8 +34,8 @@ class AddTemplateViewModel: ObservableObject {
     @Published var name = ""
     @Published var selectedType = ""
     @Published var selectedPayment = ""
-    @Published var selectedDuration = ""
-    @Published var selectedCategory = ""
+    @Published var selectedDuration = "Monthly"
+    @Published var selectedCategory = "Expense"
     
     @Published var saveTitle = "Save"
     var isUpdate: Bool = false
