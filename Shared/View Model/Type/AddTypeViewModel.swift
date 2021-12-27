@@ -9,6 +9,7 @@ import Foundation
 
 class AddTypeViewModel: ObservableObject {
     @Published var typeModel: TypeModel
+    @Published var isLoading = false
     
     @Published var name = ""
     @Published var selectedCategory = ""
@@ -44,11 +45,14 @@ class AddTypeViewModel: ObservableObject {
         typeModel.name = name
         typeModel.category = selectedCategory
         
+        isLoading = true
         if isUpdate {
+            self.isLoading = false
             Networking.shared.updateType(typeModel) { isSuccess in
                 return completion(isSuccess)
             }
         } else {
+            self.isLoading = false
             Networking.shared.postType(typeModel) { isSuccess in
                 return completion(isSuccess)
             }
