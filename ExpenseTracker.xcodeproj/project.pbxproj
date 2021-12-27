@@ -117,6 +117,8 @@
 		E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF3B27702DE400DF12AD /* Extension.swift */; };
 		E0D6EF3D27702DE400DF12AD /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF3B27702DE400DF12AD /* Extension.swift */; };
 		E0F617F0277175AD00C546B7 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */; };
+		E0F9E824277977790082B310 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9E823277977790082B310 /* ErrorMessage.swift */; };
+		E0F9E825277977790082B310 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9E823277977790082B310 /* ErrorMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +202,7 @@
 		E0D6EF37277028CB00DF12AD /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		E0D6EF3B27702DE400DF12AD /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
+		E0F9E823277977790082B310 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +411,7 @@
 				E097D70F277073220093F5DA /* Expense.swift */,
 				E097D711277073760093F5DA /* TypeModel.swift */,
 				E002E2B427789F7800A7A1C5 /* Setting.swift */,
+				E0F9E823277977790082B310 /* ErrorMessage.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -703,6 +707,7 @@
 				E0050C362778058400396C36 /* TextField.swift in Sources */,
 				E0D6EF0A27701B1400DF12AD /* AddExpenseScreen.swift in Sources */,
 				E01A2A6C2776B41E002E685F /* AddIncomeViewModel.swift in Sources */,
+				E0F9E824277977790082B310 /* ErrorMessage.swift in Sources */,
 				E01A2A772776B46E002E685F /* AddTypeScreen.swift in Sources */,
 				E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */,
 				E08178CA2770903000F358D9 /* IncomeScreen.swift in Sources */,
@@ -761,6 +766,7 @@
 				E09030DC27781FF7003ED6B5 /* Networking.swift in Sources */,
 				E09030D327781FF0003ED6B5 /* YearMonth.swift in Sources */,
 				E0D6EF0B27701B1400DF12AD /* AddExpenseScreen.swift in Sources */,
+				E0F9E825277977790082B310 /* ErrorMessage.swift in Sources */,
 				E09030D527781FF0003ED6B5 /* TypeModel.swift in Sources */,
 				E09030C327781FD5003ED6B5 /* TextField.swift in Sources */,
 				E0BF3AB3276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,

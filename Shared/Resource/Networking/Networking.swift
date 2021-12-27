@@ -71,7 +71,9 @@ class Networking {
                 print(String(data: data, encoding: .utf8) ?? "no data")
                 
                 if let errorResponseDecoded = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                    GlobalData.shared.errorMessage = errorResponseDecoded
+                    DispatchQueue.main.async {
+                        GlobalData.shared.errorMessage = Mapper.errorMessageRemoteToLocal(errorResponseDecoded)
+                    }
                     return completion(.failure(.errorResponse(errorResponseDecoded)), response, data)
                 }
                 
@@ -110,7 +112,9 @@ class Networking {
             
             if let errorResponseDecoded = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                 print(urlString)
-                GlobalData.shared.errorMessage = errorResponseDecoded
+                DispatchQueue.main.async {
+                    GlobalData.shared.errorMessage = Mapper.errorMessageRemoteToLocal(errorResponseDecoded)
+                }
                 return completionResponse(.failure(.errorResponse(errorResponseDecoded)), response, data, false)
             }
             
@@ -159,7 +163,9 @@ class Networking {
             
             if let errorResponseDecoded = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
                 print(urlString)
-                GlobalData.shared.errorMessage = errorResponseDecoded
+                DispatchQueue.main.async {
+                    GlobalData.shared.errorMessage = Mapper.errorMessageRemoteToLocal(errorResponseDecoded)
+                }
                 return completionResponse(.failure(.errorResponse(errorResponseDecoded)), response, data, false)
             }
             
@@ -206,7 +212,9 @@ class Networking {
                 print(String(data: data, encoding: .utf8) ?? "no data")
                 
                 if let errorResponseDecoded = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                    GlobalData.shared.errorMessage = errorResponseDecoded
+                    DispatchQueue.main.async {
+                        GlobalData.shared.errorMessage = Mapper.errorMessageRemoteToLocal(errorResponseDecoded)
+                    }
                     return completion(.failure(.errorResponse(errorResponseDecoded)), response, data, false)
                 }
                 

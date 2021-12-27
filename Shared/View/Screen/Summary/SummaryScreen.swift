@@ -11,7 +11,7 @@ struct SummaryScreen: View {
     @ObservedObject private var globalData = GlobalData.shared
     @State private var isLoading = false
     @State private var isShowErrorMessageAlert = false
-    @State var errorMessage: ErrorResponse = ErrorResponse(status: 0, code: "", message: "")
+    @State var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     
     var body: some View {
         NavigationView{
@@ -38,7 +38,7 @@ struct SummaryScreen: View {
             .onReceive(globalData.$errorMessage) { errorMessage in
                 if let errorMessage = errorMessage {
                     self.errorMessage = errorMessage
-                    isShowErrorMessageAlert.toggle()
+                    isShowErrorMessageAlert = true
                 }
             }
         }

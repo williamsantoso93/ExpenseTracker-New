@@ -178,6 +178,13 @@ struct Mapper {
         )
     }
     
+    static func errorMessageRemoteToLocal(_ remote: ErrorResponse) -> ErrorMessage {
+        ErrorMessage(
+            title: remote.code,
+            message: remote.message
+        )
+    }
+    
     //MARK: - To Property
     static func textToSingleSelectProperty(_ text: String?) -> SingleSelectProperty? {
         guard let text = text else {

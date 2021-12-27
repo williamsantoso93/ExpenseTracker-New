@@ -64,10 +64,10 @@ struct LoadingWithNoDataButtonViewModifier: ViewModifier {
 
 struct ShowErrorAlertViewModifier: ViewModifier {
     @Binding var isShowErrorMessageAlert: Bool
-    var errorMessage: ErrorResponse
+    var errorMessage: ErrorMessage
     var action: (() -> Void)?
         
-    init(isShowErrorMessageAlert: Binding<Bool>, errorMessage: ErrorResponse, action: (() -> Void)?) {
+    init(isShowErrorMessageAlert: Binding<Bool>, errorMessage: ErrorMessage, action: (() -> Void)?) {
         self._isShowErrorMessageAlert = isShowErrorMessageAlert
         self.errorMessage = errorMessage
         self.action = action
@@ -75,7 +75,7 @@ struct ShowErrorAlertViewModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .alert(errorMessage.code, isPresented: $isShowErrorMessageAlert) {
+            .alert(errorMessage.title, isPresented: $isShowErrorMessageAlert) {
                 Button("OK", role: .cancel) {
                     if let action = action {
                         action()
@@ -97,7 +97,7 @@ extension View {
         modifier(LoadingWithNoDataButtonViewModifier(isLoading, isShowNoData: isShowNoData, action: action))
     }
     
-    func showErrorAlert(isShowErrorMessageAlert: Binding<Bool>, errorMessage: ErrorResponse, action: (() -> Void)? = nil) -> some View {
+    func showErrorAlert(isShowErrorMessageAlert: Binding<Bool>, errorMessage: ErrorMessage, action: (() -> Void)? = nil) -> some View {
         modifier(ShowErrorAlertViewModifier(isShowErrorMessageAlert: isShowErrorMessageAlert, errorMessage: errorMessage, action: action))
     }
 }
