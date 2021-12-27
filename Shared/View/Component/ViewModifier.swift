@@ -62,6 +62,32 @@ struct LoadingWithNoDataButtonViewModifier: ViewModifier {
     }
 }
 
+struct ShowErrorAlertViewModifier: ViewModifier {
+    @Binding var isShowErrorMessageAlert: Bool
+    var errorMessage: ErrorResponse
+    var action: (() -> Void)?
+        
+    init(isShowErrorMessageAlert: Binding<Bool>, errorMessage: ErrorResponse, action: (() -> Void)?) {
+        self._isShowErrorMessageAlert = isShowErrorMessageAlert
+        self.errorMessage = errorMessage
+        self.action = action
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .alert(errorMessage.code, isPresented: $isShowErrorMessageAlert) {
+                Button("OK", role: .cancel) {
+                    if let action = action {
+                        action()
+                    }
+                }
+            } message: {
+                Text(errorMessage.message)
+            }
+
+    }
+}
+
 extension View {
     func loadingView(_ isLoading: Bool, isNeedDisable: Bool = true) -> some View {
         modifier(LoadingViewModifier(isLoading, isNeedDisable: isNeedDisable))
@@ -69,5 +95,9 @@ extension View {
     
     func loadingWithNoDataButton(_ isLoading: Bool, isShowNoData: Bool, action: @escaping () -> Void) -> some View {
         modifier(LoadingWithNoDataButtonViewModifier(isLoading, isShowNoData: isShowNoData, action: action))
+    }
+    
+    func showErrorAlert(isShowErrorMessageAlert: Binding<Bool>, errorMessage: ErrorResponse, action: (() -> Void)? = nil) -> some View {
+        modifier(ShowErrorAlertViewModifier(isShowErrorMessageAlert: isShowErrorMessageAlert, errorMessage: errorMessage, action: action))
     }
 }

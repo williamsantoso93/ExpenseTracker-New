@@ -10,6 +10,9 @@ import SwiftUI
 struct SummaryScreen: View {
     @ObservedObject private var globalData = GlobalData.shared
     @State private var isLoading = false
+    @State private var isShowErrorMessageAlert = false
+    @State var errorMessage: ErrorResponse = ErrorResponse(status: 0, code: "", message: "")
+    
     var body: some View {
         NavigationView{
             Form {
@@ -31,6 +34,13 @@ struct SummaryScreen: View {
             }
             .loadingView(globalData.isLoading, isNeedDisable: false)
             .navigationTitle("Summary")
+            .showErrorAlert(isShowErrorMessageAlert: $isShowErrorMessageAlert, errorMessage: errorMessage)
+            .onReceive(globalData.$errorMessage) { errorMessage in
+                if let errorMessage = errorMessage {
+                    self.errorMessage = errorMessage
+                    isShowErrorMessageAlert.toggle()
+                }
+            }
         }
         .refreshable {
             globalData.loadAll()

@@ -26,7 +26,7 @@ extension Networking {
         let post = Query(
             startCursor: startCursor,
             sorts: [
-                Sort(property: "id", direction: SortDirection.ascending.rawValue)
+                Sort(property: "Date", direction: SortDirection.descending.rawValue)
             ]
         )
         
@@ -43,7 +43,7 @@ extension Networking {
         let post = Query(
             startCursor: startCursor,
             sorts: [
-                Sort(property: "id", direction: SortDirection.ascending.rawValue)
+                Sort(property: "Date", direction: SortDirection.descending.rawValue)
             ]
         )
         
