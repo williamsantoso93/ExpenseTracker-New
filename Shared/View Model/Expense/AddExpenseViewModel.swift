@@ -42,7 +42,9 @@ class AddExpenseViewModel: ObservableObject {
     @Published var note = ""
     @Published var date = Date()
     
-    @Published var saveTitle = "Save"
+    var saveTitle: String {
+        isUpdate ? "Update" : "Save"
+    }
     var isUpdate: Bool = false
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
@@ -61,7 +63,6 @@ class AddExpenseViewModel: ObservableObject {
             date = expense.date ?? Date()
             
             isUpdate = true
-            saveTitle = "Update"
         } else {
             self.expense = Expense(
                 blockID: "",

@@ -29,7 +29,7 @@ struct AddTypeScreen: View {
             }
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
-            .navigationTitle("Add")
+            .navigationTitle("Add Type")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
 #endif

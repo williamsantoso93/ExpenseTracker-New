@@ -9,8 +9,12 @@ import SwiftUI
 
 struct AddExpenseScreen: View {
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var globalData = GlobalData.shared
     @StateObject var viewModel: AddExpenseViewModel
     var refesh: () -> Void
+    
+    @State private var isShowTypeAddScreen = false
+    @State private var isShowTemplateAddScreen = false
     
     init(expense: Expense? = nil, refesh: @escaping () -> Void) {
         print(expense)
@@ -61,12 +65,24 @@ struct AddExpenseScreen: View {
                         .onChange(of: viewModel.selectedTemplateIndex) { index in
                             viewModel.applyTemplate(at: index)
                         }
+                        
+                        Button {
+                            isShowTypeAddScreen.toggle()
+                        } label: {
+                            Text("Add Type")
+                        }
+                        
+                        Button {
+                            isShowTemplateAddScreen.toggle()
+                        } label: {
+                            Text("Add Template")
+                        }
                     }
                 }
             }
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
-            .navigationTitle("Add")
+            .navigationTitle("Add Expsense")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
 #endif
@@ -91,6 +107,18 @@ struct AddExpenseScreen: View {
                     } label: {
                         Text(viewModel.saveTitle)
                     }
+                }
+            }
+            .sheet(isPresented: $isShowTypeAddScreen) {
+            } content: {
+                AddTypeScreen() {
+                    globalData.getTypes()
+                }
+            }
+            .sheet(isPresented: $isShowTemplateAddScreen) {
+            } content: {
+                AddTemplatescreen() {
+                    globalData.getTemplateModel()
                 }
             }
         }

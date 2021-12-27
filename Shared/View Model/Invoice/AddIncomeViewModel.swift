@@ -31,7 +31,9 @@ class AddIncomeViewModel: ObservableObject {
     @Published var selectedTemplateIndex = -1
     @Published var date = Date()
     
-    @Published var saveTitle = "Save"
+    var saveTitle: String {
+        isUpdate ? "Update" : "Save"
+    }
     var isUpdate: Bool = false
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
@@ -45,10 +47,9 @@ class AddIncomeViewModel: ObservableObject {
                 valueString = value.splitDigit()
             }
             selectedType = income.type ?? ""
-            date = Date()
+            date = income.date ?? Date()
             
-            isUpdate = false
-            saveTitle = "Update"
+            isUpdate = true
         } else {
             self.income = Income(
                 blockID: "",
