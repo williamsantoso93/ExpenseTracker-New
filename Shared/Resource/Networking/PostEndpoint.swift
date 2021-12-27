@@ -19,6 +19,7 @@ extension Networking {
                     return completion(isSuccess)
                 } else {
                     print(failure)
+                    return completion(false)
                 }
             }
         }

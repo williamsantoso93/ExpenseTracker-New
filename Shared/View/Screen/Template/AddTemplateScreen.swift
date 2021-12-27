@@ -49,6 +49,7 @@ struct AddTemplatescreen: View {
                 }
             }
             .loadingView(viewModel.isLoading)
+            .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
             .navigationTitle("Add")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)

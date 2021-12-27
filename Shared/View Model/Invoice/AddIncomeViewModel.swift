@@ -34,6 +34,9 @@ class AddIncomeViewModel: ObservableObject {
     @Published var saveTitle = "Save"
     var isUpdate: Bool = false
     
+    @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
+    @Published var isShowErrorMessage = false
+    
     init(income: Income? = nil) {
         if let income = income {
             self.income = income
@@ -59,24 +62,33 @@ class AddIncomeViewModel: ObservableObject {
     }
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        income.note = note
-        income.value = value
-        income.type = selectedType
-        income.date = date
-        
-        YearMonthCheck.shared.getYearMonthID(date) { id in
-            self.income.yearMonthID = id
+        do {
+            income.note = note
+            income.value = try Validation.numberTextField(value)
+            income.type = try Validation.picker(selectedType, typeError: .noType)
+            income.date = date
             
-            self.isLoading = true
-            if self.isUpdate {
-                Networking.shared.updateIncome(self.income) { isSuccess in
-                    self.isLoading = false
-                    return completion(isSuccess)
+            YearMonthCheck.shared.getYearMonthID(date) { id in
+                self.income.yearMonthID = id
+                
+                self.isLoading = true
+                if self.isUpdate {
+                    Networking.shared.updateIncome(self.income) { isSuccess in
+                        self.isLoading = false
+                        return completion(isSuccess)
+                    }
+                } else {
+                    Networking.shared.postIncome(self.income) { isSuccess in
+                        self.isLoading = false
+                        return completion(isSuccess)
+                    }
                 }
-            } else {
-                Networking.shared.postIncome(self.income) { isSuccess in
-                    self.isLoading = false
-                    return completion(isSuccess)
+            }
+        } catch let error {
+            if let error = error as? ValidationError {
+                if let errorMessage = error.errorMessage {
+                    self.errorMessage = errorMessage
+                    isShowErrorMessage = true
                 }
             }
         }

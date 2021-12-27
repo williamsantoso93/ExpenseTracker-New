@@ -45,6 +45,9 @@ class AddExpenseViewModel: ObservableObject {
     @Published var saveTitle = "Save"
     var isUpdate: Bool = false
     
+    @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
+    @Published var isShowErrorMessage = false
+    
     init(expense: Expense? = nil) {
         if let expense = expense {
             self.expense = expense
@@ -75,26 +78,35 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        expense.note = note
-        expense.value = value
-        expense.duration = selectedDuration
-        expense.paymentVia = selectedPayment
-        expense.type = selectedType
-        expense.date = date
-        
-        YearMonthCheck.shared.getYearMonthID(date) { id in
-            self.expense.yearMonthID = id
+        do {
+            expense.note = note
+            expense.value = try Validation.numberTextField(value)
+            expense.type = try Validation.picker(selectedType, typeError: .noType)
+            expense.paymentVia = try Validation.picker(selectedPayment, typeError: .noPaymentVia)
+            expense.duration = try Validation.picker(selectedDuration, typeError: .noDuration)
+            expense.date = date
             
-            self.isLoading = true
-            if self.isUpdate {
-                Networking.shared.updateExpense(self.expense) { isSuccess in
-                    self.isLoading = false
-                    return completion(isSuccess)
+            YearMonthCheck.shared.getYearMonthID(date) { id in
+                self.expense.yearMonthID = id
+                
+                self.isLoading = true
+                if self.isUpdate {
+                    Networking.shared.updateExpense(self.expense) { isSuccess in
+                        self.isLoading = false
+                        return completion(isSuccess)
+                    }
+                } else {
+                    Networking.shared.postExpense(self.expense) { isSuccess in
+                        self.isLoading = false
+                        return completion(isSuccess)
+                    }
                 }
-            } else {
-                Networking.shared.postExpense(self.expense) { isSuccess in
-                    self.isLoading = false
-                    return completion(isSuccess)
+            }
+        } catch let error {
+            if let error = error as? ValidationError {
+                if let errorMessage = error.errorMessage {
+                    self.errorMessage = errorMessage
+                    isShowErrorMessage = true
                 }
             }
         }

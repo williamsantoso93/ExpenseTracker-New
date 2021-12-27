@@ -20,7 +20,7 @@ class GlobalData: ObservableObject {
         isLoadingTypes || isLoadingYearMonths || isLoadingTemplateModel || isLoadingDisplay
     }
     
-    @Published var errorMessage: ErrorMessage? = nil// = ErrorResponse(status: 0, code: "", message: "")
+    @Published var errorMessage: ErrorMessage? = nil
     @Published var isShowErrorMessage = false
     
     static let shared = GlobalData()

@@ -28,6 +28,7 @@ struct AddTypeScreen: View {
                 NumberTextFiedForm(title: "Name", prompt: "IPL", value: $viewModel.name)
             }
             .loadingView(viewModel.isLoading)
+            .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
             .navigationTitle("Add")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)

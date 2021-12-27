@@ -23,6 +23,9 @@ class AddTypeViewModel: ObservableObject {
     @Published var saveTitle = "Save"
     var isUpdate: Bool = false
     
+    @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
+    @Published var isShowErrorMessage = false
+    
     init(typeModel: TypeModel? = nil) {
         if let typeModel = typeModel {
             self.typeModel = typeModel
@@ -42,19 +45,28 @@ class AddTypeViewModel: ObservableObject {
     }
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        typeModel.name = name
-        typeModel.category = selectedCategory
-        
-        isLoading = true
-        if isUpdate {
-            self.isLoading = false
-            Networking.shared.updateType(typeModel) { isSuccess in
-                return completion(isSuccess)
+        do {
+            typeModel.category = try Validation.picker(selectedCategory, typeError: .noCategory)
+            typeModel.name = try Validation.textField(name)
+            
+            isLoading = true
+            if isUpdate {
+                self.isLoading = false
+                Networking.shared.updateType(typeModel) { isSuccess in
+                    return completion(isSuccess)
+                }
+            } else {
+                self.isLoading = false
+                Networking.shared.postType(typeModel) { isSuccess in
+                    return completion(isSuccess)
+                }
             }
-        } else {
-            self.isLoading = false
-            Networking.shared.postType(typeModel) { isSuccess in
-                return completion(isSuccess)
+        } catch let error {
+            if let error = error as? ValidationError {
+                if let errorMessage = error.errorMessage {
+                    self.errorMessage = errorMessage
+                    isShowErrorMessage = true
+                }
             }
         }
     }

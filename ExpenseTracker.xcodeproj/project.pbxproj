@@ -119,6 +119,8 @@
 		E0F617F0277175AD00C546B7 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */; };
 		E0F9E824277977790082B310 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9E823277977790082B310 /* ErrorMessage.swift */; };
 		E0F9E825277977790082B310 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9E823277977790082B310 /* ErrorMessage.swift */; };
+		E0F9E82727797BC60082B310 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9E82627797BC60082B310 /* Validation.swift */; };
+		E0F9E82827797BC60082B310 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9E82627797BC60082B310 /* Validation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +205,7 @@
 		E0D6EF3B27702DE400DF12AD /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
 		E0F9E823277977790082B310 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		E0F9E82627797BC60082B310 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +323,7 @@
 				E0D6EF3B27702DE400DF12AD /* Extension.swift */,
 				E097D713277074BB0093F5DA /* Mapper.swift */,
 				E0050C2A2778003A00396C36 /* Networking */,
+				E0F9E82627797BC60082B310 /* Validation.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -700,6 +704,7 @@
 				E08DD5062778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */,
 				E08178CF2770959C00F358D9 /* YearMonthScreen.swift in Sources */,
 				E0F617F0277175AD00C546B7 /* AddExpenseViewModel.swift in Sources */,
+				E0F9E82727797BC60082B310 /* Validation.swift in Sources */,
 				E097D712277073760093F5DA /* TypeModel.swift in Sources */,
 				E006AA302770175A00980302 /* SummaryScreen.swift in Sources */,
 				E002E2B527789F7800A7A1C5 /* Setting.swift in Sources */,
@@ -759,6 +764,7 @@
 				E08DD5072778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */,
 				E006AA312770175A00980302 /* SummaryScreen.swift in Sources */,
 				E09030C427781FD8003ED6B5 /* AddTypeViewModel.swift in Sources */,
+				E0F9E82827797BC60082B310 /* Validation.swift in Sources */,
 				E0107A40277457EA00825484 /* TypeScreen.swift in Sources */,
 				E09030CD27781FE0003ED6B5 /* ExpenseViewModel.swift in Sources */,
 				E002E2B627789F7800A7A1C5 /* Setting.swift in Sources */,

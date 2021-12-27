@@ -40,6 +40,9 @@ class AddTemplateViewModel: ObservableObject {
     @Published var saveTitle = "Save"
     var isUpdate: Bool = false
     
+    @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
+    @Published var isShowErrorMessage = false
+    
     var category: [String] {
         [
             "Income",
@@ -75,23 +78,32 @@ class AddTemplateViewModel: ObservableObject {
     @Published var isLoading = false
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        templateModel.name = name
-        templateModel.value = value
-        templateModel.duration = selectedDuration
-        templateModel.paymentVia = selectedPayment
-        templateModel.type = selectedType
-        templateModel.category = selectedCategory
-        
-        isLoading = true
-        if isUpdate {
-            Networking.shared.updateTemplateModel(templateModel) { isSuccess in
-                self.isLoading = false
-                return completion(isSuccess)
+        do {
+            templateModel.name = try Validation.textField(name)
+            templateModel.value = value
+            templateModel.duration = selectedDuration
+            templateModel.paymentVia = selectedPayment
+            templateModel.type = selectedType
+            templateModel.category = selectedCategory
+            
+            isLoading = true
+            if isUpdate {
+                Networking.shared.updateTemplateModel(templateModel) { isSuccess in
+                    self.isLoading = false
+                    return completion(isSuccess)
+                }
+            } else {
+                Networking.shared.postTemplateModel(templateModel) { isSuccess in
+                    self.isLoading = false
+                    return completion(isSuccess)
+                }
             }
-        } else {
-            Networking.shared.postTemplateModel(templateModel) { isSuccess in
-                self.isLoading = false
-                return completion(isSuccess)
+        } catch let error {
+            if let error = error as? ValidationError {
+                if let errorMessage = error.errorMessage {
+                    self.errorMessage = errorMessage
+                    isShowErrorMessage = true
+                }
             }
         }
     }

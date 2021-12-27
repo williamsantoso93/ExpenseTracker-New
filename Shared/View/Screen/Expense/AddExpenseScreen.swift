@@ -48,21 +48,24 @@ struct AddExpenseScreen: View {
                             .frame(height: 150.0)
                     }
                 }
-
-                Section {
-                    Picker("Template", selection: $viewModel.selectedTemplateIndex) {
-                        ForEach(viewModel.templateModels.indices, id: \.self) { index in
-                            let templateModel = viewModel.templateModels[index]
-                            Text(templateModel.name ?? "")
-                                .tag(index)
+                
+                if !viewModel.isUpdate {
+                    Section {
+                        Picker("Template", selection: $viewModel.selectedTemplateIndex) {
+                            ForEach(viewModel.templateModels.indices, id: \.self) { index in
+                                let templateModel = viewModel.templateModels[index]
+                                Text(templateModel.name ?? "")
+                                    .tag(index)
+                            }
                         }
-                    }
-                    .onChange(of: viewModel.selectedTemplateIndex) { index in
-                        viewModel.applyTemplate(at: index)
+                        .onChange(of: viewModel.selectedTemplateIndex) { index in
+                            viewModel.applyTemplate(at: index)
+                        }
                     }
                 }
             }
             .loadingView(viewModel.isLoading)
+            .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
             .navigationTitle("Add")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 //MARK: - ErrorMessage
 struct ErrorMessage: Equatable {
     var title: String
