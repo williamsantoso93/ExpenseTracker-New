@@ -16,7 +16,7 @@ class YearMonthViewModel: ObservableObject {
     
     struct DisplayYearMonth {
         let year: String
-        let months: [String]
+        let yearMonths: [YearMonth]
     }
     
     var years: [String] {
@@ -30,8 +30,8 @@ class YearMonthViewModel: ObservableObject {
         var displayYearMonths = [DisplayYearMonth]()
         
         for year in years {
-            let months = getMonths(year: year)
-            displayYearMonths.append(DisplayYearMonth(year: year, months: months))
+            let yearMonths = getYearMonths(year: year)
+            displayYearMonths.append(DisplayYearMonth(year: year, yearMonths: yearMonths))
         }
         
         return displayYearMonths.sorted {
@@ -39,13 +39,11 @@ class YearMonthViewModel: ObservableObject {
         }
     }
     
-    func getMonths(year: String) -> [String] {
+    func getYearMonths(year: String) -> [YearMonth] {
         let filteredYearMonths = yearMonths.filter { result in
             result.year == year
         }
         
-        return filteredYearMonths.map { result in
-            result.month
-        }.sorted()
+        return filteredYearMonths
     }
 }

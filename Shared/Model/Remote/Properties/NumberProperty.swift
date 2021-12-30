@@ -9,5 +9,5 @@ import Foundation
 
 // MARK: - NumberProperty
 struct NumberProperty: Codable {
-    let number: Int
+    let number: Int?
 }

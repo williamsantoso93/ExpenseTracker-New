@@ -9,4 +9,6 @@ import Foundation
 
 struct YearMonth {
     let id, name, month, year: String
+    var totalIncomes: Int? = nil
+    var totalExpenses: Int? = nil
 }

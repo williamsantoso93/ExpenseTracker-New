@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - SingleSelectProperty
 struct SingleSelectProperty: Codable {
-    let select: Select
+    let select: Select?
 }
 
 // MARK: - MultiSelectProperty

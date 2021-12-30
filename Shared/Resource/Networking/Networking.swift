@@ -31,7 +31,7 @@ class Networking {
         return base + "blocks/"
     }
     let bearerToken = "secret_yUINPEksksZKF6AMsyzhCKX03fSmKeD1FVblA41DoCu"
-    let notionVersion = "2021-05-13"
+    let notionVersion = "2021-08-16"
     
     enum DatabaseID: String {
         case expenseDatabaseID = "695f266fc30d49fd8f430d17661c90a0"

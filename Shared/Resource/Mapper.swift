@@ -19,8 +19,10 @@ struct Mapper {
         YearMonth(
             id: id,
             name: remote.name.title.first?.text.content ?? "",
-            month: remote.month.select.name,
-            year: remote.year.select.name
+            month: remote.month.select?.name ?? "",
+            year: remote.year.select?.name ?? "",
+            totalIncomes: remote.totalIncomes?.rollup.number ?? 0,
+            totalExpenses: remote.totalExpenses?.rollup.number ?? 0
         )
     }
     
@@ -34,7 +36,9 @@ struct Mapper {
         YearMonthProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name))]),
             month: SingleSelectProperty(select: Select(name: local.month)),
-            year: SingleSelectProperty(select: Select(name: local.year))
+            year: SingleSelectProperty(select: Select(name: local.year)),
+            totalIncomes: nil,
+            totalExpenses: nil
         )
     }
     
@@ -52,9 +56,9 @@ struct Mapper {
             yearMonth: remote.yearMonth?.relation.first?.id,
             note: remote.note?.richText.first?.text.content,
             value: remote.value?.number,
-            duration: remote.duration?.select.name,
-            paymentVia: remote.paymentVia?.select.name,
-            type: remote.type?.select.name,
+            duration: remote.duration?.select?.name ?? "",
+            paymentVia: remote.paymentVia?.select?.name ?? "",
+            type: remote.type?.select?.name ?? "",
             date: remote.date?.date.start.toDate()
         )
     }
@@ -91,7 +95,7 @@ struct Mapper {
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
             value: remote.value?.number,
-            type: remote.type?.select.name,
+            type: remote.type?.select?.name ?? "",
             note: remote.note?.richText.first?.text.content,
             date: remote.date?.date.start.toDate()
         )
@@ -125,7 +129,7 @@ struct Mapper {
         TypeModel(
             blockID: id,
             name: remote.name.title.first?.text.content ?? "",
-            category: remote.category.select.name
+            category: remote.category.select?.name ?? ""
         )
     }
     
@@ -153,10 +157,10 @@ struct Mapper {
         TemplateModel(
             blockID: id,
             name: remote.name?.title.first?.text.content,
-            category: remote.category?.select.name,
-            duration: remote.duration?.select.name,
-            paymentVia: remote.paymentVia?.select.name,
-            type: remote.type?.select.name,
+            category: remote.category?.select?.name ?? "",
+            duration: remote.duration?.select?.name ?? "",
+            paymentVia: remote.paymentVia?.select?.name ?? "",
+            type: remote.type?.select?.name ?? "",
             value: remote.value?.number
         )
     }

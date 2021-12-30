@@ -18,11 +18,15 @@ struct YearMonthScreen: View {
                     let displayYearMonth = viewModel.displayYearMonths[index]
                     
                     Section(header: Text(displayYearMonth.year)) {
-                        ForEach(displayYearMonth.months.indices, id:\.self) { index in
-                            let month = displayYearMonth.months[index]
+                        ForEach(displayYearMonth.yearMonths.indices, id:\.self) { index in
+                            let yearMonth = displayYearMonth.yearMonths[index]
+                            let totalIncomes = yearMonth.totalIncomes ?? 0
+                            let totalExpenses = yearMonth.totalExpenses ?? 0
                             
                             VStack(alignment: .leading) {
-                                Text(month)
+                                Text(yearMonth.month)
+                                Text("Total Income: Rp \(totalIncomes.splitDigit())")
+                                Text("Total Expense: Rp \(totalExpenses.splitDigit())")
                             }
                         }
                     }
