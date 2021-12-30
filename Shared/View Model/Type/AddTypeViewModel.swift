@@ -26,7 +26,7 @@ class AddTypeViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    init(typeModel: TypeModel? = nil) {
+    init(typeModel: TypeModel?) {
         if let typeModel = typeModel {
             self.typeModel = typeModel
             

@@ -41,4 +41,12 @@ class TypeViewModel: ObservableObject {
             result.blockID == id
         }
     }
+    
+    @Published var isShowAddScreen = false
+    var selectedType: TypeModel? = nil
+    
+    func selectType(_ type: TypeModel? = nil) {
+        selectedType = type
+        isShowAddScreen = true
+    }
 }

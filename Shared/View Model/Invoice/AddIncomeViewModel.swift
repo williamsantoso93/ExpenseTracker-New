@@ -39,7 +39,7 @@ class AddIncomeViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    init(income: Income? = nil) {
+    init(income: Income?) {
         if let income = income {
             self.income = income
             note = income.note ?? ""

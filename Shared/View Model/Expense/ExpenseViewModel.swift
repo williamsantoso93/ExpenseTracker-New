@@ -70,4 +70,12 @@ class ExpenseViewModel: ObservableObject {
             }
         }
     }
+    
+    @Published var isShowAddScreen = false
+    var selectedExpense: Expense? = nil
+    
+    func selectExpense(_ expense: Expense? = nil) {
+        selectedExpense = expense
+        isShowAddScreen = true
+    }
 }

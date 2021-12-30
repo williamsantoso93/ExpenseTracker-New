@@ -50,7 +50,7 @@ class AddTemplateViewModel: ObservableObject {
         ]
     }
     
-    init(templateModel: TemplateModel? = nil) {
+    init(templateModel: TemplateModel?) {
         if let templateModel = templateModel {
             self.templateModel = templateModel
             name = templateModel.name ?? ""

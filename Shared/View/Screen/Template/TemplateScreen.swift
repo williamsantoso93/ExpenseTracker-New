@@ -9,8 +9,6 @@ import SwiftUI
 
 struct templateModelscreen: View {
     @ObservedObject var globalData = GlobalData.shared
-    @State private var isShowAddScreen = false
-    @State private var selectedTemplateModel: TemplateModel?
     
     @StateObject var viewModel = TemplateViewModel()
     
@@ -25,10 +23,7 @@ struct templateModelscreen: View {
                             let templateModel = templateModels[index]
                             
                             Button {
-                                selectedTemplateModel = templateModel
-                                if selectedTemplateModel != nil {
-                                    isShowAddScreen.toggle()
-                                }
+                                viewModel.selectTemplate(templateModel)
                             } label: {
                                 VStack(alignment: .leading) {
                                     Text("name : \(templateModel.name ?? "")")
@@ -56,17 +51,17 @@ struct templateModelscreen: View {
 #endif
                     
                     Button {
-                        isShowAddScreen.toggle()
+                        viewModel.isShowAddScreen.toggle()
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
         }
-        .sheet(isPresented: $isShowAddScreen) {
-            selectedTemplateModel = nil
+        .sheet(isPresented: $viewModel.isShowAddScreen) {
+            viewModel.selectedTemplate = nil
         } content: {
-            AddTemplatescreen(templateModel: selectedTemplateModel) {
+            AddTemplatescreen(templateModel: viewModel.selectedTemplate) {
                 globalData.getTemplateModel()
             }
         }

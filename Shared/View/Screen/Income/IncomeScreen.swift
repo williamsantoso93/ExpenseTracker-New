@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct IncomeScreen: View {
-    @State private var isShowAddScreen = false
     @StateObject private var viewModel = IncomeViewModel()
-    
-    @State private var selectedIncome: Income?
     
     var body: some View {
         Form {
@@ -19,8 +16,7 @@ struct IncomeScreen: View {
                 ForEach(viewModel.incomes.indices, id:\.self) {index in
                     let income = viewModel.incomes[index]
                     Button {
-                        selectedIncome = viewModel.incomes[index]
-                        isShowAddScreen.toggle()
+                        viewModel.selectIncome(income)
                     } label: {
                         VStack(alignment: .leading) {
 //                            Text("id : \(income.id)")
@@ -39,7 +35,7 @@ struct IncomeScreen: View {
             }
         }
         .loadingWithNoDataButton(viewModel.isLoading, isShowNoData: viewModel.isNowShowData, action: {
-            isShowAddScreen.toggle()
+            viewModel.isShowAddScreen.toggle()
         })
         .refreshable {
             viewModel.loadNewData()
@@ -53,17 +49,17 @@ struct IncomeScreen: View {
 #endif
                     
                     Button {
-                        isShowAddScreen.toggle()
+                        viewModel.selectIncome()
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
         }
-        .sheet(isPresented: $isShowAddScreen) {
-            selectedIncome = nil
+        .sheet(isPresented: $viewModel.isShowAddScreen) {
+            viewModel.selectedIncome = nil
         } content: {
-            AddInvoiceScreen(income: selectedIncome) {
+            AddInvoiceScreen(income: viewModel.selectedIncome) {
                 viewModel.loadNewData()
             }
         }

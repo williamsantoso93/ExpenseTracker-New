@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct ExpenseScreen: View {
-    @State private var isShowAddScreen = false
     @StateObject private var viewModel = ExpenseViewModel()
-    
-    @State private var selectedExpense: Expense? = nil
     
     var body: some View {
         Form {
@@ -19,12 +16,7 @@ struct ExpenseScreen: View {
                 ForEach(viewModel.expenses.indices, id:\.self) { index in
                     let expense = viewModel.expenses[index]
                     Button {
-                        selectedExpense = viewModel.expenses[index]
-                        print(selectedExpense)
-                        print(viewModel.expenses[index])
-                        if let selectedExpense = selectedExpense {
-                            isShowAddScreen.toggle()
-                        }
+                        viewModel.selectExpense(expense)
                     } label: {
                         VStack(alignment: .leading) {
 //                            Text("id : \(expense.id)")
@@ -45,7 +37,7 @@ struct ExpenseScreen: View {
             }
         }
         .loadingWithNoDataButton(viewModel.isLoading, isShowNoData: viewModel.isNowShowData, action: {
-            isShowAddScreen.toggle()
+            viewModel.isShowAddScreen.toggle()
         })
         .refreshable {
             viewModel.loadNewData()
@@ -58,17 +50,17 @@ struct ExpenseScreen: View {
                     EditButton()
 #endif
                     Button {
-                        isShowAddScreen.toggle()
+                        viewModel.selectExpense()
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
         }
-        .sheet(isPresented: $isShowAddScreen) {
-            selectedExpense = nil
+        .sheet(isPresented: $viewModel.isShowAddScreen) {
+            viewModel.selectedExpense = nil
         } content: {
-            AddExpenseScreen(expense: selectedExpense) {
+            AddExpenseScreen(expense: viewModel.selectedExpense) {
                 viewModel.loadNewData()
             }
         }

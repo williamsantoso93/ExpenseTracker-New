@@ -9,8 +9,6 @@ import SwiftUI
 
 struct TypeScreen: View {
     @ObservedObject var globalData = GlobalData.shared
-    @State private var isShowAddScreen = false
-    @State private var selectedType: TypeModel?
     
     @StateObject var viewModel = TypeViewModel()
         
@@ -25,8 +23,7 @@ struct TypeScreen: View {
                             let type = types[index]
                             
                             Button {
-                                selectedType = type
-                                isShowAddScreen.toggle()
+                                viewModel.selectType(type)
                             } label: {
                                 VStack(alignment: .leading) {
                                     Text(type.name)
@@ -41,7 +38,7 @@ struct TypeScreen: View {
             }
         }
         .loadingWithNoDataButton(globalData.isLoading, isShowNoData: viewModel.isNowShowData, action: {
-            isShowAddScreen.toggle()
+            viewModel.isShowAddScreen.toggle()
         })
         .navigationTitle("Types")
         .refreshable {
@@ -55,17 +52,17 @@ struct TypeScreen: View {
 #endif
                     
                     Button {
-                        isShowAddScreen.toggle()
+                        viewModel.selectType()
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
         }
-        .sheet(isPresented: $isShowAddScreen) {
-            selectedType = nil
+        .sheet(isPresented: $viewModel.isShowAddScreen) {
+            viewModel.selectedType = nil
         } content: {
-            AddTypeScreen(typeModel: selectedType) {
+            AddTypeScreen(typeModel: viewModel.selectedType) {
                 globalData.getTypes()
             }
         }

@@ -50,7 +50,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    init(expense: Expense? = nil) {
+    init(expense: Expense?) {
         if let expense = expense {
             self.expense = expense
             note = expense.note ?? ""
@@ -75,6 +75,7 @@ class AddExpenseViewModel: ObservableObject {
                 type: "",
                 date: Date()
             )
+            selectedDuration = "Once"
         }
     }
     

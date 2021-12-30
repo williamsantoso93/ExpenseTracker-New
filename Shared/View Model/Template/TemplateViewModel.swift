@@ -24,4 +24,12 @@ class TemplateViewModel: ObservableObject {
             "Expense",
         ]
     }
+    
+    @Published var isShowAddScreen = false
+    var selectedTemplate: TemplateModel? = nil
+    
+    func selectTemplate(_ template: TemplateModel? = nil) {
+        selectedTemplate = template
+        isShowAddScreen = true
+    }
 }

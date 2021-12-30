@@ -70,4 +70,12 @@ class IncomeViewModel: ObservableObject {
             }
         }
     }
+        
+    @Published var isShowAddScreen = false
+    var selectedIncome: Income? = nil
+    
+    func selectIncome(_ income: Income? = nil) {
+        selectedIncome = income
+        isShowAddScreen = true
+    }
 }

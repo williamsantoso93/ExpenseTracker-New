@@ -17,7 +17,6 @@ struct AddExpenseScreen: View {
     @State private var isShowTemplateAddScreen = false
     
     init(expense: Expense? = nil, refesh: @escaping () -> Void) {
-        print(expense)
         self._viewModel = StateObject(wrappedValue: AddExpenseViewModel(expense: expense))
         self.refesh = refesh
     }
