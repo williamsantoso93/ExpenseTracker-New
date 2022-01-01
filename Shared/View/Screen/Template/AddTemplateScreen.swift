@@ -47,6 +47,19 @@ struct AddTemplatescreen: View {
                         }
                     }
                 }
+                
+                if viewModel.isUpdate {
+                    Section {
+                        Button("Delete", role: .destructive) {
+                            viewModel.delete { isSuccess in
+                                if isSuccess {
+                                    refesh()
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                        }
+                    }
+                }
             }
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)

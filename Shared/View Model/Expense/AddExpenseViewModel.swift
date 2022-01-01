@@ -80,9 +80,17 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        guard value > 0 else { return }
+    func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
+        guard !expense.blockID.isEmpty else { return }
         
+        isLoading = true
+        Networking.shared.delete(id: expense.blockID) { isSuccess in
+            self.isLoading = false
+            return completion(isSuccess)
+        }
+    }
+    
+    func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             expense.note = note
             expense.value = try Validation.numberTextField(value)

@@ -77,6 +77,16 @@ class AddTemplateViewModel: ObservableObject {
     
     @Published var isLoading = false
     
+    func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
+        guard !templateModel.blockID.isEmpty else { return }
+        
+        isLoading = true
+        Networking.shared.delete(id: templateModel.blockID) { isSuccess in
+            self.isLoading = false
+            return completion(isSuccess)
+        }
+    }
+    
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             templateModel.name = try Validation.textField(name)

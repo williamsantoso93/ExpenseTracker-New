@@ -44,6 +44,16 @@ class AddTypeViewModel: ObservableObject {
         }
     }
     
+    func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
+        guard !typeModel.blockID.isEmpty else { return }
+        
+        isLoading = true
+        Networking.shared.delete(id: typeModel.blockID) { isSuccess in
+            self.isLoading = false
+            return completion(isSuccess)
+        }
+    }
+    
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             typeModel.category = try Validation.picker(selectedCategory, typeError: .noCategory)

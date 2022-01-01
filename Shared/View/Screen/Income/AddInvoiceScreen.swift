@@ -67,6 +67,17 @@ struct AddInvoiceScreen: View {
                             Text("Add Template")
                         }
                     }
+                } else {
+                    Section {
+                        Button("Delete", role: .destructive) {
+                            viewModel.delete { isSuccess in
+                                if isSuccess {
+                                    refesh()
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .loadingView(viewModel.isLoading)

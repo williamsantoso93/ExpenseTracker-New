@@ -45,6 +45,10 @@ class Networking {
         case ascending = "ascending"
         case descending = "descending"
     }
+    enum SortTimestamp: String {
+        case createdTime = "created_time"
+        case lastEditedTime = "last_edited_time"
+    }
     
     private init() { }
     

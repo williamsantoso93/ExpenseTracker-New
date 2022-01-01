@@ -111,6 +111,17 @@ struct AddExpenseScreen: View {
                     } header: {
                         Text("Template")
                     }
+                } else {
+                    Section {
+                        Button("Delete", role: .destructive) {
+                            viewModel.delete { isSuccess in
+                                if isSuccess {
+                                    refesh()
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .loadingView(viewModel.isLoading)

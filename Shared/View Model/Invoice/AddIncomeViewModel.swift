@@ -62,6 +62,16 @@ class AddIncomeViewModel: ObservableObject {
         }
     }
     
+    func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
+        guard !income.blockID.isEmpty else { return }
+        
+        isLoading = true
+        Networking.shared.delete(id: income.blockID) { isSuccess in
+            self.isLoading = false
+            return completion(isSuccess)
+        }
+    }
+    
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             income.note = note

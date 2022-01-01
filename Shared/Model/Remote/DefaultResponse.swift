@@ -46,7 +46,9 @@ struct Query: Codable {
 
 // MARK: - Sort
 struct Sort: Codable {
-    let property, direction: String?
+    var property: String?
+    var timestamp: String? = nil
+    var direction: String?
 }
 
 // MARK: - ErrorResponse
