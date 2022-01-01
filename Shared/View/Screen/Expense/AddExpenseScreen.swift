@@ -54,6 +54,38 @@ struct AddExpenseScreen: View {
                 
                 if !viewModel.isUpdate {
                     Section {
+                        Toggle("Need Installment", isOn: $viewModel.isInstallment)
+                        
+                        if viewModel.isInstallment {
+                            Picker("Months", selection: $viewModel.installmentMonthString) {
+                                let months = ["3", "6", "9", "12"]
+                                ForEach(months, id: \.self) {
+                                    Text($0)
+                                }
+                            }
+                            NumberTextFiedForm(title: "Interest (%)", prompt: "0,5".splitDigit(), value: $viewModel.interestPercentageString, needSplitDigit: false)
+#if os(iOS)
+                                .keyboardType(.decimalPad)
+#endif
+                            
+                            if viewModel.perMonthExpense > 0 {
+                                TextFiedForm(title: "Per Month", value: .constant(viewModel.perMonthExpenseWithInterest.splitDigit()))
+                                    .disabled(true)
+                                
+                                if viewModel.interest > 0 {
+                                    VStack(alignment: .leading) {
+                                        Text("Monthly Interest : \(viewModel.monthlyInterest.splitDigit())")
+                                        Text("Total Intallment : \(viewModel.totalInstallment.splitDigit())\n")
+                                        Text("Total Interest : \(viewModel.totalInterest.splitDigit())")
+                                    }
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("Installment")
+                    }
+                    
+                    Section {
                         Picker("Template", selection: $viewModel.selectedTemplateIndex) {
                             ForEach(viewModel.templateModels.indices, id: \.self) { index in
                                 let templateModel = viewModel.templateModels[index]
@@ -76,6 +108,8 @@ struct AddExpenseScreen: View {
                         } label: {
                             Text("Add Template")
                         }
+                    } header: {
+                        Text("Template")
                     }
                 }
             }

@@ -25,11 +25,14 @@ struct NumberTextFiedForm: View {
     var title: String
     var prompt: String = ""
     @Binding var value: String
+    var needSplitDigit: Bool = true
     
     var body: some View {
         TextFiedForm(title: title, prompt: prompt, value: $value)
             .onChange(of: value, perform: { value in
-                self.value = value.splitDigit()
+                if needSplitDigit {
+                    self.value = value.splitDigit()
+                }
             })
     }
 }

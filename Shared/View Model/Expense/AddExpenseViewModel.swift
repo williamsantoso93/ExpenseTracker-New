@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class AddExpenseViewModel: ObservableObject {
     @Published var expense: Expense
@@ -80,6 +81,8 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
+        guard value > 0 else { return }
+        
         do {
             expense.note = note
             expense.value = try Validation.numberTextField(value)
@@ -98,9 +101,16 @@ class AddExpenseViewModel: ObservableObject {
                         return completion(isSuccess)
                     }
                 } else {
-                    Networking.shared.postExpense(self.expense) { isSuccess in
-                        self.isLoading = false
-                        return completion(isSuccess)
+                    if self.isInstallment && (self.installmentMonth > 0) {
+                        self.saveInstallment { isSuccess in
+                            self.isLoading = false
+                            return completion(isSuccess)
+                        }
+                    } else {
+                        Networking.shared.postExpense(self.expense) { isSuccess in
+                            self.isLoading = false
+                            return completion(isSuccess)
+                        }
                     }
                 }
             }
@@ -134,6 +144,62 @@ class AddExpenseViewModel: ObservableObject {
         }
         if let valueString = selectedTemplateModel.value {
             self.valueString = valueString.splitDigit()
+        }
+    }
+    
+    //MARK: - Installment
+    @Published var isInstallment = false
+    @Published var installmentMonthString = "3"
+    @Published var interestPercentageString = "0"
+    
+    var installmentMonth: Int {
+        Int(installmentMonthString) ?? 0
+    }
+    var perMonthExpense: Int {
+        installmentMonth > 0 ? value / installmentMonth : 0
+    }
+    var interest: Double {
+        let interestPercentageDouble = Double(interestPercentageString) ?? 0
+        return interestPercentageDouble / 100
+    }
+    var monthlyInterest: Int {
+        Int(Double(value) * interest)
+    }
+    var perMonthExpenseWithInterest: Int {
+        if installmentMonth > 0 && value > 0 {
+            return perMonthExpense + Int(monthlyInterest)
+        }
+        return perMonthExpense
+    }
+    var totalInstallment: Int {
+        perMonthExpenseWithInterest * installmentMonth
+    }
+    var totalInterest: Int {
+        totalInstallment - value
+    }
+    
+    func saveInstallment(completion: @escaping (_ isSuccess: Bool) -> Void) {
+        guard installmentMonth > 0 else { return }
+        var count = 0
+        var expense = self.expense
+        expense.value = perMonthExpenseWithInterest
+        for installment in 1 ... installmentMonth {
+            if installment > 1 {
+                expense.date = self.expense.date?.addMonth(by: installment)
+            }
+            expense.note = note + " | Installment \(installment) to \(installmentMonth)"
+            guard let date = expense.date else { return }
+            YearMonthCheck.shared.getYearMonthID(date) { id in
+                expense.yearMonthID = id
+                
+                Networking.shared.postExpense(expense) { isSuccess in
+                    count += 1
+                    
+                    if count >= self.installmentMonth {
+                        return completion(isSuccess)
+                    }
+                }
+            }
         }
     }
 }

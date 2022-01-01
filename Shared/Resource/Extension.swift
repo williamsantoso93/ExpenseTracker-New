@@ -59,6 +59,13 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
+    
+    func addMonth(by n: Int = 1) -> Date? {
+        var dateComponent = DateComponents()
+        dateComponent.month = n
+        
+        return Calendar.current.date(byAdding: dateComponent, to: self)
+    }
 }
 
 extension URLResponse {
