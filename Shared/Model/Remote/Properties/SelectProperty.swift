@@ -14,7 +14,7 @@ struct SingleSelectProperty: Codable {
 
 // MARK: - MultiSelectProperty
 struct MultiSelectProperty: Codable {
-    var multiSelect: [Select]
+    var multiSelect: [Select]?
     
     enum CodingKeys: String, CodingKey {
         case multiSelect = "multi_select"

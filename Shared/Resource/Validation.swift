@@ -32,7 +32,7 @@ extension ValidationError {
         case .noType:
             return ErrorMessage(
                 title: "Invalid Type",
-                message: "Please select type"
+                message: "Please select types"
             )
         case .noDuration:
             return ErrorMessage(
@@ -61,25 +61,11 @@ class Validation {
         return input
     }
     
-    static func textField(_ input: String, typeError: ValidationError = .noName, handler: Void) -> String {
-        if input.isEmpty {
-            GlobalData.shared.errorMessage = typeError.errorMessage
-            handler
-        }
-        return input
-    }
-    
     static func numberTextField(_ input: Int) throws -> Int {
         if input <= 0 {
             throw ValidationError.noValue
         }
         return input
-    }
-    static func numberTextField(_ input: Int, handler: @escaping (Int) -> Void) {
-        if input <= 0 {
-            GlobalData.shared.errorMessage = ValidationError.noValue.errorMessage
-        }
-        return handler(input)
     }
     
     static func picker(_ input: String, typeError: ValidationError) throws -> String {
@@ -88,10 +74,11 @@ class Validation {
         }
         return input
     }
-    static func picker(_ input: String, typeError: ValidationError, handler: @escaping (String) -> Void) {
-        if input.isEmpty {
-            GlobalData.shared.errorMessage = typeError.errorMessage
+    
+    static func picker(_ inputs: [String], typeError: ValidationError) throws -> [String] {
+        if inputs.isEmpty {
+            throw typeError
         }
-        return handler(input)
+        return inputs
     }
 }

@@ -29,22 +29,22 @@ struct AddExpenseScreen: View {
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
-                    Picker("Type", selection: $viewModel.selectedType) {
-                        ForEach(viewModel.expenseType, id: \.self) {
-                            Text($0)
-                        }
-                    }
+                    MultiPickerFormView("Type(s)", items: viewModel.expenseType, selectedItems: $viewModel.selectedTypes)
+                    
                     Picker("Payment Via", selection: $viewModel.selectedPayment) {
                         ForEach(viewModel.paymentType, id: \.self) {
                             Text($0)
                         }
                     }
+                    
                     Picker("Duration", selection: $viewModel.selectedDuration) {
                         ForEach(viewModel.durationType, id: \.self) {
                             Text($0)
                         }
                     }
+                    
                     DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
+                    
                     VStack(alignment: .leading, spacing: 2.0) {
                         Text("Note")
                         TextEditor(text: $viewModel.note)

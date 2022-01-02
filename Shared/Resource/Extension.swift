@@ -68,6 +68,12 @@ extension Date {
     }
 }
 
+extension Array where Element == String {
+    func joinedWithComma() -> String {
+        self.joined(separator: ", ")
+    }
+}
+
 extension URLResponse {
     func getStatusCode() -> Int? {
         if let httpResponse = self as? HTTPURLResponse {

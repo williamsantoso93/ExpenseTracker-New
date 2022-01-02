@@ -25,7 +25,9 @@ struct ExpenseScreen: View {
                             Text("value : \(expense.value ?? 0)")
                             Text("duration : \(expense.duration ?? "")")
                             Text("paymentVia : \(expense.paymentVia ?? "")")
-                            Text("type : \(expense.type ?? "")")
+                            if let types = expense.types {
+                                Text("types : \(types.joinedWithComma())")
+                            }
                             Text("date : \((expense.date ?? Date()).toString())")
                         }
                     }

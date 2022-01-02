@@ -22,7 +22,7 @@ struct IncomeScreen: View {
 //                            Text("id : \(income.id)")
 //                            Text("yearMonth : \(income.yearMonth ?? "")")
                             Text("value : \(income.value ?? 0)")
-                            Text("type : \(income.type ?? "")")
+                            Text("types : \(income.type ?? "")")
                             Text("note : \(income.note ?? "")")
                             Text("date : \((income.date ?? Date()).toString())")
                         }

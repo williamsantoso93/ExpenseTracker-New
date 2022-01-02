@@ -37,6 +37,7 @@ class AddExpenseViewModel: ObservableObject {
         valueString.toInt()
     }
     @Published var selectedType = ""
+    @Published var selectedTypes: [String] = []
     @Published var selectedPayment = ""
     @Published var selectedDuration = ""
     @Published var selectedTemplateIndex = -1
@@ -60,7 +61,7 @@ class AddExpenseViewModel: ObservableObject {
             }
             selectedDuration = expense.duration ?? ""
             selectedPayment = expense.paymentVia ?? ""
-            selectedType = expense.type ?? ""
+            selectedTypes = expense.types ?? []
             date = expense.date ?? Date()
             
             isUpdate = true
@@ -73,7 +74,7 @@ class AddExpenseViewModel: ObservableObject {
                 value: 0,
                 duration: "",
                 paymentVia: "",
-                type: "",
+                types: [],
                 date: Date()
             )
             selectedDuration = "Once"
@@ -94,7 +95,7 @@ class AddExpenseViewModel: ObservableObject {
         do {
             expense.note = note
             expense.value = try Validation.numberTextField(value)
-            expense.type = try Validation.picker(selectedType, typeError: .noType)
+            expense.types = try Validation.picker(selectedTypes, typeError: .noType)
             expense.paymentVia = try Validation.picker(selectedPayment, typeError: .noPaymentVia)
             expense.duration = try Validation.picker(selectedDuration, typeError: .noDuration)
             expense.date = date

@@ -30,7 +30,7 @@ struct templateModelscreen: View {
                                     Text("value : \(templateModel.value ?? 0)")
                                     Text("duration : \(templateModel.duration ?? "")")
                                     Text("paymentVia : \(templateModel.paymentVia ?? "")")
-                                    Text("type : \(templateModel.type ?? "")")
+                                    Text("types : \(templateModel.type ?? "")")
                                 }
                             }
                         }

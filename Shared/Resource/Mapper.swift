@@ -58,9 +58,18 @@ struct Mapper {
             value: remote.value?.number,
             duration: remote.duration?.select?.name ?? "",
             paymentVia: remote.paymentVia?.select?.name ?? "",
-            type: remote.type?.select?.name ?? "",
+            types: multiSelectsToStrings(remote.types?.multiSelect),
             date: remote.date?.date.start.toDate()
         )
+    }
+    
+    static func multiSelectsToStrings(_ multiSelects: [Select]?) -> [String]? {
+        guard let multiSelects = multiSelects else { return nil }
+        guard !multiSelects.isEmpty else { return nil }
+        
+        return multiSelects.map { result in
+            result.name
+        }
     }
     
     static func mapExpenseLocalToRemote(_ local: [Expense]) -> [ExpenseProperty] {
@@ -77,9 +86,20 @@ struct Mapper {
             value: NumberProperty(number: local.value ?? 0),
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
             paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
-            type: SingleSelectProperty(select: Select(name: local.type ?? "")),
+            types: MultiSelectProperty(multiSelect: stringsToMultiSelects(local.types)),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
+    }
+    
+    static func stringsToMultiSelects(_ strings: [String]?) -> [Select]? {
+        guard let strings = strings else { return nil }
+        guard !strings.isEmpty else { return nil }
+        
+        let map = strings.map { result in
+            Select(name: result)
+        }
+        
+        return map
     }
     
     //MARK: - Income
