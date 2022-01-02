@@ -45,6 +45,12 @@ struct AddExpenseScreen: View {
                     
                     DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
                     
+                    Picker("Store", selection: $viewModel.selectedStore) {
+                        ForEach(viewModel.storeType, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    
                     VStack(alignment: .leading, spacing: 2.0) {
                         Text("Note")
                         TextEditor(text: $viewModel.note)

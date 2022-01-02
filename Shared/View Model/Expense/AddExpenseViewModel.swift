@@ -31,6 +31,11 @@ class AddExpenseViewModel: ObservableObject {
             result.name
         }
     }
+    var storeType: [String] {
+        types.storeTypes.map { result in
+            result.name
+        }
+    }
     
     @Published var valueString = ""
     var value: Int {
@@ -40,6 +45,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var selectedTypes: [String] = []
     @Published var selectedPayment = ""
     @Published var selectedDuration = ""
+    @Published var selectedStore = ""
     @Published var selectedTemplateIndex = -1
     @Published var note = ""
     @Published var date = Date()
@@ -55,7 +61,6 @@ class AddExpenseViewModel: ObservableObject {
     init(expense: Expense?) {
         if let expense = expense {
             self.expense = expense
-            note = expense.note ?? ""
             if let value = expense.value {
                 valueString = value.splitDigit()
             }
@@ -63,6 +68,24 @@ class AddExpenseViewModel: ObservableObject {
             selectedPayment = expense.paymentVia ?? ""
             selectedTypes = expense.types ?? []
             date = expense.date ?? Date()
+            
+            
+            let storeNote = getStoreNote(expense.note)
+            if let storeNote = storeNote {
+                selectedStore = storeNote.first ?? ""
+                note = storeNote.last ?? ""
+            } else {
+                if let expenseNote = expense.note {
+                    if storeType.contains(expenseNote) {
+                        selectedStore = expenseNote
+                        note = ""
+                    } else {
+                        note = expenseNote
+                    }
+                } else {
+                    note = ""
+                }
+            }
             
             isUpdate = true
         } else {
@@ -81,6 +104,17 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
+    let noteSeparator = " | "
+    
+    func getStoreNote(_ note: String?) -> [String]? {
+        guard let note = note else { return nil }
+        guard note.contains(noteSeparator) else { return nil }
+        let strings = note.components(separatedBy: noteSeparator)
+        guard strings.count == 2 else { return nil }
+        
+        return strings
+    }
+    
     func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
         guard !expense.blockID.isEmpty else { return }
         
@@ -91,13 +125,26 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
+    func noteStore() -> String{
+        var note = note
+        if !selectedStore.isEmpty {
+            if !note.isEmpty {
+                note = selectedStore + noteSeparator + note
+            } else {
+                note = selectedStore
+            }
+        }
+        
+        return note
+    }
+    
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
-            expense.note = note
             expense.value = try Validation.numberTextField(value)
             expense.types = try Validation.picker(selectedTypes, typeError: .noType)
             expense.paymentVia = try Validation.picker(selectedPayment, typeError: .noPaymentVia)
             expense.duration = try Validation.picker(selectedDuration, typeError: .noDuration)
+            expense.note = noteStore()
             expense.date = date
             
             YearMonthCheck.shared.getYearMonthID(date) { id in

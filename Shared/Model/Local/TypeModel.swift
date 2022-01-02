@@ -28,6 +28,9 @@ struct Types: Codable {
     var durationTypes: [TypeModel] {
         filterType(.duration)
     }
+    var storeTypes: [TypeModel] {
+        filterType(.store)
+    }
     
     init(allTypes: [TypeModel] = []) {
         self.allTypes = allTypes
@@ -38,6 +41,7 @@ struct Types: Codable {
         case expense
         case payment
         case duration
+        case store
     }
     
     func filterType(_ category: TypeCategory) -> [TypeModel] {
