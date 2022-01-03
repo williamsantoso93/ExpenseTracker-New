@@ -51,6 +51,10 @@ struct AddExpenseScreen: View {
                         }
                     }
                     
+                    if viewModel.isOtherStore {
+                        TextField("Indomaret", text: $viewModel.otherStore)
+                    }
+                    
                     VStack(alignment: .leading, spacing: 2.0) {
                         Text("Note")
                         TextEditor(text: $viewModel.note)
@@ -91,33 +95,10 @@ struct AddExpenseScreen: View {
                         Text("Installment")
                     }
                     
-                    Section {
-                        Picker("Template", selection: $viewModel.selectedTemplateIndex) {
-                            ForEach(viewModel.templateModels.indices, id: \.self) { index in
-                                let templateModel = viewModel.templateModels[index]
-                                Text(templateModel.name ?? "")
-                                    .tag(index)
-                            }
-                        }
-                        .onChange(of: viewModel.selectedTemplateIndex) { index in
-                            viewModel.applyTemplate(at: index)
-                        }
-                        
-                        Button {
-                            isShowTypeAddScreen.toggle()
-                        } label: {
-                            Text("Add Type")
-                        }
-                        
-                        Button {
-                            isShowTemplateAddScreen.toggle()
-                        } label: {
-                            Text("Add Template")
-                        }
-                    } header: {
-                        Text("Template")
-                    }
+                    templateSection
                 } else {
+                    templateSection
+                    
                     Section {
                         Button("Delete", role: .destructive) {
                             viewModel.delete { isSuccess in
@@ -171,6 +152,35 @@ struct AddExpenseScreen: View {
                     globalData.getTemplateModel()
                 }
             }
+        }
+    }
+    
+    var templateSection: some View {
+        Section {
+            Picker("Template", selection: $viewModel.selectedTemplateIndex) {
+                ForEach(viewModel.templateModels.indices, id: \.self) { index in
+                    let templateModel = viewModel.templateModels[index]
+                    Text(templateModel.name ?? "")
+                        .tag(index)
+                }
+            }
+            .onChange(of: viewModel.selectedTemplateIndex) { index in
+                viewModel.applyTemplate(at: index)
+            }
+            
+            Button {
+                isShowTypeAddScreen.toggle()
+            } label: {
+                Text("Add Type")
+            }
+            
+            Button {
+                isShowTemplateAddScreen.toggle()
+            } label: {
+                Text("Add Template")
+            }
+        } header: {
+            Text("Template")
         }
     }
 }

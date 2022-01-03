@@ -46,6 +46,10 @@ class AddExpenseViewModel: ObservableObject {
     @Published var selectedPayment = ""
     @Published var selectedDuration = ""
     @Published var selectedStore = ""
+    var isOtherStore: Bool {
+        selectedStore == "Other"
+    }
+    @Published var otherStore = ""
     @Published var selectedTemplateIndex = -1
     @Published var note = ""
     @Published var date = Date()
@@ -69,23 +73,7 @@ class AddExpenseViewModel: ObservableObject {
             selectedTypes = expense.types ?? []
             date = expense.date ?? Date()
             
-            
-            let storeNote = getStoreNote(expense.note)
-            if let storeNote = storeNote {
-                selectedStore = storeNote.first ?? ""
-                note = storeNote.last ?? ""
-            } else {
-                if let expenseNote = expense.note {
-                    if storeType.contains(expenseNote) {
-                        selectedStore = expenseNote
-                        note = ""
-                    } else {
-                        note = expenseNote
-                    }
-                } else {
-                    note = ""
-                }
-            }
+            getStoreNote(expense.note)
             
             isUpdate = true
         } else {
@@ -106,13 +94,38 @@ class AddExpenseViewModel: ObservableObject {
     
     let noteSeparator = " | "
     
-    func getStoreNote(_ note: String?) -> [String]? {
-        guard let note = note else { return nil }
-        guard note.contains(noteSeparator) else { return nil }
-        let strings = note.components(separatedBy: noteSeparator)
-        guard strings.count == 2 else { return nil }
+    /// Retrieve selected store and note
+    /// - Parameter fullNote: Expense note
+    func getStoreNote(_ fullNote: String?) {
+        guard let fullNote = fullNote else {
+            return self.note = fullNote ?? ""
+        }
+        guard fullNote.contains(noteSeparator) else {
+            return storeTypeCheck(fullNote, "")
+        }
+        let storeNote = fullNote.components(separatedBy: noteSeparator)
+        guard storeNote.count == 2 else {
+            return self.note = fullNote
+        }
         
-        return strings
+        if let store = storeNote.first, let note = storeNote.last {
+            storeTypeCheck(store, note, fullNote)
+        } else {
+            self.note = fullNote
+        }
+    }
+    
+    func storeTypeCheck(_ store: String, _ note: String, _ fullNote: String = "") {
+        if storeType.contains(store) {
+            selectedStore = store
+            self.note = note
+        } else {
+            if note.isEmpty {
+                self.note = store
+            } else {
+                self.note = fullNote
+            }
+        }
     }
     
     func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
@@ -125,11 +138,20 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
-    func noteStore() -> String{
+    /// Combine selected store and note
+    /// - Returns: Expense note
+    func getStoreNote() -> String {
         var note = note
         if !selectedStore.isEmpty {
             if !note.isEmpty {
-                note = selectedStore + noteSeparator + note
+                var store = selectedStore
+                if isOtherStore {
+                    if !otherStore.isEmpty {
+                        store = otherStore
+                    }
+                }
+                
+                note = store + noteSeparator + note
             } else {
                 note = selectedStore
             }
@@ -144,7 +166,7 @@ class AddExpenseViewModel: ObservableObject {
             expense.types = try Validation.picker(selectedTypes, typeError: .noType)
             expense.paymentVia = try Validation.picker(selectedPayment, typeError: .noPaymentVia)
             expense.duration = try Validation.picker(selectedDuration, typeError: .noDuration)
-            expense.note = noteStore()
+            expense.note = getStoreNote()
             expense.date = date
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
