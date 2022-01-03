@@ -15,7 +15,7 @@ struct Expense: Codable {
     var yearMonthID: String? = nil
     var note: String?
     var value: Int?
-    var duration, paymentVia: String?
+    var duration, paymentVia, store: String?
     var types: [String]?
     var date: Date?
 }

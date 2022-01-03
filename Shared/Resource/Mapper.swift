@@ -58,6 +58,7 @@ struct Mapper {
             value: remote.value?.number,
             duration: remote.duration?.select?.name ?? "",
             paymentVia: remote.paymentVia?.select?.name ?? "",
+            store: remote.store?.richText.first?.text.content,
             types: multiSelectsToStrings(remote.types?.multiSelect),
             date: remote.date?.date.start.toDate()
         )
@@ -86,6 +87,7 @@ struct Mapper {
             value: NumberProperty(number: local.value ?? 0),
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
             paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
+            store: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.store ?? ""))]),
             types: MultiSelectProperty(multiSelect: stringsToMultiSelects(local.types)),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )

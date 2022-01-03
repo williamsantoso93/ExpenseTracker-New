@@ -21,10 +21,11 @@ struct ExpenseScreen: View {
                         VStack(alignment: .leading) {
 //                            Text("id : \(expense.id)")
 //                            Text("yearMonth : \(expense.yearMonth ?? "")")
-                            Text("note : \(expense.note ?? "")")
+                            Text("note : \(expense.note ?? "-")")
+                            Text("store : \(expense.store ?? "-")")
                             Text("value : \(expense.value ?? 0)")
-                            Text("duration : \(expense.duration ?? "")")
-                            Text("paymentVia : \(expense.paymentVia ?? "")")
+                            Text("duration : \(expense.duration ?? "-")")
+                            Text("paymentVia : \(expense.paymentVia ?? "-")")
                             if let types = expense.types {
                                 Text("types : \(types.joinedWithComma())")
                             }

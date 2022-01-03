@@ -73,7 +73,8 @@ class AddExpenseViewModel: ObservableObject {
             selectedTypes = expense.types ?? []
             date = expense.date ?? Date()
             
-            getStoreNote(expense.note)
+            checkStore(expense.store)
+            note = expense.note ?? ""
             
             isUpdate = true
         } else {
@@ -94,36 +95,12 @@ class AddExpenseViewModel: ObservableObject {
     
     let noteSeparator = " | "
     
-    /// Retrieve selected store and note
-    /// - Parameter fullNote: Expense note
-    func getStoreNote(_ fullNote: String?) {
-        guard let fullNote = fullNote else {
-            return self.note = fullNote ?? ""
-        }
-        guard fullNote.contains(noteSeparator) else {
-            return storeTypeCheck(fullNote, "")
-        }
-        let storeNote = fullNote.components(separatedBy: noteSeparator)
-        guard storeNote.count == 2 else {
-            return self.note = fullNote
-        }
-        
-        if let store = storeNote.first, let note = storeNote.last {
-            storeTypeCheck(store, note, fullNote)
-        } else {
-            self.note = fullNote
-        }
-    }
-    
-    func storeTypeCheck(_ store: String, _ note: String, _ fullNote: String = "") {
-        if storeType.contains(store) {
-            selectedStore = store
-            self.note = note
-        } else {
-            if note.isEmpty {
-                self.note = store
-            } else {
-                self.note = fullNote
+    func checkStore(_ store: String?) {
+        selectedStore = store ?? ""
+        if let store = store {
+            if !storeType.contains(store) && !store.isEmpty {
+                otherStore = store
+                selectedStore = "Other"
             }
         }
     }
@@ -138,26 +115,12 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
-    /// Combine selected store and note
-    /// - Returns: Expense note
-    func getStoreNote() -> String {
-        var note = note
-        if !selectedStore.isEmpty {
-            if !note.isEmpty {
-                var store = selectedStore
-                if isOtherStore {
-                    if !otherStore.isEmpty {
-                        store = otherStore
-                    }
-                }
-                
-                note = store + noteSeparator + note
-            } else {
-                note = selectedStore
-            }
+    func getStore() -> String {
+        if isOtherStore {
+            return otherStore
+        } else {
+            return selectedStore
         }
-        
-        return note
     }
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
@@ -166,7 +129,8 @@ class AddExpenseViewModel: ObservableObject {
             expense.types = try Validation.picker(selectedTypes, typeError: .noType)
             expense.paymentVia = try Validation.picker(selectedPayment, typeError: .noPaymentVia)
             expense.duration = try Validation.picker(selectedDuration, typeError: .noDuration)
-            expense.note = getStoreNote()
+            expense.store = getStore()
+            expense.note = note
             expense.date = date
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
