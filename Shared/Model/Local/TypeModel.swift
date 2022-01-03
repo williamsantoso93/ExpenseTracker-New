@@ -12,6 +12,7 @@ struct TypeModel: Codable {
     var blockID: String
     var name: String
     var category: String
+    var keywords: String?
 }
 
 struct Types: Codable {

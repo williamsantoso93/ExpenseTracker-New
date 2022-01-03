@@ -13,4 +13,5 @@ struct TemplateModel: Codable, Hashable {
     var name: String?
     var category, duration, paymentVia, type: String?
     var value: Int?
+    var keywords: String?
 }

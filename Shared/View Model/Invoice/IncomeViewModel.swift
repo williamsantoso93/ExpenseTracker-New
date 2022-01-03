@@ -19,6 +19,17 @@ class IncomeViewModel: ObservableObject {
         loadNewData()
     }
     
+    @Published var searchText = ""
+    var incomesFilterd: [Income] {
+        guard !searchText.isEmpty else {
+            return incomes
+        }
+        
+        return incomes.filter { result in
+            result.keywords?.lowercased().contains(searchText.lowercased()) ?? false
+        }
+    }
+    
     func loadNewData() {
         startCursor = nil
         getList { incomes in

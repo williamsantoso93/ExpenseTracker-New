@@ -18,4 +18,5 @@ struct Expense: Codable {
     var duration, paymentVia, store: String?
     var types: [String]?
     var date: Date?
+    var keywords: String?
 }

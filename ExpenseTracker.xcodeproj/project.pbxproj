@@ -37,6 +37,8 @@
 		E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */; };
 		E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6F2776B433002E685F /* YearMonthCheck.swift */; };
 		E01A2A772776B46E002E685F /* AddTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A762776B46E002E685F /* AddTypeScreen.swift */; };
+		E02830B82782B1FF001E8B51 /* FormulaProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02830B72782B1FF001E8B51 /* FormulaProperty.swift */; };
+		E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02830B72782B1FF001E8B51 /* FormulaProperty.swift */; };
 		E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031E2D3277DE67500DD449B /* RoolupProperty.swift */; };
 		E031E2D5277DE67500DD449B /* RoolupProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031E2D3277DE67500DD449B /* RoolupProperty.swift */; };
 		E03FC18C277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
@@ -166,6 +168,7 @@
 		E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeViewModel.swift; sourceTree = "<group>"; };
 		E01A2A6F2776B433002E685F /* YearMonthCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthCheck.swift; sourceTree = "<group>"; };
 		E01A2A762776B46E002E685F /* AddTypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeScreen.swift; sourceTree = "<group>"; };
+		E02830B72782B1FF001E8B51 /* FormulaProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaProperty.swift; sourceTree = "<group>"; };
 		E031E2D3277DE67500DD449B /* RoolupProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolupProperty.swift; sourceTree = "<group>"; };
 		E03FC18B277837620019F01D /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		E08178C1277087D100F358D9 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
@@ -514,6 +517,7 @@
 				E0D6EF2B277023FE00DF12AD /* DateProperty.swift */,
 				E0D6EF2E2770240900DF12AD /* RelationProperty.swift */,
 				E031E2D3277DE67500DD449B /* RoolupProperty.swift */,
+				E02830B72782B1FF001E8B51 /* FormulaProperty.swift */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -730,6 +734,7 @@
 				E0BF3AB4276F566B00FC902E /* ContentView.swift in Sources */,
 				E002E2B227789EC000A7A1C5 /* SettingProperty.swift in Sources */,
 				E0050C322778007600396C36 /* DeleteEndpoint.swift in Sources */,
+				E02830B82782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
 				E0D6EF20277021F800DF12AD /* TextProperty.swift in Sources */,
 				E0D6EF322770259F00DF12AD /* IncomeProperty.swift in Sources */,
 				E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */,
@@ -792,6 +797,7 @@
 				E09030DA27781FF7003ED6B5 /* DeleteEndpoint.swift in Sources */,
 				E002E2B327789EC000A7A1C5 /* SettingProperty.swift in Sources */,
 				E09030C627781FE0003ED6B5 /* YearMonthCheck.swift in Sources */,
+				E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
 				E0BF3AB5276F566B00FC902E /* ContentView.swift in Sources */,
 				E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */,
 				E0D6EF21277021F800DF12AD /* TextProperty.swift in Sources */,

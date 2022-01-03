@@ -12,6 +12,7 @@ struct TemplateModelProperty: Codable {
     let name: TitleProperty?
     let category, duration, paymentVia, type: SingleSelectProperty?
     let value: NumberProperty?
+    var keywords: FormulaProperty? = nil
     
     enum CodingKeys: String, CodingKey {
         case name = "Name"
@@ -20,5 +21,6 @@ struct TemplateModelProperty: Codable {
         case paymentVia = "Payment Via"
         case type = "Type"
         case value = "Value"
+        case keywords = "Keywords"
     }
 }

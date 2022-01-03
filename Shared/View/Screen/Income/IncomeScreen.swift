@@ -12,9 +12,9 @@ struct IncomeScreen: View {
     
     var body: some View {
         Form {
-            if !viewModel.incomes.isEmpty {
-                ForEach(viewModel.incomes.indices, id:\.self) {index in
-                    let income = viewModel.incomes[index]
+            if !viewModel.incomesFilterd.isEmpty {
+                ForEach(viewModel.incomesFilterd.indices, id:\.self) {index in
+                    let income = viewModel.incomesFilterd[index]
                     Button {
                         viewModel.selectIncome(income)
                     } label: {
@@ -37,6 +37,7 @@ struct IncomeScreen: View {
         .loadingWithNoDataButton(viewModel.isLoading, isShowNoData: viewModel.isNowShowData, action: {
             viewModel.isShowAddScreen.toggle()
         })
+        .searchable(text: $viewModel.searchText)
         .refreshable {
             viewModel.loadNewData()
         }

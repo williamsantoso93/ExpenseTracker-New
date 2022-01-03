@@ -11,11 +11,19 @@ class TemplateViewModel: ObservableObject {
     @Published var globalData = GlobalData.shared
     @Published var isLoading = false
     
-    
+    @Published var searchText = ""
     func filterTemplate(_ category: String) -> [TemplateModel] {
-        globalData.templateModels.filter { result in
+        let templateModels = globalData.templateModels.filter { result in
             result.category == category.capitalized
         }
+        guard !searchText.isEmpty else {
+            return templateModels
+        }
+        
+        return templateModels.filter { result in
+            result.keywords?.lowercased().contains(searchText.lowercased()) ?? false
+        }
+        
     }
     
     var category: [String] {

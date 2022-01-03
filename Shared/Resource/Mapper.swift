@@ -60,7 +60,8 @@ struct Mapper {
             paymentVia: remote.paymentVia?.select?.name ?? "",
             store: remote.store?.richText.first?.text.content,
             types: multiSelectsToStrings(remote.types?.multiSelect),
-            date: remote.date?.date.start.toDate()
+            date: remote.date?.date.start.toDate(),
+            keywords: remote.keywords?.formula.string
         )
     }
     
@@ -119,7 +120,8 @@ struct Mapper {
             value: remote.value?.number,
             type: remote.type?.select?.name ?? "",
             note: remote.note?.richText.first?.text.content,
-            date: remote.date?.date.start.toDate()
+            date: remote.date?.date.start.toDate(),
+            keywords: remote.keywords?.formula.string
         )
     }
     
@@ -151,7 +153,8 @@ struct Mapper {
         TypeModel(
             blockID: id,
             name: remote.name.title.first?.text.content ?? "",
-            category: remote.category.select?.name ?? ""
+            category: remote.category.select?.name ?? "",
+            keywords: remote.keywords?.formula.string
         )
     }
     
@@ -183,7 +186,8 @@ struct Mapper {
             duration: remote.duration?.select?.name ?? "",
             paymentVia: remote.paymentVia?.select?.name ?? "",
             type: remote.type?.select?.name ?? "",
-            value: remote.value?.number
+            value: remote.value?.number,
+            keywords: remote.keywords?.formula.string
         )
     }
     

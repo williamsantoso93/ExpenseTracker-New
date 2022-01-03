@@ -11,10 +11,12 @@ import Foundation
 struct TypeProperty: Codable {
     let name: TitleProperty
     let category: SingleSelectProperty
+    var keywords: FormulaProperty? = nil
     
     enum CodingKeys: String, CodingKey {
         case category = "Category"
         case name = "Name"
+        case keywords = "Keywords"
     }
 }
 

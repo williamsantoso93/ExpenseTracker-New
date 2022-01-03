@@ -15,6 +15,7 @@ struct IncomeProperty: Codable {
     let type: SingleSelectProperty?
     let note: RichTextProperty?
     let date: DateProperty?
+    var keywords: FormulaProperty? = nil
     
     enum CodingKeys: String, CodingKey {
         case yearMonth = "Year/Month"
@@ -23,5 +24,6 @@ struct IncomeProperty: Codable {
         case value = "Value"
         case date = "Date"
         case id
+        case keywords = "Keywords"
     }
 }

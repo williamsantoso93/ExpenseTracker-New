@@ -17,4 +17,5 @@ struct Income: Codable {
     var type: String?
     var note: String?
     var date: Date?
+    var keywords: String?
 }

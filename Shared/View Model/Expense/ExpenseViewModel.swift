@@ -19,6 +19,17 @@ class ExpenseViewModel: ObservableObject {
         loadNewData()
     }
     
+    @Published var searchText = ""
+    var expensesFilterd: [Expense] {
+        guard !searchText.isEmpty else {
+            return expenses
+        }
+        
+        return expenses.filter { result in
+            result.keywords?.lowercased().contains(searchText.lowercased()) ?? false
+        }
+    }
+    
     func loadNewData() {
         startCursor = nil
         getList { expenses in

@@ -39,6 +39,7 @@ struct templateModelscreen: View {
             }
         }
         .loadingView(GlobalData.shared.isLoading, isNeedDisable: false)
+        .searchable(text: $viewModel.searchText)
         .refreshable {
             GlobalData.shared.getTemplateModel()
         }

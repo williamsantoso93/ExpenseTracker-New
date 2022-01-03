@@ -17,6 +17,7 @@ struct ExpenseProperty: Codable {
     let store: RichTextProperty?
     let types: MultiSelectProperty?
     let date: DateProperty?
+    var keywords: FormulaProperty? = nil
     
     enum CodingKeys: String, CodingKey {
         case yearMonth = "Year/Month"
@@ -28,5 +29,6 @@ struct ExpenseProperty: Codable {
         case store = "Store"
         case date = "Date"
         case types = "Types"
+        case keywords = "Keywords"
     }
 }
