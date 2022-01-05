@@ -86,6 +86,7 @@ class AddExpenseViewModel: ObservableObject {
                 value: 0,
                 duration: "",
                 paymentVia: "",
+                store: "",
                 types: [],
                 date: Date()
             )
@@ -178,8 +179,8 @@ class AddExpenseViewModel: ObservableObject {
         if let selectedDuration = selectedTemplateModel.duration {
             self.selectedDuration = selectedDuration
         }
-        if let selectedType = selectedTemplateModel.type {
-            self.selectedType = selectedType
+        if let selectedTypes = selectedTemplateModel.types {
+            self.selectedTypes = selectedTypes
         }
         if let selectedPayment = selectedTemplateModel.paymentVia {
             self.selectedPayment = selectedPayment

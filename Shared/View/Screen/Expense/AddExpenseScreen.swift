@@ -143,13 +143,17 @@ struct AddExpenseScreen: View {
             .sheet(isPresented: $isShowTypeAddScreen) {
             } content: {
                 AddTypeScreen() {
-                    globalData.getTypes()
+                    globalData.getTypes {
+                        viewModel.types = GlobalData.shared.types
+                    }
                 }
             }
             .sheet(isPresented: $isShowTemplateAddScreen) {
             } content: {
                 AddTemplatescreen() {
-                    globalData.getTemplateModel()
+                    globalData.getTemplateModel(done:  {
+                        viewModel.templateModels = GlobalData.shared.templateModels
+                    })
                 }
             }
         }

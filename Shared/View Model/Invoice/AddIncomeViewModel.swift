@@ -27,6 +27,7 @@ class AddIncomeViewModel: ObservableObject {
         valueString.toInt()
     }
     @Published var selectedType = ""
+    @Published var selectedTypes: [String] = []
     @Published var note = ""
     @Published var selectedTemplateIndex = -1
     @Published var date = Date()
@@ -46,7 +47,7 @@ class AddIncomeViewModel: ObservableObject {
             if let value = income.value {
                 valueString = value.splitDigit()
             }
-            selectedType = income.type ?? ""
+            selectedTypes = income.types ?? []
             date = income.date ?? Date()
             
             isUpdate = true
@@ -56,7 +57,7 @@ class AddIncomeViewModel: ObservableObject {
                 id: UUID().uuidString,
                 yearMonth: "",
                 value: 0,
-                type: "",
+                types: [],
                 note: ""
             )
         }
@@ -76,7 +77,7 @@ class AddIncomeViewModel: ObservableObject {
         do {
             income.note = note
             income.value = try Validation.numberTextField(value)
-            income.type = try Validation.picker(selectedType, typeError: .noType)
+            income.types = try Validation.picker(selectedTypes, typeError: .noType)
             income.date = date
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
@@ -114,8 +115,8 @@ class AddIncomeViewModel: ObservableObject {
         if let name = selectedTemplateModel.name {
             note = name
         }
-        if let selectedType = selectedTemplateModel.type {
-            self.selectedType = selectedType
+        if let selectedTypes = selectedTemplateModel.types {
+            self.selectedTypes = selectedTypes
         }
         if let valueString = selectedTemplateModel.value {
             self.valueString = valueString.splitDigit()

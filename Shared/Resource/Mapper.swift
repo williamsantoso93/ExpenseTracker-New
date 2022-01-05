@@ -118,7 +118,7 @@ struct Mapper {
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
             value: remote.value?.number,
-            type: remote.type?.select?.name ?? "",
+            types: multiSelectsToStrings(remote.types?.multiSelect),
             note: remote.note?.richText.first?.text.content,
             date: remote.date?.date.start.toDate(),
             keywords: remote.keywords?.formula.string
@@ -136,7 +136,7 @@ struct Mapper {
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
             value: NumberProperty(number: local.value ?? 0),
-            type: SingleSelectProperty(select: Select(name: local.type ?? "")),
+            types: MultiSelectProperty(multiSelect: stringsToMultiSelects(local.types)),
             note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
@@ -185,7 +185,8 @@ struct Mapper {
             category: remote.category?.select?.name ?? "",
             duration: remote.duration?.select?.name ?? "",
             paymentVia: remote.paymentVia?.select?.name ?? "",
-            type: remote.type?.select?.name ?? "",
+            store: remote.store?.richText.first?.text.content,
+            types: multiSelectsToStrings(remote.types?.multiSelect),
             value: remote.value?.number,
             keywords: remote.keywords?.formula.string
         )
@@ -203,8 +204,9 @@ struct Mapper {
             category: textToSingleSelectProperty(local.category),
             duration: textToSingleSelectProperty(local.duration),
             paymentVia: textToSingleSelectProperty(local.paymentVia),
-            type: textToSingleSelectProperty(local.type),
-            value: numberToNumberProperty(local.value)
+            types: MultiSelectProperty(multiSelect: stringsToMultiSelects(local.types)),
+            value: numberToNumberProperty(local.value),
+            store: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.store ?? ""))])
         )
     }
     

@@ -17,6 +17,8 @@ struct AddTemplatescreen: View {
         self.refesh = refesh
     }
     
+    @State private var isShowTypeAddScreen = false
+    
     var body: some View {
         NavigationView {
             Form {
@@ -26,11 +28,8 @@ struct AddTemplatescreen: View {
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
-                    Picker("Type", selection: $viewModel.selectedType) {
-                        ForEach(viewModel.expenseType, id: \.self) {
-                            Text($0)
-                        }
-                    }
+                    MultiPickerFormView("Type(s)", items: viewModel.expenseType, selectedItems: $viewModel.selectedTypes)
+                    
                     Picker("Payment Via", selection: $viewModel.selectedPayment) {
                         ForEach(viewModel.paymentType, id: \.self) {
                             Text($0)
@@ -46,6 +45,21 @@ struct AddTemplatescreen: View {
                             Text($0)
                         }
                     }
+                    Picker("Store", selection: $viewModel.selectedStore) {
+                        ForEach(viewModel.storeType, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    
+                    if viewModel.isOtherStore {
+                        TextField("Indomaret", text: $viewModel.otherStore)
+                    }
+                }
+                
+                Button {
+                    isShowTypeAddScreen.toggle()
+                } label: {
+                    Text("Add Type")
                 }
                 
                 if viewModel.isUpdate {
@@ -87,6 +101,14 @@ struct AddTemplatescreen: View {
                         }
                     } label: {
                         Text(viewModel.saveTitle)
+                    }
+                }
+            }
+            .sheet(isPresented: $isShowTypeAddScreen) {
+            } content: {
+                AddTypeScreen() {
+                    GlobalData.shared.getTypes {
+                        viewModel.types = GlobalData.shared.types
                     }
                 }
             }

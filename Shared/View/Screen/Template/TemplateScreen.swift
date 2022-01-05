@@ -26,11 +26,14 @@ struct templateModelscreen: View {
                                 viewModel.selectTemplate(templateModel)
                             } label: {
                                 VStack(alignment: .leading) {
-                                    Text("name : \(templateModel.name ?? "")")
+                                    Text("name : \(templateModel.name ?? "-")")
+                                    Text("store : \(templateModel.store ?? "-")")
                                     Text("value : \(templateModel.value ?? 0)")
-                                    Text("duration : \(templateModel.duration ?? "")")
-                                    Text("paymentVia : \(templateModel.paymentVia ?? "")")
-                                    Text("types : \(templateModel.type ?? "")")
+                                    Text("duration : \(templateModel.duration ?? "-")")
+                                    Text("paymentVia : \(templateModel.paymentVia ?? "-")")
+                                    if let types = templateModel.types {
+                                        Text("types : \(types.joinedWithComma())")
+                                    }
                                 }
                             }
                         }

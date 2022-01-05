@@ -29,11 +29,7 @@ struct AddInvoiceScreen: View {
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
-                    Picker("Type", selection: $viewModel.selectedType) {
-                        ForEach(viewModel.incomeType, id: \.self) {
-                            Text($0)
-                        }
-                    }
+                    MultiPickerFormView("Type(s)", items: viewModel.incomeType, selectedItems: $viewModel.selectedTypes)
                     DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
                     VStack(alignment: .leading, spacing: 2.0) {
                         Text("Note")
@@ -112,13 +108,17 @@ struct AddInvoiceScreen: View {
             .sheet(isPresented: $isShowTypeAddScreen) {
             } content: {
                 AddTypeScreen() {
-                    globalData.getTypes()
+                    globalData.getTypes {
+                        viewModel.types = GlobalData.shared.types
+                    }
                 }
             }
             .sheet(isPresented: $isShowTemplateAddScreen) {
             } content: {
                 AddTemplatescreen() {
-                    globalData.getTemplateModel()
+                    globalData.getTemplateModel(done:  {
+                        viewModel.templateModels = GlobalData.shared.templateModels
+                    })
                 }
             }
         }

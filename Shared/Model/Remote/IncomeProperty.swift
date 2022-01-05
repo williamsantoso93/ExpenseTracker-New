@@ -12,14 +12,14 @@ struct IncomeProperty: Codable {
     let id: TitleProperty?
     let yearMonth: RelationProperty?
     let value: NumberProperty?
-    let type: SingleSelectProperty?
+    let types: MultiSelectProperty?
     let note: RichTextProperty?
     let date: DateProperty?
     var keywords: FormulaProperty? = nil
     
     enum CodingKeys: String, CodingKey {
         case yearMonth = "Year/Month"
-        case type = "Type"
+        case types = "Types"
         case note = "Note"
         case value = "Value"
         case date = "Date"
