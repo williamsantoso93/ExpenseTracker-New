@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E0029697278822BD00D30485 /* HideKeyboardAppWide.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */; };
+		E0029698278822BD00D30485 /* HideKeyboardAppWide.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */; };
 		E002E2B227789EC000A7A1C5 /* SettingProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002E2B127789EC000A7A1C5 /* SettingProperty.swift */; };
 		E002E2B327789EC000A7A1C5 /* SettingProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002E2B127789EC000A7A1C5 /* SettingProperty.swift */; };
 		E002E2B527789F7800A7A1C5 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002E2B427789F7800A7A1C5 /* Setting.swift */; };
@@ -147,6 +149,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HideKeyboardAppWide.swift; path = "../../../../../../Downloads/otospector-customerapp-ios-development/Otospector-OtosApp/Resources/Keyboard/HideKeyboardAppWide.swift"; sourceTree = "<group>"; };
 		E002E2B127789EC000A7A1C5 /* SettingProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProperty.swift; sourceTree = "<group>"; };
 		E002E2B427789F7800A7A1C5 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		E002E2B72778B04700A7A1C5 /* TemplateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateScreen.swift; sourceTree = "<group>"; };
@@ -332,6 +335,7 @@
 				E0BF3A89276F566B00FC902E /* Persistence.swift */,
 				E0D6EF3B27702DE400DF12AD /* Extension.swift */,
 				E097D713277074BB0093F5DA /* Mapper.swift */,
+				E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */,
 				E0050C2A2778003A00396C36 /* Networking */,
 				E0F9E82627797BC60082B310 /* Validation.swift */,
 			);
@@ -732,6 +736,7 @@
 				E0BF3AB2276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */,
 				E0BF3AB4276F566B00FC902E /* ContentView.swift in Sources */,
+				E0029697278822BD00D30485 /* HideKeyboardAppWide.swift in Sources */,
 				E002E2B227789EC000A7A1C5 /* SettingProperty.swift in Sources */,
 				E0050C322778007600396C36 /* DeleteEndpoint.swift in Sources */,
 				E02830B82782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
@@ -795,6 +800,7 @@
 				E09030D027781FF0003ED6B5 /* TypeProperty.swift in Sources */,
 				E09030C827781FE0003ED6B5 /* IncomeViewModel.swift in Sources */,
 				E09030DA27781FF7003ED6B5 /* DeleteEndpoint.swift in Sources */,
+				E0029698278822BD00D30485 /* HideKeyboardAppWide.swift in Sources */,
 				E002E2B327789EC000A7A1C5 /* SettingProperty.swift in Sources */,
 				E09030C627781FE0003ED6B5 /* YearMonthCheck.swift in Sources */,
 				E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */,

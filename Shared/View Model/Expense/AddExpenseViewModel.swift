@@ -172,10 +172,6 @@ class AddExpenseViewModel: ObservableObject {
             return
         }
         let selectedTemplateModel = templateModels[index]
-        
-        if let name = selectedTemplateModel.name {
-            note = name
-        }
         if let selectedDuration = selectedTemplateModel.duration {
             self.selectedDuration = selectedDuration
         }
@@ -187,6 +183,14 @@ class AddExpenseViewModel: ObservableObject {
         }
         if let valueString = selectedTemplateModel.value {
             self.valueString = valueString.splitDigit()
+        }
+        if let selectedStore = selectedTemplateModel.store {
+            checkStore(selectedStore)
+        }
+        if let name = selectedTemplateModel.name {
+            if name != getStore() {
+                note = name
+            }
         }
     }
     

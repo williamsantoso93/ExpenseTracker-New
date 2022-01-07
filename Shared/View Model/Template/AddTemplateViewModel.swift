@@ -119,33 +119,25 @@ class AddTemplateViewModel: ObservableObject {
     }
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        do {
-            templateModel.name = try Validation.textField(name)
-            templateModel.value = value
-            templateModel.duration = selectedDuration
-            templateModel.paymentVia = selectedPayment
-            templateModel.types = selectedTypes
-            templateModel.category = selectedCategory
-            templateModel.store = getStore()
-            
-            isLoading = true
-            if isUpdate {
-                Networking.shared.updateTemplateModel(templateModel) { isSuccess in
-                    self.isLoading = false
-                    return completion(isSuccess)
-                }
-            } else {
-                Networking.shared.postTemplateModel(templateModel) { isSuccess in
-                    self.isLoading = false
-                    return completion(isSuccess)
-                }
+        templateModel.value = value
+        templateModel.duration = selectedDuration
+        templateModel.paymentVia = selectedPayment
+        templateModel.types = selectedTypes
+        templateModel.category = selectedCategory
+        templateModel.store = getStore()
+        
+        templateModel.name = name.isEmpty ? templateModel.store : name
+        
+        isLoading = true
+        if isUpdate {
+            Networking.shared.updateTemplateModel(templateModel) { isSuccess in
+                self.isLoading = false
+                return completion(isSuccess)
             }
-        } catch let error {
-            if let error = error as? ValidationError {
-                if let errorMessage = error.errorMessage {
-                    self.errorMessage = errorMessage
-                    isShowErrorMessage = true
-                }
+        } else {
+            Networking.shared.postTemplateModel(templateModel) { isSuccess in
+                self.isLoading = false
+                return completion(isSuccess)
             }
         }
     }
