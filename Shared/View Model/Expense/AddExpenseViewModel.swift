@@ -45,7 +45,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var selectedTypes: [String] = []
     @Published var selectedPayment = ""
     @Published var selectedDuration = ""
-    @Published var selectedStore = ""
+    @Published var selectedStore = "Other"
     var isOtherStore: Bool {
         selectedStore == "Other"
     }
@@ -97,7 +97,7 @@ class AddExpenseViewModel: ObservableObject {
     let noteSeparator = " | "
     
     func checkStore(_ store: String?) {
-        selectedStore = store ?? ""
+        selectedStore = store ?? "Other"
         if let store = store {
             if !storeType.contains(store) && !store.isEmpty {
                 otherStore = store
