@@ -45,6 +45,8 @@
 		E031E2D5277DE67500DD449B /* RoolupProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031E2D3277DE67500DD449B /* RoolupProperty.swift */; };
 		E03FC18C277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
 		E03FC18D277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
+		E0404421278B28BA00EBF0DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0404420278B28BA00EBF0DF /* CoreDataManager.swift */; };
+		E0404422278B28BA00EBF0DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0404420278B28BA00EBF0DF /* CoreDataManager.swift */; };
 		E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C1277087D100F358D9 /* ExpenseViewModel.swift */; };
 		E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C327708FFC00F358D9 /* IncomeViewModel.swift */; };
 		E08178C62770900900F358D9 /* YearMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C52770900900F358D9 /* YearMonthViewModel.swift */; };
@@ -174,6 +176,7 @@
 		E02830B72782B1FF001E8B51 /* FormulaProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaProperty.swift; sourceTree = "<group>"; };
 		E031E2D3277DE67500DD449B /* RoolupProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolupProperty.swift; sourceTree = "<group>"; };
 		E03FC18B277837620019F01D /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
+		E0404420278B28BA00EBF0DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		E08178C1277087D100F358D9 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
 		E08178C327708FFC00F358D9 /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
 		E08178C52770900900F358D9 /* YearMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthViewModel.swift; sourceTree = "<group>"; };
@@ -338,6 +341,7 @@
 				E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */,
 				E0050C2A2778003A00396C36 /* Networking */,
 				E0F9E82627797BC60082B310 /* Validation.swift */,
+				E0404420278B28BA00EBF0DF /* CoreDataManager.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -404,6 +408,14 @@
 			path = Type;
 			sourceTree = "<group>";
 		};
+		E0404423278B291F00EBF0DF /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				E0BF3A85276F566B00FC902E /* ExpenseTracker.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		E08178CD2770952C00F358D9 /* YearMonth */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +436,7 @@
 		E097D70A277072090093F5DA /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				E0404423278B291F00EBF0DF /* Core Data */,
 				E097D70B2770722E0093F5DA /* YearMonth.swift */,
 				E097D70D2770731C0093F5DA /* Income.swift */,
 				E097D70F277073220093F5DA /* Expense.swift */,
@@ -456,7 +469,6 @@
 				E006AA2A2770164900980302 /* View Model */,
 				E006AA272770162D00980302 /* View */,
 				E0BF3A8A276F566B00FC902E /* Assets.xcassets */,
-				E0BF3A85276F566B00FC902E /* ExpenseTracker.xcdatamodeld */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -749,6 +761,7 @@
 				E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */,
 				E097D70E2770731C0093F5DA /* Income.swift in Sources */,
 				E006435A27740F7000B5108D /* SummaryViewModel.swift in Sources */,
+				E0404421278B28BA00EBF0DF /* CoreDataManager.swift in Sources */,
 				E0D6EF172770201B00DF12AD /* YearMonthProperty.swift in Sources */,
 				E0D6EF352770266000DF12AD /* TypeProperty.swift in Sources */,
 				E0050C302778006C00396C36 /* UpdateEndpoint.swift in Sources */,
@@ -813,6 +826,7 @@
 				E031E2D5277DE67500DD449B /* RoolupProperty.swift in Sources */,
 				E09030CF27781FF0003ED6B5 /* Income.swift in Sources */,
 				E0D6EF302770240900DF12AD /* RelationProperty.swift in Sources */,
+				E0404422278B28BA00EBF0DF /* CoreDataManager.swift in Sources */,
 				E0D6EF3D27702DE400DF12AD /* Extension.swift in Sources */,
 				E09030D927781FF7003ED6B5 /* PostEndpoint.swift in Sources */,
 				E0D6EF27277023CB00DF12AD /* NumberProperty.swift in Sources */,
