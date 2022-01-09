@@ -9,9 +9,15 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
-    var presistentContainer: NSPersistentContainer
+    static let shared = CoreDataManager()
+    let presistentContainer: NSPersistentContainer
     
-    init() {
+    private init() {
         presistentContainer = NSPersistentContainer(name: "YearMonth")
+        presistentContainer.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("unable core data \(error)")
+            }
+        }
     }
 }

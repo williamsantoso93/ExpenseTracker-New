@@ -31,6 +31,13 @@ struct SummaryScreen: View {
                 NavigationLink("Template") {
                     templateModelscreen()
                 }
+                Section {
+                    NavigationLink("Income") {
+                        CoreDataIncomeScreem()
+                    }
+                } header: {
+                    Text("Core Data")
+                }
             }
             .loadingView(globalData.isLoading, isNeedDisable: false)
             .navigationTitle("Summary")
