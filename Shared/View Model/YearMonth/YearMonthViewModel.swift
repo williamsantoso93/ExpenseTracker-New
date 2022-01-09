@@ -10,13 +10,13 @@ import Foundation
 import Foundation
 
 class YearMonthViewModel: ObservableObject {
-    var yearMonths: [YearMonth] {
+    var yearMonths: [YearMonthModel] {
         GlobalData.shared.yearMonths
     }
     
     struct DisplayYearMonth {
         let year: String
-        let yearMonths: [YearMonth]
+        let yearMonths: [YearMonthModel]
     }
     
     var years: [String] {
@@ -39,7 +39,7 @@ class YearMonthViewModel: ObservableObject {
         }
     }
     
-    func getYearMonths(year: String) -> [YearMonth] {
+    func getYearMonths(year: String) -> [YearMonthModel] {
         let filteredYearMonths = yearMonths.filter { result in
             result.year == year
         }

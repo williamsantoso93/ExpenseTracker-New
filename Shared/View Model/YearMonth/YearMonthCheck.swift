@@ -31,7 +31,7 @@ class YearMonthCheck {
         let month = date.toString(format: "MM MMMM")
         let year = date.toString(format: "yyyy")
         
-        let yearMonth = YearMonth(
+        let yearMonth = YearMonthModel(
             id: "",
             name: name,
             month: month,

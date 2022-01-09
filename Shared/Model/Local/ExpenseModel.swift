@@ -1,5 +1,5 @@
 //
-//  Expense.swift
+//  ExpenseModel.swift
 //  ExpenseTracker (iOS)
 //
 //  Created by Ruangguru on 20/12/21.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - Expense
-struct Expense: Codable {
+// MARK: - ExpenseModel
+struct ExpenseModel: Codable {
     var blockID: String
     var id: String = UUID().uuidString
     var yearMonth: String?

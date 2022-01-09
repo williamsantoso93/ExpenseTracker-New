@@ -8,7 +8,7 @@
 import Foundation
 
 class AddIncomeViewModel: ObservableObject {
-    @Published var income: Income
+    @Published var income: IncomeModel
     @Published var types = GlobalData.shared.types
     @Published var templateModels = GlobalData.shared.templateModels.filter { result in
         result.category == "Income"
@@ -40,7 +40,7 @@ class AddIncomeViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    init(income: Income?) {
+    init(income: IncomeModel?) {
         if let income = income {
             self.income = income
             note = income.note ?? ""
@@ -52,7 +52,7 @@ class AddIncomeViewModel: ObservableObject {
             
             isUpdate = true
         } else {
-            self.income = Income(
+            self.income = IncomeModel(
                 blockID: "",
                 id: UUID().uuidString,
                 yearMonth: "",

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class AddExpenseViewModel: ObservableObject {
-    @Published var expense: Expense
+    @Published var expense: ExpenseModel
     @Published var types = GlobalData.shared.types
     @Published var templateModels = GlobalData.shared.templateModels.filter { result in
         result.category == "Expense"
@@ -62,7 +62,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    init(expense: Expense?) {
+    init(expense: ExpenseModel?) {
         if let expense = expense {
             self.expense = expense
             if let value = expense.value {
@@ -78,7 +78,7 @@ class AddExpenseViewModel: ObservableObject {
             
             isUpdate = true
         } else {
-            self.expense = Expense(
+            self.expense = ExpenseModel(
                 blockID: "",
                 id: UUID().uuidString,
                 yearMonth: "",
