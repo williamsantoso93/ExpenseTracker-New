@@ -9,7 +9,7 @@ import Foundation
 
 //MARK: - Update Data
 extension Networking {
-    func updateExpense(_ expense: Expense, completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func updateExpense(_ expense: ExpenseModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage + expense.blockID
         
         let update = DefaultUpdate(
@@ -23,7 +23,7 @@ extension Networking {
         }
     }
     
-    func updateIncome(_ income: Income, completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func updateIncome(_ income: IncomeModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage + income.blockID
         
         let update = DefaultUpdate(

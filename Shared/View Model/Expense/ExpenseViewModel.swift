@@ -8,7 +8,7 @@
 import Foundation
 
 class ExpenseViewModel: ObservableObject {
-    @Published var expenses: [Expense] = []
+    @Published var expenses: [ExpenseModel] = []
     var startCursor: String? = nil
     @Published var isLoading = false
     var isNowShowData: Bool {
@@ -20,7 +20,7 @@ class ExpenseViewModel: ObservableObject {
     }
     
     @Published var searchText = ""
-    var expensesFilterd: [Expense] {
+    var expensesFilterd: [ExpenseModel] {
         guard !searchText.isEmpty else {
             return expenses
         }
@@ -37,7 +37,7 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
-    func getList(completion: @escaping ([Expense]) -> Void) {
+    func getList(completion: @escaping ([ExpenseModel]) -> Void) {
         isLoading = true
         Networking.shared.getExpense(startCursor: startCursor) { (result: Result<DefaultResponse<ExpenseProperty>, NetworkError>) in
             DispatchQueue.main.async {
@@ -83,10 +83,10 @@ class ExpenseViewModel: ObservableObject {
     }
     
     @Published var isShowAddScreen = false
-    var selectedExpense: Expense? = nil
+    var selectedExpense: ExpenseModel? = nil
     
-    func selectExpense(_ expense: Expense? = nil) {
-        selectedExpense = expense
+    func selectExpense(_ expenseModel: ExpenseModel? = nil) {
+        selectedExpense = expenseModel
         isShowAddScreen = true
     }
 }

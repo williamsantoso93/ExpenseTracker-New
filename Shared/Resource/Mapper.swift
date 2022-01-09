@@ -8,15 +8,15 @@
 import Foundation
 
 struct Mapper {
-    //MARK: - YearMonth
-    static func mapYearMonthListRemoteToLocal(_ remote: [ResultProperty<YearMonthProperty>]) -> [YearMonth] {
+    //MARK: - YearMonthModel
+    static func mapYearMonthListRemoteToLocal(_ remote: [ResultProperty<YearMonthProperty>]) -> [YearMonthModel] {
         remote.map { result in
             yearMonthListRemoteToLocal(result.id, result.properties)
         }
     }
     
-    static func yearMonthListRemoteToLocal(_ id: String, _ remote: YearMonthProperty) -> YearMonth {
-        YearMonth(
+    static func yearMonthListRemoteToLocal(_ id: String, _ remote: YearMonthProperty) -> YearMonthModel {
+        YearMonthModel(
             id: id,
             name: remote.name.title.first?.text.content ?? "",
             month: remote.month.select?.name ?? "",
@@ -26,13 +26,13 @@ struct Mapper {
         )
     }
     
-    static func mapYearMonthLocalToRemote(_ local: [YearMonth]) -> [YearMonthProperty] {
+    static func mapYearMonthLocalToRemote(_ local: [YearMonthModel]) -> [YearMonthProperty] {
         local.map { result in
             yearMonthLocalToRemote(result)
         }
     }
     
-    static func yearMonthLocalToRemote(_ local: YearMonth) -> YearMonthProperty {
+    static func yearMonthLocalToRemote(_ local: YearMonthModel) -> YearMonthProperty {
         YearMonthProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name))]),
             month: SingleSelectProperty(select: Select(name: local.month)),
@@ -43,14 +43,14 @@ struct Mapper {
     }
     
     //MARK: - Expense
-    static func mapExpenseRemoteToLocal(_ remote: [ResultProperty<ExpenseProperty>]) -> [Expense] {
+    static func mapExpenseRemoteToLocal(_ remote: [ResultProperty<ExpenseProperty>]) -> [ExpenseModel] {
         remote.map { result in
             expenseRemoteToLocal(result.id, result.properties)
         }
     }
     
-    static func expenseRemoteToLocal(_ id: String, _ remote: ExpenseProperty) -> Expense {
-        Expense(
+    static func expenseRemoteToLocal(_ id: String, _ remote: ExpenseProperty) -> ExpenseModel {
+        ExpenseModel(
             blockID: id,
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
@@ -74,13 +74,13 @@ struct Mapper {
         }
     }
     
-    static func mapExpenseLocalToRemote(_ local: [Expense]) -> [ExpenseProperty] {
+    static func mapExpenseLocalToRemote(_ local: [ExpenseModel]) -> [ExpenseProperty] {
         local.map { result in
             expenseLocalToRemote(result)
         }
     }
     
-    static func expenseLocalToRemote(_ local: Expense) -> ExpenseProperty {
+    static func expenseLocalToRemote(_ local: ExpenseModel) -> ExpenseProperty {
         ExpenseProperty(
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
@@ -106,14 +106,14 @@ struct Mapper {
     }
     
     //MARK: - Income
-    static func mapIncomeRemoteToLocal(_ remote: [ResultProperty<IncomeProperty>]) -> [Income] {
+    static func mapIncomeRemoteToLocal(_ remote: [ResultProperty<IncomeProperty>]) -> [IncomeModel] {
         remote.map { result in
             incomeRemoteToLocal(result.id, result.properties)
         }
     }
     
-    static func incomeRemoteToLocal(_ id: String, _ remote: IncomeProperty) -> Income {
-        Income(
+    static func incomeRemoteToLocal(_ id: String, _ remote: IncomeProperty) -> IncomeModel {
+        IncomeModel(
             blockID: id,
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
@@ -125,13 +125,13 @@ struct Mapper {
         )
     }
     
-    static func mapIncomeLocalToRemote(_ local: [Income]) -> [IncomeProperty] {
+    static func mapIncomeLocalToRemote(_ local: [IncomeModel]) -> [IncomeProperty] {
         local.map { result in
             incomeLocalToRemote(result)
         }
     }
     
-    static func incomeLocalToRemote(_ local: Income) -> IncomeProperty {
+    static func incomeLocalToRemote(_ local: IncomeModel) -> IncomeProperty {
         IncomeProperty(
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),

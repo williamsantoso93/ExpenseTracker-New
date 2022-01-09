@@ -16,7 +16,7 @@ struct AddInvoiceScreen: View {
     @State private var isShowTypeAddScreen = false
     @State private var isShowTemplateAddScreen = false
     
-    init(income: Income? = nil, refesh: @escaping () -> Void) {
+    init(income: IncomeModel? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddIncomeViewModel(income: income))
         self.refesh = refesh
     }

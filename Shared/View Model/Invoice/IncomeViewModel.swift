@@ -8,7 +8,7 @@
 import Foundation
 
 class IncomeViewModel: ObservableObject {
-    @Published var incomes: [Income] = []
+    @Published var incomes: [IncomeModel] = []
     var startCursor: String? = nil
     @Published var isLoading = false
     var isNowShowData: Bool {
@@ -20,7 +20,7 @@ class IncomeViewModel: ObservableObject {
     }
     
     @Published var searchText = ""
-    var incomesFilterd: [Income] {
+    var incomesFilterd: [IncomeModel] {
         guard !searchText.isEmpty else {
             return incomes
         }
@@ -37,7 +37,7 @@ class IncomeViewModel: ObservableObject {
         }
     }
     
-    func getList(startCursor: String? = nil, completion: @escaping ([Income]) -> Void) {
+    func getList(startCursor: String? = nil, completion: @escaping ([IncomeModel]) -> Void) {
         isLoading = true
         Networking.shared.getIncome(startCursor: startCursor) { (result: Result<DefaultResponse<IncomeProperty>, NetworkError>) in
             DispatchQueue.main.async {
@@ -83,9 +83,9 @@ class IncomeViewModel: ObservableObject {
     }
         
     @Published var isShowAddScreen = false
-    var selectedIncome: Income? = nil
+    var selectedIncome: IncomeModel? = nil
     
-    func selectIncome(_ income: Income? = nil) {
+    func selectIncome(_ income: IncomeModel? = nil) {
         selectedIncome = income
         isShowAddScreen = true
     }

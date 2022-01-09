@@ -9,7 +9,7 @@ import Foundation
 
 class GlobalData: ObservableObject {
     @Published var types = Types()
-    @Published var yearMonths = [YearMonth]()
+    @Published var yearMonths = [YearMonthModel]()
     @Published var templateModels = [TemplateModel]()
     @Published var isLoadingTypes = false
     @Published var isLoadingYearMonths = false

@@ -25,7 +25,7 @@ extension Networking {
         }
     }
     
-    func postExpense(_ expense: Expense, completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func postExpense(_ expense: ExpenseModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
         let post = DefaultPost(
@@ -40,7 +40,7 @@ extension Networking {
         }
     }
     
-    func postIncome(_ income: Income, completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func postIncome(_ income: IncomeModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
         let post = DefaultPost(
@@ -55,7 +55,7 @@ extension Networking {
         }
     }
     
-    func postYearMonth(_ yearMonth: YearMonth, completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func postYearMonth(_ yearMonth: YearMonthModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
         let post = DefaultPost(
