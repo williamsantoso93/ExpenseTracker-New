@@ -59,17 +59,21 @@ class AddTypeViewModel: ObservableObject {
             typeModel.category = try Validation.picker(selectedCategory, typeError: .noCategory)
             typeModel.name = try Validation.textField(name)
             
-            isLoading = true
-            if isUpdate {
-                self.isLoading = false
-                Networking.shared.updateType(typeModel) { isSuccess in
-                    return completion(isSuccess)
-                }
-            } else {
-                self.isLoading = false
-                Networking.shared.postType(typeModel) { isSuccess in
-                    return completion(isSuccess)
-                }
+//            isLoading = true
+//            if isUpdate {
+//                self.isLoading = false
+//                Networking.shared.updateType(typeModel) { isSuccess in
+//                    return completion(isSuccess)
+//                }
+//            } else {
+//                self.isLoading = false
+//                Networking.shared.postType(typeModel) { isSuccess in
+//                    return completion(isSuccess)
+//                }
+//            }
+            let cd = Mapper.typeLocalToCoreData(typeModel)
+            CoreDataManager.shared.save {
+                completion(true)
             }
         } catch let error {
             if let error = error as? ValidationError {

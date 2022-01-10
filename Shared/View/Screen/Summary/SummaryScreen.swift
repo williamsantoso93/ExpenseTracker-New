@@ -32,11 +32,20 @@ struct SummaryScreen: View {
                     templateModelscreen()
                 }
                 Section {
+                    NavigationLink("YearMonth") {
+                        CoreDataYearMonth()
+                    }
                     NavigationLink("Income") {
                         CoreDataIncomeScreem()
                     }
                     NavigationLink("Expense") {
                         CoreDataExpenseScreen()
+                    }
+                    NavigationLink("Type") {
+                        CoreDataTypeScreen()
+                    }
+                    NavigationLink("Template") {
+                        CoreDataTemplateScreen()
                     }
                 } header: {
                     Text("Core Data")

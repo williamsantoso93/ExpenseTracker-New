@@ -97,12 +97,13 @@ class AddIncomeViewModel: ObservableObject {
 //                    }
 //                }
 //            }
-            let incomeCD = Income(context: CoreDataManager.shared.viewContext)
-            incomeCD.id = UUID()
-            incomeCD.note = income.note
-            incomeCD.value = Int64(income.value ?? 0)
-            incomeCD.types = income.types?.joinedWithCommaNoSpace() ?? ""
-            incomeCD.date = income.date
+//            let incomeCD = Income(context: CoreDataManager.shared.viewContext)
+//            incomeCD.id = UUID()
+//            incomeCD.note = income.note
+//            incomeCD.value = Int64(income.value ?? 0)
+//            incomeCD.types = income.types?.joinedWithCommaNoSpace() ?? ""
+//            incomeCD.date = income.date
+            let cd = Mapper.incomeLocalToCoreData(income)
             CoreDataManager.shared.save {
                 completion(true)
             }

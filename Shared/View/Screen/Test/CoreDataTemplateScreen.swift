@@ -1,5 +1,5 @@
 //
-//  CoreDataExpenseScreen.swift
+//  CoreDataTemplateScreen.swift
 //  ExpenseTracker
 //
 //  Created by Ruangguru on 10/01/22.
@@ -7,25 +7,25 @@
 
 import SwiftUI
 
-struct CoreDataExpenseScreen: View {
+struct CoreDataTemplateScreen: View {
     @State private var isShowAddScreen = false
-    @State private var expenses: [ExpenseModel] = []
+    @State private var templates: [TemplateModel] = []
     
     var body: some View {
         Form {
-            ForEach(expenses.indices, id:\.self) { index in
-                let expense = expenses[index]
+            ForEach(templates.indices, id:\.self) { index in
+                let template = templates[index]
                 VStack(alignment: .leading) {
-                    Text("id : \(expense.id)")
-                    Text("note : \(expense.note ?? "-")")
-                    Text("store : \(expense.store ?? "-")")
-                    Text("value : \(expense.value ?? 0)")
-                    Text("duration : \(expense.duration ?? "-")")
-                    Text("paymentVia : \(expense.paymentVia ?? "-")")
-                    if let types = expense.types {
+                    Text("blockID : \(template.blockID)")
+                    Text("category : \(template.category ?? "-")")
+                    Text("name : \(template.name ?? "-")")
+                    Text("store : \(template.store ?? "-")")
+                    Text("value : \(template.value ?? 0)")
+                    Text("duration : \(template.duration ?? "-")")
+                    Text("paymentVia : \(template.paymentVia ?? "-")")
+                    if let types = template.types {
                         Text("types : \(types.joinedWithComma())")
                     }
-                    Text("date : \((expense.date ?? Date()).toString())")
                 }
             }
             .onDelete(perform: delete)
@@ -34,7 +34,7 @@ struct CoreDataExpenseScreen: View {
         .refreshable {
             load()
         }
-        .navigationTitle("Expense - CoreData")
+        .navigationTitle("Template - CoreData")
         .toolbar {
             ToolbarItem {
                 HStack {
@@ -51,19 +51,20 @@ struct CoreDataExpenseScreen: View {
         .sheet(isPresented: $isShowAddScreen) {
             load()
         } content: {
-            AddExpenseScreen(expense: nil) {
+            AddTemplatescreen(templateModel: nil) {
                 load()
                 isShowAddScreen.toggle()
             }
         }
     }
     
+    
     func delete(at offsets: IndexSet) {
         offsets.forEach { index in
-            let expense = self.expenses[index]
+            let template = self.templates[index]
             do {
-                try CoreDataManager.shared.deleteExpense(expense)
-                self.expenses.remove(at: index)
+                try CoreDataManager.shared.deleteTemplate(template)
+                self.templates.remove(at: index)
                 load()
             } catch {
                 print(error.localizedDescription)
@@ -72,14 +73,14 @@ struct CoreDataExpenseScreen: View {
     }
     
     func load() {
-        CoreDataManager.shared.loadExpenses { data in
-            self.expenses = Mapper.mapExpensesCoreDataToLocal(data)
+        CoreDataManager.shared.loadTempalates { data in
+            self.templates = Mapper.mapTemplatesCoreDataToLocal(data)
         }
     }
 }
 
-struct CoreDataExpenseScreen_Previews: PreviewProvider {
+struct CoreDataTemplateScreen_Previews: PreviewProvider {
     static var previews: some View {
-        CoreDataExpenseScreen()
+        CoreDataTemplateScreen()
     }
 }

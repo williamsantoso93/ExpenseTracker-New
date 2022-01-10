@@ -24,38 +24,4 @@ class CoreDataManager {
             }
         }
     }
-    
-    func save(completion: () -> Void) {
-        do {
-            try viewContext.save()
-            completion()
-        } catch {
-            viewContext.rollback()
-            print(error.localizedDescription)
-        }
-    }
-    
-    func load(completion: @escaping ([Income]) -> Void) {
-        let request: NSFetchRequest<Income> = Income.fetchRequest()
-        
-        do {
-            let data = try viewContext.fetch(request)
-            completion(data)
-        } catch {
-            print(error.localizedDescription)
-            completion([])
-        }
-    }
-    
-    func loadExpense(completion: @escaping ([Expense]) -> Void) {
-        let request: NSFetchRequest<Expense> = Expense.fetchRequest()
-        
-        do {
-            let data = try viewContext.fetch(request)
-            completion(data)
-        } catch {
-            print(error.localizedDescription)
-            completion([])
-        }
-    }
 }

@@ -122,13 +122,13 @@ struct Mapper {
         )
     }
     
-    static func mapEpxensesCoreDataToLocal(_ coreData: [Expense]) -> [ExpenseModel] {
+    static func mapExpensesCoreDataToLocal(_ coreData: [Expense]) -> [ExpenseModel] {
         coreData.map { result in
-            epxenseCoreDataToLocal(result)
+            expenseCoreDataToLocal(result)
         }
     }
     
-    static func epxenseCoreDataToLocal(_ coreData: Expense) -> ExpenseModel {
+    static func expenseCoreDataToLocal(_ coreData: Expense) -> ExpenseModel {
         ExpenseModel(
             blockID: coreData.id?.uuidString ?? "",
             id: coreData.id?.uuidString ?? "",
@@ -144,13 +144,13 @@ struct Mapper {
         )
     }
     
-    static func mapEpxensesLocalToCoreData(_ local: [ExpenseModel]) -> [Expense] {
+    static func mapExpensesLocalToCoreData(_ local: [ExpenseModel]) -> [Expense] {
         local.map { result in
-            epxenseLocalToCoreData(result)
+            expenseLocalToCoreData(result)
         }
     }
     
-    static func epxenseLocalToCoreData(_ local: ExpenseModel) -> Expense {
+    static func expenseLocalToCoreData(_ local: ExpenseModel) -> Expense {
         let expense = Expense(context: viewContext)
         
         expense.id = UUID(uuidString: local.id)
@@ -160,7 +160,7 @@ struct Mapper {
         expense.duration = local.duration
         expense.paymentVia = local.paymentVia
         expense.store = local.store
-        expense.date = local.date
+        expense.date = local.date ?? Date()
         
         return expense
     }
@@ -207,7 +207,7 @@ struct Mapper {
             incomeCoreDataToLocal(result)
         }
     }
-    
+
     static func incomeCoreDataToLocal(_ coreData: Income) -> IncomeModel {
         IncomeModel(
             blockID: coreData.id?.uuidString ?? "",
@@ -220,22 +220,22 @@ struct Mapper {
             keywords: ""
         )
     }
-    
+
     static func mapIncomesLocalToCoreData(_ local: [IncomeModel]) -> [Income] {
         local.map { result in
             incomeLocalToCoreData(result)
         }
     }
-    
+
     static func incomeLocalToCoreData(_ local: IncomeModel) -> Income {
         let income = Income(context: viewContext)
-        
+
         income.id = UUID(uuidString: local.id)
         income.note = local.note
         income.types = local.types?.joinedWithCommaNoSpace()
         income.value = Int64(local.value ?? 0)
-        income.date = local.date
-        
+        income.date = local.date ?? Date()
+
         return income
     }
     
@@ -283,20 +283,19 @@ struct Mapper {
         )
     }
     
-    
     static func mapTypesLocalToCoreData(_ local: [TypeModel]) -> [TypeData] {
         local.map { result in
             typeLocalToCoreData(result)
         }
     }
-    
+
     static func typeLocalToCoreData(_ local: TypeModel) -> TypeData {
         let type = TypeData(context: viewContext)
-        
-        type.id = UUID(uuidString: local.blockID)
+
+        type.id = UUID()
         type.name = local.name
         type.category = local.category
-        
+
         return type
     }
     
@@ -339,12 +338,12 @@ struct Mapper {
         )
     }
     
-    static func mapTemplateCoreDataToLocal(_ coreData: [Template]) -> [TemplateModel] {
+    static func mapTemplatesCoreDataToLocal(_ coreData: [Template]) -> [TemplateModel] {
         coreData.map { result in
             templateCoreDataToLocal(result)
         }
     }
-    
+
     static func templateCoreDataToLocal(_ coreData: Template) -> TemplateModel {
         TemplateModel(
             blockID: coreData.id?.uuidString ?? "",
@@ -358,17 +357,17 @@ struct Mapper {
             keywords: ""
         )
     }
-    
+
     static func mapTemplatesLocalToCoreData(_ local: [TemplateModel]) -> [Template] {
         local.map { result in
             templateLocalToCoreData(result)
         }
     }
-    
+
     static func templateLocalToCoreData(_ local: TemplateModel) -> Template {
         let template = Template(context: viewContext)
-        
-        template.id = UUID(uuidString: local.blockID)
+
+        template.id = UUID()
         template.name = local.name
         template.category = local.category
         template.types = local.types?.joinedWithCommaNoSpace()
@@ -376,7 +375,7 @@ struct Mapper {
         template.duration = local.duration
         template.paymentVia = local.paymentVia
         template.store = local.store
-        
+
         return template
     }
     

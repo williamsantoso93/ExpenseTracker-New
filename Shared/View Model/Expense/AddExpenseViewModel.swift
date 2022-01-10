@@ -159,15 +159,16 @@ class AddExpenseViewModel: ObservableObject {
 //                }
 //            }
             
-            let expenseCD = Expense(context: CoreDataManager.shared.viewContext)
-            expenseCD.id = UUID()
-            expenseCD.note = expense.note
-            expenseCD.paymentVia = expense.paymentVia
-            expenseCD.duration = expense.duration
-            expenseCD.store = expense.store
-            expenseCD.value = Int64(expense.value ?? 0)
-            expenseCD.types = expense.types?.joinedWithCommaNoSpace() ?? ""
-            expenseCD.date = expense.date
+//            let expenseCD = Expense(context: CoreDataManager.shared.viewContext)
+//            expenseCD.id = UUID()
+//            expenseCD.note = expense.note
+//            expenseCD.paymentVia = expense.paymentVia
+//            expenseCD.duration = expense.duration
+//            expenseCD.store = expense.store
+//            expenseCD.value = Int64(expense.value ?? 0)
+//            expenseCD.types = expense.types?.joinedWithCommaNoSpace() ?? ""
+//            expenseCD.date = expense.date
+            let cd = Mapper.expenseLocalToCoreData(expense)
             CoreDataManager.shared.save {
                 completion(true)
             }

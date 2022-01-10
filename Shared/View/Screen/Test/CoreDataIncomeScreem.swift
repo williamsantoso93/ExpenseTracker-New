@@ -11,9 +11,6 @@ struct CoreDataIncomeScreem: View {
     @State private var isShowAddScreen = false
     @State private var incomes: [IncomeModel] = []
     
-    init() {
-        self.load()
-    }
     var body: some View {
         Form {
             ForEach(incomes.indices, id:\.self) { index in
@@ -29,16 +26,13 @@ struct CoreDataIncomeScreem: View {
                     Text("date : \((income.date ?? Date()).toString())")
                 }
             }
+            .onDelete(perform: delete)
         }
         .navigationTitle("Income - CoreData")
         .toolbar {
             ToolbarItem {
                 HStack {
-                    Button {
-                        load()
-                    } label: {
-                        Text("Load")
-                    }
+                    EditButton()
                     
                     Button {
                         isShowAddScreen = true
@@ -48,7 +42,12 @@ struct CoreDataIncomeScreem: View {
                 }
             }
         }
+        .onAppear(perform: load)
+        .refreshable {
+            load()
+        }
         .sheet(isPresented: $isShowAddScreen) {
+            load()
         } content: {
             AddInvoiceScreen(income: nil) {
                 load()
@@ -57,21 +56,23 @@ struct CoreDataIncomeScreem: View {
         }
     }
     
-    func load() {
-        CoreDataManager.shared.load { data in
-            self.incomes = data.map{ result in
-                IncomeModel(
-                    blockID: "",
-                    id: result.id?.uuidString ?? "",
-                    yearMonth: nil,
-                    yearMonthID: nil,
-                    value: Int(result.value),
-                    types: result.types?.split(),
-                    note: result.note,
-                    date: result.date,
-                    keywords: nil
-                )
+    
+    func delete(at offsets: IndexSet) {
+        offsets.forEach { index in
+            let income = self.incomes[index]
+            do {
+                try CoreDataManager.shared.deleteIncome(income)
+                self.incomes.remove(at: index)
+                load()
+            } catch {
+                print(error.localizedDescription)
             }
+        }
+    }
+    
+    func load() {
+        CoreDataManager.shared.loadIncomes { data in
+            self.incomes = Mapper.mapIncomesCoreDataToLocal(data)
         }
     }
 }
