@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 class AddExpenseViewModel: ObservableObject {
     @Published var expense: ExpenseModel
@@ -37,21 +38,21 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
-    @Published var valueString = ""
+    @Published var valueString = "50000"
     var value: Int {
         valueString.toInt()
     }
     @Published var selectedType = ""
-    @Published var selectedTypes: [String] = []
-    @Published var selectedPayment = ""
-    @Published var selectedDuration = ""
-    @Published var selectedStore = "Other"
+    @Published var selectedTypes: [String] = ["abc","def"]
+    @Published var selectedPayment = "CC BCA"
+    @Published var selectedDuration = "Once"
+    @Published var selectedStore = "Tokopedia"
     var isOtherStore: Bool {
         selectedStore == "Other"
     }
     @Published var otherStore = ""
     @Published var selectedTemplateIndex = -1
-    @Published var note = ""
+    @Published var note = "dsdsasf"
     @Published var date = Date()
     
     var saveTitle: String {
@@ -134,28 +135,41 @@ class AddExpenseViewModel: ObservableObject {
             expense.note = note
             expense.date = date
             
-            YearMonthCheck.shared.getYearMonthID(date) { id in
-                self.expense.yearMonthID = id
-                
-                self.isLoading = true
-                if self.isUpdate {
-                    Networking.shared.updateExpense(self.expense) { isSuccess in
-                        self.isLoading = false
-                        return completion(isSuccess)
-                    }
-                } else {
-                    if self.isInstallment && (self.installmentMonth > 0) {
-                        self.saveInstallment { isSuccess in
-                            self.isLoading = false
-                            return completion(isSuccess)
-                        }
-                    } else {
-                        Networking.shared.postExpense(self.expense) { isSuccess in
-                            self.isLoading = false
-                            return completion(isSuccess)
-                        }
-                    }
-                }
+//            YearMonthCheck.shared.getYearMonthID(date) { id in
+//                self.expense.yearMonthID = id
+//
+//                self.isLoading = true
+//                if self.isUpdate {
+//                    Networking.shared.updateExpense(self.expense) { isSuccess in
+//                        self.isLoading = false
+//                        return completion(isSuccess)
+//                    }
+//                } else {
+//                    if self.isInstallment && (self.installmentMonth > 0) {
+//                        self.saveInstallment { isSuccess in
+//                            self.isLoading = false
+//                            return completion(isSuccess)
+//                        }
+//                    } else {
+//                        Networking.shared.postExpense(self.expense) { isSuccess in
+//                            self.isLoading = false
+//                            return completion(isSuccess)
+//                        }
+//                    }
+//                }
+//            }
+            
+            let expenseCD = Expense(context: CoreDataManager.shared.viewContext)
+            expenseCD.id = UUID()
+            expenseCD.note = expense.note
+            expenseCD.paymentVia = expense.paymentVia
+            expenseCD.duration = expense.duration
+            expenseCD.store = expense.store
+            expenseCD.value = Int64(expense.value ?? 0)
+            expenseCD.types = expense.types?.joinedWithCommaNoSpace() ?? ""
+            expenseCD.date = expense.date
+            CoreDataManager.shared.save {
+                completion(true)
             }
         } catch let error {
             if let error = error as? ValidationError {

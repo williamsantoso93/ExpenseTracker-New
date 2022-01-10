@@ -35,6 +35,9 @@ struct SummaryScreen: View {
                     NavigationLink("Income") {
                         CoreDataIncomeScreem()
                     }
+                    NavigationLink("Expense") {
+                        CoreDataExpenseScreen()
+                    }
                 } header: {
                     Text("Core Data")
                 }

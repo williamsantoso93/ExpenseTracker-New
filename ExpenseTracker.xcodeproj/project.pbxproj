@@ -129,6 +129,8 @@
 		E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF3B27702DE400DF12AD /* Extension.swift */; };
 		E0D6EF3D27702DE400DF12AD /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF3B27702DE400DF12AD /* Extension.swift */; };
 		E0F617F0277175AD00C546B7 /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */; };
+		E0F84575278BC5B80037D033 /* CoreDataExpenseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F84574278BC5B80037D033 /* CoreDataExpenseScreen.swift */; };
+		E0F84576278BC5B80037D033 /* CoreDataExpenseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F84574278BC5B80037D033 /* CoreDataExpenseScreen.swift */; };
 		E0F9E824277977790082B310 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9E823277977790082B310 /* ErrorMessage.swift */; };
 		E0F9E825277977790082B310 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9E823277977790082B310 /* ErrorMessage.swift */; };
 		E0F9E82727797BC60082B310 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F9E82627797BC60082B310 /* Validation.swift */; };
@@ -222,6 +224,7 @@
 		E0D6EF37277028CB00DF12AD /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		E0D6EF3B27702DE400DF12AD /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
+		E0F84574278BC5B80037D033 /* CoreDataExpenseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExpenseScreen.swift; sourceTree = "<group>"; };
 		E0F9E823277977790082B310 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		E0F9E82627797BC60082B310 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -345,7 +348,7 @@
 				E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */,
 				E0050C2A2778003A00396C36 /* Networking */,
 				E0F9E82627797BC60082B310 /* Validation.swift */,
-				E0404420278B28BA00EBF0DF /* CoreDataManager.swift */,
+				E0F84573278BC5580037D033 /* Core Data */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				E040442C278B2E2200EBF0DF /* CoreDataIncomeScreem.swift */,
+				E0F84574278BC5B80037D033 /* CoreDataExpenseScreen.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -449,7 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				E0404423278B291F00EBF0DF /* Core Data */,
-                E097D70B2770722E0093F5DA /* YearMonthModel.swift */,
+				E097D70B2770722E0093F5DA /* YearMonthModel.swift */,
 				E097D70D2770731C0093F5DA /* IncomeModel.swift */,
 				E097D70F277073220093F5DA /* ExpenseModel.swift */,
 				E097D711277073760093F5DA /* TypeModel.swift */,
@@ -557,6 +561,14 @@
 				E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */,
 			);
 			path = Expense;
+			sourceTree = "<group>";
+		};
+		E0F84573278BC5580037D033 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				E0404420278B28BA00EBF0DF /* CoreDataManager.swift */,
+			);
+			path = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -756,6 +768,7 @@
 				E0F9E824277977790082B310 /* ErrorMessage.swift in Sources */,
 				E01A2A772776B46E002E685F /* AddTypeScreen.swift in Sources */,
 				E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */,
+				E0F84575278BC5B80037D033 /* CoreDataExpenseScreen.swift in Sources */,
 				E08178CA2770903000F358D9 /* IncomeScreen.swift in Sources */,
 				E0BF3AB2276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */,
@@ -822,6 +835,7 @@
 				E0F9E825277977790082B310 /* ErrorMessage.swift in Sources */,
 				E09030D527781FF0003ED6B5 /* TypeModel.swift in Sources */,
 				E09030C327781FD5003ED6B5 /* TextField.swift in Sources */,
+				E0F84576278BC5B80037D033 /* CoreDataExpenseScreen.swift in Sources */,
 				E0BF3AB3276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E09030D027781FF0003ED6B5 /* TypeProperty.swift in Sources */,
 				E09030C827781FE0003ED6B5 /* IncomeViewModel.swift in Sources */,

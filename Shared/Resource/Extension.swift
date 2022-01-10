@@ -22,6 +22,17 @@ extension String {
     func toInt() -> Int {
         Int(self.replacingOccurrences(of: ".", with: "")) ?? 0
     }
+    
+    func toDate(format: String = "yyyy-MM-dd") -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        
+        return dateFormatter.date(from: self)
+    }
+    
+    func split(with splitter: String = ",") -> [String] {
+        self.components(separatedBy: splitter)
+    }
 }
 
 extension Int {
@@ -30,15 +41,6 @@ extension Int {
         numberFormatter.numberStyle = .decimal
         numberFormatter.groupingSeparator = "."
         return numberFormatter.string(from: NSNumber(value: self)) ?? ""
-    }
-}
-
-extension String {
-    func toDate(format: String = "yyyy-MM-dd") -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        
-        return dateFormatter.date(from: self)
     }
 }
 
@@ -71,6 +73,9 @@ extension Date {
 extension Array where Element == String {
     func joinedWithComma() -> String {
         self.joined(separator: ", ")
+    }
+    func joinedWithCommaNoSpace() -> String {
+        self.joined(separator: ",")
     }
 }
 

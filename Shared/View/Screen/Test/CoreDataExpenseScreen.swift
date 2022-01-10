@@ -1,36 +1,38 @@
 //
-//  CoreDataIncomeScreem.swift
+//  CoreDataExpenseScreen.swift
 //  ExpenseTracker
 //
-//  Created by Ruangguru on 09/01/22.
+//  Created by Ruangguru on 10/01/22.
 //
 
 import SwiftUI
 
-struct CoreDataIncomeScreem: View {
+struct CoreDataExpenseScreen: View {
     @State private var isShowAddScreen = false
-    @State private var incomes: [IncomeModel] = []
-    
+    @State private var expense: [ExpenseModel] = []
     init() {
         self.load()
     }
+    
     var body: some View {
         Form {
-            ForEach(incomes.indices, id:\.self) { index in
-                let income = incomes[index]
+            ForEach(expense.indices, id:\.self) { index in
+                let expense = expense[index]
                 VStack(alignment: .leading) {
-                    Text("id : \(income.id)")
-                    //                            Text("yearMonth : \(income.yearMonth ?? "")")
-                    Text("value : \(income.value ?? 0)")
-                    if let types = income.types {
+                    Text("id : \(expense.id)")
+                    Text("note : \(expense.note ?? "-")")
+                    Text("store : \(expense.store ?? "-")")
+                    Text("value : \(expense.value ?? 0)")
+                    Text("duration : \(expense.duration ?? "-")")
+                    Text("paymentVia : \(expense.paymentVia ?? "-")")
+                    if let types = expense.types {
                         Text("types : \(types.joinedWithComma())")
                     }
-                    Text("note : \(income.note ?? "")")
-                    Text("date : \((income.date ?? Date()).toString())")
+                    Text("date : \((expense.date ?? Date()).toString())")
                 }
             }
         }
-        .navigationTitle("Income - CoreData")
+        .navigationTitle("Expense - CoreData")
         .toolbar {
             ToolbarItem {
                 HStack {
@@ -50,24 +52,26 @@ struct CoreDataIncomeScreem: View {
         }
         .sheet(isPresented: $isShowAddScreen) {
         } content: {
-            AddInvoiceScreen(income: nil) {
+            AddExpenseScreen(expense: nil) {
                 load()
                 isShowAddScreen.toggle()
             }
         }
     }
-    
     func load() {
-        CoreDataManager.shared.load { data in
-            self.incomes = data.map{ result in
-                IncomeModel(
+        CoreDataManager.shared.loadExpense { data in
+            self.expense = data.map{ result in
+                ExpenseModel(
                     blockID: "",
                     id: result.id?.uuidString ?? "",
                     yearMonth: nil,
                     yearMonthID: nil,
-                    value: Int(result.value),
-                    types: result.types?.split(),
                     note: result.note,
+                    value: Int(result.value),
+                    duration: result.duration,
+                    paymentVia: result.paymentVia,
+                    store: result.store,
+                    types: result.types?.split(),
                     date: result.date,
                     keywords: nil
                 )
@@ -76,8 +80,8 @@ struct CoreDataIncomeScreem: View {
     }
 }
 
-struct CoreDataIncomeScreem_Previews: PreviewProvider {
+struct CoreDataExpenseScreen_Previews: PreviewProvider {
     static var previews: some View {
-        CoreDataIncomeScreem()
+        CoreDataExpenseScreen()
     }
 }
