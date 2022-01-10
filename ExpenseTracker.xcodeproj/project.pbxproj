@@ -322,7 +322,7 @@
 				E006435B27740F8C00B5108D /* GlobalDataViewModel.swift */,
 				E006435927740F7000B5108D /* SummaryViewModel.swift */,
 				E01A2A692776B3DC002E685F /* YearMonth */,
-				E01A2A682776B3D3002E685F /* Invoice */,
+				E01A2A682776B3D3002E685F /* Income */,
 				E0F617EE2771759900C546B7 /* Expense */,
 				E01A2A6A2776B3E4002E685F /* Type */,
 				E08DD5042778BADB001DB5F0 /* Template */,
@@ -379,13 +379,13 @@
 			path = Summary;
 			sourceTree = "<group>";
 		};
-		E01A2A682776B3D3002E685F /* Invoice */ = {
+		E01A2A682776B3D3002E685F /* Income */ = {
 			isa = PBXGroup;
 			children = (
 				E08178C327708FFC00F358D9 /* IncomeViewModel.swift */,
 				E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */,
 			);
-			path = Invoice;
+			path = Income;
 			sourceTree = "<group>";
 		};
 		E01A2A692776B3DC002E685F /* YearMonth */ = {
