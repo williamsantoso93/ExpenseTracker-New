@@ -141,8 +141,8 @@ class AddTemplateViewModel: ObservableObject {
 //            }
 //        }
         let cd = Mapper.templateLocalToCoreData(templateModel)
-        CoreDataManager.shared.save {
-            completion(true)
+        CoreDataManager.shared.save { isSuccess in
+            completion(isSuccess)
         }
     }
 }

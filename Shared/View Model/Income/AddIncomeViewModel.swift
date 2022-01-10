@@ -104,8 +104,8 @@ class AddIncomeViewModel: ObservableObject {
 //            incomeCD.types = income.types?.joinedWithCommaNoSpace() ?? ""
 //            incomeCD.date = income.date
             let cd = Mapper.incomeLocalToCoreData(income)
-            CoreDataManager.shared.save {
-                completion(true)
+            CoreDataManager.shared.save { isSuccess in
+                completion(isSuccess)
             }
         } catch let error {
             if let error = error as? ValidationError {

@@ -9,63 +9,53 @@ import Foundation
 import CoreData
 
 extension CoreDataManager {
-    func loadYearMonths(completion: @escaping ([YearMonth]) -> Void) {
-        let request: NSFetchRequest<YearMonth> = YearMonth.fetchRequest()
-        
+    func load<T>(request: NSFetchRequest<T>, completion: @escaping ([T]) -> Void) {
         do {
             let data = try viewContext.fetch(request)
             completion(data)
         } catch {
             print(error.localizedDescription)
             completion([])
+        }
+    }
+    
+    func loadYearMonths(completion: @escaping ([YearMonth]) -> Void) {
+        let request: NSFetchRequest<YearMonth> = YearMonth.fetchRequest()
+        
+        load(request: request) { data in
+            completion(data)
         }
     }
     
     func loadIncomes(completion: @escaping ([Income]) -> Void) {
         let request: NSFetchRequest<Income> = Income.fetchRequest()
         
-        do {
-            let data = try viewContext.fetch(request)
+        load(request: request) { data in
             completion(data)
-        } catch {
-            print(error.localizedDescription)
-            completion([])
         }
     }
     
     func loadExpenses(completion: @escaping ([Expense]) -> Void) {
         let request: NSFetchRequest<Expense> = Expense.fetchRequest()
         
-        do {
-            let data = try viewContext.fetch(request)
+        load(request: request) { data in
             completion(data)
-        } catch {
-            print(error.localizedDescription)
-            completion([])
         }
     }
     
     func loadTypes(completion: @escaping ([TypeData]) -> Void) {
         let request: NSFetchRequest<TypeData> = TypeData.fetchRequest()
         
-        do {
-            let data = try viewContext.fetch(request)
+        load(request: request) { data in
             completion(data)
-        } catch {
-            print(error.localizedDescription)
-            completion([])
         }
     }
     
     func loadTempalates(completion: @escaping ([Template]) -> Void) {
         let request: NSFetchRequest<Template> = Template.fetchRequest()
         
-        do {
-            let data = try viewContext.fetch(request)
+        load(request: request) { data in
             completion(data)
-        } catch {
-            print(error.localizedDescription)
-            completion([])
         }
     }
 }

@@ -72,8 +72,8 @@ class AddTypeViewModel: ObservableObject {
 //                }
 //            }
             let cd = Mapper.typeLocalToCoreData(typeModel)
-            CoreDataManager.shared.save {
-                completion(true)
+            CoreDataManager.shared.save { isSuccess in
+                completion(isSuccess)
             }
         } catch let error {
             if let error = error as? ValidationError {

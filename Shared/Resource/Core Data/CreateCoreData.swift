@@ -9,13 +9,14 @@ import Foundation
 import CoreData
 
 extension CoreDataManager {
-    func save(completion: () -> Void) {
+    func save(completion: (Bool) -> Void) {
         do {
             try viewContext.save()
-            completion()
+            completion(true)
         } catch {
             viewContext.rollback()
             print(error.localizedDescription)
+            completion(false)
         }
     }
 }

@@ -169,8 +169,8 @@ class AddExpenseViewModel: ObservableObject {
 //            expenseCD.types = expense.types?.joinedWithCommaNoSpace() ?? ""
 //            expenseCD.date = expense.date
             let cd = Mapper.expenseLocalToCoreData(expense)
-            CoreDataManager.shared.save {
-                completion(true)
+            CoreDataManager.shared.save { isSuccess in
+                completion(isSuccess)
             }
         } catch let error {
             if let error = error as? ValidationError {
