@@ -17,7 +17,7 @@ struct CoreDataIncomeScreem: View {
                 let income = incomes[index]
                 VStack(alignment: .leading) {
                     Text("id : \(income.id)")
-                    //                            Text("yearMonth : \(income.yearMonth ?? "")")
+                    Text("yearMonth : \(income.yearMonth ?? "")")
                     Text("value : \(income.value ?? 0)")
                     if let types = income.types {
                         Text("types : \(types.joinedWithComma())")

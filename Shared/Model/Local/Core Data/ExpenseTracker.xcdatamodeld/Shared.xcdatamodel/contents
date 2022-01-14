@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Expense" representedClassName="Expense" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" defaultDateTimeInterval="662662800" usesScalarValueType="NO"/>
         <attribute name="duration" attributeType="String"/>
@@ -9,6 +9,7 @@
         <attribute name="store" attributeType="String"/>
         <attribute name="types" attributeType="String"/>
         <attribute name="value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="yearMonth" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YearMonth" inverseName="expenses" inverseEntity="YearMonth"/>
     </entity>
     <entity name="Income" representedClassName="Income" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
@@ -16,6 +17,7 @@
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="types" attributeType="String"/>
         <attribute name="value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="yearMonth" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YearMonth" inverseName="incomes" inverseEntity="YearMonth"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -40,13 +42,15 @@
         <attribute name="month" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="year" attributeType="String"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="yearMonth" inverseEntity="Expense"/>
+        <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Income" inverseName="yearMonth" inverseEntity="Income"/>
     </entity>
     <elements>
-        <element name="Expense" positionX="357.8515625" positionY="211.04296875" width="128" height="149"/>
-        <element name="Income" positionX="368.2265625" positionY="67.25390625" width="128" height="104"/>
+        <element name="Expense" positionX="357.8515625" positionY="211.04296875" width="128" height="164"/>
+        <element name="Income" positionX="368.2265625" positionY="67.25390625" width="128" height="119"/>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
         <element name="Template" positionX="-74.33203125" positionY="338.703125" width="128" height="149"/>
         <element name="TypeData" positionX="371.29296875" positionY="-66.51953125" width="128" height="74"/>
-        <element name="YearMonth" positionX="-244.84375" positionY="147.19921875" width="128" height="89"/>
+        <element name="YearMonth" positionX="-244.84375" positionY="147.19921875" width="128" height="119"/>
     </elements>
 </model>

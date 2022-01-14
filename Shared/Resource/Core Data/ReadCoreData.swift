@@ -19,6 +19,26 @@ extension CoreDataManager {
         }
     }
     
+    func getYearMonths(by date: Date?) -> YearMonth? {
+        let date = date ?? Date()
+        let name = date.toYearMonthString()
+
+        let request: NSFetchRequest<YearMonth> = YearMonth.fetchRequest()
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "name == %@", name)
+        
+        do {
+            if let yearMonth = try viewContext.fetch(request).first {
+                return yearMonth
+            } else {
+                return createYearMonth(using: date)
+            }
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
     func loadYearMonths(completion: @escaping ([YearMonth]) -> Void) {
         let request: NSFetchRequest<YearMonth> = YearMonth.fetchRequest()
         

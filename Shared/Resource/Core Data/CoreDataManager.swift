@@ -20,7 +20,7 @@ class CoreDataManager {
         presistentContainer = NSPersistentContainer(name: "ExpenseTracker")
         presistentContainer.loadPersistentStores { description, error in
             if let error = error {
-                fatalError("unable core data \(error)")
+                fatalError("failed to initialize Core Data \(error)")
             }
         }
     }

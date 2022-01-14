@@ -19,4 +19,27 @@ extension CoreDataManager {
             completion(false)
         }
     }
+    
+    func createYearMonth(using date: Date) -> YearMonth? {
+        let name = date.toYearMonthString()
+        let month = date.toString(format: "MM MMMM")
+        let year = date.toString(format: "yyyy")
+        
+        let yearMonth = YearMonthModel(
+            id: UUID().uuidString,
+            name: name,
+            month: month,
+            year: year
+        )
+        
+        let yearMonthCD = Mapper.yearMonthLocalToCoreData(yearMonth)
+        do {
+            try viewContext.save()
+            return getYearMonths(by: date)
+        } catch {
+            viewContext.rollback()
+            print(error.localizedDescription)
+            return nil
+        }
+    }
 }

@@ -19,8 +19,8 @@ struct ExpenseScreen: View {
                         viewModel.selectExpense(expense)
                     } label: {
                         VStack(alignment: .leading) {
-//                            Text("id : \(expense.id)")
-//                            Text("yearMonth : \(expense.yearMonth ?? "")")
+                            Text("id : \(expense.id)")
+                            Text("yearMonth : \(expense.yearMonth ?? "-")")
                             Text("note : \(expense.note ?? "-")")
                             Text("store : \(expense.store ?? "-")")
                             Text("value : \(expense.value ?? 0)")

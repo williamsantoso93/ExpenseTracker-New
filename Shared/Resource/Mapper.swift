@@ -132,7 +132,7 @@ struct Mapper {
         ExpenseModel(
             blockID: coreData.id?.uuidString ?? "",
             id: coreData.id?.uuidString ?? "",
-            yearMonth: "",
+            yearMonth: coreData.yearMonth?.name ?? "",
             note: coreData.note,
             value: Int(coreData.value),
             duration: coreData.duration,
@@ -161,6 +161,7 @@ struct Mapper {
         expense.paymentVia = local.paymentVia
         expense.store = local.store
         expense.date = local.date ?? Date()
+        expense.yearMonth = CoreDataManager.shared.getYearMonths(by: local.date)
         
         return expense
     }
@@ -212,7 +213,7 @@ struct Mapper {
         IncomeModel(
             blockID: coreData.id?.uuidString ?? "",
             id: coreData.id?.uuidString ?? "",
-            yearMonth: "",
+            yearMonth: coreData.yearMonth?.name ?? "",
             value: Int(coreData.value),
             types: coreData.types?.split(),
             note: coreData.note,
@@ -235,6 +236,8 @@ struct Mapper {
         income.types = local.types?.joinedWithCommaNoSpace()
         income.value = Int64(local.value ?? 0)
         income.date = local.date ?? Date()
+        
+        income.yearMonth = CoreDataManager.shared.getYearMonths(by: local.date)
 
         return income
     }
