@@ -24,7 +24,7 @@ struct AddTemplatescreen: View {
             Form {
                 Section {
                     TextFiedForm(title: "Name", prompt: "Netflix", value: $viewModel.name)
-                    NumberTextFiedForm(title: "Value", prompt: "50000", value: $viewModel.valueString)
+                    NumberTextFiedForm(title: "Value", prompt: "50000".splitDigitDouble(), value: $viewModel.valueString)
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif

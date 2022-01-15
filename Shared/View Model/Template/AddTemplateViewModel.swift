@@ -33,8 +33,8 @@ class AddTemplateViewModel: ObservableObject {
     }
     
     @Published var valueString = ""
-    var value: Int {
-        valueString.toInt()
+    var value: Double {
+        valueString.toDouble() ?? 0
     }
     @Published var name = ""
     @Published var selectedType = ""

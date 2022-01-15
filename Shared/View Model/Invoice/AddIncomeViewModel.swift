@@ -23,8 +23,8 @@ class AddIncomeViewModel: ObservableObject {
     
     
     @Published var valueString = ""
-    var value: Int {
-        valueString.toInt()
+    var value: Double {
+        valueString.toDouble() ?? 0
     }
     @Published var selectedType = ""
     @Published var selectedTypes: [String] = []

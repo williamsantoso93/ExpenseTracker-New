@@ -28,7 +28,7 @@ struct templateModelscreen: View {
                                 VStack(alignment: .leading) {
                                     Text("name : \(templateModel.name ?? "-")")
                                     Text("store : \(templateModel.store ?? "-")")
-                                    Text("value : \(templateModel.value ?? 0)")
+                                    Text("value : \((templateModel.value ?? 0).splitDigit())")
                                     Text("duration : \(templateModel.duration ?? "-")")
                                     Text("paymentVia : \(templateModel.paymentVia ?? "-")")
                                     if let types = templateModel.types {

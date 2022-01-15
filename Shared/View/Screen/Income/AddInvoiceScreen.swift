@@ -25,7 +25,7 @@ struct AddInvoiceScreen: View {
         NavigationView {
             Form {
                 Section {
-                    NumberTextFiedForm(title: "Value", prompt: "50000".splitDigit(), value: $viewModel.valueString)
+                    NumberTextFiedForm(title: "Value", prompt: "50000".splitDigitDouble(), value: $viewModel.valueString)
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif

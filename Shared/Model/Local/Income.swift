@@ -13,7 +13,7 @@ struct Income: Codable {
     var id: String = UUID().uuidString
     var yearMonth: String?
     var yearMonthID: String? = nil
-    var value: Int?
+    var value: Double?
     var types: [String]?
     var note: String?
     var date: Date?
