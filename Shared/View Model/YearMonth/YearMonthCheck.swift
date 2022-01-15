@@ -17,7 +17,7 @@ class YearMonthCheck {
             result.name == date.toYearMonthString()
         }
         
-        if let id = yearMonth.first?.id {
+        if let id = yearMonth.first?.notionID {
             return completion(id)
         } else {
             addYearMonth(date) { id in

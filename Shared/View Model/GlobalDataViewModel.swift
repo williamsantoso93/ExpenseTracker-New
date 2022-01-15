@@ -9,15 +9,17 @@ import Foundation
 
 class GlobalData: ObservableObject {
     @Published var types = Types()
+    @Published var tempTypes = Types()
     @Published var yearMonths = [YearMonthModel]()
     @Published var templateModels = [TemplateModel]()
     @Published var isLoadingTypes = false
+    @Published var isLoadingCheckTypes = false
     @Published var isLoadingYearMonths = false
     @Published var isLoadingTemplateModel = false
     
     @Published var isLoadingDisplay: Bool = false
     var isLoading: Bool {
-        isLoadingTypes || isLoadingYearMonths || isLoadingTemplateModel || isLoadingDisplay
+        isLoadingTypes || isLoadingCheckTypes || isLoadingYearMonths || isLoadingTemplateModel || isLoadingDisplay
     }
     
     @Published var errorMessage: ErrorMessage? = nil
@@ -28,6 +30,7 @@ class GlobalData: ObservableObject {
     
     init() {
         loadAllCoreData()
+        checkTypes()
 //        loadAllRemote()
     }
     
@@ -100,6 +103,34 @@ class GlobalData: ObservableObject {
                         self.types.allTypes = results
                     } else {
                         self.types.allTypes.append(contentsOf: results)
+                    }
+                    self.tempTypes.allTypes = self.types.allTypes
+                    if data.hasMore {
+                        if let nextCursor = data.nextCursor {
+                            self.getTypesRemote(startCursor: nextCursor)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                completion()
+            }
+        }
+    }
+    
+    func getTempTypesRemote(startCursor: String? = nil, completion: @escaping () -> Void = {}) {
+        let newData = startCursor == nil
+        isLoadingTypes = true
+        Networking.shared.getTypes(startCursor: startCursor) { (result: Result<DefaultResponse<TypeProperty>, NetworkError>) in
+            DispatchQueue.main.async {
+                self.isLoadingTypes = false
+                switch result {
+                case .success(let data):
+                    let results = Mapper.mapTypeRemoteToLocal(data.results)
+                    if self.types.allTypes.isEmpty || newData {
+                        self.tempTypes.allTypes = results
+                    } else {
+                        self.tempTypes.allTypes.append(contentsOf: results)
                     }
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
@@ -184,6 +215,26 @@ class GlobalData: ObservableObject {
             return id
         } else {
             return nil
+        }
+    }
+    
+    //MARK: - Default Types
+    
+    func checkTypes() {
+        if types.allTypes.isEmpty {
+            isLoadingCheckTypes = true
+            getTempTypesRemote {
+                if !self.tempTypes.allTypes.isEmpty {
+                    self.coreDataManager.batchInsertTypes(types: self.tempTypes.allTypes) { isSuccess in
+                        self.isLoadingCheckTypes = false
+                        if isSuccess {
+                            self.getTypesCoreData()
+                        }
+                    }
+                } else {
+                    self.isLoadingCheckTypes = false
+                }
+            }
         }
     }
 }

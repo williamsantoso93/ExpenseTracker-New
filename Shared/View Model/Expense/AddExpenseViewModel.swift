@@ -38,21 +38,21 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
-    @Published var valueString = "50000"
+    @Published var valueString = ""
     var value: Int {
         valueString.toInt()
     }
     @Published var selectedType = ""
-    @Published var selectedTypes: [String] = ["abc","def"]
-    @Published var selectedPayment = "CC BCA"
-    @Published var selectedDuration = "Once"
-    @Published var selectedStore = "Tokopedia"
+    @Published var selectedTypes: [String] = []
+    @Published var selectedPayment = ""
+    @Published var selectedDuration = ""
+    @Published var selectedStore = ""
     var isOtherStore: Bool {
         selectedStore == "Other"
     }
     @Published var otherStore = ""
     @Published var selectedTemplateIndex = -1
-    @Published var note = "dsdsasf"
+    @Published var note = ""
     @Published var date = Date()
     
     var saveTitle: String {
@@ -135,42 +135,32 @@ class AddExpenseViewModel: ObservableObject {
             expense.note = note
             expense.date = date
             
-//            YearMonthCheck.shared.getYearMonthID(date) { id in
-//                self.expense.yearMonthID = id
-//
-//                self.isLoading = true
-//                if self.isUpdate {
-//                    Networking.shared.updateExpense(self.expense) { isSuccess in
-//                        self.isLoading = false
-//                        return completion(isSuccess)
-//                    }
-//                } else {
-//                    if self.isInstallment && (self.installmentMonth > 0) {
-//                        self.saveInstallment { isSuccess in
-//                            self.isLoading = false
-//                            return completion(isSuccess)
-//                        }
-//                    } else {
-//                        Networking.shared.postExpense(self.expense) { isSuccess in
-//                            self.isLoading = false
-//                            return completion(isSuccess)
-//                        }
-//                    }
-//                }
-//            }
-            
-//            let expenseCD = Expense(context: CoreDataManager.shared.viewContext)
-//            expenseCD.id = UUID()
-//            expenseCD.note = expense.note
-//            expenseCD.paymentVia = expense.paymentVia
-//            expenseCD.duration = expense.duration
-//            expenseCD.store = expense.store
-//            expenseCD.value = Int64(expense.value ?? 0)
-//            expenseCD.types = expense.types?.joinedWithCommaNoSpace() ?? ""
-//            expenseCD.date = expense.date
-            let cd = Mapper.expenseLocalToCoreData(expense)
-            CoreDataManager.shared.save { isSuccess in
-                completion(isSuccess)
+            YearMonthCheck.shared.getYearMonthID(date) { id in
+                self.expense.yearMonthID = id
+
+                self.isLoading = true
+                if self.isUpdate {
+                    Networking.shared.updateExpense(self.expense) { isSuccess in
+                        self.insertCoreData(self.expense) { isSuccess in
+                            self.isLoading = false
+                            return completion(isSuccess)
+                        }
+                    }
+                } else {
+                    if self.isInstallment && (self.installmentMonth > 0) {
+                        self.saveInstallment { isSuccess in
+                            self.isLoading = false
+                            return completion(isSuccess)
+                        }
+                    } else {
+                        Networking.shared.postExpense(self.expense) { isSuccess in
+                            self.insertCoreData(self.expense) { isSuccess in
+                                self.isLoading = false
+                                return completion(isSuccess)
+                            }
+                        }
+                    }
+                }
             }
         } catch let error {
             if let error = error as? ValidationError {
@@ -179,6 +169,13 @@ class AddExpenseViewModel: ObservableObject {
                     isShowErrorMessage = true
                 }
             }
+        }
+    }
+    
+    func insertCoreData(_ data: ExpenseModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        _ = Mapper.expenseLocalToCoreData(data)
+        CoreDataManager.shared.save { isSuccess in
+            return completion(isSuccess)
         }
     }
     
@@ -258,7 +255,9 @@ class AddExpenseViewModel: ObservableObject {
                     count += 1
                     
                     if count >= self.installmentMonth {
-                        return completion(isSuccess)
+                        self.insertCoreData(self.expense) { isSuccess in
+                            return completion(isSuccess)
+                        }
                     }
                 }
             }

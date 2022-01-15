@@ -12,10 +12,7 @@ struct TypeCellView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("id : \(type.id)")
-            Text("notionID : \(type.notionID ?? "-")")
-            Text("name : \(type.name)")
-            Text("category : \(type.category)")
+            Text(type.name)
         }
     }
 }

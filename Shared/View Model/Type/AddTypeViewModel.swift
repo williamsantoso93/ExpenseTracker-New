@@ -59,21 +59,21 @@ class AddTypeViewModel: ObservableObject {
             typeModel.category = try Validation.picker(selectedCategory, typeError: .noCategory)
             typeModel.name = try Validation.textField(name)
             
-//            isLoading = true
-//            if isUpdate {
-//                self.isLoading = false
-//                Networking.shared.updateType(typeModel) { isSuccess in
-//                    return completion(isSuccess)
-//                }
-//            } else {
-//                self.isLoading = false
-//                Networking.shared.postType(typeModel) { isSuccess in
-//                    return completion(isSuccess)
-//                }
-//            }
-            let cd = Mapper.typeLocalToCoreData(typeModel)
-            CoreDataManager.shared.save { isSuccess in
-                completion(isSuccess)
+            isLoading = true
+            if isUpdate {
+                Networking.shared.updateType(typeModel) { isSuccess in
+                    self.insertCoreData(self.typeModel) { isSuccess in
+                        self.isLoading = false
+                        return completion(isSuccess)
+                    }
+                }
+            } else {
+                Networking.shared.postType(typeModel) { isSuccess in
+                    self.insertCoreData(self.typeModel) { isSuccess in
+                        self.isLoading = false
+                        return completion(isSuccess)
+                    }
+                }
             }
         } catch let error {
             if let error = error as? ValidationError {
@@ -82,6 +82,13 @@ class AddTypeViewModel: ObservableObject {
                     isShowErrorMessage = true
                 }
             }
+        }
+    }
+    
+    func insertCoreData(_ data: TypeModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        _ = Mapper.typeLocalToCoreData(data)
+        CoreDataManager.shared.save { isSuccess in
+            return completion(isSuccess)
         }
     }
 }

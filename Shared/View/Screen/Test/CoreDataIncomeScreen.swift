@@ -52,7 +52,7 @@ class CoreDataIncomeViewModel: ObservableObject {
 }
 
 struct CoreDataIncomeScreen: View {
-    var yearMonth: YearMonthModel? = nil
+    var yearMonth: YearMonthModel?
     
     @StateObject var viewModel: CoreDataIncomeViewModel
     

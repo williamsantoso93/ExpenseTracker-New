@@ -147,7 +147,7 @@ struct AddYearMonthScreen: View {
                             year: year
                         )
                         
-                        let yearMonthCD = Mapper.yearMonthLocalToCoreData(yearMonth)
+                        _ = Mapper.yearMonthLocalToCoreData(yearMonth)
                         CoreDataManager.shared.save { isSuccess in
                             if isSuccess {
                                 isShowAddScreen.toggle()

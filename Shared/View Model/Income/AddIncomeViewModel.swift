@@ -23,13 +23,13 @@ class AddIncomeViewModel: ObservableObject {
     }
     
     
-    @Published var valueString = "50000"
+    @Published var valueString = ""
     var value: Int {
         valueString.toInt()
     }
     @Published var selectedType = ""
-    @Published var selectedTypes: [String] = ["abc","def"]
-    @Published var note = "halohalo"
+    @Published var selectedTypes: [String] = []
+    @Published var note = ""
     @Published var selectedTemplateIndex = -1
     @Published var date = Date()
     
@@ -81,31 +81,25 @@ class AddIncomeViewModel: ObservableObject {
             income.types = try Validation.picker(selectedTypes, typeError: .noType)
             income.date = date
             
-//            YearMonthCheck.shared.getYearMonthID(date) { id in
-//                self.income.yearMonthID = id
-//
-//                self.isLoading = true
-//                if self.isUpdate {
-//                    Networking.shared.updateIncome(self.income) { isSuccess in
-//                        self.isLoading = false
-//                        return completion(isSuccess)
-//                    }
-//                } else {
-//                    Networking.shared.postIncome(self.income) { isSuccess in
-//                        self.isLoading = false
-//                        return completion(isSuccess)
-//                    }
-//                }
-//            }
-//            let incomeCD = Income(context: CoreDataManager.shared.viewContext)
-//            incomeCD.id = UUID()
-//            incomeCD.note = income.note
-//            incomeCD.value = Int64(income.value ?? 0)
-//            incomeCD.types = income.types?.joinedWithCommaNoSpace() ?? ""
-//            incomeCD.date = income.date
-            let cd = Mapper.incomeLocalToCoreData(income)
-            CoreDataManager.shared.save { isSuccess in
-                completion(isSuccess)
+            YearMonthCheck.shared.getYearMonthID(date) { id in
+                self.income.yearMonthID = id
+
+                self.isLoading = true
+                if self.isUpdate {
+                    Networking.shared.updateIncome(self.income) { isSuccess in
+                        self.insertCoreData(self.income) { isSuccess in
+                            self.isLoading = false
+                            return completion(isSuccess)
+                        }
+                    }
+                } else {
+                    Networking.shared.postIncome(self.income) { isSuccess in
+                        self.insertCoreData(self.income) { isSuccess in
+                            self.isLoading = false
+                            return completion(isSuccess)
+                        }
+                    }
+                }
             }
         } catch let error {
             if let error = error as? ValidationError {
@@ -114,6 +108,13 @@ class AddIncomeViewModel: ObservableObject {
                     isShowErrorMessage = true
                 }
             }
+        }
+    }
+    
+    func insertCoreData(_ data: IncomeModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        _ = Mapper.incomeLocalToCoreData(data)
+        CoreDataManager.shared.save { isSuccess in
+            return completion(isSuccess)
         }
     }
     

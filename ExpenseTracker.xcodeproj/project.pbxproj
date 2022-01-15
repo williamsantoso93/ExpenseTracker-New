@@ -234,7 +234,7 @@
 		E0BF3A88276F566B00FC902E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0BF3A89276F566B00FC902E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E0BF3A8A276F566B00FC902E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E0BF3A8F276F566B00FC902E /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0BF3A8F276F566B00FC902E /* ExpenseTracker CD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExpenseTracker CD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A95276F566B00FC902E /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A97276F566B00FC902E /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -540,7 +540,7 @@
 		E0BF3A90276F566B00FC902E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E0BF3A8F276F566B00FC902E /* ExpenseTracker.app */,
+				E0BF3A8F276F566B00FC902E /* ExpenseTracker CD.app */,
 				E0BF3A95276F566B00FC902E /* ExpenseTracker.app */,
 				E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */,
 				E0BF3AA8276F566B00FC902E /* Tests macOS.xctest */,
@@ -652,7 +652,7 @@
 			);
 			name = "ExpenseTracker (iOS)";
 			productName = "ExpenseTracker (iOS)";
-			productReference = E0BF3A8F276F566B00FC902E /* ExpenseTracker.app */;
+			productReference = E0BF3A8F276F566B00FC902E /* ExpenseTracker CD.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E0BF3A94276F566B00FC902E /* ExpenseTracker (macOS) */ = {
@@ -1119,8 +1119,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTracker;
-				PRODUCT_NAME = ExpenseTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerCD;
+				PRODUCT_NAME = "ExpenseTracker CD";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1149,8 +1149,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTracker;
-				PRODUCT_NAME = ExpenseTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerCD;
+				PRODUCT_NAME = "ExpenseTracker CD";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

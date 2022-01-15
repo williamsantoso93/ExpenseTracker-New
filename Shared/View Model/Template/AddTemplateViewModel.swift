@@ -128,21 +128,28 @@ class AddTemplateViewModel: ObservableObject {
         
         templateModel.name = name.isEmpty ? templateModel.store : name
         
-//        isLoading = true
-//        if isUpdate {
-//            Networking.shared.updateTemplateModel(templateModel) { isSuccess in
-//                self.isLoading = false
-//                return completion(isSuccess)
-//            }
-//        } else {
-//            Networking.shared.postTemplateModel(templateModel) { isSuccess in
-//                self.isLoading = false
-//                return completion(isSuccess)
-//            }
-//        }
-        let cd = Mapper.templateLocalToCoreData(templateModel)
+        isLoading = true
+        if isUpdate {
+            Networking.shared.updateTemplateModel(templateModel) { isSuccess in
+                self.insertCoreData(self.templateModel) { isSuccess in
+                    self.isLoading = false
+                    return completion(isSuccess)
+                }
+            }
+        } else {
+            Networking.shared.postTemplateModel(templateModel) { isSuccess in
+                self.insertCoreData(self.templateModel) { isSuccess in
+                    self.isLoading = false
+                    return completion(isSuccess)
+                }
+            }
+        }
+    }
+    
+    func insertCoreData(_ data: TemplateModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
+        _ = Mapper.templateLocalToCoreData(data)
         CoreDataManager.shared.save { isSuccess in
-            completion(isSuccess)
+            return completion(isSuccess)
         }
     }
 }

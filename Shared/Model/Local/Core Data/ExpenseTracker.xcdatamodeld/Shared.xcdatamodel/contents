@@ -47,8 +47,8 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="notionID" optional="YES" attributeType="String"/>
         <attribute name="year" attributeType="String"/>
-        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Expense" inverseName="yearMonth" inverseEntity="Expense"/>
-        <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Income" inverseName="yearMonth" inverseEntity="Income"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Expense" inverseName="yearMonth" inverseEntity="Expense"/>
+        <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Income" inverseName="yearMonth" inverseEntity="Income"/>
     </entity>
     <elements>
         <element name="Expense" positionX="357.8515625" positionY="211.04296875" width="128" height="179"/>

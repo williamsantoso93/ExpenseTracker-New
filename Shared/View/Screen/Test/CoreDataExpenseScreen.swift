@@ -52,7 +52,7 @@ class CoreDataExpenseViewModel: ObservableObject {
 }
 
 struct CoreDataExpenseScreen: View {
-    var yearMonth: YearMonthModel? = nil
+    var yearMonth: YearMonthModel?
     @StateObject var viewModel: CoreDataExpenseViewModel
     
     init(yearMonth: YearMonthModel? = nil) {
