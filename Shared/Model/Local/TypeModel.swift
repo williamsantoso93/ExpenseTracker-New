@@ -16,6 +16,18 @@ struct TypeModel: Codable {
     var keywords: String?
 }
 
+enum TypeCategory: String, CaseIterable, Codable {
+    case duration
+    case expense
+    case income
+    case payment
+    case store
+    
+    func getTypeCategory(_ string: String) -> TypeCategory {
+        TypeCategory(rawValue: string) ?? .expense
+    }
+}
+
 struct Types: Codable {
     var allTypes: [TypeModel]
     var incomeTypes: [TypeModel] {
@@ -36,14 +48,6 @@ struct Types: Codable {
     
     init(allTypes: [TypeModel] = []) {
         self.allTypes = allTypes
-    }
-    
-    enum TypeCategory: String, CaseIterable {
-        case income
-        case expense
-        case payment
-        case duration
-        case store
     }
     
     func filterType(_ category: TypeCategory) -> [TypeModel] {

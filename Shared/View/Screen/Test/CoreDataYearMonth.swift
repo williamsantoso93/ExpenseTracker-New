@@ -32,9 +32,8 @@ class CoreDataYearMonthViewModel: ObservableObject {
     }
     
     func load() {
-        CoreDataManager.shared.loadYearMonths { data in
-            self.yearMonths = Mapper.mapYearMonthListCoreDataToLocal(data)
-        }
+        GlobalData.shared.getYearMonthCoreData()
+        yearMonths = GlobalData.shared.yearMonths
     }
 }
 

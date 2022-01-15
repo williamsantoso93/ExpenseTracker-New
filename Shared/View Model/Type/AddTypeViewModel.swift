@@ -15,7 +15,7 @@ class AddTypeViewModel: ObservableObject {
     @Published var selectedCategory = ""
     
     var category: [String] {
-        Types.TypeCategory.allCases.map { result in
+        TypeCategory.allCases.map { result in
             result.rawValue.capitalized
         }
     }

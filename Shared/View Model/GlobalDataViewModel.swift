@@ -30,6 +30,7 @@ class GlobalData: ObservableObject {
         loadAllCoreData()
 //        loadAllRemote()
     }
+    
     //MARK: - CoreData
     func loadAllCoreData() {
         getTypesCoreData()

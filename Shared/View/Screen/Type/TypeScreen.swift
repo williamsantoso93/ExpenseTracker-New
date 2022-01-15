@@ -15,7 +15,7 @@ struct TypeScreen: View {
     var body: some View {
         Form {
             if !globalData.types.allTypes.isEmpty {
-                ForEach(Types.TypeCategory.allCases, id:\.self) { type in
+                ForEach(TypeCategory.allCases, id:\.self) { type in
                     let types = viewModel.filterType(type)
                     
                     Section(header: Text(type.rawValue)) {
