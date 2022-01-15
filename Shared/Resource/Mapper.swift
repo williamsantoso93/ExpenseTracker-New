@@ -88,15 +88,15 @@ struct Mapper {
     
     static func expenseRemoteToLocal(_ id: String, _ remote: ExpenseProperty) -> ExpenseModel {
         ExpenseModel(
-            notionID: id,
             id: remote.id?.title.first?.text.content ?? "",
+            notionID: id,
             yearMonth: remote.yearMonth?.relation.first?.id,
-            note: remote.note?.richText.first?.text.content,
             value: remote.value?.number,
             duration: remote.duration?.select?.name ?? "",
             paymentVia: remote.paymentVia?.select?.name ?? "",
             store: remote.store?.richText.first?.text.content,
             types: multiSelectsToStrings(remote.types?.multiSelect),
+            note: remote.note?.richText.first?.text.content,
             date: remote.date?.date.start.toDate(),
             keywords: remote.keywords?.formula.string
         )
@@ -130,15 +130,15 @@ struct Mapper {
     
     static func expenseCoreDataToLocal(_ coreData: Expense) -> ExpenseModel {
         ExpenseModel(
-            notionID: coreData.id?.uuidString ?? "",
             id: coreData.id?.uuidString ?? "",
+            notionID: coreData.id?.uuidString ?? "",
             yearMonth: coreData.yearMonth?.name ?? "",
-            note: coreData.note,
             value: Int(coreData.value),
             duration: coreData.duration,
             paymentVia: coreData.paymentVia,
             store: coreData.store,
             types: coreData.types?.split(),
+            note: coreData.note,
             date: coreData.date,
             keywords: ""
         )
@@ -175,8 +175,8 @@ struct Mapper {
     
     static func incomeRemoteToLocal(_ id: String, _ remote: IncomeProperty) -> IncomeModel {
         IncomeModel(
-            notionID: id,
             id: remote.id?.title.first?.text.content ?? "",
+            notionID: id,
             yearMonth: remote.yearMonth?.relation.first?.id,
             value: remote.value?.number,
             types: multiSelectsToStrings(remote.types?.multiSelect),
@@ -211,8 +211,8 @@ struct Mapper {
 
     static func incomeCoreDataToLocal(_ coreData: Income) -> IncomeModel {
         IncomeModel(
-            notionID: coreData.id?.uuidString ?? "",
             id: coreData.id?.uuidString ?? "",
+            notionID: coreData.id?.uuidString ?? "",
             yearMonth: coreData.yearMonth?.name ?? "",
             value: Int(coreData.value),
             types: coreData.types?.split(),

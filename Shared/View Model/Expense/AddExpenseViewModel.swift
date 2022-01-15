@@ -80,15 +80,15 @@ class AddExpenseViewModel: ObservableObject {
             isUpdate = true
         } else {
             self.expense = ExpenseModel(
-                notionID: "",
                 id: UUID().uuidString,
+                notionID: "",
                 yearMonth: "",
-                note: "",
                 value: 0,
                 duration: "",
                 paymentVia: "",
                 store: "",
                 types: [],
+                note: "",
                 date: Date()
             )
             selectedDuration = "Once"

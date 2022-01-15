@@ -8,8 +8,8 @@
 import Foundation
 
 struct YearMonthModel {
-    var notionID: String?
     var id: String = UUID().uuidString
+    var notionID: String?
     var name, month, year: String
     var totalIncomes: Int? = nil
     var totalExpenses: Int? = nil

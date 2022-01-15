@@ -54,8 +54,8 @@ class AddIncomeViewModel: ObservableObject {
             isUpdate = true
         } else {
             self.income = IncomeModel(
-                notionID: "",
                 id: UUID().uuidString,
+                notionID: "",
                 yearMonth: "",
                 value: 0,
                 types: [],

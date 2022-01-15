@@ -9,14 +9,14 @@ import Foundation
 
 // MARK: - ExpenseModel
 struct ExpenseModel: Codable {
-    var notionID: String?
     var id: String = UUID().uuidString
+    var notionID: String?
     var yearMonth: String?
     var yearMonthID: String? = nil
-    var note: String?
     var value: Int?
     var duration, paymentVia, store: String?
     var types: [String]?
+    var note: String?
     var date: Date?
     var keywords: String?
 }
