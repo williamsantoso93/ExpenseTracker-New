@@ -62,7 +62,7 @@ struct IncomeScreen: View {
         .sheet(isPresented: $viewModel.isShowAddScreen) {
             viewModel.selectedIncome = nil
         } content: {
-            AddInvoiceScreen(income: viewModel.selectedIncome) {
+            AddIncomeScreen(income: viewModel.selectedIncome) {
                 viewModel.loadNewData()
             }
         }

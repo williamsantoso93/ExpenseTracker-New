@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct CoreDataYearMonth: View {
+    var screenType: StatementType = .all
     @State private var isShowAddScreen = false
     @State private var yearMonths: [YearMonthModel] = []
     
@@ -16,11 +17,17 @@ struct CoreDataYearMonth: View {
         Form {
             ForEach(yearMonths.indices, id:\.self) { index in
                 let yearMonth = yearMonths[index]
-                VStack(alignment: .leading) {
-                    Text("id : \(yearMonth.id)")
-                    Text("name : \(yearMonth.name)")
-                    Text("year : \(yearMonth.year)")
-                    Text("month : \(yearMonth.month)")
+                NavigationLink {
+                    switch screenType {
+                    case .all:
+                        AllStatementScreen(yearMonth: yearMonth)
+                    case .income:
+                        CoreDataIncomeScreem(yearMonth: yearMonth)
+                    case .expense:
+                        CoreDataExpenseScreen(yearMonth: yearMonth)
+                    }
+                } label: {
+                    YearMonthCellView(yearMonth: yearMonth)
                 }
             }
             .onDelete(perform: delete)
@@ -29,7 +36,7 @@ struct CoreDataYearMonth: View {
         .refreshable {
             load()
         }
-        .navigationTitle("YearMonth - CoreData")
+        .navigationTitle("YearMonth - \(screenType.rawValue.capitalized)")
         .toolbar {
             ToolbarItem {
                 HStack {
@@ -46,7 +53,21 @@ struct CoreDataYearMonth: View {
         .sheet(isPresented: $isShowAddScreen) {
             load()
         } content: {
-            AddYearMonthScreen(isShowAddScreen: $isShowAddScreen)
+            switch screenType {
+            case .all:
+                AddYearMonthScreen(isShowAddScreen: $isShowAddScreen)
+            case .income:
+                AddIncomeScreen(income: nil) {
+                    load()
+                    isShowAddScreen.toggle()
+                }
+            case .expense:
+                AddExpenseScreen(expense: nil) {
+                    load()
+                    isShowAddScreen.toggle()
+                }
+            }
+            
         }
     }
     
@@ -73,7 +94,9 @@ struct CoreDataYearMonth: View {
 
 struct CoreDataYearMonth_Previews: PreviewProvider {
     static var previews: some View {
-        CoreDataYearMonth()
+        NavigationView {
+            CoreDataYearMonth(screenType: .all)
+        }
     }
 }
 

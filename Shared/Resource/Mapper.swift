@@ -54,6 +54,7 @@ struct Mapper {
     static func yearMonthListCoreDataToLocal(_ coreData: YearMonth) -> YearMonthModel {
         YearMonthModel(
             id: coreData.id?.uuidString ?? "",
+            notionID: coreData.notionID,
             name: coreData.name ?? "",
             month: coreData.month ?? "",
             year: coreData.year ?? "",
@@ -131,7 +132,7 @@ struct Mapper {
     static func expenseCoreDataToLocal(_ coreData: Expense) -> ExpenseModel {
         ExpenseModel(
             id: coreData.id?.uuidString ?? "",
-            notionID: coreData.id?.uuidString ?? "",
+            notionID: coreData.notionID,
             yearMonth: coreData.yearMonth?.name ?? "",
             value: Int(coreData.value),
             duration: coreData.duration,
@@ -212,7 +213,7 @@ struct Mapper {
     static func incomeCoreDataToLocal(_ coreData: Income) -> IncomeModel {
         IncomeModel(
             id: coreData.id?.uuidString ?? "",
-            notionID: coreData.id?.uuidString ?? "",
+            notionID: coreData.notionID,
             yearMonth: coreData.yearMonth?.name ?? "",
             value: Int(coreData.value),
             types: coreData.types?.split(),
@@ -279,7 +280,8 @@ struct Mapper {
     
     static func typeCoreDataToLocal(_ coreData: TypeData) -> TypeModel {
         TypeModel(
-            notionID: coreData.id?.uuidString ?? "",
+            id: coreData.id?.uuidString ?? "",
+            notionID: coreData.notionID,
             name: coreData.name ?? "",
             category: coreData.category ?? "",
             keywords: ""
@@ -349,7 +351,8 @@ struct Mapper {
 
     static func templateCoreDataToLocal(_ coreData: Template) -> TemplateModel {
         TemplateModel(
-            notionID: coreData.id?.uuidString ?? "",
+            id: coreData.id?.uuidString ?? "",
+            notionID: coreData.notionID,
             name: coreData.name,
             category: coreData.category,
             duration: coreData.duration,

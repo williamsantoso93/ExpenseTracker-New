@@ -1,5 +1,5 @@
 //
-//  AddInvoiceScreen.swift
+//  AddIncomeScreen.swift
 //  ExpenseTracker (iOS)
 //
 //  Created by Ruangguru on 25/12/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddInvoiceScreen: View {
+struct AddIncomeScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var globalData = GlobalData.shared
     @StateObject var viewModel: AddIncomeViewModel
@@ -127,6 +127,6 @@ struct AddInvoiceScreen: View {
 
 struct AddInvoiceScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddInvoiceScreen() {}
+        AddIncomeScreen() {}
     }
 }

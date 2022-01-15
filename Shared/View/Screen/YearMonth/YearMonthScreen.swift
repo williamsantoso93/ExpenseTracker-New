@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+enum StatementType: String {
+    case all
+    case income
+    case expense
+}
+
 struct YearMonthScreen: View {
     @State private var isShowAddScreen = false
     @StateObject private var viewModel = YearMonthViewModel()

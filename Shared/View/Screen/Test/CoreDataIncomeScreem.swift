@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CoreDataIncomeScreem: View {
-    let yearMonth: YearMonthModel? = nil
+    var yearMonth: YearMonthModel? = nil
     @State private var isShowAddScreen = false
     @State private var incomes: [IncomeModel] = []
     
@@ -50,7 +50,7 @@ struct CoreDataIncomeScreem: View {
         .sheet(isPresented: $isShowAddScreen) {
             load()
         } content: {
-            AddInvoiceScreen(income: nil) {
+            AddIncomeScreen(income: nil) {
                 load()
                 isShowAddScreen.toggle()
             }

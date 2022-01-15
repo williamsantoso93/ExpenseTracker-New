@@ -48,7 +48,7 @@
 		E00E1C462782250C0042496F /* MultiSelectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00E1C442782250C0042496F /* MultiSelectPickerView.swift */; };
 		E0107A3F277457EA00825484 /* TypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0107A3E277457EA00825484 /* TypeScreen.swift */; };
 		E0107A40277457EA00825484 /* TypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0107A3E277457EA00825484 /* TypeScreen.swift */; };
-		E01A2A672776B3CF002E685F /* AddInvoiceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */; };
+		E01A2A672776B3CF002E685F /* AddIncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */; };
 		E01A2A6C2776B41E002E685F /* AddIncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */; };
 		E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */; };
 		E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6F2776B433002E685F /* YearMonthCheck.swift */; };
@@ -73,7 +73,7 @@
 		E08DD5072778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */; };
 		E09030BF27781FBC003ED6B5 /* YearMonthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178CE2770959C00F358D9 /* YearMonthScreen.swift */; };
 		E09030C027781FBF003ED6B5 /* IncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C92770903000F358D9 /* IncomeScreen.swift */; };
-		E09030C127781FC2003ED6B5 /* AddInvoiceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */; };
+		E09030C127781FC2003ED6B5 /* AddIncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */; };
 		E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A762776B46E002E685F /* AddTypeScreen.swift */; };
 		E09030C327781FD5003ED6B5 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0050C352778058400396C36 /* TextField.swift */; };
 		E09030C427781FD8003ED6B5 /* AddTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */; };
@@ -122,6 +122,16 @@
 		E0BF3AB9276F566B00FC902E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0BF3A8A276F566B00FC902E /* Assets.xcassets */; };
 		E0BF3ACA276F575F00FC902E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E0BF3AC8276F575F00FC902E /* README.md */; };
 		E0BF3ACB276F575F00FC902E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0BF3AC9276F575F00FC902E /* .gitignore */; };
+		E0D238CE27928C7700CCED08 /* AllStatementScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238CD27928C7700CCED08 /* AllStatementScreen.swift */; };
+		E0D238CF27928C7700CCED08 /* AllStatementScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238CD27928C7700CCED08 /* AllStatementScreen.swift */; };
+		E0D238D327928EAB00CCED08 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238D227928EAB00CCED08 /* Dummy.swift */; };
+		E0D238D427928EAB00CCED08 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238D227928EAB00CCED08 /* Dummy.swift */; };
+		E0D238D62792921400CCED08 /* ExpenseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238D52792921400CCED08 /* ExpenseCellView.swift */; };
+		E0D238D72792921400CCED08 /* ExpenseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238D52792921400CCED08 /* ExpenseCellView.swift */; };
+		E0D238D92792921E00CCED08 /* IncomeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238D82792921E00CCED08 /* IncomeCellView.swift */; };
+		E0D238DA2792921E00CCED08 /* IncomeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238D82792921E00CCED08 /* IncomeCellView.swift */; };
+		E0D238DC2792940400CCED08 /* YearMonthCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238DB2792940400CCED08 /* YearMonthCellView.swift */; };
+		E0D238DD2792940400CCED08 /* YearMonthCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D238DB2792940400CCED08 /* YearMonthCellView.swift */; };
 		E0D6EF0A27701B1400DF12AD /* AddExpenseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF0927701B1400DF12AD /* AddExpenseScreen.swift */; };
 		E0D6EF0B27701B1400DF12AD /* AddExpenseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF0927701B1400DF12AD /* AddExpenseScreen.swift */; };
 		E0D6EF1427701C1A00DF12AD /* DefaultResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF1327701C1A00DF12AD /* DefaultResponse.swift */; };
@@ -193,7 +203,7 @@
 		E00CD8F2278BE0130034CAA4 /* CoreDataYearMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataYearMonth.swift; sourceTree = "<group>"; };
 		E00E1C442782250C0042496F /* MultiSelectPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectPickerView.swift; sourceTree = "<group>"; };
 		E0107A3E277457EA00825484 /* TypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeScreen.swift; sourceTree = "<group>"; };
-		E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInvoiceScreen.swift; sourceTree = "<group>"; };
+		E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeScreen.swift; sourceTree = "<group>"; };
 		E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeViewModel.swift; sourceTree = "<group>"; };
 		E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeViewModel.swift; sourceTree = "<group>"; };
 		E01A2A6F2776B433002E685F /* YearMonthCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthCheck.swift; sourceTree = "<group>"; };
@@ -231,6 +241,11 @@
 		E0BF3AAE276F566B00FC902E /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		E0BF3AC8276F575F00FC902E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E0BF3AC9276F575F00FC902E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E0D238CD27928C7700CCED08 /* AllStatementScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStatementScreen.swift; sourceTree = "<group>"; };
+		E0D238D227928EAB00CCED08 /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
+		E0D238D52792921400CCED08 /* ExpenseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCellView.swift; sourceTree = "<group>"; };
+		E0D238D82792921E00CCED08 /* IncomeCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCellView.swift; sourceTree = "<group>"; };
+		E0D238DB2792940400CCED08 /* YearMonthCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthCellView.swift; sourceTree = "<group>"; };
 		E0D6EF0927701B1400DF12AD /* AddExpenseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseScreen.swift; sourceTree = "<group>"; };
 		E0D6EF1327701C1A00DF12AD /* DefaultResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultResponse.swift; sourceTree = "<group>"; };
 		E0D6EF162770201B00DF12AD /* YearMonthProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthProperty.swift; sourceTree = "<group>"; };
@@ -318,6 +333,7 @@
 				E0050C352778058400396C36 /* TextField.swift */,
 				E03FC18B277837620019F01D /* ViewModifier.swift */,
 				E00E1C442782250C0042496F /* MultiSelectPickerView.swift */,
+				E0D238D027928D2900CCED08 /* Cell */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -378,7 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				E08178C92770903000F358D9 /* IncomeScreen.swift */,
-				E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */,
+				E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */,
 			);
 			path = Income;
 			sourceTree = "<group>";
@@ -452,6 +468,7 @@
 				E0F84574278BC5B80037D033 /* CoreDataExpenseScreen.swift */,
 				E00CD8EC278BDFFD0034CAA4 /* CoreDataTypeScreen.swift */,
 				E00CD8EF278BE0080034CAA4 /* CoreDataTemplateScreen.swift */,
+				E0D238CD27928C7700CCED08 /* AllStatementScreen.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -483,6 +500,7 @@
 				E097D711277073760093F5DA /* TypeModel.swift */,
 				E002E2B427789F7800A7A1C5 /* Setting.swift */,
 				E0F9E823277977790082B310 /* ErrorMessage.swift */,
+				E0D238D227928EAB00CCED08 /* Dummy.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -548,6 +566,16 @@
 				E0BF3AAE276F566B00FC902E /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		E0D238D027928D2900CCED08 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E0D238DB2792940400CCED08 /* YearMonthCellView.swift */,
+				E0D238D82792921E00CCED08 /* IncomeCellView.swift */,
+				E0D238D52792921400CCED08 /* ExpenseCellView.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		E0D6EF1227701BFF00DF12AD /* Remote */ = {
@@ -775,10 +803,14 @@
 				E0BF3AB0276F566B00FC902E /* ExpenseTracker.xcdatamodeld in Sources */,
 				E002E2B82778B04700A7A1C5 /* TemplateScreen.swift in Sources */,
 				E006435C27740F8C00B5108D /* GlobalDataViewModel.swift in Sources */,
+				E0D238D327928EAB00CCED08 /* Dummy.swift in Sources */,
 				E0D6EF1D277021F000DF12AD /* SelectProperty.swift in Sources */,
 				E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */,
 				E0BF3AB6276F566B00FC902E /* Persistence.swift in Sources */,
-				E01A2A672776B3CF002E685F /* AddInvoiceScreen.swift in Sources */,
+				E0D238DC2792940400CCED08 /* YearMonthCellView.swift in Sources */,
+				E0D238CE27928C7700CCED08 /* AllStatementScreen.swift in Sources */,
+				E0D238D92792921E00CCED08 /* IncomeCellView.swift in Sources */,
+				E01A2A672776B3CF002E685F /* AddIncomeScreen.swift in Sources */,
 				E0D6EF232770232700DF12AD /* ExpenseProperty.swift in Sources */,
 				E08178C82770901000F358D9 /* TypeViewModel.swift in Sources */,
 				E00E1C452782250C0042496F /* MultiSelectPickerView.swift in Sources */,
@@ -810,6 +842,7 @@
 				E02830B82782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
 				E0D6EF20277021F800DF12AD /* TextProperty.swift in Sources */,
 				E0D6EF322770259F00DF12AD /* IncomeProperty.swift in Sources */,
+				E0D238D62792921400CCED08 /* ExpenseCellView.swift in Sources */,
 				E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */,
 				E0D6EF2F2770240900DF12AD /* RelationProperty.swift in Sources */,
 				E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */,
@@ -834,7 +867,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E002E2C02778B17E00A7A1C5 /* AddTemplateViewModel.swift in Sources */,
-				E09030C127781FC2003ED6B5 /* AddInvoiceScreen.swift in Sources */,
+				E09030C127781FC2003ED6B5 /* AddIncomeScreen.swift in Sources */,
 				E00CD8E5278BDD140034CAA4 /* ReadCoreData.swift in Sources */,
 				E09030C927781FE0003ED6B5 /* AddIncomeViewModel.swift in Sources */,
 				E09030CA27781FE0003ED6B5 /* YearMonthViewModel.swift in Sources */,
@@ -849,9 +882,13 @@
 				E09030D727781FF7003ED6B5 /* GetEndpoint.swift in Sources */,
 				E002E2B92778B04700A7A1C5 /* TemplateScreen.swift in Sources */,
 				E006AA352770179E00980302 /* ExpenseScreen.swift in Sources */,
+				E0D238D427928EAB00CCED08 /* Dummy.swift in Sources */,
 				E09030D127781FF0003ED6B5 /* YearMonthProperty.swift in Sources */,
 				E0BF3AB1276F566B00FC902E /* ExpenseTracker.xcdatamodeld in Sources */,
 				E0D6EF1E277021F000DF12AD /* SelectProperty.swift in Sources */,
+				E0D238DD2792940400CCED08 /* YearMonthCellView.swift in Sources */,
+				E0D238CF27928C7700CCED08 /* AllStatementScreen.swift in Sources */,
+				E0D238DA2792921E00CCED08 /* IncomeCellView.swift in Sources */,
 				E09030D627781FF0003ED6B5 /* DefaultResponse.swift in Sources */,
 				E09030D227781FF0003ED6B5 /* ExpenseModel.swift in Sources */,
 				E0BF3AB7276F566B00FC902E /* Persistence.swift in Sources */,
@@ -884,6 +921,7 @@
 				E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
 				E0BF3AB5276F566B00FC902E /* ContentView.swift in Sources */,
 				E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */,
+				E0D238D72792921400CCED08 /* ExpenseCellView.swift in Sources */,
 				E0D6EF21277021F800DF12AD /* TextProperty.swift in Sources */,
 				E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */,
 				E09030C527781FE0003ED6B5 /* AddExpenseViewModel.swift in Sources */,

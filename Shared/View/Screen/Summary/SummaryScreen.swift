@@ -36,10 +36,10 @@ struct SummaryScreen: View {
                         CoreDataYearMonth()
                     }
                     NavigationLink("Income") {
-                        CoreDataIncomeScreem()
+                        CoreDataYearMonth(screenType: .income)
                     }
                     NavigationLink("Expense") {
-                        CoreDataExpenseScreen()
+                        CoreDataYearMonth(screenType: .expense)
                     }
                     NavigationLink("Type") {
                         CoreDataTypeScreen()

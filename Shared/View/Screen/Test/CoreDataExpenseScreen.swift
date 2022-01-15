@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CoreDataExpenseScreen: View {
+    var yearMonth: YearMonthModel? = nil
     @State private var isShowAddScreen = false
     @State private var expenses: [ExpenseModel] = []
     
