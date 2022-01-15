@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CoreDataIncomeScreem: View {
+    let yearMonth: YearMonthModel? = nil
     @State private var isShowAddScreen = false
     @State private var incomes: [IncomeModel] = []
     

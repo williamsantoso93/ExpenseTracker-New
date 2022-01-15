@@ -47,8 +47,12 @@ extension CoreDataManager {
         }
     }
     
-    func loadIncomes(completion: @escaping ([Income]) -> Void) {
+    func loadIncomes(by yearMonth: YearMonthModel? = nil, completion: @escaping ([Income]) -> Void) {
         let request: NSFetchRequest<Income> = Income.fetchRequest()
+        
+        if let yearMonth = yearMonth {
+            request.predicate = NSPredicate(format: "yearMonth == %@", yearMonth.name)
+        }
         
         load(request: request) { data in
             completion(data)
