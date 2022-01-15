@@ -7,32 +7,92 @@
 
 import SwiftUI
 
+class CoreDataTemplateViewModel: ObservableObject {
+    @Published var globalData = GlobalData.shared
+    @Published var isShowAddScreen = false
+    var selectedTemplate: TemplateModel? = nil
+    
+    @Published var searchText = ""
+    func filterTemplate(_ category: String) -> [TemplateModel] {
+        let templateModels = globalData.templateModels.filter { result in
+            result.category == category.capitalized
+        }
+        guard !searchText.isEmpty else {
+            return templateModels
+        }
+        
+        return templateModels.filter { result in
+            result.keywords?.lowercased().contains(searchText.lowercased()) ?? false
+        }
+        
+    }
+    
+    var category: [String] {
+        [
+            "Income",
+            "Expense",
+        ]
+    }
+    
+    func delete(_ templateModels: [TemplateModel], at offsets: IndexSet) {
+        offsets.forEach { index in
+            let template = templateModels[index]
+            do {
+                try CoreDataManager.shared.deleteTemplate(template)
+                
+                if let templateIndex = getTemplatesModelsIndex(from: template.id) {
+                    self.globalData.templateModels.remove(at: templateIndex)
+                    globalData.getTemplateModelCoreData()
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getTemplatesModelsIndex(from id: String) -> Int? {
+        globalData.templateModels.firstIndex { result in
+            result.id == id
+        }
+    }
+    
+    func selectTemplate(_ template: TemplateModel? = nil) {
+        selectedTemplate = template
+        isShowAddScreen = true
+    }
+}
+
 struct CoreDataTemplateScreen: View {
-    @State private var isShowAddScreen = false
-    @State private var templates: [TemplateModel] = []
+    @ObservedObject var globalData = GlobalData.shared
+    
+    @StateObject var viewModel = CoreDataTemplateViewModel()
     
     var body: some View {
         Form {
-            ForEach(templates.indices, id:\.self) { index in
-                let template = templates[index]
-                VStack(alignment: .leading) {
-                    Text("notionID : \(template.notionID ?? "")")
-                    Text("category : \(template.category ?? "-")")
-                    Text("name : \(template.name ?? "-")")
-                    Text("store : \(template.store ?? "-")")
-                    Text("value : \(template.value ?? 0)")
-                    Text("duration : \(template.duration ?? "-")")
-                    Text("paymentVia : \(template.paymentVia ?? "-")")
-                    if let types = template.types {
-                        Text("types : \(types.joinedWithComma())")
+            if !globalData.templateModels.isEmpty {
+                ForEach(viewModel.category, id:\.self) { category in
+                    let templateModels = viewModel.filterTemplate(category)
+                    
+                    Section(header: Text(category)) {
+                        ForEach(templateModels.indices, id:\.self) { index in
+                            let template = templateModels[index]
+                            
+                            Button {
+                                viewModel.selectTemplate(template)
+                            } label: {
+                                TemplateCellView(template: template)
+                            }
+                        }
+                        .onDelete { offsets in
+                            viewModel.delete(templateModels, at: offsets)
+                        }
                     }
                 }
             }
-            .onDelete(perform: delete)
         }
-        .onAppear(perform: load)
+        .onAppear(perform: globalData.getTemplateModelCoreData)
         .refreshable {
-            load()
+            globalData.getTemplateModelCoreData()
         }
         .navigationTitle("Template - CoreData")
         .toolbar {
@@ -41,40 +101,20 @@ struct CoreDataTemplateScreen: View {
                     EditButton()
                     
                     Button {
-                        isShowAddScreen = true
+                        viewModel.selectTemplate()
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
         }
-        .sheet(isPresented: $isShowAddScreen) {
-            load()
+        .sheet(isPresented: $viewModel.isShowAddScreen) {
+            viewModel.selectedTemplate = nil
         } content: {
-            AddTemplatescreen(templateModel: nil) {
-                load()
-                isShowAddScreen.toggle()
+            AddTemplatescreen(templateModel: viewModel.selectedTemplate) {
+                globalData.getTemplateModelCoreData()
+                viewModel.isShowAddScreen.toggle()
             }
-        }
-    }
-    
-    
-    func delete(at offsets: IndexSet) {
-        offsets.forEach { index in
-            let template = self.templates[index]
-            do {
-                try CoreDataManager.shared.deleteTemplate(template)
-                self.templates.remove(at: index)
-                load()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func load() {
-        CoreDataManager.shared.loadTempalates { data in
-            self.templates = Mapper.mapTemplatesCoreDataToLocal(data)
         }
     }
 }
