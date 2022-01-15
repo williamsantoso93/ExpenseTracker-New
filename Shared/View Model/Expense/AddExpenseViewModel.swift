@@ -80,7 +80,7 @@ class AddExpenseViewModel: ObservableObject {
             isUpdate = true
         } else {
             self.expense = ExpenseModel(
-                blockID: "",
+                notionID: "",
                 id: UUID().uuidString,
                 yearMonth: "",
                 note: "",
@@ -108,10 +108,10 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        guard !expense.blockID.isEmpty else { return }
+        guard let id = expense.notionID else { return }
         
         isLoading = true
-        Networking.shared.delete(id: expense.blockID) { isSuccess in
+        Networking.shared.delete(id: id) { isSuccess in
             self.isLoading = false
             return completion(isSuccess)
         }

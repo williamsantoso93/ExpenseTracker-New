@@ -43,7 +43,7 @@ struct TypeScreen: View {
         .searchable(text: $viewModel.searchText)
         .navigationTitle("Types")
         .refreshable {
-            globalData.getTypes()
+            globalData.getTypesRemote()
         }
         .toolbar {
             ToolbarItem {
@@ -64,7 +64,7 @@ struct TypeScreen: View {
             viewModel.selectedType = nil
         } content: {
             AddTypeScreen(typeModel: viewModel.selectedType) {
-                globalData.getTypes()
+                globalData.getTypesRemote()
             }
         }
     }

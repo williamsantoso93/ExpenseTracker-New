@@ -39,7 +39,7 @@ class YearMonthCheck {
         )
         
         Networking.shared.postYearMonth(yearMonth) { isSuccess in
-            self.globalData.getYearMonth {
+            self.globalData.getYearMonthRemote {
                 self.getYearMonthID(date) { id in
                     return completion(id)
                 }

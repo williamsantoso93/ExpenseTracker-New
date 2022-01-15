@@ -62,7 +62,7 @@ extension CoreDataManager {
     func deleteType(_ data: TypeModel) throws {
         let request: NSFetchRequest<TypeData> = TypeData.fetchRequest()
         request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "id == %@", data.blockID)
+        request.predicate = NSPredicate(format: "id == %@", data.id)
         
         do {
             let objects = try viewContext.fetch(request)
@@ -75,7 +75,7 @@ extension CoreDataManager {
     func deleteTemplate(_ data: TemplateModel) throws {
         let request: NSFetchRequest<Template> = Template.fetchRequest()
         request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "id == %@", data.blockID)
+        request.predicate = NSPredicate(format: "id == %@", data.id)
         
         do {
             let objects = try viewContext.fetch(request)

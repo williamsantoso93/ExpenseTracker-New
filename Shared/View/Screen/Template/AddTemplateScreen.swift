@@ -107,7 +107,7 @@ struct AddTemplatescreen: View {
             .sheet(isPresented: $isShowTypeAddScreen) {
             } content: {
                 AddTypeScreen() {
-                    GlobalData.shared.getTypes {
+                    GlobalData.shared.getTypesRemote {
                         viewModel.types = GlobalData.shared.types
                     }
                 }

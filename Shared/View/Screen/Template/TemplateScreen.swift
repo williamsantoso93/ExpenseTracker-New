@@ -44,7 +44,7 @@ struct templateModelscreen: View {
         .loadingView(GlobalData.shared.isLoading, isNeedDisable: false)
         .searchable(text: $viewModel.searchText)
         .refreshable {
-            GlobalData.shared.getTemplateModel()
+            GlobalData.shared.getTemplateModelRemote()
         }
         .navigationTitle("Template")
         .toolbar {
@@ -66,7 +66,7 @@ struct templateModelscreen: View {
             viewModel.selectedTemplate = nil
         } content: {
             AddTemplatescreen(templateModel: viewModel.selectedTemplate) {
-                globalData.getTemplateModel()
+                globalData.getTemplateModelRemote()
             }
         }
     }

@@ -72,7 +72,7 @@ class IncomeViewModel: ObservableObject {
     
     func delete(at offsets: IndexSet) {
         offsets.forEach { index in
-            let id = self.incomes[index].blockID
+            guard let id = self.incomes[index].notionID else { return }
             
             Networking.shared.delete(id: id) { isSuccess in
                 if isSuccess {

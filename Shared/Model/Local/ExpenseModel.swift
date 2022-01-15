@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - ExpenseModel
 struct ExpenseModel: Codable {
-    var blockID: String
+    var notionID: String?
     var id: String = UUID().uuidString
     var yearMonth: String?
     var yearMonthID: String? = nil

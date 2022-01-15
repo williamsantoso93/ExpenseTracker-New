@@ -16,7 +16,7 @@ struct CoreDataTypeScreen: View {
             ForEach(types.indices, id:\.self) { index in
                 let type = types[index]
                 VStack(alignment: .leading) {
-                    Text("blockID : \(type.blockID)")
+                    Text("notionID : \(type.notionID ?? "-")")
                     Text("name : \(type.name)")
                     Text("category : \(type.category)")
                 }

@@ -9,7 +9,8 @@ import Foundation
 
 // MARK: - Type
 struct TypeModel: Codable {
-    var blockID: String
+    var id: String = UUID().uuidString
+    var notionID: String?
     var name: String
     var category: String
     var keywords: String?

@@ -88,7 +88,7 @@ struct Mapper {
     
     static func expenseRemoteToLocal(_ id: String, _ remote: ExpenseProperty) -> ExpenseModel {
         ExpenseModel(
-            blockID: id,
+            notionID: id,
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
             note: remote.note?.richText.first?.text.content,
@@ -130,7 +130,7 @@ struct Mapper {
     
     static func expenseCoreDataToLocal(_ coreData: Expense) -> ExpenseModel {
         ExpenseModel(
-            blockID: coreData.id?.uuidString ?? "",
+            notionID: coreData.id?.uuidString ?? "",
             id: coreData.id?.uuidString ?? "",
             yearMonth: coreData.yearMonth?.name ?? "",
             note: coreData.note,
@@ -175,7 +175,7 @@ struct Mapper {
     
     static func incomeRemoteToLocal(_ id: String, _ remote: IncomeProperty) -> IncomeModel {
         IncomeModel(
-            blockID: id,
+            notionID: id,
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
             value: remote.value?.number,
@@ -211,7 +211,7 @@ struct Mapper {
 
     static func incomeCoreDataToLocal(_ coreData: Income) -> IncomeModel {
         IncomeModel(
-            blockID: coreData.id?.uuidString ?? "",
+            notionID: coreData.id?.uuidString ?? "",
             id: coreData.id?.uuidString ?? "",
             yearMonth: coreData.yearMonth?.name ?? "",
             value: Int(coreData.value),
@@ -251,7 +251,7 @@ struct Mapper {
     
     static func typeRemoteToLocal(_ id: String, _ remote: TypeProperty) -> TypeModel {
         TypeModel(
-            blockID: id,
+            notionID: id,
             name: remote.name.title.first?.text.content ?? "",
             category: remote.category.select?.name ?? "",
             keywords: remote.keywords?.formula.string
@@ -279,7 +279,7 @@ struct Mapper {
     
     static func typeCoreDataToLocal(_ coreData: TypeData) -> TypeModel {
         TypeModel(
-            blockID: coreData.id?.uuidString ?? "",
+            notionID: coreData.id?.uuidString ?? "",
             name: coreData.name ?? "",
             category: coreData.category ?? "",
             keywords: ""
@@ -311,7 +311,7 @@ struct Mapper {
     
     static func templateModelRemoteToLocal(_ id: String, _ remote: TemplateModelProperty) -> TemplateModel {
         TemplateModel(
-            blockID: id,
+            notionID: id,
             name: remote.name?.title.first?.text.content,
             category: remote.category?.select?.name ?? "",
             duration: remote.duration?.select?.name ?? "",
@@ -349,7 +349,7 @@ struct Mapper {
 
     static func templateCoreDataToLocal(_ coreData: Template) -> TemplateModel {
         TemplateModel(
-            blockID: coreData.id?.uuidString ?? "",
+            notionID: coreData.id?.uuidString ?? "",
             name: coreData.name,
             category: coreData.category,
             duration: coreData.duration,

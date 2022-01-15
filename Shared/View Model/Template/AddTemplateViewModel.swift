@@ -77,7 +77,7 @@ class AddTemplateViewModel: ObservableObject {
             saveTitle = "Update"
         } else {
             self.templateModel = TemplateModel(
-                blockID: "",
+                notionID: "",
                 name: "",
                 duration: "",
                 paymentVia: "",
@@ -101,10 +101,10 @@ class AddTemplateViewModel: ObservableObject {
     @Published var isLoading = false
     
     func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        guard !templateModel.blockID.isEmpty else { return }
+        guard let id = templateModel.notionID else { return }
         
         isLoading = true
-        Networking.shared.delete(id: templateModel.blockID) { isSuccess in
+        Networking.shared.delete(id: id) { isSuccess in
             self.isLoading = false
             return completion(isSuccess)
         }

@@ -62,7 +62,7 @@ struct SummaryScreen: View {
             }
         }
         .refreshable {
-            globalData.loadAll()
+            globalData.loadAllRemote()
         }
     }
 }

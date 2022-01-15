@@ -24,34 +24,69 @@ class GlobalData: ObservableObject {
     @Published var isShowErrorMessage = false
     
     static let shared = GlobalData()
+    let coreDataManager = CoreDataManager.shared
     
     init() {
-        loadAll()
+        loadAllCoreData()
+//        loadAllRemote()
+    }
+    //MARK: - CoreData
+    func loadAllCoreData() {
+        getTypesCoreData()
+        getYearMonthCoreData()
+        getTemplateModelCoreData()
+        isLoadingDisplay = false
     }
     
-    func loadAll() {
-        getTypes()
-        getYearMonth()
-        getTemplateModel()
+    func getTypesCoreData() {
+        isLoadingTypes = true
+        coreDataManager.loadTypes { types in
+            self.isLoadingTypes = false
+            self.types.allTypes = Mapper.mapTypesCoreDataToLocal(types)
+        }
+    }
+    
+    func getYearMonthCoreData() {
+        isLoadingYearMonths = true
+        coreDataManager.loadYearMonths { yearMonths in
+            self.isLoadingYearMonths = false
+            self.yearMonths = Mapper.mapYearMonthListCoreDataToLocal(yearMonths)
+        }
+    }
+    
+    func getTemplateModelCoreData() {
+        isLoadingTemplateModel = true
+        coreDataManager.loadTempalates { templates in
+            self.isLoadingTemplateModel = false
+            self.templateModels = Mapper.mapTemplatesCoreDataToLocal(templates)
+        }
+    }
+    
+    
+    //MARK: - Remote
+    func loadAllRemote() {
+        getTypesRemote()
+        getYearMonthRemote()
+        getTemplateModelRemote()
         isLoadingDisplay = false
     }
     
     func loadNewType() {
         types.allTypes.removeAll()
-        getTypes()
+        getTypesRemote()
     }
     
     func loadNewYearMonths() {
         yearMonths.removeAll()
-        getYearMonth()
+        getYearMonthRemote()
     }
     
     func loadNewTemplateModels() {
         templateModels.removeAll()
-        getTemplateModel()
+        getTemplateModelRemote()
     }
     
-    func getTypes(startCursor: String? = nil, completion: @escaping () -> Void = {}) {
+    func getTypesRemote(startCursor: String? = nil, completion: @escaping () -> Void = {}) {
         let newData = startCursor == nil
         isLoadingTypes = true
         Networking.shared.getTypes(startCursor: startCursor) { (result: Result<DefaultResponse<TypeProperty>, NetworkError>) in
@@ -67,7 +102,7 @@ class GlobalData: ObservableObject {
                     }
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
-                            self.getTypes(startCursor: nextCursor)
+                            self.getTypesRemote(startCursor: nextCursor)
                         }
                     }
                 case .failure(let error):
@@ -78,7 +113,7 @@ class GlobalData: ObservableObject {
         }
     }
     
-    func getYearMonth(startCursor: String? = nil, completion: (() -> Void)? = nil) {
+    func getYearMonthRemote(startCursor: String? = nil, completion: (() -> Void)? = nil) {
         let newData = startCursor == nil
         isLoadingYearMonths = true
         Networking.shared.getYearMonth(startCursor: startCursor) { (result: Result<DefaultResponse<YearMonthProperty>, NetworkError>) in
@@ -94,7 +129,7 @@ class GlobalData: ObservableObject {
                     }
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
-                            self.getYearMonth(startCursor: nextCursor)
+                            self.getYearMonthRemote(startCursor: nextCursor)
                         }
                     } else {
                         if let completion = completion {
@@ -108,7 +143,7 @@ class GlobalData: ObservableObject {
         }
     }
     
-    func getTemplateModel(startCursor: String? = nil, completion: (() -> Void)? = nil, done: @escaping () -> Void = {}) {
+    func getTemplateModelRemote(startCursor: String? = nil, completion: (() -> Void)? = nil, done: @escaping () -> Void = {}) {
         let newData = startCursor == nil
         isLoadingTemplateModel = true
         Networking.shared.getTemplateModel(startCursor: startCursor) { (result: Result<DefaultResponse<TemplateModelProperty>, NetworkError>) in
@@ -124,7 +159,7 @@ class GlobalData: ObservableObject {
                     }
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
-                            self.getTemplateModel(startCursor: nextCursor)
+                            self.getTemplateModelRemote(startCursor: nextCursor)
                         }
                     } else {
                         if let completion = completion {

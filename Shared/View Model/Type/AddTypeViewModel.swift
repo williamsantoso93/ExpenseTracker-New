@@ -37,7 +37,7 @@ class AddTypeViewModel: ObservableObject {
             saveTitle = "Update"
         } else {
             self.typeModel = TypeModel(
-                blockID: "",
+                notionID: "",
                 name: "",
                 category: ""
             )
@@ -45,10 +45,10 @@ class AddTypeViewModel: ObservableObject {
     }
     
     func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        guard !typeModel.blockID.isEmpty else { return }
+        guard let id = typeModel.notionID else { return }
         
         isLoading = true
-        Networking.shared.delete(id: typeModel.blockID) { isSuccess in
+        Networking.shared.delete(id: id) { isSuccess in
             self.isLoading = false
             return completion(isSuccess)
         }

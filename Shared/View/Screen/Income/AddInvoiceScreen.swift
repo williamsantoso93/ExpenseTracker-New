@@ -108,7 +108,7 @@ struct AddInvoiceScreen: View {
             .sheet(isPresented: $isShowTypeAddScreen) {
             } content: {
                 AddTypeScreen() {
-                    globalData.getTypes {
+                    globalData.getTypesRemote {
                         viewModel.types = GlobalData.shared.types
                     }
                 }
@@ -116,7 +116,7 @@ struct AddInvoiceScreen: View {
             .sheet(isPresented: $isShowTemplateAddScreen) {
             } content: {
                 AddTemplatescreen() {
-                    globalData.getTemplateModel(done:  {
+                    globalData.getTemplateModelRemote(done:  {
                         viewModel.templateModels = GlobalData.shared.templateModels
                     })
                 }

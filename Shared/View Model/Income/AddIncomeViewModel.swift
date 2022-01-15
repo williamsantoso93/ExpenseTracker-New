@@ -54,7 +54,7 @@ class AddIncomeViewModel: ObservableObject {
             isUpdate = true
         } else {
             self.income = IncomeModel(
-                blockID: "",
+                notionID: "",
                 id: UUID().uuidString,
                 yearMonth: "",
                 value: 0,
@@ -65,10 +65,10 @@ class AddIncomeViewModel: ObservableObject {
     }
     
     func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        guard !income.blockID.isEmpty else { return }
+        guard let id = income.notionID else { return }
         
         isLoading = true
-        Networking.shared.delete(id: income.blockID) { isSuccess in
+        Networking.shared.delete(id: id) { isSuccess in
             self.isLoading = false
             return completion(isSuccess)
         }

@@ -16,7 +16,7 @@ struct CoreDataTemplateScreen: View {
             ForEach(templates.indices, id:\.self) { index in
                 let template = templates[index]
                 VStack(alignment: .leading) {
-                    Text("blockID : \(template.blockID)")
+                    Text("notionID : \(template.notionID ?? "")")
                     Text("category : \(template.category ?? "-")")
                     Text("name : \(template.name ?? "-")")
                     Text("store : \(template.store ?? "-")")

@@ -35,7 +35,7 @@ struct YearMonthScreen: View {
         }
         .loadingView(GlobalData.shared.isLoading, isNeedDisable: false)
         .refreshable {
-            GlobalData.shared.getYearMonth()
+            GlobalData.shared.getYearMonthRemote()
         }
         .navigationTitle("YearMonth")
     }}

@@ -30,10 +30,8 @@ class TypeViewModel: ObservableObject {
     
     func delete(_ typeModels: [TypeModel], at offsets: IndexSet) {
         offsets.forEach { index in
-            let id = typeModels[index].blockID
+            guard let id = typeModels[index].notionID else { return }
             
-            print(index)
-            print(typeModels[index])
             if let allTypeIndex = getAllTypesIndex(from: id) {
                 Networking.shared.delete(id: id) { isSuccess in
                     if isSuccess {
@@ -46,7 +44,7 @@ class TypeViewModel: ObservableObject {
     
     func getAllTypesIndex(from id: String) -> Int? {
         globalData.types.allTypes.firstIndex { result in
-            result.blockID == id
+            result.notionID == id
         }
     }
     
