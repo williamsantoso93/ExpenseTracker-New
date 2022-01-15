@@ -8,69 +8,15 @@
 import SwiftUI
 import CoreData
 
-struct CoreDataYearMonth: View {
-    var screenType: StatementType = .all
-    @State private var isShowAddScreen = false
-    @State private var yearMonths: [YearMonthModel] = []
+class CoreDataYearMonthViewModel: ObservableObject {
+    var screenType: StatementType
     
-    var body: some View {
-        Form {
-            ForEach(yearMonths.indices, id:\.self) { index in
-                let yearMonth = yearMonths[index]
-                NavigationLink {
-                    switch screenType {
-                    case .all:
-                        AllStatementScreen(yearMonth: yearMonth)
-                    case .income:
-                        CoreDataIncomeScreem(yearMonth: yearMonth)
-                    case .expense:
-                        CoreDataExpenseScreen(yearMonth: yearMonth)
-                    }
-                } label: {
-                    YearMonthCellView(yearMonth: yearMonth)
-                }
-            }
-            .onDelete(perform: delete)
-        }
-        .onAppear(perform: load)
-        .refreshable {
-            load()
-        }
-        .navigationTitle("YearMonth - \(screenType.rawValue.capitalized)")
-        .toolbar {
-            ToolbarItem {
-                HStack {
-                    EditButton()
-                    
-                    Button {
-                        isShowAddScreen = true
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
-            }
-        }
-        .sheet(isPresented: $isShowAddScreen) {
-            load()
-        } content: {
-            switch screenType {
-            case .all:
-                AddYearMonthScreen(isShowAddScreen: $isShowAddScreen)
-            case .income:
-                AddIncomeScreen(income: nil) {
-                    load()
-                    isShowAddScreen.toggle()
-                }
-            case .expense:
-                AddExpenseScreen(expense: nil) {
-                    load()
-                    isShowAddScreen.toggle()
-                }
-            }
-            
-        }
+    @Published var isShowAddScreen = false
+    @Published var yearMonths: [YearMonthModel] = []
+    
+    init(screenType: StatementType) {
+        self.screenType = screenType
     }
-    
     
     func delete(at offsets: IndexSet) {
         offsets.forEach { index in
@@ -88,6 +34,72 @@ struct CoreDataYearMonth: View {
     func load() {
         CoreDataManager.shared.loadYearMonths { data in
             self.yearMonths = Mapper.mapYearMonthListCoreDataToLocal(data)
+        }
+    }
+}
+
+struct CoreDataYearMonth: View {
+    @StateObject var viewModel: CoreDataYearMonthViewModel
+    
+    init(screenType: StatementType = .all) {
+        _viewModel = StateObject(wrappedValue: CoreDataYearMonthViewModel(screenType: screenType))
+    }
+    
+    var body: some View {
+        Form {
+            ForEach(viewModel.yearMonths.indices, id:\.self) { index in
+                let yearMonth = viewModel.yearMonths[index]
+                NavigationLink {
+                    switch viewModel.screenType {
+                    case .all:
+                        AllStatementScreen(yearMonth: yearMonth)
+                    case .income:
+                        CoreDataIncomeScreem(yearMonth: yearMonth)
+                    case .expense:
+                        CoreDataExpenseScreen(yearMonth: yearMonth)
+                    }
+                } label: {
+                    YearMonthCellView(yearMonth: yearMonth)
+                }
+            }
+            .onDelete(perform: viewModel.delete)
+        }
+        .onAppear(perform: viewModel.load)
+        .refreshable {
+            viewModel.load()
+        }
+        .navigationTitle("YearMonth - \(viewModel.screenType.rawValue.capitalized)")
+        .toolbar {
+            ToolbarItem {
+                HStack {
+                    EditButton()
+                    
+                    Button {
+                        viewModel.isShowAddScreen = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $viewModel.isShowAddScreen) {
+            viewModel.load()
+        } content: {
+            switch viewModel.screenType {
+            case .all:
+                AddYearMonthScreen(isShowAddScreen: $viewModel.isShowAddScreen)
+            case .income:
+                AddIncomeScreen(income: nil) {
+                    viewModel.load()
+                    viewModel.isShowAddScreen.toggle()
+                }
+            case .expense:
+                AddExpenseScreen(expense: nil) {
+                    viewModel.load()
+                    viewModel.isShowAddScreen.toggle()
+                }
+            }
+            
         }
     }
 }
