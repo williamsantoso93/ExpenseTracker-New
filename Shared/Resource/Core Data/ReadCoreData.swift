@@ -39,6 +39,23 @@ extension CoreDataManager {
         }
     }
     
+    func getYearMonths(by id: String) -> YearMonth? {
+        let request: NSFetchRequest<YearMonth> = YearMonth.fetchRequest()
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "id == %@", id)
+        
+        do {
+            if let yearMonth = try viewContext.fetch(request).first {
+                return yearMonth
+            } else {
+                return nil
+            }
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
     func loadYearMonths(completion: @escaping ([YearMonth]) -> Void) {
         let request: NSFetchRequest<YearMonth> = YearMonth.fetchRequest()
         
@@ -50,17 +67,27 @@ extension CoreDataManager {
     func loadIncomes(by yearMonth: YearMonthModel? = nil, completion: @escaping ([Income]) -> Void) {
         let request: NSFetchRequest<Income> = Income.fetchRequest()
         
-        if let yearMonth = yearMonth {
-            request.predicate = NSPredicate(format: "yearMonth == %@", yearMonth.name)
+        if let yearMonthID = yearMonth?.id {
+            if let yearMonth = getYearMonths(by: yearMonthID) {
+                request.predicate = NSPredicate(format: "yearMonth == %@", yearMonth.objectID)
+            }
         }
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Income.date), ascending: false)]
         
         load(request: request) { data in
             completion(data)
         }
     }
     
-    func loadExpenses(completion: @escaping ([Expense]) -> Void) {
+    func loadExpenses(by yearMonth: YearMonthModel? = nil, completion: @escaping ([Expense]) -> Void) {
         let request: NSFetchRequest<Expense> = Expense.fetchRequest()
+        
+        if let yearMonthID = yearMonth?.id {
+            if let yearMonth = getYearMonths(by: yearMonthID) {
+                request.predicate = NSPredicate(format: "yearMonth == %@", yearMonth.objectID)
+            }
+        }
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(Expense.date), ascending: false)]
         
         load(request: request) { data in
             completion(data)

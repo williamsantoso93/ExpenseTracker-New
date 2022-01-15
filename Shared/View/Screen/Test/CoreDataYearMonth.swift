@@ -54,7 +54,7 @@ struct CoreDataYearMonth: View {
                     case .all:
                         AllStatementScreen(yearMonth: yearMonth)
                     case .income:
-                        CoreDataIncomeScreem(yearMonth: yearMonth)
+                        CoreDataIncomeScreen(yearMonth: yearMonth)
                     case .expense:
                         CoreDataExpenseScreen(yearMonth: yearMonth)
                     }

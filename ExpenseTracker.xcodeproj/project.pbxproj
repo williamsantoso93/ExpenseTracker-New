@@ -61,8 +61,8 @@
 		E03FC18D277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
 		E0404421278B28BA00EBF0DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0404420278B28BA00EBF0DF /* CoreDataManager.swift */; };
 		E0404422278B28BA00EBF0DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0404420278B28BA00EBF0DF /* CoreDataManager.swift */; };
-		E040442D278B2E2200EBF0DF /* CoreDataIncomeScreem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040442C278B2E2200EBF0DF /* CoreDataIncomeScreem.swift */; };
-		E040442E278B2E2200EBF0DF /* CoreDataIncomeScreem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040442C278B2E2200EBF0DF /* CoreDataIncomeScreem.swift */; };
+		E040442D278B2E2200EBF0DF /* CoreDataIncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040442C278B2E2200EBF0DF /* CoreDataIncomeScreen.swift */; };
+		E040442E278B2E2200EBF0DF /* CoreDataIncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040442C278B2E2200EBF0DF /* CoreDataIncomeScreen.swift */; };
 		E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C1277087D100F358D9 /* ExpenseViewModel.swift */; };
 		E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C327708FFC00F358D9 /* IncomeViewModel.swift */; };
 		E08178C62770900900F358D9 /* YearMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C52770900900F358D9 /* YearMonthViewModel.swift */; };
@@ -212,7 +212,7 @@
 		E031E2D3277DE67500DD449B /* RoolupProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolupProperty.swift; sourceTree = "<group>"; };
 		E03FC18B277837620019F01D /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		E0404420278B28BA00EBF0DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		E040442C278B2E2200EBF0DF /* CoreDataIncomeScreem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataIncomeScreem.swift; sourceTree = "<group>"; };
+		E040442C278B2E2200EBF0DF /* CoreDataIncomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataIncomeScreen.swift; sourceTree = "<group>"; };
 		E08178C1277087D100F358D9 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
 		E08178C327708FFC00F358D9 /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
 		E08178C52770900900F358D9 /* YearMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthViewModel.swift; sourceTree = "<group>"; };
@@ -464,7 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				E00CD8F2278BE0130034CAA4 /* CoreDataYearMonth.swift */,
-				E040442C278B2E2200EBF0DF /* CoreDataIncomeScreem.swift */,
+				E040442C278B2E2200EBF0DF /* CoreDataIncomeScreen.swift */,
 				E0F84574278BC5B80037D033 /* CoreDataExpenseScreen.swift */,
 				E00CD8EC278BDFFD0034CAA4 /* CoreDataTypeScreen.swift */,
 				E00CD8EF278BE0080034CAA4 /* CoreDataTemplateScreen.swift */,
@@ -850,7 +850,7 @@
 				E0D6EF26277023CB00DF12AD /* NumberProperty.swift in Sources */,
 				E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */,
 				E00CD8F3278BE0130034CAA4 /* CoreDataYearMonth.swift in Sources */,
-				E040442D278B2E2200EBF0DF /* CoreDataIncomeScreem.swift in Sources */,
+				E040442D278B2E2200EBF0DF /* CoreDataIncomeScreen.swift in Sources */,
 				E00CD8F0278BE0080034CAA4 /* CoreDataTemplateScreen.swift in Sources */,
 				E097D70E2770731C0093F5DA /* IncomeModel.swift in Sources */,
 				E00CD8EA278BDD200034CAA4 /* DeleteCoreData.swift in Sources */,
@@ -929,7 +929,7 @@
 				E09030D427781FF0003ED6B5 /* IncomeProperty.swift in Sources */,
 				E031E2D5277DE67500DD449B /* RoolupProperty.swift in Sources */,
 				E00CD8F4278BE0130034CAA4 /* CoreDataYearMonth.swift in Sources */,
-				E040442E278B2E2200EBF0DF /* CoreDataIncomeScreem.swift in Sources */,
+				E040442E278B2E2200EBF0DF /* CoreDataIncomeScreen.swift in Sources */,
 				E00CD8F1278BE0080034CAA4 /* CoreDataTemplateScreen.swift in Sources */,
 				E09030CF27781FF0003ED6B5 /* IncomeModel.swift in Sources */,
 				E00CD8EB278BDD200034CAA4 /* DeleteCoreData.swift in Sources */,
