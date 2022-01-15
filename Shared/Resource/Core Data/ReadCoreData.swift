@@ -96,6 +96,7 @@ extension CoreDataManager {
     
     func loadTypes(completion: @escaping ([TypeData]) -> Void) {
         let request: NSFetchRequest<TypeData> = TypeData.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(TypeData.name), ascending: true)]
         
         load(request: request) { data in
             completion(data)

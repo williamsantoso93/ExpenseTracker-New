@@ -14,20 +14,58 @@ class CoreDataYearMonthViewModel: ObservableObject {
     @Published var isShowAddScreen = false
     @Published var yearMonths: [YearMonthModel] = []
     
+    struct DisplayYearMonth {
+        let year: String
+        let yearMonths: [YearMonthModel]
+    }
+    
+    var years: [String] {
+        let years = yearMonths.map { result in
+            result.year
+        }
+        return Array(Set(years))
+    }
+    
+    var displayYearMonths: [DisplayYearMonth] {
+        var displayYearMonths = [DisplayYearMonth]()
+        
+        for year in years {
+            let yearMonths = getYearMonths(year: year)
+            displayYearMonths.append(DisplayYearMonth(year: year, yearMonths: yearMonths))
+        }
+        
+        return displayYearMonths.sorted {
+            $0.year < $1.year
+        }
+    }
+    
+    func getYearMonths(year: String) -> [YearMonthModel] {
+        let filteredYearMonths = yearMonths.filter { result in
+            result.year == year
+        }
+        
+        return filteredYearMonths
+    }
+    
     init(screenType: StatementType) {
         self.screenType = screenType
     }
     
-    func delete(at offsets: IndexSet) {
-        offsets.forEach { index in
-            let yearMonthModel = self.yearMonths[index]
-            do {
-                try CoreDataManager.shared.deleteYearMonth(yearMonthModel)
+    func delete(_ yearMonth: YearMonthModel) {
+        do {
+            try CoreDataManager.shared.deleteYearMonth(yearMonth)
+            if let index = getYearMonthIndex(from: yearMonth.id) {
                 self.yearMonths.remove(at: index)
-                load()
-            } catch {
-                print(error.localizedDescription)
             }
+            load()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getYearMonthIndex(from id: String) -> Int? {
+        yearMonths.firstIndex { result in
+            result.id == id
         }
     }
     
@@ -46,22 +84,35 @@ struct CoreDataYearMonth: View {
     
     var body: some View {
         Form {
-            ForEach(viewModel.yearMonths.indices, id:\.self) { index in
-                let yearMonth = viewModel.yearMonths[index]
-                NavigationLink {
-                    switch viewModel.screenType {
-                    case .all:
-                        AllStatementScreen(yearMonth: yearMonth)
-                    case .income:
-                        CoreDataIncomeScreen(yearMonth: yearMonth)
-                    case .expense:
-                        CoreDataExpenseScreen(yearMonth: yearMonth)
+            if !viewModel.displayYearMonths.isEmpty {
+                ForEach(viewModel.displayYearMonths.indices, id:\.self) {index in
+                    let displayYearMonth = viewModel.displayYearMonths[index]
+                    
+                    Section(header: Text(displayYearMonth.year)) {
+                        ForEach(displayYearMonth.yearMonths.indices, id:\.self) { index in
+                            let yearMonth = displayYearMonth.yearMonths[index]
+                            
+                            NavigationLink {
+                                switch viewModel.screenType {
+                                case .all:
+                                    AllStatementScreen(yearMonth: yearMonth)
+                                case .income:
+                                    CoreDataIncomeScreen(yearMonth: yearMonth)
+                                case .expense:
+                                    CoreDataExpenseScreen(yearMonth: yearMonth)
+                                }
+                            } label: {
+                                YearMonthCellView(yearMonth: yearMonth)
+                            }
+                        }
+                        .onDelete { offsets in
+                            offsets.forEach { index in
+                                viewModel.delete(displayYearMonth.yearMonths[index])
+                            }
+                        }
                     }
-                } label: {
-                    YearMonthCellView(yearMonth: yearMonth)
                 }
             }
-            .onDelete(perform: viewModel.delete)
         }
         .onAppear(perform: viewModel.load)
         .refreshable {
