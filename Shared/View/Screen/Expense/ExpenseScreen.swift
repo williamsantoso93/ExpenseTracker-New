@@ -23,7 +23,7 @@ struct ExpenseScreen: View {
 //                            Text("yearMonth : \(expense.yearMonth ?? "")")
                             Text("note : \(expense.note ?? "-")")
                             Text("store : \(expense.store ?? "-")")
-                            Text("value : \(expense.value ?? 0)")
+                            Text("value : \((expense.value ?? 0).splitDigit())")
                             Text("duration : \(expense.duration ?? "-")")
                             Text("paymentVia : \(expense.paymentVia ?? "-")")
                             if let types = expense.types {

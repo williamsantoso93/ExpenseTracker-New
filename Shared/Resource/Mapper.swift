@@ -229,7 +229,7 @@ struct Mapper {
         return SingleSelectProperty(select: Select(name: text))
     }
     
-    static func numberToNumberProperty(_ value: Int?) -> NumberProperty? {
+    static func numberToNumberProperty(_ value: Double?) -> NumberProperty? {
         guard let value = value else {
             return nil
         }

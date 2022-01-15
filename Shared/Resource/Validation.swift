@@ -61,7 +61,7 @@ class Validation {
         return input
     }
     
-    static func numberTextField(_ input: Int) throws -> Int {
+    static func numberTextField(_ input: Double) throws -> Double {
         if input <= 0 {
             throw ValidationError.noValue
         }

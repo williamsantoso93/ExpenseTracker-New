@@ -38,8 +38,8 @@ class AddExpenseViewModel: ObservableObject {
     }
     
     @Published var valueString = ""
-    var value: Int {
-        valueString.toInt()
+    var value: Double {
+        valueString.toDouble() ?? 0
     }
     @Published var selectedType = ""
     @Published var selectedTypes: [String] = []
@@ -202,26 +202,26 @@ class AddExpenseViewModel: ObservableObject {
     var installmentMonth: Int {
         Int(installmentMonthString) ?? 0
     }
-    var perMonthExpense: Int {
-        installmentMonth > 0 ? value / installmentMonth : 0
+    var perMonthExpense: Double {
+        installmentMonth > 0 ? value / Double(installmentMonth) : 0
     }
     var interest: Double {
-        let interestPercentageDouble = Double(interestPercentageString) ?? 0
+        let interestPercentageDouble = interestPercentageString.toDouble() ?? 0
         return interestPercentageDouble / 100
     }
-    var monthlyInterest: Int {
-        Int(Double(value) * interest)
+    var monthlyInterest: Double {
+        value * interest
     }
-    var perMonthExpenseWithInterest: Int {
+    var perMonthExpenseWithInterest: Double {
         if installmentMonth > 0 && value > 0 {
-            return perMonthExpense + Int(monthlyInterest)
+            return perMonthExpense + monthlyInterest
         }
         return perMonthExpense
     }
-    var totalInstallment: Int {
-        perMonthExpenseWithInterest * installmentMonth
+    var totalInstallment: Double {
+        perMonthExpenseWithInterest * Double(installmentMonth)
     }
-    var totalInterest: Int {
+    var totalInterest: Double {
         totalInstallment - value
     }
     

@@ -25,7 +25,7 @@ struct AddExpenseScreen: View {
         NavigationView {
             Form {
                 Section {
-                    NumberTextFiedForm(title: "Value", prompt: "50000".splitDigit(), value: $viewModel.valueString)
+                    NumberTextFiedForm(title: "Value", prompt: "50000".splitDigitDouble(), value: $viewModel.valueString)
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
@@ -68,15 +68,12 @@ struct AddExpenseScreen: View {
                         
                         if viewModel.isInstallment {
                             Picker("Months", selection: $viewModel.installmentMonthString) {
-                                let months = ["3", "6", "9", "12"]
+                                let months = ["3", "6", "9", "12", "15", "18", "21", "24", "36"]
                                 ForEach(months, id: \.self) {
                                     Text($0)
                                 }
                             }
-                            NumberTextFiedForm(title: "Interest (%)", prompt: "0,5".splitDigit(), value: $viewModel.interestPercentageString, needSplitDigit: false)
-#if os(iOS)
-                                .keyboardType(.decimalPad)
-#endif
+                            NumberTextFiedForm(title: "Interest (%)", prompt: (5/10).splitDigit(), value: $viewModel.interestPercentageString)
                             
                             if viewModel.perMonthExpense > 0 {
                                 TextFiedForm(title: "Per Month", value: .constant(viewModel.perMonthExpenseWithInterest.splitDigit()))

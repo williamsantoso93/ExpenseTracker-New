@@ -19,8 +19,43 @@ extension String {
         return self
     }
     
+    func splitDigitDouble() -> String {
+        if let decimalSeparator = Locale.current.decimalSeparator {
+            guard let last = self.last else { return self }
+            let lastString: String = "\(String(describing: last))"
+            if lastString != decimalSeparator {
+                return self.toDouble()?.splitDigit() ?? self
+            }
+        }
+        
+        return self
+    }
+    
     func toInt() -> Int {
-        Int(self.replacingOccurrences(of: ".", with: "")) ?? 0
+        if let groupingSeparator = Locale.current.groupingSeparator {
+            return Int(self.replacingOccurrences(of: groupingSeparator, with: "")) ?? 0
+        }
+        
+        return 0
+    }
+    
+    func toDouble() -> Double? {
+        if !self.isEmpty {
+            if let groupingSeparator = Locale.current.groupingSeparator {
+                return Double(self.replacingOccurrences(of: groupingSeparator, with: ""))
+            }
+        }
+        
+        return nil
+    }
+}
+
+extension Double {
+    func splitDigit() -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 2
+        return numberFormatter.string(from: NSNumber(value: self)) ?? ""
     }
 }
 
