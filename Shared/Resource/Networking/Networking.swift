@@ -30,7 +30,22 @@ class Networking {
     var baseBlock: String {
         return base + "blocks/"
     }
-    let bearerToken = "secret_yUINPEksksZKF6AMsyzhCKX03fSmKeD1FVblA41DoCu"
+    var user: User? {
+        if let user = UserDefaults.standard.string(forKey: "user") {
+            return User(rawValue: user)
+        }
+        
+        return nil
+    }
+    var bearerToken: String {
+        guard let user = user else { return "" }
+        switch user {
+        case .william:
+            return "secret_yUINPEksksZKF6AMsyzhCKX03fSmKeD1FVblA41DoCu"
+        case .paramitha:
+            return "secret_8BwqfsjdiHtbN2v5Hq2fl7Z1Ka9ySPXvtdnKu6ZcJUS"
+        }
+    }
     let notionVersion = "2021-08-16"
     
     enum DatabaseID: String {
@@ -39,6 +54,27 @@ class Networking {
         case yearMonthDatabaseID = "741f8897815542cba0f20110fe0c2adc"
         case typeDatabaseID = "030a40c2dfed4ed08d42950d25af4466"
         case templateModelDatabaseID = "ddf9d34742994bc1a568d8aff356f737"
+    }
+    
+    func getDatabaseID(_ databaseID: DatabaseID) -> String {
+        if let user = user {
+            if user == .paramitha {
+                switch databaseID {
+                case .expenseDatabaseID:
+                    return "d35b5f3a75b44e448b02d49e8c87032d"
+                case .incomeDatabaseID:
+                    return "8b2fb7c23d9640c4b6a8e24befb9358d"
+                case .yearMonthDatabaseID:
+                    return "4c3450b81ca04dca8f4ff05bc81dd3b5"
+                case .typeDatabaseID:
+                    return "6bd8ced9ad40429ab616608522ecb78d"
+                case .templateModelDatabaseID:
+                    return "8a0146c2fc15406887fe789e44f12ddf"
+                }
+            }
+            return databaseID.rawValue
+        }
+        return databaseID.rawValue
     }
     
     enum SortDirection: String {

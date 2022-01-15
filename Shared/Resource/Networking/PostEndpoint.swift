@@ -29,7 +29,7 @@ extension Networking {
         let urlString = basePage
         
         let post = DefaultPost(
-            parent: Parent(databaseID: DatabaseID.expenseDatabaseID.rawValue),
+            parent: Parent(databaseID: getDatabaseID(.expenseDatabaseID)),
             properties: Mapper.expenseLocalToRemote(expense)
         )
         
@@ -44,7 +44,7 @@ extension Networking {
         let urlString = basePage
         
         let post = DefaultPost(
-            parent: Parent(databaseID: DatabaseID.incomeDatabaseID.rawValue),
+            parent: Parent(databaseID: getDatabaseID(.incomeDatabaseID)),
             properties: Mapper.incomeLocalToRemote(income)
         )
         
@@ -59,7 +59,7 @@ extension Networking {
         let urlString = basePage
         
         let post = DefaultPost(
-            parent: Parent(databaseID: DatabaseID.yearMonthDatabaseID.rawValue),
+            parent: Parent(databaseID: getDatabaseID(.yearMonthDatabaseID)),
             properties: Mapper.yearMonthLocalToRemote(yearMonth)
         )
         
@@ -75,7 +75,7 @@ extension Networking {
         let urlString = basePage
         
         let post = DefaultPost(
-            parent: Parent(databaseID: DatabaseID.typeDatabaseID.rawValue),
+            parent: Parent(databaseID: getDatabaseID(.typeDatabaseID)),
             properties: Mapper.typeLocalToRemote(typeModel)
         )
         
@@ -90,7 +90,7 @@ extension Networking {
         let urlString = basePage
         
         let post = DefaultPost(
-            parent: Parent(databaseID: DatabaseID.templateModelDatabaseID.rawValue),
+            parent: Parent(databaseID: getDatabaseID(.templateModelDatabaseID)),
             properties: Mapper.templateModelLocalToRemote(templateModel)
         )
         

@@ -12,6 +12,7 @@ struct SummaryScreen: View {
     @State private var isLoading = false
     @State private var isShowErrorMessageAlert = false
     @State var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
+    @StateObject var viewModel = SummaryViewModel()
     
     var body: some View {
         NavigationView{
@@ -31,6 +32,7 @@ struct SummaryScreen: View {
                 NavigationLink("Template") {
                     templateModelscreen()
                 }
+
             }
             .loadingView(globalData.isLoading, isNeedDisable: false)
             .navigationTitle("Summary")
@@ -41,10 +43,27 @@ struct SummaryScreen: View {
                     isShowErrorMessageAlert = true
                 }
             }
+            .overlay() {
+                VStack {
+                    Spacer()
+                    Rectangle()
+                        .onLongPressGesture(minimumDuration: 5) {
+                            viewModel.isSelectUser = true
+                        }
+                        .frame(height: 44.0)
+                        .foregroundColor(.clear)
+                }
+            }
         }
         .refreshable {
             globalData.loadAll()
         }
+        .fullScreenCover(isPresented: $viewModel.isSelectUser) {
+            
+        } content: {
+            SelectUsercreen()
+        }
+
     }
 }
 

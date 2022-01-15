@@ -8,5 +8,17 @@
 import Foundation
 
 class SummaryViewModel: ObservableObject {
+    @Published var isSelectUser = false
     
+    init() {
+        checkUser()
+    }
+    
+    func checkUser() {
+        if UserDefaults.standard.string(forKey: "user") != nil {
+            isSelectUser = false
+        } else {
+            isSelectUser = true
+        }
+    }
 }

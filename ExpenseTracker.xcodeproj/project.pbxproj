@@ -43,6 +43,10 @@
 		E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02830B72782B1FF001E8B51 /* FormulaProperty.swift */; };
 		E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031E2D3277DE67500DD449B /* RoolupProperty.swift */; };
 		E031E2D5277DE67500DD449B /* RoolupProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031E2D3277DE67500DD449B /* RoolupProperty.swift */; };
+		E03C701D2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */; };
+		E03C701E2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */; };
+		E03C70202792F044005D6CDB /* SelectUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */; };
+		E03C70212792F044005D6CDB /* SelectUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */; };
 		E03FC18C277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
 		E03FC18D277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
 		E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C1277087D100F358D9 /* ExpenseViewModel.swift */; };
@@ -173,6 +177,8 @@
 		E01A2A762776B46E002E685F /* AddTypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeScreen.swift; sourceTree = "<group>"; };
 		E02830B72782B1FF001E8B51 /* FormulaProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaProperty.swift; sourceTree = "<group>"; };
 		E031E2D3277DE67500DD449B /* RoolupProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolupProperty.swift; sourceTree = "<group>"; };
+		E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsercreen.swift; sourceTree = "<group>"; };
+		E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUserViewModel.swift; sourceTree = "<group>"; };
 		E03FC18B277837620019F01D /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		E08178C1277087D100F358D9 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
 		E08178C327708FFC00F358D9 /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
@@ -302,6 +308,7 @@
 				E01A2A732776B448002E685F /* Type */,
 				E002E2BD2778B05400A7A1C5 /* Template */,
 				E0BF3A88276F566B00FC902E /* ContentView.swift */,
+				E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -311,6 +318,7 @@
 			children = (
 				E006435B27740F8C00B5108D /* GlobalDataViewModel.swift */,
 				E006435927740F7000B5108D /* SummaryViewModel.swift */,
+				E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */,
 				E01A2A692776B3DC002E685F /* YearMonth */,
 				E01A2A682776B3D3002E685F /* Invoice */,
 				E0F617EE2771759900C546B7 /* Expense */,
@@ -733,6 +741,7 @@
 				E01A2A772776B46E002E685F /* AddTypeScreen.swift in Sources */,
 				E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */,
 				E08178CA2770903000F358D9 /* IncomeScreen.swift in Sources */,
+				E03C70202792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
 				E0BF3AB2276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */,
 				E0BF3AB4276F566B00FC902E /* ContentView.swift in Sources */,
@@ -743,6 +752,7 @@
 				E0D6EF20277021F800DF12AD /* TextProperty.swift in Sources */,
 				E0D6EF322770259F00DF12AD /* IncomeProperty.swift in Sources */,
 				E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */,
+				E03C701D2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
 				E0D6EF2F2770240900DF12AD /* RelationProperty.swift in Sources */,
 				E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */,
 				E0D6EF26277023CB00DF12AD /* NumberProperty.swift in Sources */,
@@ -797,6 +807,7 @@
 				E09030D527781FF0003ED6B5 /* TypeModel.swift in Sources */,
 				E09030C327781FD5003ED6B5 /* TextField.swift in Sources */,
 				E0BF3AB3276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
+				E03C70212792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
 				E09030D027781FF0003ED6B5 /* TypeProperty.swift in Sources */,
 				E09030C827781FE0003ED6B5 /* IncomeViewModel.swift in Sources */,
 				E09030DA27781FF7003ED6B5 /* DeleteEndpoint.swift in Sources */,
@@ -807,6 +818,7 @@
 				E0BF3AB5276F566B00FC902E /* ContentView.swift in Sources */,
 				E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */,
 				E0D6EF21277021F800DF12AD /* TextProperty.swift in Sources */,
+				E03C701E2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
 				E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */,
 				E09030C527781FE0003ED6B5 /* AddExpenseViewModel.swift in Sources */,
 				E09030D427781FF0003ED6B5 /* IncomeProperty.swift in Sources */,
