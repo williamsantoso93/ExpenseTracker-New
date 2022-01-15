@@ -46,12 +46,13 @@ struct SummaryScreen: View {
             .overlay() {
                 VStack {
                     Spacer()
-                    Rectangle()
-                        .onLongPressGesture(minimumDuration: 5) {
+                     
+                    Color.clear
+                        .contentShape(Rectangle())
+                        .onLongPressGesture(minimumDuration: 2) {
                             viewModel.isSelectUser = true
                         }
-                        .frame(height: 44.0)
-                        .foregroundColor(.clear)
+                        .frame(height: 44)
                 }
             }
         }
