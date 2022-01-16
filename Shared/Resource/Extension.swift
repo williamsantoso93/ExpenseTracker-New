@@ -42,7 +42,11 @@ extension String {
     func toDouble() -> Double? {
         if !self.isEmpty {
             if let groupingSeparator = Locale.current.groupingSeparator {
-                return Double(self.replacingOccurrences(of: groupingSeparator, with: ""))
+                var valueString = self.replacingOccurrences(of: groupingSeparator, with: "")
+                if valueString.contains(",") {
+                    valueString = valueString.replacingOccurrences(of: ",", with: ".")
+                }
+                return Double(valueString)
             }
         }
         

@@ -197,7 +197,7 @@
 		E0BF3A88276F566B00FC902E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0BF3A89276F566B00FC902E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E0BF3A8A276F566B00FC902E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E0BF3A8F276F566B00FC902E /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0BF3A8F276F566B00FC902E /* Hitung Uang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hitung Uang.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A95276F566B00FC902E /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A97276F566B00FC902E /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -472,7 +472,7 @@
 		E0BF3A90276F566B00FC902E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E0BF3A8F276F566B00FC902E /* ExpenseTracker.app */,
+				E0BF3A8F276F566B00FC902E /* Hitung Uang.app */,
 				E0BF3A95276F566B00FC902E /* ExpenseTracker.app */,
 				E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */,
 				E0BF3AA8276F566B00FC902E /* Tests macOS.xctest */,
@@ -560,7 +560,7 @@
 			);
 			name = "ExpenseTracker (iOS)";
 			productName = "ExpenseTracker (iOS)";
-			productReference = E0BF3A8F276F566B00FC902E /* ExpenseTracker.app */;
+			productReference = E0BF3A8F276F566B00FC902E /* Hitung Uang.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E0BF3A94276F566B00FC902E /* ExpenseTracker (macOS) */ = {
@@ -982,7 +982,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 497N7524MA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -997,8 +997,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTracker;
-				PRODUCT_NAME = ExpenseTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
+				PRODUCT_NAME = "Hitung Uang";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1012,7 +1012,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 497N7524MA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1027,8 +1027,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTracker;
-				PRODUCT_NAME = ExpenseTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
+				PRODUCT_NAME = "Hitung Uang";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
