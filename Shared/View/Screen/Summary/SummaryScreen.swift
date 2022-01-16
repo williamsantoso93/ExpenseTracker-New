@@ -32,7 +32,6 @@ struct SummaryScreen: View {
                 NavigationLink("Template") {
                     templateModelscreen()
                 }
-
             }
             .loadingView(globalData.isLoading, isNeedDisable: false)
             .navigationTitle("Summary")

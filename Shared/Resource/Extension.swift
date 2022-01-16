@@ -23,8 +23,13 @@ extension String {
         if let decimalSeparator = Locale.current.decimalSeparator {
             guard let last = self.last else { return self }
             let lastString: String = "\(String(describing: last))"
-            if lastString != decimalSeparator {
-                return self.toDouble()?.splitDigit() ?? self
+            if lastString != decimalSeparator && (!self.contains(decimalSeparator)) {
+                return self.toDouble()?.splitDigit(maximumFractionDigits: 0) ?? self
+            } else {
+                let decimalSeparatorCounter = self.components(separatedBy: decimalSeparator).count - 1
+                if lastString == decimalSeparator && decimalSeparatorCounter > 1 {
+                    return String(self.dropLast())
+                }
             }
         }
         
@@ -59,6 +64,14 @@ extension Double {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 2
+        return numberFormatter.string(from: NSNumber(value: self)) ?? ""
+    }
+    func splitDigit(maximumFractionDigits: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        if maximumFractionDigits > 0 {
+            numberFormatter.maximumFractionDigits = maximumFractionDigits
+        }
         return numberFormatter.string(from: NSNumber(value: self)) ?? ""
     }
 }
