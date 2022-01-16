@@ -21,7 +21,7 @@ extension Networking {
     }
     
     func getIncome(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<IncomeProperty>, NetworkError>) -> Void) {
-        let urlString = baseDatabase + DatabaseID.incomeDatabaseID.rawValue + "/query"
+        let urlString = baseDatabase + getDatabaseID(.incomeDatabaseID) + "/query"
         
         let post = Query(
             startCursor: startCursor,
@@ -38,7 +38,7 @@ extension Networking {
     }
     
     func getExpense(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<ExpenseProperty>, NetworkError>) -> Void) {
-        let urlString = baseDatabase + DatabaseID.expenseDatabaseID.rawValue + "/query"
+        let urlString = baseDatabase + getDatabaseID(.expenseDatabaseID) + "/query"
         
         let post = Query(
             startCursor: startCursor,
@@ -59,7 +59,7 @@ extension Networking {
     }
     
     func getYearMonth(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<YearMonthProperty>, NetworkError>) -> Void) {
-        let urlString = baseDatabase + DatabaseID.yearMonthDatabaseID.rawValue + "/query"
+        let urlString = baseDatabase + getDatabaseID(.yearMonthDatabaseID) + "/query"
         
         let post = Query(
             startCursor: startCursor,
@@ -81,7 +81,7 @@ extension Networking {
     }
     
     func getTypes(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<TypeProperty>, NetworkError>) -> Void) {
-        let urlString = baseDatabase + DatabaseID.typeDatabaseID.rawValue + "/query"
+        let urlString = baseDatabase + getDatabaseID(.typeDatabaseID) + "/query"
         
         let post = Query(
             startCursor: startCursor,
@@ -103,7 +103,7 @@ extension Networking {
     }
     
     func getTemplateModel(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<TemplateModelProperty>, NetworkError>) -> Void) {
-        let urlString = baseDatabase + DatabaseID.templateModelDatabaseID.rawValue + "/query"
+        let urlString = baseDatabase + getDatabaseID(.templateModelDatabaseID) + "/query"
         
         let post = Query(
             startCursor: startCursor,

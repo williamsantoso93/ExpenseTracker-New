@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E0029697278822BD00D30485 /* HideKeyboardAppWide.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */; };
-		E0029698278822BD00D30485 /* HideKeyboardAppWide.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */; };
 		E002E2B227789EC000A7A1C5 /* SettingProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002E2B127789EC000A7A1C5 /* SettingProperty.swift */; };
 		E002E2B327789EC000A7A1C5 /* SettingProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002E2B127789EC000A7A1C5 /* SettingProperty.swift */; };
 		E002E2B527789F7800A7A1C5 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002E2B427789F7800A7A1C5 /* Setting.swift */; };
@@ -43,6 +41,12 @@
 		E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02830B72782B1FF001E8B51 /* FormulaProperty.swift */; };
 		E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031E2D3277DE67500DD449B /* RoolupProperty.swift */; };
 		E031E2D5277DE67500DD449B /* RoolupProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031E2D3277DE67500DD449B /* RoolupProperty.swift */; };
+		E03C701D2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */; };
+		E03C701E2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */; };
+		E03C70202792F044005D6CDB /* SelectUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */; };
+		E03C70212792F044005D6CDB /* SelectUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */; };
+		E03C7023279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */; };
+		E03C7024279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */; };
 		E03FC18C277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
 		E03FC18D277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
 		E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C1277087D100F358D9 /* ExpenseViewModel.swift */; };
@@ -149,7 +153,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HideKeyboardAppWide.swift; path = "../../../../../../Downloads/otospector-customerapp-ios-development/Otospector-OtosApp/Resources/Keyboard/HideKeyboardAppWide.swift"; sourceTree = "<group>"; };
 		E002E2B127789EC000A7A1C5 /* SettingProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProperty.swift; sourceTree = "<group>"; };
 		E002E2B427789F7800A7A1C5 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		E002E2B72778B04700A7A1C5 /* TemplateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateScreen.swift; sourceTree = "<group>"; };
@@ -173,6 +176,9 @@
 		E01A2A762776B46E002E685F /* AddTypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeScreen.swift; sourceTree = "<group>"; };
 		E02830B72782B1FF001E8B51 /* FormulaProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaProperty.swift; sourceTree = "<group>"; };
 		E031E2D3277DE67500DD449B /* RoolupProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolupProperty.swift; sourceTree = "<group>"; };
+		E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsercreen.swift; sourceTree = "<group>"; };
+		E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUserViewModel.swift; sourceTree = "<group>"; };
+		E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideKeyboardAppWide.swift; sourceTree = "<group>"; };
 		E03FC18B277837620019F01D /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		E08178C1277087D100F358D9 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
 		E08178C327708FFC00F358D9 /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
@@ -191,7 +197,7 @@
 		E0BF3A88276F566B00FC902E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0BF3A89276F566B00FC902E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E0BF3A8A276F566B00FC902E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E0BF3A8F276F566B00FC902E /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0BF3A8F276F566B00FC902E /* Hitung Uang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hitung Uang.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A95276F566B00FC902E /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A97276F566B00FC902E /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -302,6 +308,7 @@
 				E01A2A732776B448002E685F /* Type */,
 				E002E2BD2778B05400A7A1C5 /* Template */,
 				E0BF3A88276F566B00FC902E /* ContentView.swift */,
+				E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -311,6 +318,7 @@
 			children = (
 				E006435B27740F8C00B5108D /* GlobalDataViewModel.swift */,
 				E006435927740F7000B5108D /* SummaryViewModel.swift */,
+				E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */,
 				E01A2A692776B3DC002E685F /* YearMonth */,
 				E01A2A682776B3D3002E685F /* Invoice */,
 				E0F617EE2771759900C546B7 /* Expense */,
@@ -335,7 +343,7 @@
 				E0BF3A89276F566B00FC902E /* Persistence.swift */,
 				E0D6EF3B27702DE400DF12AD /* Extension.swift */,
 				E097D713277074BB0093F5DA /* Mapper.swift */,
-				E0029696278822BD00D30485 /* HideKeyboardAppWide.swift */,
+				E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */,
 				E0050C2A2778003A00396C36 /* Networking */,
 				E0F9E82627797BC60082B310 /* Validation.swift */,
 			);
@@ -464,7 +472,7 @@
 		E0BF3A90276F566B00FC902E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E0BF3A8F276F566B00FC902E /* ExpenseTracker.app */,
+				E0BF3A8F276F566B00FC902E /* Hitung Uang.app */,
 				E0BF3A95276F566B00FC902E /* ExpenseTracker.app */,
 				E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */,
 				E0BF3AA8276F566B00FC902E /* Tests macOS.xctest */,
@@ -552,7 +560,7 @@
 			);
 			name = "ExpenseTracker (iOS)";
 			productName = "ExpenseTracker (iOS)";
-			productReference = E0BF3A8F276F566B00FC902E /* ExpenseTracker.app */;
+			productReference = E0BF3A8F276F566B00FC902E /* Hitung Uang.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E0BF3A94276F566B00FC902E /* ExpenseTracker (macOS) */ = {
@@ -733,20 +741,22 @@
 				E01A2A772776B46E002E685F /* AddTypeScreen.swift in Sources */,
 				E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */,
 				E08178CA2770903000F358D9 /* IncomeScreen.swift in Sources */,
+				E03C70202792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
 				E0BF3AB2276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */,
 				E0BF3AB4276F566B00FC902E /* ContentView.swift in Sources */,
-				E0029697278822BD00D30485 /* HideKeyboardAppWide.swift in Sources */,
 				E002E2B227789EC000A7A1C5 /* SettingProperty.swift in Sources */,
 				E0050C322778007600396C36 /* DeleteEndpoint.swift in Sources */,
 				E02830B82782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
 				E0D6EF20277021F800DF12AD /* TextProperty.swift in Sources */,
 				E0D6EF322770259F00DF12AD /* IncomeProperty.swift in Sources */,
 				E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */,
+				E03C701D2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
 				E0D6EF2F2770240900DF12AD /* RelationProperty.swift in Sources */,
 				E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */,
 				E0D6EF26277023CB00DF12AD /* NumberProperty.swift in Sources */,
 				E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */,
+				E03C7023279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */,
 				E097D70E2770731C0093F5DA /* Income.swift in Sources */,
 				E006435A27740F7000B5108D /* SummaryViewModel.swift in Sources */,
 				E0D6EF172770201B00DF12AD /* YearMonthProperty.swift in Sources */,
@@ -797,20 +807,22 @@
 				E09030D527781FF0003ED6B5 /* TypeModel.swift in Sources */,
 				E09030C327781FD5003ED6B5 /* TextField.swift in Sources */,
 				E0BF3AB3276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
+				E03C70212792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
 				E09030D027781FF0003ED6B5 /* TypeProperty.swift in Sources */,
 				E09030C827781FE0003ED6B5 /* IncomeViewModel.swift in Sources */,
 				E09030DA27781FF7003ED6B5 /* DeleteEndpoint.swift in Sources */,
-				E0029698278822BD00D30485 /* HideKeyboardAppWide.swift in Sources */,
 				E002E2B327789EC000A7A1C5 /* SettingProperty.swift in Sources */,
 				E09030C627781FE0003ED6B5 /* YearMonthCheck.swift in Sources */,
 				E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
 				E0BF3AB5276F566B00FC902E /* ContentView.swift in Sources */,
 				E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */,
 				E0D6EF21277021F800DF12AD /* TextProperty.swift in Sources */,
+				E03C701E2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
 				E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */,
 				E09030C527781FE0003ED6B5 /* AddExpenseViewModel.swift in Sources */,
 				E09030D427781FF0003ED6B5 /* IncomeProperty.swift in Sources */,
 				E031E2D5277DE67500DD449B /* RoolupProperty.swift in Sources */,
+				E03C7024279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */,
 				E09030CF27781FF0003ED6B5 /* Income.swift in Sources */,
 				E0D6EF302770240900DF12AD /* RelationProperty.swift in Sources */,
 				E0D6EF3D27702DE400DF12AD /* Extension.swift in Sources */,
@@ -970,7 +982,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 497N7524MA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -985,8 +997,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTracker;
-				PRODUCT_NAME = ExpenseTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
+				PRODUCT_NAME = "Hitung Uang";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1000,7 +1012,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 497N7524MA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1015,8 +1027,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTracker;
-				PRODUCT_NAME = ExpenseTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
+				PRODUCT_NAME = "Hitung Uang";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
