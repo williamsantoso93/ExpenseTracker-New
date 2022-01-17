@@ -25,7 +25,7 @@ struct AddTypeScreen: View {
                         Text($0)
                     }
                 }
-                NumberTextFiedForm(title: "Name", prompt: "IPL", value: $viewModel.name)
+                TextFiedForm(title: "Name", prompt: "IPL", value: $viewModel.name)
                 
                 if viewModel.isUpdate {
                     Section {

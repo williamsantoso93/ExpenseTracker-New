@@ -25,8 +25,8 @@ struct YearMonthScreen: View {
                             
                             VStack(alignment: .leading) {
                                 Text(yearMonth.month)
-                                Text("Total Income: Rp \(totalIncomes.splitDigit())")
-                                Text("Total Expense: Rp \(totalExpenses.splitDigit())")
+//                                Text("Total Income: Rp \(totalIncomes.splitDigit())")
+//                                Text("Total Expense: Rp \(totalExpenses.splitDigit())")
                             }
                         }
                     }
