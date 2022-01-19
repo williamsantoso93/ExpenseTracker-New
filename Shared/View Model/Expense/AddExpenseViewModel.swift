@@ -230,7 +230,9 @@ class AddExpenseViewModel: ObservableObject {
         var count = 0
         var expense = self.expense
         expense.types?.append("Installment")
-        expense.value = perMonthExpenseWithInterest
+        expense.duration = "Monthly"
+        let strValue = String(format: "%.2f", perMonthExpenseWithInterest)
+        expense.value = Double(strValue) ?? 0
         
         for installment in 1 ... installmentMonth {
             if installment > 1 {

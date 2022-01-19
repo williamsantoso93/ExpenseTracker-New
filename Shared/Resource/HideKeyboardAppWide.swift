@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 extension UIApplication: UIGestureRecognizerDelegate {
     func addTapGestureRecognizer() {
         guard let window = (connectedScenes.first as? UIWindowScene)?.windows.first else { return }
@@ -21,3 +22,4 @@ extension UIApplication: UIGestureRecognizerDelegate {
         return false // set to `false` if you don't want to detect tap during other gestures
     }
 }
+#endif
