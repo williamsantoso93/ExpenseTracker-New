@@ -229,10 +229,12 @@ class AddExpenseViewModel: ObservableObject {
         guard installmentMonth > 0 else { return }
         var count = 0
         var expense = self.expense
+        expense.types?.append("Installment")
         expense.value = perMonthExpenseWithInterest
+        
         for installment in 1 ... installmentMonth {
             if installment > 1 {
-                expense.date = self.expense.date?.addMonth(by: installment)
+                expense.date = expense.date?.addMonth(by: 1)
             }
             expense.note = note + " | Installment \(installment) to \(installmentMonth)"
             guard let date = expense.date else { return }
@@ -241,9 +243,10 @@ class AddExpenseViewModel: ObservableObject {
                 
                 Networking.shared.postExpense(expense) { isSuccess in
                     count += 1
-                    
+
                     if count >= self.installmentMonth {
-                        return completion(isSuccess)
+                        self.isLoading = false
+                        return completion(true)
                     }
                 }
             }
