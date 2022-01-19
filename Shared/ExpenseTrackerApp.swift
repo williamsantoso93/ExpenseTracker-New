@@ -15,7 +15,9 @@ struct ExpenseTrackerApp: App {
     var body: some Scene {
         WindowGroup {
             SummaryScreen()
+#if os(iOS)
                 .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+#endif
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

@@ -58,12 +58,19 @@ struct SummaryScreen: View {
         .refreshable {
             globalData.loadAll()
         }
+#if os(iOS)
         .fullScreenCover(isPresented: $viewModel.isSelectUser) {
             
         } content: {
             SelectUsercreen()
         }
-
+#else
+        .sheet(isPresented: $viewModel.isSelectUser) {
+            
+        } content: {
+            SelectUsercreen()
+        }
+#endif
     }
 }
 
