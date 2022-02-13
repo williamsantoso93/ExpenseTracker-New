@@ -14,7 +14,9 @@ struct Income: Codable {
     var yearMonth: String?
     var yearMonthID: String? = nil
     var value: Double?
-    var types: [String]?
+    var account: String?
+    var category: String?
+    var subcategory: String?
     var note: String?
     var date: Date?
     var keywords: String?

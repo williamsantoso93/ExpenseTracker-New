@@ -11,8 +11,8 @@ import Foundation
 struct TemplateModel: Codable, Hashable {
     var blockID: String
     var name: String?
-    var category, duration, paymentVia, store: String?
-    var types: [String]?
+    var account, category, subcategory, duration, paymentVia, store: String?
+    var type: String?
     var value: Double?
     var keywords: String?
 }

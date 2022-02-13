@@ -56,10 +56,12 @@ struct Mapper {
             yearMonth: remote.yearMonth?.relation.first?.id,
             note: remote.note?.richText.first?.text.content,
             value: remote.value?.number,
+            account: remote.account?.select?.name ?? "",
+            category: remote.category?.select?.name ?? "",
+            subcategory: remote.subcategory?.select?.name ?? "",
             duration: remote.duration?.select?.name ?? "",
             paymentVia: remote.paymentVia?.select?.name ?? "",
             store: remote.store?.richText.first?.text.content,
-            types: multiSelectsToStrings(remote.types?.multiSelect),
             date: remote.date?.date.start.toDate(),
             keywords: remote.keywords?.formula.string
         )
@@ -86,10 +88,12 @@ struct Mapper {
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
             note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
             value: NumberProperty(number: local.value ?? 0),
+            account: SingleSelectProperty(select: Select(name: local.account ?? "")),
+            category: SingleSelectProperty(select: Select(name: local.category ?? "")),
+            subcategory: textToSingleSelectProperty(local.subcategory),
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
             paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
             store: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.store ?? ""))]),
-            types: MultiSelectProperty(multiSelect: stringsToMultiSelects(local.types)),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
     }
@@ -118,7 +122,9 @@ struct Mapper {
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
             value: remote.value?.number,
-            types: multiSelectsToStrings(remote.types?.multiSelect),
+            account: remote.account?.select?.name,
+            category: remote.category?.select?.name,
+            subcategory: remote.subcategory?.select?.name,
             note: remote.note?.richText.first?.text.content,
             date: remote.date?.date.start.toDate(),
             keywords: remote.keywords?.formula.string
@@ -136,7 +142,9 @@ struct Mapper {
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
             value: NumberProperty(number: local.value ?? 0),
-            types: MultiSelectProperty(multiSelect: stringsToMultiSelects(local.types)),
+            account: SingleSelectProperty(select: Select(name: local.account ?? "")),
+            category: SingleSelectProperty(select: Select(name: local.category ?? "")),
+            subcategory: textToSingleSelectProperty(local.subcategory),
             note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
@@ -153,8 +161,10 @@ struct Mapper {
         TypeModel(
             blockID: id,
             name: remote.name.title.first?.text.content ?? "",
-            category: remote.category.select?.name ?? "",
-            keywords: remote.keywords?.formula.string
+            type: remote.type.select?.name ?? "",
+            keywords: remote.keywords?.formula.string,
+            subcategoryOf: multiSelectsToStrings(remote.subcategoryOf?.multiSelect),
+            isMainCategory: remote.mainCategory?.formula.boolean ?? false
         )
     }
     
@@ -167,7 +177,8 @@ struct Mapper {
     static func typeLocalToRemote(_ local: TypeModel) -> TypeProperty {
         TypeProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name))]),
-            category: SingleSelectProperty(select: Select(name: local.category))
+            type: SingleSelectProperty(select: Select(name: local.type)),
+            subcategoryOf: stringsToMultiSelectProperty(local.subcategoryOf)
         )
     }
     
@@ -182,11 +193,13 @@ struct Mapper {
         TemplateModel(
             blockID: id,
             name: remote.name?.title.first?.text.content,
+            account: remote.account?.select?.name ?? "",
             category: remote.category?.select?.name ?? "",
+            subcategory: remote.subcategory?.select?.name ?? "",
             duration: remote.duration?.select?.name ?? "",
             paymentVia: remote.paymentVia?.select?.name ?? "",
             store: remote.store?.richText.first?.text.content,
-            types: multiSelectsToStrings(remote.types?.multiSelect),
+            type: remote.type?.select?.name ?? "",
             value: remote.value?.number,
             keywords: remote.keywords?.formula.string
         )
@@ -201,10 +214,12 @@ struct Mapper {
     static func templateModelLocalToRemote(_ local: TemplateModel) -> TemplateModelProperty {
         TemplateModelProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name ?? ""))]),
+            account: textToSingleSelectProperty(local.account),
             category: textToSingleSelectProperty(local.category),
+            subcategory: textToSingleSelectProperty(local.subcategory),
+            type: textToSingleSelectProperty(local.type),
             duration: textToSingleSelectProperty(local.duration),
             paymentVia: textToSingleSelectProperty(local.paymentVia),
-            types: MultiSelectProperty(multiSelect: stringsToMultiSelects(local.types)),
             value: numberToNumberProperty(local.value),
             store: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.store ?? ""))])
         )
@@ -227,6 +242,17 @@ struct Mapper {
         }
         
         return SingleSelectProperty(select: Select(name: text))
+    }
+    
+    static func stringsToMultiSelectProperty(_ strings: [String]?) -> MultiSelectProperty? {
+        guard let strings = strings else { return nil }
+        guard !strings.isEmpty else { return nil }
+        
+        let map = strings.map { result in
+            Select(name: result)
+        }
+        
+        return MultiSelectProperty(multiSelect: map)
     }
     
     static func numberToNumberProperty(_ value: Double?) -> NumberProperty? {

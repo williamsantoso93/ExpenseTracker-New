@@ -20,12 +20,15 @@ struct AddTypeScreen: View {
     var body: some View {
         NavigationView {
             Form {
-                Picker("Category", selection: $viewModel.selectedCategory) {
-                    ForEach(viewModel.category, id: \.self) {
+                Picker("Type", selection: $viewModel.selectedType) {
+                    ForEach(viewModel.typesCategory, id: \.self) {
                         Text($0)
                     }
                 }
                 TextFiedForm(title: "Name", prompt: "IPL", value: $viewModel.name)
+                
+                MultiPickerFormView("Subcategory of", items: viewModel.subcategoriesOf, selectedItems: $viewModel.selectedSubcategoryOf)
+                    .disabled(viewModel.isSubCategoryDisabled)
                 
                 if viewModel.isUpdate {
                     Section {

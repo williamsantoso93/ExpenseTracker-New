@@ -11,10 +11,43 @@ class AddTemplateViewModel: ObservableObject {
     @Published var templateModel: TemplateModel
     @Published var types = GlobalData.shared.types
     
-    var expenseType: [String] {
-        types.expenseTypes.map { result in
+    var accounts: [String] {
+        types.accountTypes.map { result in
             result.name
         }
+    }
+    var selectedCategories: [TypeModel] {
+        if selectedType == "Expense" {
+            return types.expenseTypes
+        } else {
+            return types.incomeTypes
+        }
+    }
+    var categories: [String] {
+        selectedCategories.filter({ category in
+            category.isMainCategory
+        }).map { result in
+            result.name
+        }
+    }
+    var subcategories: [String] {
+        guard !selectedCategory.isEmpty else {
+            return []
+        }
+        
+        return selectedCategories.filter({ category in
+            guard let subcategoryOf = category.subcategoryOf else {
+                return false
+            }
+            return subcategoryOf.contains { subcategory in
+                subcategory == selectedCategory
+            }
+        }).map { result in
+            result.name
+        }
+    }
+    var isSubCategoryDisabled: Bool {
+        subcategories.isEmpty
     }
     var paymentType: [String] {
         types.paymentTypes.map { result in
@@ -37,11 +70,12 @@ class AddTemplateViewModel: ObservableObject {
         valueString.toDouble() ?? 0
     }
     @Published var name = ""
-    @Published var selectedType = ""
-    @Published var selectedTypes: [String] = []
+    @Published var selectedAccount = "Wil"
+    @Published var selectedCategory = ""
+    @Published var selectedSubcategory = ""
     @Published var selectedPayment = ""
     @Published var selectedDuration = "Monthly"
-    @Published var selectedCategory = "Expense"
+    @Published var selectedType = "Expense"
     @Published var selectedStore = ""
     var isOtherStore: Bool {
         selectedStore == "Other"
@@ -54,7 +88,7 @@ class AddTemplateViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    var category: [String] {
+    var typesCategory: [String] {
         [
             "Income",
             "Expense",
@@ -70,7 +104,7 @@ class AddTemplateViewModel: ObservableObject {
             }
             selectedDuration = templateModel.duration ?? ""
             selectedPayment = templateModel.paymentVia ?? ""
-            selectedTypes = templateModel.types ?? []
+            selectedCategory = templateModel.category ?? ""
             checkStore(templateModel.store)
             
             isUpdate = true
@@ -79,10 +113,13 @@ class AddTemplateViewModel: ObservableObject {
             self.templateModel = TemplateModel(
                 blockID: "",
                 name: "",
+                account: "",
+                category: "",
+                subcategory: "",
                 duration: "",
                 paymentVia: "",
                 store: "",
-                types: [],
+                type: "",
                 value: 0
             )
         }
@@ -122,8 +159,10 @@ class AddTemplateViewModel: ObservableObject {
         templateModel.value = value
         templateModel.duration = selectedDuration
         templateModel.paymentVia = selectedPayment
-        templateModel.types = selectedTypes
+        templateModel.account = selectedAccount
         templateModel.category = selectedCategory
+        templateModel.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
+        templateModel.type = selectedType
         templateModel.store = getStore()
         
         templateModel.name = name.isEmpty ? templateModel.store : name

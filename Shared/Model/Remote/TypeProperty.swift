@@ -10,12 +10,16 @@ import Foundation
 // MARK: - TypeProperty
 struct TypeProperty: Codable {
     let name: TitleProperty
-    let category: SingleSelectProperty
+    let type: SingleSelectProperty
+    let subcategoryOf: MultiSelectProperty?
+    var mainCategory: FormulaProperty? = nil
     var keywords: FormulaProperty? = nil
     
     enum CodingKeys: String, CodingKey {
-        case category = "Category"
         case name = "Name"
+        case type = "Type"
+        case subcategoryOf = "Subcategory of"
+        case mainCategory = "Main Category"
         case keywords = "Keywords"
     }
 }

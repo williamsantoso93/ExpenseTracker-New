@@ -12,14 +12,40 @@ class AddExpenseViewModel: ObservableObject {
     @Published var expense: Expense
     @Published var types = GlobalData.shared.types
     @Published var templateModels = GlobalData.shared.templateModels.filter { result in
-        result.category == "Expense"
+        result.type == "Expense"
     }
     @Published var isLoading = false
     
-    var expenseType: [String] {
-        types.expenseTypes.map { result in
+    var accounts: [String] {
+        types.accountTypes.map { result in
             result.name
         }
+    }
+    var categories: [String] {
+        types.expenseTypes.filter({ category in
+            category.isMainCategory
+        }).map { result in
+            result.name
+        }
+    }
+    var subcategories: [String] {
+        guard !selectedCategory.isEmpty else {
+            return []
+        }
+        
+        return types.expenseTypes.filter({ category in
+            guard let subcategoryOf = category.subcategoryOf else {
+                return false
+            }
+            return subcategoryOf.contains { subcategory in
+                subcategory == selectedCategory
+            }
+        }).map { result in
+            result.name
+        }
+    }
+    var isSubCategoryDisabled: Bool {
+        subcategories.isEmpty
     }
     var paymentType: [String] {
         types.paymentTypes.map { result in
@@ -41,8 +67,10 @@ class AddExpenseViewModel: ObservableObject {
     var value: Double {
         valueString.toDouble() ?? 0
     }
-    @Published var selectedType = ""
-    @Published var selectedTypes: [String] = []
+    
+    @Published var selectedAccount = "Wil"
+    @Published var selectedCategory = ""
+    @Published var selectedSubcategory = ""
     @Published var selectedPayment = ""
     @Published var selectedDuration = ""
     @Published var selectedStore = "Other"
@@ -70,7 +98,9 @@ class AddExpenseViewModel: ObservableObject {
             }
             selectedDuration = expense.duration ?? ""
             selectedPayment = expense.paymentVia ?? ""
-            selectedTypes = expense.types ?? []
+            selectedAccount = expense.account ?? ""
+            selectedCategory = expense.category ?? ""
+            selectedSubcategory = expense.subcategory ?? ""
             date = expense.date ?? Date()
             
             checkStore(expense.store)
@@ -84,10 +114,12 @@ class AddExpenseViewModel: ObservableObject {
                 yearMonth: "",
                 note: "",
                 value: 0,
+                account: "",
+                category: "",
+                subcategory: "",
                 duration: "",
                 paymentVia: "",
                 store: "",
-                types: [],
                 date: Date()
             )
             selectedDuration = "Once"
@@ -127,7 +159,9 @@ class AddExpenseViewModel: ObservableObject {
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             expense.value = try Validation.numberTextField(value)
-            expense.types = try Validation.picker(selectedTypes, typeError: .noType)
+            expense.account = try Validation.picker(selectedAccount, typeError: .noAccount)
+            expense.category = try Validation.picker(selectedCategory, typeError: .noCategory)
+            expense.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
             expense.paymentVia = try Validation.picker(selectedPayment, typeError: .noPaymentVia)
             expense.duration = try Validation.picker(selectedDuration, typeError: .noDuration)
             expense.store = getStore()
@@ -175,8 +209,14 @@ class AddExpenseViewModel: ObservableObject {
         if let selectedDuration = selectedTemplateModel.duration {
             self.selectedDuration = selectedDuration
         }
-        if let selectedTypes = selectedTemplateModel.types {
-            self.selectedTypes = selectedTypes
+        if let selectedAccount = selectedTemplateModel.account {
+            self.selectedAccount = selectedAccount
+        }
+        if let selectedCategory = selectedTemplateModel.category {
+            self.selectedCategory = selectedCategory
+        }
+        if let selectedSubcategory = selectedTemplateModel.subcategory {
+            self.selectedSubcategory = selectedSubcategory
         }
         if let selectedPayment = selectedTemplateModel.paymentVia {
             self.selectedPayment = selectedPayment
@@ -229,7 +269,7 @@ class AddExpenseViewModel: ObservableObject {
         guard installmentMonth > 0 else { return }
         var count = 0
         var expense = self.expense
-        expense.types?.append("Installment")
+        expense.category?.append("Installment")
         expense.duration = "Monthly"
         let strValue = String(format: "%.2f", perMonthExpenseWithInterest)
         expense.value = Double(strValue) ?? 0

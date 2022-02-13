@@ -1,5 +1,5 @@
 //
-//  AddInvoiceScreen.swift
+//  AddIncomeScreen.swift
 //  ExpenseTracker (iOS)
 //
 //  Created by Ruangguru on 25/12/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddInvoiceScreen: View {
+struct AddIncomeScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var globalData = GlobalData.shared
     @StateObject var viewModel: AddIncomeViewModel
@@ -29,8 +29,26 @@ struct AddInvoiceScreen: View {
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
-                    MultiPickerFormView("Type(s)", items: viewModel.incomeType, selectedItems: $viewModel.selectedTypes)
+                    
+                    Picker("Account", selection: $viewModel.selectedAccount) {
+                        ForEach(viewModel.accounts, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("Category", selection: $viewModel.selectedCategory) {
+                        ForEach(viewModel.categories, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("Subcategory", selection: $viewModel.selectedSubcategory) {
+                        ForEach(viewModel.subcategories, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .disabled(viewModel.isSubCategoryDisabled)
+                    
                     DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
+                    
                     VStack(alignment: .leading, spacing: 2.0) {
                         Text("Note")
                         TextEditor(text: $viewModel.note)
@@ -125,8 +143,8 @@ struct AddInvoiceScreen: View {
     }
 }
 
-struct AddInvoiceScreen_Previews: PreviewProvider {
+struct AddIncomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddInvoiceScreen() {}
+        AddIncomeScreen() {}
     }
 }

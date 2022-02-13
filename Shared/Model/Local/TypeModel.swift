@@ -11,12 +11,17 @@ import Foundation
 struct TypeModel: Codable {
     var blockID: String
     var name: String
-    var category: String
+    var type: String
     var keywords: String?
+    var subcategoryOf: [String]? = nil
+    var isMainCategory: Bool = true
 }
 
 struct Types: Codable {
     var allTypes: [TypeModel]
+    var accountTypes: [TypeModel] {
+        filterType(.account)
+    }
     var incomeTypes: [TypeModel] {
         filterType(.income)
     }
@@ -38,6 +43,7 @@ struct Types: Codable {
     }
     
     enum TypeCategory: String, CaseIterable {
+        case account
         case income
         case expense
         case payment
@@ -47,7 +53,7 @@ struct Types: Codable {
     
     func filterType(_ category: TypeCategory) -> [TypeModel] {
         allTypes.filter { type in
-            type.category == category.rawValue.capitalized
+            type.type == category.rawValue.capitalized
         }
     }
 }

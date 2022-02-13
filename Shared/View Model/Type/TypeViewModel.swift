@@ -17,7 +17,7 @@ class TypeViewModel: ObservableObject {
     @Published var searchText = ""
     func filterType(_ category: Types.TypeCategory) -> [TypeModel] {
         let types = globalData.types.allTypes.filter { type in
-            type.category == category.rawValue.capitalized
+            type.type == category.rawValue.capitalized
         }
         guard !searchText.isEmpty else {
             return types

@@ -17,20 +17,31 @@ struct SummaryScreen: View {
     var body: some View {
         NavigationView{
             Form {
-                NavigationLink("YearMonth") {
-                    YearMonthScreen()
+                Section {
+                    NavigationLink("YearMonth") {
+                        YearMonthScreen()
+                    }
+                    NavigationLink("Income") {
+                        IncomeScreen()
+                    }
+                    NavigationLink("Expense") {
+                        ExpenseScreen()
+                    }
+                    NavigationLink("Type") {
+                        TypeScreen()
+                    }
+                    NavigationLink("Template") {
+                        templateModelscreen()
+                    }
                 }
-                NavigationLink("Income") {
-                    IncomeScreen()
-                }
-                NavigationLink("Expense") {
-                    ExpenseScreen()
-                }
-                NavigationLink("Type") {
-                    TypeScreen()
-                }
-                NavigationLink("Template") {
-                    templateModelscreen()
+                
+                Section {
+                    Button("Add Income") {
+                        viewModel.isAddIncomeShow.toggle()
+                    }
+                    Button("Add Expense") {
+                        viewModel.isAddExpenseShow.toggle()
+                    }
                 }
             }
             .loadingView(globalData.isLoading, isNeedDisable: false)
@@ -71,6 +82,16 @@ struct SummaryScreen: View {
             SelectUsercreen()
         }
 #endif
+        .sheet(isPresented: $viewModel.isAddIncomeShow) {
+        } content: {
+            AddIncomeScreen() {
+            }
+        }
+        .sheet(isPresented: $viewModel.isAddExpenseShow) {
+        } content: {
+            AddExpenseScreen() {
+            }
+        }
     }
 }
 

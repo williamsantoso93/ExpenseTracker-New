@@ -14,7 +14,7 @@ class TemplateViewModel: ObservableObject {
     @Published var searchText = ""
     func filterTemplate(_ category: String) -> [TemplateModel] {
         let templateModels = globalData.templateModels.filter { result in
-            result.category == category.capitalized
+            result.type == category.capitalized
         }
         guard !searchText.isEmpty else {
             return templateModels

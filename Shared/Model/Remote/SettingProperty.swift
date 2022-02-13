@@ -10,18 +10,20 @@ import Foundation
 // MARK: - TemplateModelProperty
 struct TemplateModelProperty: Codable {
     let name: TitleProperty?
-    let category, duration, paymentVia: SingleSelectProperty?
-    let types: MultiSelectProperty?
+    let account, category, subcategory: SingleSelectProperty?
+    let type, duration, paymentVia: SingleSelectProperty?
     let value: NumberProperty?
     let store: RichTextProperty?
     var keywords: FormulaProperty? = nil
     
     enum CodingKeys: String, CodingKey {
         case name = "Name"
-        case category = "Category"
         case duration = "Duration"
+        case type = "Type"
         case paymentVia = "Payment Via"
-        case types = "Types"
+        case account = "Account"
+        case category = "Category"
+        case subcategory = "Subcategory"
         case store = "Store"
         case value = "Value"
         case keywords = "Keywords"

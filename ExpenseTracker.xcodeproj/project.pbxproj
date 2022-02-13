@@ -32,7 +32,7 @@
 		E00E1C462782250C0042496F /* MultiSelectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00E1C442782250C0042496F /* MultiSelectPickerView.swift */; };
 		E0107A3F277457EA00825484 /* TypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0107A3E277457EA00825484 /* TypeScreen.swift */; };
 		E0107A40277457EA00825484 /* TypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0107A3E277457EA00825484 /* TypeScreen.swift */; };
-		E01A2A672776B3CF002E685F /* AddInvoiceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */; };
+		E01A2A672776B3CF002E685F /* AddIncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */; };
 		E01A2A6C2776B41E002E685F /* AddIncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */; };
 		E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */; };
 		E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6F2776B433002E685F /* YearMonthCheck.swift */; };
@@ -59,7 +59,7 @@
 		E08DD5072778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */; };
 		E09030BF27781FBC003ED6B5 /* YearMonthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178CE2770959C00F358D9 /* YearMonthScreen.swift */; };
 		E09030C027781FBF003ED6B5 /* IncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C92770903000F358D9 /* IncomeScreen.swift */; };
-		E09030C127781FC2003ED6B5 /* AddInvoiceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */; };
+		E09030C127781FC2003ED6B5 /* AddIncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */; };
 		E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A762776B46E002E685F /* AddTypeScreen.swift */; };
 		E09030C327781FD5003ED6B5 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0050C352778058400396C36 /* TextField.swift */; };
 		E09030C427781FD8003ED6B5 /* AddTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */; };
@@ -92,6 +92,8 @@
 		E097D710277073220093F5DA /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70F277073220093F5DA /* Expense.swift */; };
 		E097D712277073760093F5DA /* TypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D711277073760093F5DA /* TypeModel.swift */; };
 		E097D714277074BB0093F5DA /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D713277074BB0093F5DA /* Mapper.swift */; };
+		E0A9C12227B917A30003F7E4 /* CheckmarkProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */; };
+		E0A9C12327B917A30003F7E4 /* CheckmarkProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */; };
 		E0BF3AA1276F566B00FC902E /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3AA0276F566B00FC902E /* Tests_iOS.swift */; };
 		E0BF3AA3276F566B00FC902E /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3AA2276F566B00FC902E /* Tests_iOSLaunchTests.swift */; };
 		E0BF3AAD276F566B00FC902E /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3AAC276F566B00FC902E /* Tests_macOS.swift */; };
@@ -169,7 +171,7 @@
 		E006AA332770179E00980302 /* ExpenseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseScreen.swift; sourceTree = "<group>"; };
 		E00E1C442782250C0042496F /* MultiSelectPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectPickerView.swift; sourceTree = "<group>"; };
 		E0107A3E277457EA00825484 /* TypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeScreen.swift; sourceTree = "<group>"; };
-		E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInvoiceScreen.swift; sourceTree = "<group>"; };
+		E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeScreen.swift; sourceTree = "<group>"; };
 		E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeViewModel.swift; sourceTree = "<group>"; };
 		E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeViewModel.swift; sourceTree = "<group>"; };
 		E01A2A6F2776B433002E685F /* YearMonthCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthCheck.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		E097D70F277073220093F5DA /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		E097D711277073760093F5DA /* TypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
 		E097D713277074BB0093F5DA /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
+		E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkProperty.swift; sourceTree = "<group>"; };
 		E0BF3A86276F566B00FC902E /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		E0BF3A87276F566B00FC902E /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
 		E0BF3A88276F566B00FC902E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -320,7 +323,7 @@
 				E006435927740F7000B5108D /* SummaryViewModel.swift */,
 				E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */,
 				E01A2A692776B3DC002E685F /* YearMonth */,
-				E01A2A682776B3D3002E685F /* Invoice */,
+				E01A2A682776B3D3002E685F /* Income */,
 				E0F617EE2771759900C546B7 /* Expense */,
 				E01A2A6A2776B3E4002E685F /* Type */,
 				E08DD5042778BADB001DB5F0 /* Template */,
@@ -354,7 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				E08178C92770903000F358D9 /* IncomeScreen.swift */,
-				E01A2A662776B3CF002E685F /* AddInvoiceScreen.swift */,
+				E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */,
 			);
 			path = Income;
 			sourceTree = "<group>";
@@ -376,13 +379,13 @@
 			path = Summary;
 			sourceTree = "<group>";
 		};
-		E01A2A682776B3D3002E685F /* Invoice */ = {
+		E01A2A682776B3D3002E685F /* Income */ = {
 			isa = PBXGroup;
 			children = (
 				E08178C327708FFC00F358D9 /* IncomeViewModel.swift */,
 				E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */,
 			);
-			path = Invoice;
+			path = Income;
 			sourceTree = "<group>";
 		};
 		E01A2A692776B3DC002E685F /* YearMonth */ = {
@@ -530,6 +533,7 @@
 				E0D6EF2E2770240900DF12AD /* RelationProperty.swift */,
 				E031E2D3277DE67500DD449B /* RoolupProperty.swift */,
 				E02830B72782B1FF001E8B51 /* FormulaProperty.swift */,
+				E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */,
 			);
 			path = Properties;
 			sourceTree = "<group>";
@@ -624,7 +628,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					E0BF3A8E276F566B00FC902E = {
 						CreatedOnToolsVersion = 13.1;
@@ -703,6 +707,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0A9C12227B917A30003F7E4 /* CheckmarkProperty.swift in Sources */,
 				E002E2BF2778B17E00A7A1C5 /* AddTemplateViewModel.swift in Sources */,
 				E08178C62770900900F358D9 /* YearMonthViewModel.swift in Sources */,
 				E097D710277073220093F5DA /* Expense.swift in Sources */,
@@ -721,7 +726,7 @@
 				E0D6EF1D277021F000DF12AD /* SelectProperty.swift in Sources */,
 				E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */,
 				E0BF3AB6276F566B00FC902E /* Persistence.swift in Sources */,
-				E01A2A672776B3CF002E685F /* AddInvoiceScreen.swift in Sources */,
+				E01A2A672776B3CF002E685F /* AddIncomeScreen.swift in Sources */,
 				E0D6EF232770232700DF12AD /* ExpenseProperty.swift in Sources */,
 				E08178C82770901000F358D9 /* TypeViewModel.swift in Sources */,
 				E00E1C452782250C0042496F /* MultiSelectPickerView.swift in Sources */,
@@ -769,8 +774,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0A9C12327B917A30003F7E4 /* CheckmarkProperty.swift in Sources */,
 				E002E2C02778B17E00A7A1C5 /* AddTemplateViewModel.swift in Sources */,
-				E09030C127781FC2003ED6B5 /* AddInvoiceScreen.swift in Sources */,
+				E09030C127781FC2003ED6B5 /* AddIncomeScreen.swift in Sources */,
 				E09030C927781FE0003ED6B5 /* AddIncomeViewModel.swift in Sources */,
 				E09030CA27781FE0003ED6B5 /* YearMonthViewModel.swift in Sources */,
 				E09030BF27781FBC003ED6B5 /* YearMonthScreen.swift in Sources */,
@@ -1043,6 +1049,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1071,6 +1078,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
