@@ -19,6 +19,9 @@ struct TypeModel: Codable {
 
 struct Types: Codable {
     var allTypes: [TypeModel]
+    var accountTypes: [TypeModel] {
+        filterType(.account)
+    }
     var incomeTypes: [TypeModel] {
         filterType(.income)
     }
@@ -40,6 +43,7 @@ struct Types: Codable {
     }
     
     enum TypeCategory: String, CaseIterable {
+        case account
         case income
         case expense
         case payment

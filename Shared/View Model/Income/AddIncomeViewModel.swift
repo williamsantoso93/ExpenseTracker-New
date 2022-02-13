@@ -11,23 +11,49 @@ class AddIncomeViewModel: ObservableObject {
     @Published var income: Income
     @Published var types = GlobalData.shared.types
     @Published var templateModels = GlobalData.shared.templateModels.filter { result in
-        result.category == "Income"
+        result.type == "Income"
     }
     @Published var isLoading = false
     
-    var incomeType: [String] {
-        types.incomeTypes.map { result in
+    var incomeAccounts: [String] {
+        types.accountTypes.map { result in
             result.name
         }
     }
-    
+    var incomeCategories: [String] {
+        types.incomeTypes.filter({ category in
+            category.isMainCategory
+        }).map { result in
+            result.name
+        }
+    }
+    var incomeSubcategories: [String] {
+        guard !selectedCategory.isEmpty else {
+            return []
+        }
+        
+        return types.incomeTypes.filter({ category in
+            guard let subcategoryOf = category.subcategoryOf else {
+                return false
+            }
+            return subcategoryOf.contains { subcategory in
+                subcategory == selectedCategory
+            }
+        }).map { result in
+            result.name
+        }
+    }
+    var isSubCategoryDisabled: Bool {
+        incomeSubcategories.isEmpty
+    }
     
     @Published var valueString = ""
     var value: Double {
         valueString.toDouble() ?? 0
     }
-    @Published var selectedType = ""
-    @Published var selectedTypes: [String] = []
+    @Published var selectedAccount = "Wil"
+    @Published var selectedCategory = ""
+    @Published var selectedSubcategory = ""
     @Published var note = ""
     @Published var selectedTemplateIndex = -1
     @Published var date = Date()
@@ -47,7 +73,9 @@ class AddIncomeViewModel: ObservableObject {
             if let value = income.value {
                 valueString = value.splitDigit()
             }
-//            selectedTypes = income.types ?? []
+            selectedAccount = income.account ?? ""
+            selectedCategory = income.category ?? ""
+            selectedSubcategory = income.subcategory ?? ""
             date = income.date ?? Date()
             
             isUpdate = true
@@ -79,7 +107,9 @@ class AddIncomeViewModel: ObservableObject {
         do {
             income.note = note
             income.value = try Validation.numberTextField(value)
-//            income.category = try Validation.picker(selectedTypes, typeError: .noType)
+            income.account = try Validation.picker(selectedAccount, typeError: .noAccount)
+            income.category = try Validation.picker(selectedCategory, typeError: .noCategory)
+            income.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
             income.date = date
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
@@ -117,9 +147,15 @@ class AddIncomeViewModel: ObservableObject {
         if let name = selectedTemplateModel.name {
             note = name
         }
-//        if let selectedTypes = selectedTemplateModel.types {
-//            self.selectedTypes = selectedTypes
-//        }
+        if let selectedAccount = selectedTemplateModel.account {
+            self.selectedAccount = selectedAccount
+        }
+        if let selectedCategory = selectedTemplateModel.category {
+            self.selectedCategory = selectedCategory
+        }
+        if let selectedSubcategory = selectedTemplateModel.subcategory {
+            self.selectedSubcategory = selectedSubcategory
+        }
         if let valueString = selectedTemplateModel.value {
             self.valueString = valueString.splitDigit()
         }

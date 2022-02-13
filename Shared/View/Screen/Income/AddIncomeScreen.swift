@@ -29,8 +29,26 @@ struct AddIncomeScreen: View {
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
-                    MultiPickerFormView("Type(s)", items: viewModel.incomeType, selectedItems: $viewModel.selectedTypes)
+                    
+                    Picker("Account", selection: $viewModel.selectedAccount) {
+                        ForEach(viewModel.incomeAccounts, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("Category", selection: $viewModel.selectedCategory) {
+                        ForEach(viewModel.incomeCategories, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("Subcategory", selection: $viewModel.selectedSubcategory) {
+                        ForEach(viewModel.incomeSubcategories, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .disabled(viewModel.isSubCategoryDisabled)
+                    
                     DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
+                    
                     VStack(alignment: .leading, spacing: 2.0) {
                         Text("Note")
                         TextEditor(text: $viewModel.note)

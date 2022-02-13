@@ -13,7 +13,9 @@ enum ValidationError: Error {
     case noType
     case noDuration
     case noPaymentVia
+    case noAccount
     case noCategory
+    case noSubcateogry
 }
 
 extension ValidationError {
@@ -32,7 +34,7 @@ extension ValidationError {
         case .noType:
             return ErrorMessage(
                 title: "Invalid Type",
-                message: "Please select category"
+                message: "Please select Type"
             )
         case .noDuration:
             return ErrorMessage(
@@ -44,10 +46,20 @@ extension ValidationError {
                 title: "Invalid Payment",
                 message: "Please select payment"
             )
+        case .noAccount:
+            return ErrorMessage(
+                title: "Invalid Account",
+                message: "Please select Account"
+            )
         case .noCategory:
             return ErrorMessage(
                 title: "Invalid Category",
                 message: "Please select category"
+            )
+        case .noSubcateogry:
+            return ErrorMessage(
+                title: "Invalid Subcateogry",
+                message: "Please select Subcateogry"
             )
         }
     }

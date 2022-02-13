@@ -138,13 +138,19 @@ struct Mapper {
     }
     
     static func incomeLocalToRemote(_ local: Income) -> IncomeProperty {
-        IncomeProperty(
+        var subcategorySelect: SingleSelectProperty? = nil
+        
+        if let subcategory = local.subcategory {
+            subcategorySelect = SingleSelectProperty(select: Select(name: subcategory))
+        }
+        
+        return IncomeProperty(
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
             value: NumberProperty(number: local.value ?? 0),
             account: SingleSelectProperty(select: Select(name: local.account ?? "")),
             category: SingleSelectProperty(select: Select(name: local.category ?? "")),
-            subcategory: SingleSelectProperty(select: Select(name: local.subcategory ?? "")),
+            subcategory: subcategorySelect,
             note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
@@ -162,7 +168,9 @@ struct Mapper {
             blockID: id,
             name: remote.name.title.first?.text.content ?? "",
             category: remote.type.select?.name ?? "",
-            keywords: remote.keywords?.formula.string
+            keywords: remote.keywords?.formula.string,
+            subcategoryOf: multiSelectsToStrings(remote.subcategoryOf.multiSelect),
+            isMainCategory: remote.mainCategory.checkbox
         )
     }
     

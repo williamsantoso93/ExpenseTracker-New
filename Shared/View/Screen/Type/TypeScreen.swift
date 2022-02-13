@@ -26,7 +26,8 @@ struct TypeScreen: View {
                                 viewModel.selectType(type)
                             } label: {
                                 VStack(alignment: .leading) {
-                                    Text(type.name)
+                                    Text("\(type.isMainCategory ? "main " : "")category : \(type.name)")
+                                    Text("subcategoryOf : \(type.subcategoryOf?.joinedWithComma() ?? "-")")
                                 }
                             }
                         }
