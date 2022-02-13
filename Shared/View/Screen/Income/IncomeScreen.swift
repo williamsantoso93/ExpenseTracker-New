@@ -22,9 +22,9 @@ struct IncomeScreen: View {
 //                            Text("id : \(income.id)")
 //                            Text("yearMonth : \(income.yearMonth ?? "")")
                             Text("value : \((income.value ?? 0).splitDigit())")
-//                            if let types = income.types {
-//                                Text("category : \(types.joinedWithComma())")
-//                            }
+                            Text("account : \(income.account ?? "")")
+                            Text("category : \(income.category ?? "")")
+                            Text("subcategory : \(income.subcategory ?? "")")
                             Text("note : \(income.note ?? "")")
                             Text("date : \((income.date ?? Date()).toString())")
                         }
@@ -62,7 +62,7 @@ struct IncomeScreen: View {
         .sheet(isPresented: $viewModel.isShowAddScreen) {
             viewModel.selectedIncome = nil
         } content: {
-            AddInvoiceScreen(income: viewModel.selectedIncome) {
+            AddIncomeScreen(income: viewModel.selectedIncome) {
                 viewModel.loadNewData()
             }
         }
