@@ -31,17 +31,17 @@ struct AddIncomeScreen: View {
 #endif
                     
                     Picker("Account", selection: $viewModel.selectedAccount) {
-                        ForEach(viewModel.incomeAccounts, id: \.self) {
+                        ForEach(viewModel.accounts, id: \.self) {
                             Text($0)
                         }
                     }
                     Picker("Category", selection: $viewModel.selectedCategory) {
-                        ForEach(viewModel.incomeCategories, id: \.self) {
+                        ForEach(viewModel.categories, id: \.self) {
                             Text($0)
                         }
                     }
                     Picker("Subcategory", selection: $viewModel.selectedSubcategory) {
-                        ForEach(viewModel.incomeSubcategories, id: \.self) {
+                        ForEach(viewModel.subcategories, id: \.self) {
                             Text($0)
                         }
                     }

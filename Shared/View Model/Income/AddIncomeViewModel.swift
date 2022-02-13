@@ -15,19 +15,19 @@ class AddIncomeViewModel: ObservableObject {
     }
     @Published var isLoading = false
     
-    var incomeAccounts: [String] {
+    var accounts: [String] {
         types.accountTypes.map { result in
             result.name
         }
     }
-    var incomeCategories: [String] {
+    var categories: [String] {
         types.incomeTypes.filter({ category in
             category.isMainCategory
         }).map { result in
             result.name
         }
     }
-    var incomeSubcategories: [String] {
+    var subcategories: [String] {
         guard !selectedCategory.isEmpty else {
             return []
         }
@@ -44,7 +44,7 @@ class AddIncomeViewModel: ObservableObject {
         }
     }
     var isSubCategoryDisabled: Bool {
-        incomeSubcategories.isEmpty
+        subcategories.isEmpty
     }
     
     @Published var valueString = ""

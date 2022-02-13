@@ -9,10 +9,11 @@ import Foundation
 
 // MARK: - FormulaProperty
 struct FormulaProperty: Codable {
-    var formula: FormulaString
+    var formula: Formula
 }
 
 // MARK: - FormulaString
-struct FormulaString: Codable {
-    var string: String
+struct Formula: Codable {
+    var string: String?
+    var boolean: Bool?
 }

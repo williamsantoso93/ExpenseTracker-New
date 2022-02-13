@@ -90,7 +90,7 @@ struct Mapper {
             value: NumberProperty(number: local.value ?? 0),
             account: SingleSelectProperty(select: Select(name: local.account ?? "")),
             category: SingleSelectProperty(select: Select(name: local.category ?? "")),
-            subcategory: SingleSelectProperty(select: Select(name: local.subcategory ?? "")),
+            subcategory: textToSingleSelectProperty(local.subcategory),
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
             paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
             store: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.store ?? ""))]),
@@ -138,19 +138,13 @@ struct Mapper {
     }
     
     static func incomeLocalToRemote(_ local: Income) -> IncomeProperty {
-        var subcategorySelect: SingleSelectProperty? = nil
-        
-        if let subcategory = local.subcategory {
-            subcategorySelect = SingleSelectProperty(select: Select(name: subcategory))
-        }
-        
-        return IncomeProperty(
+        IncomeProperty(
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
             value: NumberProperty(number: local.value ?? 0),
             account: SingleSelectProperty(select: Select(name: local.account ?? "")),
             category: SingleSelectProperty(select: Select(name: local.category ?? "")),
-            subcategory: subcategorySelect,
+            subcategory: textToSingleSelectProperty(local.subcategory),
             note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
@@ -167,10 +161,10 @@ struct Mapper {
         TypeModel(
             blockID: id,
             name: remote.name.title.first?.text.content ?? "",
-            category: remote.type.select?.name ?? "",
+            type: remote.type.select?.name ?? "",
             keywords: remote.keywords?.formula.string,
-            subcategoryOf: multiSelectsToStrings(remote.subcategoryOf.multiSelect),
-            isMainCategory: remote.mainCategory.checkbox
+            subcategoryOf: multiSelectsToStrings(remote.subcategoryOf?.multiSelect),
+            isMainCategory: remote.mainCategory?.formula.boolean ?? false
         )
     }
     
@@ -183,9 +177,8 @@ struct Mapper {
     static func typeLocalToRemote(_ local: TypeModel) -> TypeProperty {
         TypeProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name))]),
-            type: SingleSelectProperty(select: Select(name: local.category)),
-            subcategoryOf: MultiSelectProperty(multiSelect: stringsToMultiSelects(local.subcategoryOf)),
-            mainCategory: CheckmarkProperty(checkbox: local.isMainCategory)
+            type: SingleSelectProperty(select: Select(name: local.type)),
+            subcategoryOf: stringsToMultiSelectProperty(local.subcategoryOf)
         )
     }
     
@@ -249,6 +242,17 @@ struct Mapper {
         }
         
         return SingleSelectProperty(select: Select(name: text))
+    }
+    
+    static func stringsToMultiSelectProperty(_ strings: [String]?) -> MultiSelectProperty? {
+        guard let strings = strings else { return nil }
+        guard !strings.isEmpty else { return nil }
+        
+        let map = strings.map { result in
+            Select(name: result)
+        }
+        
+        return MultiSelectProperty(multiSelect: map)
     }
     
     static func numberToNumberProperty(_ value: Double?) -> NumberProperty? {

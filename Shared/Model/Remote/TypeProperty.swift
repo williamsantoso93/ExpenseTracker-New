@@ -11,8 +11,8 @@ import Foundation
 struct TypeProperty: Codable {
     let name: TitleProperty
     let type: SingleSelectProperty
-    let subcategoryOf: MultiSelectProperty
-    let mainCategory: CheckmarkProperty
+    let subcategoryOf: MultiSelectProperty?
+    var mainCategory: FormulaProperty? = nil
     var keywords: FormulaProperty? = nil
     
     enum CodingKeys: String, CodingKey {

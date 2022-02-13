@@ -8,16 +8,30 @@
 import Foundation
 
 class AddTypeViewModel: ObservableObject {
+    @Published var types = GlobalData.shared.types
+    
     @Published var typeModel: TypeModel
     @Published var isLoading = false
     
     @Published var name = ""
-    @Published var selectedCategory = ""
+    @Published var selectedType = ""
+    @Published var selectedSubcategoryOf: [String] = []
     
-    var category: [String] {
+    var typesCategory: [String] {
         Types.TypeCategory.allCases.map { result in
             result.rawValue.capitalized
         }
+    }
+    
+    var subcategoriesOf: [String] {
+        types.allTypes.filter({ category in
+            category.type == selectedType && category.isMainCategory
+        }).map { result in
+            result.name
+        }
+    }
+    var isSubCategoryDisabled: Bool {
+        subcategoriesOf.isEmpty
     }
     
     @Published var saveTitle = "Save"
@@ -31,7 +45,8 @@ class AddTypeViewModel: ObservableObject {
             self.typeModel = typeModel
             
             name = typeModel.name
-            selectedCategory = typeModel.category
+            selectedType = typeModel.type
+            selectedSubcategoryOf = typeModel.subcategoryOf ?? []
             
             isUpdate = true
             saveTitle = "Update"
@@ -39,7 +54,8 @@ class AddTypeViewModel: ObservableObject {
             self.typeModel = TypeModel(
                 blockID: "",
                 name: "",
-                category: ""
+                type: "",
+                subcategoryOf: []
             )
         }
     }
@@ -56,8 +72,9 @@ class AddTypeViewModel: ObservableObject {
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
-            typeModel.category = try Validation.picker(selectedCategory, typeError: .noCategory)
+            typeModel.type = try Validation.picker(selectedType, typeError: .noType)
             typeModel.name = try Validation.textField(name)
+            typeModel.subcategoryOf = selectedSubcategoryOf.isEmpty ? nil : selectedSubcategoryOf
             
             isLoading = true
             if isUpdate {
