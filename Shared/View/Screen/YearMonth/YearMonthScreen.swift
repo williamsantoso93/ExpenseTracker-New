@@ -20,8 +20,8 @@ struct YearMonthScreen: View {
                     Section(header: Text(displayYearMonth.year)) {
                         ForEach(displayYearMonth.yearMonths.indices, id:\.self) { index in
                             let yearMonth = displayYearMonth.yearMonths[index]
-                            let totalIncomes = yearMonth.totalIncomes ?? 0
-                            let totalExpenses = yearMonth.totalExpenses ?? 0
+//                            let totalIncomes = yearMonth.totalIncomes ?? 0
+//                            let totalExpenses = yearMonth.totalExpenses ?? 0
                             
                             VStack(alignment: .leading) {
                                 Text(yearMonth.month)
