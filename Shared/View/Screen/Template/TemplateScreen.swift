@@ -31,9 +31,9 @@ struct templateModelscreen: View {
                                     Text("value : \((templateModel.value ?? 0).splitDigit())")
                                     Text("duration : \(templateModel.duration ?? "-")")
                                     Text("paymentVia : \(templateModel.paymentVia ?? "-")")
-                                    if let types = templateModel.types {
-                                        Text("types : \(types.joinedWithComma())")
-                                    }
+//                                    if let types = templateModel.types {
+//                                        Text("type : \(types.joinedWithComma())")
+//                                    }
                                 }
                             }
                         }

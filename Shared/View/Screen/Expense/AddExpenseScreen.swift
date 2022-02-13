@@ -29,7 +29,7 @@ struct AddExpenseScreen: View {
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
-                    MultiPickerFormView("Type(s)", items: viewModel.expenseType, selectedItems: $viewModel.selectedTypes)
+//                    MultiPickerFormView("Type(s)", items: viewModel.expenseType, selectedItems: $viewModel.selectedCategory)
                     
                     Picker("Payment Via", selection: $viewModel.selectedPayment) {
                         ForEach(viewModel.paymentType, id: \.self) {

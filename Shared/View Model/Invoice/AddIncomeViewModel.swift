@@ -115,9 +115,9 @@ class AddIncomeViewModel: ObservableObject {
         if let name = selectedTemplateModel.name {
             note = name
         }
-        if let selectedTypes = selectedTemplateModel.types {
-            self.selectedTypes = selectedTypes
-        }
+//        if let selectedTypes = selectedTemplateModel.types {
+//            self.selectedTypes = selectedTypes
+//        }
         if let valueString = selectedTemplateModel.value {
             self.valueString = valueString.splitDigit()
         }

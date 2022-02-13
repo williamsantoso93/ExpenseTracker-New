@@ -28,7 +28,7 @@ struct AddTemplatescreen: View {
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
-                    MultiPickerFormView("Type(s)", items: viewModel.expenseType, selectedItems: $viewModel.selectedTypes)
+//                    MultiPickerFormView("Type(s)", items: viewModel.expenseType, selectedItems: $viewModel.selectedTypes)
                     
                     Picker("Payment Via", selection: $viewModel.selectedPayment) {
                         ForEach(viewModel.paymentType, id: \.self) {
@@ -40,7 +40,7 @@ struct AddTemplatescreen: View {
                             Text($0)
                         }
                     }
-                    Picker("Category", selection: $viewModel.selectedCategory) {
+                    Picker("Category", selection: $viewModel.selectedType) {
                         ForEach(viewModel.category, id: \.self) {
                             Text($0)
                         }

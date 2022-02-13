@@ -13,6 +13,8 @@ struct TypeModel: Codable {
     var name: String
     var category: String
     var keywords: String?
+    var subcategoryOf: [String]? = nil
+    var isMainCategory: Bool = true
 }
 
 struct Types: Codable {

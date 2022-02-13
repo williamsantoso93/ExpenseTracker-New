@@ -23,7 +23,7 @@ struct IncomeScreen: View {
 //                            Text("yearMonth : \(income.yearMonth ?? "")")
                             Text("value : \((income.value ?? 0).splitDigit())")
                             if let types = income.types {
-                                Text("types : \(types.joinedWithComma())")
+                                Text("category : \(types.joinedWithComma())")
                             }
                             Text("note : \(income.note ?? "")")
                             Text("date : \((income.date ?? Date()).toString())")

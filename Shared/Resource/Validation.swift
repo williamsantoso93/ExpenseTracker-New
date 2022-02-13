@@ -32,7 +32,7 @@ extension ValidationError {
         case .noType:
             return ErrorMessage(
                 title: "Invalid Type",
-                message: "Please select types"
+                message: "Please select category"
             )
         case .noDuration:
             return ErrorMessage(

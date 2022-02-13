@@ -37,11 +37,10 @@ class AddTemplateViewModel: ObservableObject {
         valueString.toDouble() ?? 0
     }
     @Published var name = ""
-    @Published var selectedType = ""
-    @Published var selectedTypes: [String] = []
+    @Published var selectedCategory = ""
     @Published var selectedPayment = ""
     @Published var selectedDuration = "Monthly"
-    @Published var selectedCategory = "Expense"
+    @Published var selectedType = "Expense"
     @Published var selectedStore = ""
     var isOtherStore: Bool {
         selectedStore == "Other"
@@ -70,7 +69,7 @@ class AddTemplateViewModel: ObservableObject {
             }
             selectedDuration = templateModel.duration ?? ""
             selectedPayment = templateModel.paymentVia ?? ""
-            selectedTypes = templateModel.types ?? []
+            selectedCategory = templateModel.category ?? ""
             checkStore(templateModel.store)
             
             isUpdate = true
@@ -79,10 +78,13 @@ class AddTemplateViewModel: ObservableObject {
             self.templateModel = TemplateModel(
                 blockID: "",
                 name: "",
+                account: "",
+                category: "",
+                subcategory: "",
                 duration: "",
                 paymentVia: "",
                 store: "",
-                types: [],
+                type: "",
                 value: 0
             )
         }
@@ -122,8 +124,8 @@ class AddTemplateViewModel: ObservableObject {
         templateModel.value = value
         templateModel.duration = selectedDuration
         templateModel.paymentVia = selectedPayment
-        templateModel.types = selectedTypes
         templateModel.category = selectedCategory
+        templateModel.category = selectedType
         templateModel.store = getStore()
         
         templateModel.name = name.isEmpty ? templateModel.store : name

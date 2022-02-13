@@ -13,14 +13,14 @@ struct ExpenseProperty: Codable {
     let yearMonth: RelationProperty?
     let note: RichTextProperty?
     let value: NumberProperty?
-    let duration, paymentVia: SingleSelectProperty?
+    let account, category, subcategory, duration, paymentVia: SingleSelectProperty?
     let store: RichTextProperty?
-    let types: MultiSelectProperty?
     let date: DateProperty?
     var keywords: FormulaProperty? = nil
     
     enum CodingKeys: String, CodingKey {
         case yearMonth = "Year/Month"
+        case account = "Account"
         case note = "Note"
         case id
         case value = "Value"
@@ -28,7 +28,8 @@ struct ExpenseProperty: Codable {
         case paymentVia = "Payment Via"
         case store = "Store"
         case date = "Date"
-        case types = "Types"
+        case category = "Category"
+        case subcategory = "Subcategory"
         case keywords = "Keywords"
     }
 }
