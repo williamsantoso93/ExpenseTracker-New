@@ -23,12 +23,33 @@ struct AddTemplatescreen: View {
         NavigationView {
             Form {
                 Section {
+                    Picker("Type", selection: $viewModel.selectedType) {
+                        ForEach(viewModel.typesCategory, id: \.self) {
+                            Text($0)
+                        }
+                    }
                     TextFiedForm(title: "Name", prompt: "Netflix", value: $viewModel.name)
                     NumberTextFiedForm(title: "Value", prompt: "50000".splitDigitDouble(), value: $viewModel.valueString)
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
-//                    MultiPickerFormView("Type(s)", items: viewModel.expenseType, selectedItems: $viewModel.selectedTypes)
+                    
+                    Picker("Account", selection: $viewModel.selectedAccount) {
+                        ForEach(viewModel.accounts, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("Category", selection: $viewModel.selectedCategory) {
+                        ForEach(viewModel.categories, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    Picker("Subcategory", selection: $viewModel.selectedSubcategory) {
+                        ForEach(viewModel.subcategories, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .disabled(viewModel.isSubCategoryDisabled)
                     
                     Picker("Payment Via", selection: $viewModel.selectedPayment) {
                         ForEach(viewModel.paymentType, id: \.self) {
@@ -37,11 +58,6 @@ struct AddTemplatescreen: View {
                     }
                     Picker("Duration", selection: $viewModel.selectedDuration) {
                         ForEach(viewModel.durationType, id: \.self) {
-                            Text($0)
-                        }
-                    }
-                    Picker("Category", selection: $viewModel.selectedType) {
-                        ForEach(viewModel.category, id: \.self) {
                             Text($0)
                         }
                     }
