@@ -47,7 +47,7 @@ class AddIncomeViewModel: ObservableObject {
             if let value = income.value {
                 valueString = value.splitDigit()
             }
-            selectedTypes = income.types ?? []
+//            selectedTypes = income.types ?? []
             date = income.date ?? Date()
             
             isUpdate = true
@@ -57,7 +57,9 @@ class AddIncomeViewModel: ObservableObject {
                 id: UUID().uuidString,
                 yearMonth: "",
                 value: 0,
-                types: [],
+                account: "",
+                category: "",
+                subcategory: "",
                 note: ""
             )
         }
@@ -77,7 +79,7 @@ class AddIncomeViewModel: ObservableObject {
         do {
             income.note = note
             income.value = try Validation.numberTextField(value)
-            income.types = try Validation.picker(selectedTypes, typeError: .noType)
+//            income.category = try Validation.picker(selectedTypes, typeError: .noType)
             income.date = date
             
             YearMonthCheck.shared.getYearMonthID(date) { id in

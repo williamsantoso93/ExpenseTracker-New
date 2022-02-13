@@ -122,7 +122,9 @@ struct Mapper {
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
             value: remote.value?.number,
-            types: multiSelectsToStrings(remote.types?.multiSelect),
+            account: remote.account?.select?.name,
+            category: remote.category?.select?.name,
+            subcategory: remote.subcategory?.select?.name,
             note: remote.note?.richText.first?.text.content,
             date: remote.date?.date.start.toDate(),
             keywords: remote.keywords?.formula.string
@@ -140,7 +142,9 @@ struct Mapper {
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
             value: NumberProperty(number: local.value ?? 0),
-            types: MultiSelectProperty(multiSelect: stringsToMultiSelects(local.types)),
+            account: SingleSelectProperty(select: Select(name: local.account ?? "")),
+            category: SingleSelectProperty(select: Select(name: local.category ?? "")),
+            subcategory: SingleSelectProperty(select: Select(name: local.subcategory ?? "")),
             note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
