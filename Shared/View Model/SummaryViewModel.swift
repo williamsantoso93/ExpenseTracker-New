@@ -9,6 +9,8 @@ import Foundation
 
 class SummaryViewModel: ObservableObject {
     @Published var isSelectUser = false
+    @Published var isAddIncomeShow = false
+    @Published var isAddExpenseShow = false
     
     init() {
         checkUser()

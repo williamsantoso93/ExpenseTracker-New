@@ -29,9 +29,9 @@ struct templateModelscreen: View {
                                     Text("name : \(templateModel.name ?? "-")")
                                     Text("store : \(templateModel.store ?? "-")")
                                     Text("value : \((templateModel.value ?? 0).splitDigit())")
-                                    Text("account : \(templateModel.account ?? "")")
-                                    Text("category : \(templateModel.category ?? "")")
-                                    Text("subcategory : \(templateModel.subcategory ?? "")")
+                                    Text("account : \(templateModel.account ?? "-")")
+                                    Text("category : \(templateModel.category ?? "-")")
+                                    Text("subcategory : \(templateModel.subcategory ?? "-")")
                                     Text("duration : \(templateModel.duration ?? "-")")
                                     Text("paymentVia : \(templateModel.paymentVia ?? "-")")
                                 }
