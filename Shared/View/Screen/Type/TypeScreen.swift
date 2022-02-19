@@ -28,6 +28,7 @@ struct TypeScreen: View {
                                 VStack(alignment: .leading) {
                                     Text("\(type.isMainCategory ? "main " : "")category : \(type.name)")
                                     Text("subcategoryOf : \(type.subcategoryOf?.joinedWithComma() ?? "-")")
+                                    Text("nature : \(type.nature ?? "-")")
                                 }
                             }
                         }

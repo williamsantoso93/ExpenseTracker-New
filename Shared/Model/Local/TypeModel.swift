@@ -15,6 +15,7 @@ struct TypeModel: Codable {
     var keywords: String?
     var subcategoryOf: [String]? = nil
     var isMainCategory: Bool = true
+    var nature: String?
 }
 
 struct Types: Codable {

@@ -47,13 +47,7 @@ struct SummaryScreen: View {
             }
             .loadingView(globalData.isLoading, isNeedDisable: false)
             .navigationTitle("Summary")
-            .showErrorAlert(isShowErrorMessageAlert: $isShowErrorMessageAlert, errorMessage: errorMessage)
-            .onReceive(globalData.$errorMessage) { errorMessage in
-                if let errorMessage = errorMessage {
-                    self.errorMessage = errorMessage
-                    isShowErrorMessageAlert = true
-                }
-            }
+            .networkErrorAlert()
             .overlay() {
                 VStack {
                     Spacer()

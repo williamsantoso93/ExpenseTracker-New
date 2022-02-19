@@ -14,8 +14,15 @@ class AddTypeViewModel: ObservableObject {
     @Published var isLoading = false
     
     @Published var name = ""
-    @Published var selectedType = ""
+    @Published var selectedType = "Expense"
     @Published var selectedSubcategoryOf: [String] = []
+    @Published var selectedNature = "Must"
+    
+    let natures = [
+        "Must",
+        "Need",
+        "Want"
+    ]
     
     var typesCategory: [String] {
         Types.TypeCategory.allCases.map { result in
@@ -47,6 +54,7 @@ class AddTypeViewModel: ObservableObject {
             name = typeModel.name
             selectedType = typeModel.type
             selectedSubcategoryOf = typeModel.subcategoryOf ?? []
+            selectedNature = typeModel.nature ?? "Must"
             
             isUpdate = true
             saveTitle = "Update"
@@ -55,7 +63,8 @@ class AddTypeViewModel: ObservableObject {
                 blockID: "",
                 name: "",
                 type: "",
-                subcategoryOf: []
+                subcategoryOf: [],
+                nature: ""
             )
         }
     }
@@ -75,6 +84,7 @@ class AddTypeViewModel: ObservableObject {
             typeModel.type = try Validation.picker(selectedType, typeError: .noType)
             typeModel.name = try Validation.textField(name)
             typeModel.subcategoryOf = selectedSubcategoryOf.isEmpty ? nil : selectedSubcategoryOf
+            typeModel.nature = selectedNature
             
             isLoading = true
             if isUpdate {

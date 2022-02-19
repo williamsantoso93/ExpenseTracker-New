@@ -30,6 +30,12 @@ struct AddTypeScreen: View {
                 MultiPickerFormView("Subcategory of", items: viewModel.subcategoriesOf, selectedItems: $viewModel.selectedSubcategoryOf)
                     .disabled(viewModel.isSubCategoryDisabled)
                 
+                Picker("Nature", selection: $viewModel.selectedNature) {
+                    ForEach(viewModel.natures, id: \.self) {
+                        Text($0)
+                    }
+                }
+                
                 if viewModel.isUpdate {
                     Section {
                         Button("Delete", role: .destructive) {
@@ -45,6 +51,7 @@ struct AddTypeScreen: View {
             }
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
+            .networkErrorAlert()
             .navigationTitle("Add Type")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)

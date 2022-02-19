@@ -14,6 +14,7 @@ struct TypeProperty: Codable {
     let subcategoryOf: MultiSelectProperty?
     var mainCategory: FormulaProperty? = nil
     var keywords: FormulaProperty? = nil
+    let nature: SingleSelectProperty?
     
     enum CodingKeys: String, CodingKey {
         case name = "Name"
@@ -21,6 +22,7 @@ struct TypeProperty: Codable {
         case subcategoryOf = "Subcategory of"
         case mainCategory = "Main Category"
         case keywords = "Keywords"
+        case nature = "Nature"
     }
 }
 

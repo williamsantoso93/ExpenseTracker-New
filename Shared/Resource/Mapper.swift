@@ -86,14 +86,14 @@ struct Mapper {
         ExpenseProperty(
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
-            note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
+            note: textToRichTextProperty(local.note),
             value: NumberProperty(number: local.value ?? 0),
             account: SingleSelectProperty(select: Select(name: local.account ?? "")),
             category: SingleSelectProperty(select: Select(name: local.category ?? "")),
             subcategory: textToSingleSelectProperty(local.subcategory),
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
             paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
-            store: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.store ?? ""))]),
+            store: textToRichTextProperty(local.store),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
     }
@@ -145,7 +145,7 @@ struct Mapper {
             account: SingleSelectProperty(select: Select(name: local.account ?? "")),
             category: SingleSelectProperty(select: Select(name: local.category ?? "")),
             subcategory: textToSingleSelectProperty(local.subcategory),
-            note: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.note ?? ""))]),
+            note: textToRichTextProperty(local.note),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
     }
@@ -164,7 +164,8 @@ struct Mapper {
             type: remote.type.select?.name ?? "",
             keywords: remote.keywords?.formula.string,
             subcategoryOf: multiSelectsToStrings(remote.subcategoryOf?.multiSelect),
-            isMainCategory: remote.mainCategory?.formula.boolean ?? false
+            isMainCategory: remote.mainCategory?.formula.boolean ?? false,
+            nature: remote.nature?.select?.name ?? ""
         )
     }
     
@@ -178,7 +179,8 @@ struct Mapper {
         TypeProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name))]),
             type: SingleSelectProperty(select: Select(name: local.type)),
-            subcategoryOf: stringsToMultiSelectProperty(local.subcategoryOf)
+            subcategoryOf: stringsToMultiSelectProperty(local.subcategoryOf),
+            nature: textToSingleSelectProperty(local.nature)
         )
     }
     
@@ -221,7 +223,7 @@ struct Mapper {
             duration: textToSingleSelectProperty(local.duration),
             paymentVia: textToSingleSelectProperty(local.paymentVia),
             value: numberToNumberProperty(local.value),
-            store: RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: local.store ?? ""))])
+            store: textToRichTextProperty(local.store)
         )
     }
     
@@ -233,6 +235,19 @@ struct Mapper {
     }
     
     //MARK: - To Property
+    
+    static func textToRichTextProperty(_ text: String?) -> RichTextProperty? {
+        guard let text = text else {
+            return nil
+        }
+        
+        guard !text.isEmpty else {
+            return RichTextProperty(richText: [])
+        }
+        
+        return RichTextProperty(richText: [RichText(type: "text", text: TextContent(content: text))])
+    }
+    
     static func textToSingleSelectProperty(_ text: String?) -> SingleSelectProperty? {
         guard let text = text else {
             return nil
