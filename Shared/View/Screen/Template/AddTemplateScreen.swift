@@ -51,24 +51,26 @@ struct AddTemplatescreen: View {
                     }
                     .disabled(viewModel.isSubCategoryDisabled)
                     
-                    Picker("Payment Via", selection: $viewModel.selectedPayment) {
-                        ForEach(viewModel.paymentType, id: \.self) {
-                            Text($0)
-                        }
-                    }
                     Picker("Duration", selection: $viewModel.selectedDuration) {
                         ForEach(viewModel.durationType, id: \.self) {
                             Text($0)
                         }
                     }
-                    Picker("Store", selection: $viewModel.selectedStore) {
-                        ForEach(viewModel.storeType, id: \.self) {
-                            Text($0)
+                    if viewModel.selectedType == "Expense" {
+                        Picker("Payment Via", selection: $viewModel.selectedPayment) {
+                            ForEach(viewModel.paymentType, id: \.self) {
+                                Text($0)
+                            }
                         }
-                    }
-                    
-                    if viewModel.isOtherStore {
-                        TextField("Indomaret", text: $viewModel.otherStore)
+                        Picker("Store", selection: $viewModel.selectedStore) {
+                            ForEach(viewModel.storeType, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        
+                        if viewModel.isOtherStore {
+                            TextField("Indomaret", text: $viewModel.otherStore)
+                        }
                     }
                 }
                 

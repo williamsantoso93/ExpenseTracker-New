@@ -78,7 +78,9 @@ class AddIncomeViewModel: ObservableObject {
             selectedSubcategory = income.subcategory ?? ""
             date = income.date ?? Date()
             
-            isUpdate = true
+            if !income.blockID.isEmpty {
+                isUpdate = true
+            }
         } else {
             self.income = Income(
                 blockID: "",
@@ -136,6 +138,27 @@ class AddIncomeViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    //MARK: - Template
+    @Published var isShowTemplateAddScreen = false
+    @Published var templateModel: TemplateModel? = nil
+    
+    func addTemplate() {
+        templateModel = TemplateModel(
+            blockID: "",
+            name: note,
+            account: selectedAccount,
+            category: selectedCategory,
+            subcategory: selectedSubcategory,
+            duration: "Monthly",
+            paymentVia: "",
+            store: "",
+            type: "Income",
+            value: value
+        )
+        
+        isShowTemplateAddScreen.toggle()
     }
     
     func applyTemplate(at index: Int) {

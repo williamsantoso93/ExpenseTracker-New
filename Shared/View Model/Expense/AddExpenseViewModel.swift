@@ -106,7 +106,10 @@ class AddExpenseViewModel: ObservableObject {
             checkStore(expense.store)
             note = expense.note ?? ""
             
-            isUpdate = true
+            
+            if !expense.blockID.isEmpty {
+                isUpdate = true
+            }
         } else {
             self.expense = Expense(
                 blockID: "",
@@ -199,6 +202,27 @@ class AddExpenseViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    //MARK: - Template
+    @Published var isShowTemplateAddScreen = false
+    @Published var templateModel: TemplateModel? = nil
+    
+    func addTemplate() {
+        templateModel = TemplateModel(
+            blockID: "",
+            name: note,
+            account: selectedAccount,
+            category: selectedCategory,
+            subcategory: selectedSubcategory,
+            duration: selectedDuration,
+            paymentVia: selectedPayment,
+            store: getStore(),
+            type: "Expense",
+            value: value
+        )
+        
+        isShowTemplateAddScreen.toggle()
     }
     
     func applyTemplate(at index: Int) {

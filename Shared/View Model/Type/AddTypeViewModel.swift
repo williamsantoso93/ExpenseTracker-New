@@ -41,7 +41,9 @@ class AddTypeViewModel: ObservableObject {
         subcategoriesOf.isEmpty
     }
     
-    @Published var saveTitle = "Save"
+    var saveTitle: String {
+        isUpdate ? "Update" : "Save"
+    }
     var isUpdate: Bool = false
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
@@ -56,8 +58,9 @@ class AddTypeViewModel: ObservableObject {
             selectedSubcategoryOf = typeModel.subcategoryOf ?? []
             selectedNature = typeModel.nature ?? "Must"
             
-            isUpdate = true
-            saveTitle = "Update"
+            if !typeModel.blockID.isEmpty {
+                isUpdate = true
+            }
         } else {
             self.typeModel = TypeModel(
                 blockID: "",
