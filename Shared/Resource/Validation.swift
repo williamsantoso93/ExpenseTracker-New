@@ -73,11 +73,18 @@ class Validation {
         return input
     }
     
-    static func numberTextField(_ input: Double) throws -> Double {
-        if input <= 0 {
-            throw ValidationError.noValue
+    static func numberTextField(_ input: String) throws -> Double {
+        let typeError: ValidationError = .noValue
+        if input.isEmpty {
+            throw typeError
         }
-        return input
+        guard let inputDouble = input.toDouble() else {
+            throw typeError
+        }
+        if inputDouble < 0 {
+            throw typeError
+        }
+        return inputDouble
     }
     
     static func picker(_ input: String, typeError: ValidationError) throws -> String {

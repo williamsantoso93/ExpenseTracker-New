@@ -43,6 +43,7 @@ struct SummaryScreen: View {
                         viewModel.isAddExpenseShow.toggle()
                     }
                 }
+                .disabled(globalData.isLoading)
             }
             .loadingView(globalData.isLoading, isNeedDisable: false)
             .navigationTitle("Summary")

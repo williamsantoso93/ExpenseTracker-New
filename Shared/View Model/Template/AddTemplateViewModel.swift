@@ -104,7 +104,10 @@ class AddTemplateViewModel: ObservableObject {
             }
             selectedDuration = templateModel.duration ?? ""
             selectedPayment = templateModel.paymentVia ?? ""
+            selectedAccount = templateModel.account ?? ""
             selectedCategory = templateModel.category ?? ""
+            selectedSubcategory = templateModel.subcategory ?? ""
+            selectedType = templateModel.type ?? ""
             checkStore(templateModel.store)
             
             isUpdate = true
