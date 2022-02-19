@@ -93,6 +93,7 @@ struct AddTemplatescreen: View {
             }
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
+            .networkErrorAlert()
             .navigationTitle("Add Template")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)

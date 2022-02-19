@@ -126,6 +126,7 @@ struct AddExpenseScreen: View {
             }
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
+            .networkErrorAlert()
             .navigationTitle("Add Expsense")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)

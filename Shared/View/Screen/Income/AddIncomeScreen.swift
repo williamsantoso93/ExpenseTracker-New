@@ -96,6 +96,7 @@ struct AddIncomeScreen: View {
             }
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
+            .networkErrorAlert()
             .navigationTitle("Add Income")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)

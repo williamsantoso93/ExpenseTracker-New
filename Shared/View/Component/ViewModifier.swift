@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct LoadingViewModifier: ViewModifier {
     var isLoading: Bool
@@ -62,6 +63,29 @@ struct LoadingWithNoDataButtonViewModifier: ViewModifier {
     }
 }
 
+struct NetworkErrorAlertViewModifier: ViewModifier {
+    @ObservedObject private var globalData = GlobalData.shared
+    var action: (() -> Void)?
+    
+    func body(content: Content) -> some View {
+        content
+            .alert(globalData.errorMessage.title, isPresented: $globalData.isShowErrorMessage) {
+                Button("OK", role: .cancel) {
+                    if let action = action {
+                        action()
+                    }
+                }
+            } message: {
+                Text(globalData.errorMessage.message)
+            }
+            .onReceive(globalData.$errorMessage) { errorMessage in
+                if !errorMessage.message.isEmpty {
+                    globalData.isShowErrorMessage = true
+                }
+            }
+    }
+}
+
 struct ShowErrorAlertViewModifier: ViewModifier {
     @Binding var isShowErrorMessageAlert: Bool
     var errorMessage: ErrorMessage
@@ -99,5 +123,9 @@ extension View {
     
     func showErrorAlert(isShowErrorMessageAlert: Binding<Bool>, errorMessage: ErrorMessage, action: (() -> Void)? = nil) -> some View {
         modifier(ShowErrorAlertViewModifier(isShowErrorMessageAlert: isShowErrorMessageAlert, errorMessage: errorMessage, action: action))
+    }
+    
+    func networkErrorAlert(action: (() -> Void)? = nil) -> some View {
+        modifier(NetworkErrorAlertViewModifier(action: action))
     }
 }
