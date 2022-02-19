@@ -164,7 +164,8 @@ struct Mapper {
             type: remote.type.select?.name ?? "",
             keywords: remote.keywords?.formula.string,
             subcategoryOf: multiSelectsToStrings(remote.subcategoryOf?.multiSelect),
-            isMainCategory: remote.mainCategory?.formula.boolean ?? false
+            isMainCategory: remote.mainCategory?.formula.boolean ?? false,
+            nature: remote.nature?.select?.name ?? ""
         )
     }
     
@@ -178,7 +179,8 @@ struct Mapper {
         TypeProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name))]),
             type: SingleSelectProperty(select: Select(name: local.type)),
-            subcategoryOf: stringsToMultiSelectProperty(local.subcategoryOf)
+            subcategoryOf: stringsToMultiSelectProperty(local.subcategoryOf),
+            nature: textToSingleSelectProperty(local.nature)
         )
     }
     
