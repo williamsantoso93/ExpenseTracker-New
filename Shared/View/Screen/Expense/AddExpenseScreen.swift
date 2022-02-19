@@ -14,7 +14,6 @@ struct AddExpenseScreen: View {
     var refesh: () -> Void
     
     @State private var isShowTypeAddScreen = false
-    @State private var isShowTemplateAddScreen = false
     
     init(expense: Expense? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddExpenseViewModel(expense: expense))
@@ -102,6 +101,10 @@ struct AddExpenseScreen: View {
                                         Text("Total Interest : \(viewModel.totalInterest.splitDigit())")
                                     }
                                 }
+                                
+                                if let installmentDates = viewModel.installmentDates {
+                                    Text(installmentDates)
+                                }
                             }
                         }
                     } header: {
@@ -162,9 +165,9 @@ struct AddExpenseScreen: View {
                     }
                 }
             }
-            .sheet(isPresented: $isShowTemplateAddScreen) {
+            .sheet(isPresented: $viewModel.isShowTemplateAddScreen) {
             } content: {
-                AddTemplatescreen() {
+                AddTemplatescreen(templateModel: viewModel.templateModel) {
                     globalData.getTemplateModel(done:  {
                         viewModel.templateModels = GlobalData.shared.templateModels
                     })
@@ -193,7 +196,7 @@ struct AddExpenseScreen: View {
             }
             
             Button {
-                isShowTemplateAddScreen.toggle()
+                viewModel.addTemplate()
             } label: {
                 Text("Add Template")
             }

@@ -41,7 +41,9 @@ class AddTypeViewModel: ObservableObject {
         subcategoriesOf.isEmpty
     }
     
-    @Published var saveTitle = "Save"
+    var saveTitle: String {
+        isUpdate ? "Update" : "Save"
+    }
     var isUpdate: Bool = false
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
@@ -56,8 +58,9 @@ class AddTypeViewModel: ObservableObject {
             selectedSubcategoryOf = typeModel.subcategoryOf ?? []
             selectedNature = typeModel.nature ?? "Must"
             
-            isUpdate = true
-            saveTitle = "Update"
+            if !typeModel.blockID.isEmpty {
+                isUpdate = true
+            }
         } else {
             self.typeModel = TypeModel(
                 blockID: "",
@@ -82,7 +85,7 @@ class AddTypeViewModel: ObservableObject {
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             typeModel.type = try Validation.picker(selectedType, typeError: .noType)
-            typeModel.name = try Validation.textField(name)
+            typeModel.name = try Validation.textField(name.trimWhitespace())
             typeModel.subcategoryOf = selectedSubcategoryOf.isEmpty ? nil : selectedSubcategoryOf
             typeModel.nature = selectedNature
             

@@ -82,7 +82,9 @@ class AddTemplateViewModel: ObservableObject {
     }
     @Published var otherStore = ""
     
-    @Published var saveTitle = "Save"
+    var saveTitle: String {
+        isUpdate ? "Update" : "Save"
+    }
     var isUpdate: Bool = false
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
@@ -110,8 +112,9 @@ class AddTemplateViewModel: ObservableObject {
             selectedType = templateModel.type ?? ""
             checkStore(templateModel.store)
             
-            isUpdate = true
-            saveTitle = "Update"
+            if !templateModel.blockID.isEmpty {
+                isUpdate = true
+            }
         } else {
             self.templateModel = TemplateModel(
                 blockID: "",
@@ -168,7 +171,7 @@ class AddTemplateViewModel: ObservableObject {
         templateModel.type = selectedType
         templateModel.store = getStore()
         
-        templateModel.name = name.isEmpty ? templateModel.store : name
+        templateModel.name = name.isEmpty ? templateModel.store : name.trimWhitespace()
         
         isLoading = true
         if isUpdate {

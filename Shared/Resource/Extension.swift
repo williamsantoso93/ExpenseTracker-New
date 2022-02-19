@@ -57,6 +57,10 @@ extension String {
         
         return nil
     }
+    
+    func trimWhitespace() -> String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 
 extension Double {

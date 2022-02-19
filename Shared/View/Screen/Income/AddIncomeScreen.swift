@@ -14,7 +14,6 @@ struct AddIncomeScreen: View {
     var refesh: () -> Void
     
     @State private var isShowTypeAddScreen = false
-    @State private var isShowTemplateAddScreen = false
     
     init(income: Income? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddIncomeViewModel(income: income))
@@ -76,7 +75,7 @@ struct AddIncomeScreen: View {
                         }
                         
                         Button {
-                            isShowTemplateAddScreen.toggle()
+                            viewModel.addTemplate()
                         } label: {
                             Text("Add Template")
                         }
@@ -132,9 +131,9 @@ struct AddIncomeScreen: View {
                     }
                 }
             }
-            .sheet(isPresented: $isShowTemplateAddScreen) {
+            .sheet(isPresented: $viewModel.isShowTemplateAddScreen) {
             } content: {
-                AddTemplatescreen() {
+                AddTemplatescreen(templateModel: viewModel.templateModel) {
                     globalData.getTemplateModel(done:  {
                         viewModel.templateModels = GlobalData.shared.templateModels
                     })
