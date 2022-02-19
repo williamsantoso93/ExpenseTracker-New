@@ -171,7 +171,7 @@ class AddTemplateViewModel: ObservableObject {
         templateModel.type = selectedType
         templateModel.store = getStore()
         
-        templateModel.name = name.isEmpty ? templateModel.store : name
+        templateModel.name = name.isEmpty ? templateModel.store : name.trimWhitespace()
         
         isLoading = true
         if isUpdate {

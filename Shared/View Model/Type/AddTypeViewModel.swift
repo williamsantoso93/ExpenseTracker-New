@@ -85,7 +85,7 @@ class AddTypeViewModel: ObservableObject {
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             typeModel.type = try Validation.picker(selectedType, typeError: .noType)
-            typeModel.name = try Validation.textField(name)
+            typeModel.name = try Validation.textField(name.trimWhitespace())
             typeModel.subcategoryOf = selectedSubcategoryOf.isEmpty ? nil : selectedSubcategoryOf
             typeModel.nature = selectedNature
             

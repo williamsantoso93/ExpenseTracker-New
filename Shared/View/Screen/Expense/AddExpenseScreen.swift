@@ -101,6 +101,10 @@ struct AddExpenseScreen: View {
                                         Text("Total Interest : \(viewModel.totalInterest.splitDigit())")
                                     }
                                 }
+                                
+                                if let installmentDates = viewModel.installmentDates {
+                                    Text(installmentDates)
+                                }
                             }
                         }
                     } header: {

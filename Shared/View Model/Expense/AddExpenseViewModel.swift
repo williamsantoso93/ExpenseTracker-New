@@ -167,8 +167,8 @@ class AddExpenseViewModel: ObservableObject {
             expense.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
             expense.paymentVia = try Validation.picker(selectedPayment, typeError: .noPaymentVia)
             expense.duration = try Validation.picker(selectedDuration, typeError: .noDuration)
-            expense.store = getStore()
-            expense.note = note
+            expense.store = getStore().trimWhitespace()
+            expense.note = note.trimWhitespace()
             expense.date = date
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
@@ -289,11 +289,32 @@ class AddExpenseViewModel: ObservableObject {
         totalInstallment - value
     }
     
+    var installmentDates: String? {
+        guard installmentMonth > 0 else { return nil }
+        var selectedDate: Date? = date
+        
+        var temp: [String] = []
+        
+        for installment in 1 ... installmentMonth {
+            if installment > 1 {
+                selectedDate = selectedDate?.addMonth(by: 1)
+            }
+            if let dateString = selectedDate?.toString(format: "yyyy/MM/dd") {
+                temp.append("\(installment) : \(dateString)")
+            }
+        }
+        
+        if !temp.isEmpty {
+            return temp.joined(separator: "\n")
+        }
+        
+        return nil
+    }
+    
     func saveInstallment(completion: @escaping (_ isSuccess: Bool) -> Void) {
         guard installmentMonth > 0 else { return }
         var count = 0
         var expense = self.expense
-        expense.category?.append("Installment")
         expense.duration = "Monthly"
         let strValue = String(format: "%.2f", perMonthExpenseWithInterest)
         expense.value = Double(strValue) ?? 0
