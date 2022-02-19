@@ -158,7 +158,7 @@ class AddExpenseViewModel: ObservableObject {
     
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
-            expense.value = try Validation.numberTextField(value)
+            expense.value = try Validation.numberTextField(valueString)
             expense.account = try Validation.picker(selectedAccount, typeError: .noAccount)
             expense.category = try Validation.picker(selectedCategory, typeError: .noCategory)
             expense.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory

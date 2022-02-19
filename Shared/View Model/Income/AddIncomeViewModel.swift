@@ -106,7 +106,7 @@ class AddIncomeViewModel: ObservableObject {
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             income.note = note
-            income.value = try Validation.numberTextField(value)
+            income.value = try Validation.numberTextField(valueString)
             income.account = try Validation.picker(selectedAccount, typeError: .noAccount)
             income.category = try Validation.picker(selectedCategory, typeError: .noCategory)
             income.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
