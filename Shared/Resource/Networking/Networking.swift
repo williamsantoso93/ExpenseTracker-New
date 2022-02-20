@@ -343,7 +343,7 @@ class Networking {
         }.resume()
     }
     
-    func deleteData<T:Codable>(from urlString: String) throws -> AnyPublisher<T, Error> {
+    func deleteData<T:Codable>(from urlString: String, responseType: T.Type) throws -> AnyPublisher<T, Error> {
         guard let url = URL(string: urlString) else {
             throw NetworkError.badUrl
         }
