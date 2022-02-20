@@ -256,7 +256,7 @@ class Networking {
         }.resume()
     }
     
-    func patchData<T:Codable, U:Codable>(to urlString: String, patchData: T?) throws -> AnyPublisher<U, Error> {
+    func patchData<T:Codable, U:Codable>(to urlString: String, patchData: T?, responseType: U.Type) throws -> AnyPublisher<U, Error> {
         guard let url = URL(string: urlString) else {
             throw NetworkError.badUrl
         }
