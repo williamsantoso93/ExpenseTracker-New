@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 //MARK: - Post Data
 extension Networking {
@@ -25,6 +26,23 @@ extension Networking {
         }
     }
     
+    func postExpense(_ expense: Expense) throws -> AnyPublisher<DefaultResponse<Bool>, Error> {
+        let urlString = basePage
+        
+        let post = DefaultPost(
+            parent: Parent(databaseID: getDatabaseID(.expenseDatabaseID)),
+            properties: Mapper.expenseLocalToRemote(expense)
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<Bool>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
+        }
+    }
+    
     func postExpense(_ expense: Expense, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
@@ -40,6 +58,23 @@ extension Networking {
         }
     }
     
+    func postIncome(_ income: Income) throws -> AnyPublisher<DefaultResponse<Bool>, Error> {
+        let urlString = basePage
+        
+        let post = DefaultPost(
+            parent: Parent(databaseID: getDatabaseID(.incomeDatabaseID)),
+            properties: Mapper.incomeLocalToRemote(income)
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<Bool>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
+        }
+    }
+    
     func postIncome(_ income: Income, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
@@ -52,6 +87,23 @@ extension Networking {
             self.defaultResultIsSuccess(result, isSuccess) { isSuccess in
                 return completion(isSuccess)
             }
+        }
+    }
+    
+    func postYearMonth(_ yearMonth: YearMonth) throws -> AnyPublisher<DefaultResponse<Bool>, Error> {
+        let urlString = basePage
+        
+        let post = DefaultPost(
+            parent: Parent(databaseID: getDatabaseID(.yearMonthDatabaseID)),
+            properties: Mapper.yearMonthLocalToRemote(yearMonth)
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<Bool>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
         }
     }
     
@@ -71,6 +123,23 @@ extension Networking {
         }
     }
     
+    func postType(_ typeModel: TypeModel) throws -> AnyPublisher<DefaultResponse<Bool>, Error> {
+        let urlString = basePage
+        
+        let post = DefaultPost(
+            parent: Parent(databaseID: getDatabaseID(.typeDatabaseID)),
+            properties: Mapper.typeLocalToRemote(typeModel)
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<Bool>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
+        }
+    }
+    
     func postType(_ typeModel: TypeModel, completion: @escaping (_ isSuccess: Bool) -> Void) {
         let urlString = basePage
         
@@ -83,6 +152,23 @@ extension Networking {
             self.defaultResultIsSuccess(result, isSuccess) { isSuccess in
                 return completion(isSuccess)
             }
+        }
+    }
+    
+    func postTemplateModel(_ templateModel: TemplateModel) throws -> AnyPublisher<DefaultResponse<Bool>, Error> {
+        let urlString = basePage
+        
+        let post = DefaultPost(
+            parent: Parent(databaseID: getDatabaseID(.templateModelDatabaseID)),
+            properties: Mapper.templateModelLocalToRemote(templateModel)
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<Bool>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
         }
     }
     
