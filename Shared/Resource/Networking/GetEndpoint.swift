@@ -27,7 +27,7 @@ extension Networking {
         let post = Query(
             startCursor: startCursor,
             sorts: [
-                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+                Sort(property: "Date", direction: SortDirection.descending.rawValue)
             ]
         )
         
@@ -63,7 +63,11 @@ extension Networking {
         let post = Query(
             startCursor: startCursor,
             sorts: [
-                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+                Sort(
+                    property: nil,
+                    timestamp: SortTimestamp.createdTime.rawValue,
+                    direction: SortDirection.descending.rawValue
+                )
             ]
         )
         

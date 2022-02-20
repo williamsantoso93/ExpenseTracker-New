@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class IncomeViewModel: ObservableObject {
     @Published var incomes: [Income] = []
@@ -14,6 +15,8 @@ class IncomeViewModel: ObservableObject {
     var isNowShowData: Bool {
         incomes.isEmpty
     }
+    
+    var cancelables = Set<AnyCancellable>()
     
     init() {
         loadNewData()
@@ -37,13 +40,13 @@ class IncomeViewModel: ObservableObject {
         }
     }
     
-    func getList(startCursor: String? = nil, completion: @escaping ([Income]) -> Void) {
+    func getList(completion: @escaping ([Income]) -> Void) {
         isLoading = true
-        Networking.shared.getIncome(startCursor: startCursor) { (result: Result<DefaultResponse<IncomeProperty>, NetworkError>) in
-            DispatchQueue.main.async {
-                self.isLoading = false
-                switch result {
-                case .success(let data):
+        do {
+            try Networking.shared.getIncome(startCursor: startCursor)
+                .sink { completion in
+                    self.isLoading = false
+                } receiveValue: { data in
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
                             self.startCursor = nextCursor
@@ -52,10 +55,10 @@ class IncomeViewModel: ObservableObject {
                         self.startCursor = nil
                     }
                     return completion(Mapper.mapIncomeRemoteToLocal(data.results))
-                case .failure(let error):
-                    print(error)
                 }
-            }
+                .store(in: &self.cancelables)
+        } catch {
+            print(error)
         }
     }
     

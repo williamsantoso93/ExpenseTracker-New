@@ -127,8 +127,13 @@ class Networking {
                 .receive(on: DispatchQueue.main)
                 .tryMap(self.handleOutput)
                 .decode(type: T.self, decoder: JSONDecoder())
-                .sink { completion in
-                    
+                .sink { result in
+                    switch result {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
                 } receiveValue: { value in
                     completion(.success(value))
                 }
@@ -196,8 +201,13 @@ class Networking {
                 .receive(on: DispatchQueue.main)
                 .tryMap(self.handleOutput)
                 .decode(type: U.self, decoder: JSONDecoder())
-                .sink { completion in
-                    
+                .sink { result in
+                    switch result {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
                 } receiveValue: { value in
                     completion(.success(value))
                 }
@@ -283,8 +293,13 @@ class Networking {
                 .receive(on: DispatchQueue.main)
                 .tryMap(self.handleOutput)
                 .decode(type: U.self, decoder: JSONDecoder())
-                .sink { completion in
-                    
+                .sink { result in
+                    switch result {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
                 } receiveValue: { value in
                     completion(.success(value))
                 }
@@ -360,8 +375,13 @@ class Networking {
                 .receive(on: DispatchQueue.main)
                 .tryMap(self.handleOutput)
                 .decode(type: T.self, decoder: JSONDecoder())
-                .sink { completion in
-                    
+                .sink { result in
+                    switch result {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
                 } receiveValue: { value in
                     completion(.success(value))
                 }

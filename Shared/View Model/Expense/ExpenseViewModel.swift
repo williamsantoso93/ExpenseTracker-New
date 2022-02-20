@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class ExpenseViewModel: ObservableObject {
     @Published var expenses: [Expense] = []
@@ -14,6 +15,7 @@ class ExpenseViewModel: ObservableObject {
     var isNowShowData: Bool {
         expenses.isEmpty
     }
+    var cancelables = Set<AnyCancellable>()
     
     init() {
         loadNewData()
@@ -39,11 +41,11 @@ class ExpenseViewModel: ObservableObject {
     
     func getList(completion: @escaping ([Expense]) -> Void) {
         isLoading = true
-        Networking.shared.getExpense(startCursor: startCursor) { (result: Result<DefaultResponse<ExpenseProperty>, NetworkError>) in
-            DispatchQueue.main.async {
-                self.isLoading = false
-                switch result {
-                case .success(let data):
+        do {
+            try Networking.shared.getExpense(startCursor: startCursor)
+                .sink { completion in
+                    self.isLoading = false
+                } receiveValue: { data in
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
                             self.startCursor = nextCursor
@@ -52,10 +54,10 @@ class ExpenseViewModel: ObservableObject {
                         self.startCursor = nil
                     }
                     return completion(Mapper.mapExpenseRemoteToLocal(data.results))
-                case .failure(let error):
-                    print(error)
                 }
-            }
+                .store(in: &self.cancelables)
+        } catch {
+            print(error)
         }
     }
     
