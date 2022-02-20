@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class GlobalData: ObservableObject {
     @Published var types = Types()
@@ -24,13 +25,15 @@ class GlobalData: ObservableObject {
     @Published var isShowErrorMessage = false
     
     static let shared = GlobalData()
+    var cancelables = Set<AnyCancellable>()
     
     init() {
         loadAll()
     }
     
     func loadAll() {
-        getTypes()
+        getData()
+//        getTypes()
         getYearMonth()
         getTemplateModel()
         isLoadingDisplay = false
@@ -49,6 +52,34 @@ class GlobalData: ObservableObject {
     func loadNewTemplateModels() {
         templateModels.removeAll()
         getTemplateModel()
+    }
+    
+    func getData(startCursor: String? = nil) {
+        let newData = startCursor == nil
+        isLoadingTypes = true
+        
+        do {
+            try Networking.shared.getTypes(startCursor: nil)
+                .sink { completion in
+                    
+                } receiveValue: { data in
+                    self.isLoadingTypes = false
+                    let results = Mapper.mapTypeRemoteToLocal(data.results)
+                    if self.types.allTypes.isEmpty || newData {
+                        self.types.allTypes = results
+                    } else {
+                        self.types.allTypes.append(contentsOf: results)
+                    }
+                    if data.hasMore {
+                        if let nextCursor = data.nextCursor {
+                            self.getData(startCursor: nextCursor)
+                        }
+                    }
+                }
+                .store(in: &self.cancelables)
+        } catch {
+            print(error)
+        }
     }
     
     func getTypes(startCursor: String? = nil, completion: @escaping () -> Void = {}) {

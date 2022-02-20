@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 //MARK: - Get Data
 extension Networking {
@@ -77,6 +78,25 @@ extension Networking {
                     return completion(.failure(error))
                 }
             }
+        }
+    }
+    
+    func getTypes(startCursor: String? = nil) throws -> AnyPublisher<DefaultResponse<TypeProperty>, Error> {
+        let urlString = baseDatabase + getDatabaseID(.typeDatabaseID) + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<TypeProperty>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
         }
     }
     

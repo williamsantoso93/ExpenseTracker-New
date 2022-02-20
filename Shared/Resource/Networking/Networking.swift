@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 enum NetworkError: Error {
     case badUrl
@@ -90,6 +91,51 @@ class Networking {
     
     static let shared = Networking()
     
+    var cancelables = Set<AnyCancellable>()
+    
+    
+    func handleOutput(_ output: URLSession.DataTaskPublisher.Output) throws -> Data {
+        guard
+            let response = output.response as? HTTPURLResponse else {
+                throw NetworkError.badUrl
+            }
+        
+        if response.statusCode > 300 {
+            if let errorResponseDecoded = try? JSONDecoder().decode(ErrorResponse.self, from: output.data) {
+                DispatchQueue.main.async {
+                    GlobalData.shared.errorMessage = Mapper.errorMessageRemoteToLocal(errorResponseDecoded)
+                }
+                throw NetworkError.errorResponse(errorResponseDecoded)
+            }
+        }
+        return output.data
+    }
+    
+    func getData<T:Codable>(from urlString: String, responseType: T.Type) throws -> AnyPublisher<T, Error> {
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.badUrl
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("\(notionVersion)", forHTTPHeaderField: "Notion-Version")
+        
+        return Future<T, Error> { completion in
+            URLSession.shared.dataTaskPublisher(for: request)
+                .subscribe(on: DispatchQueue.global(qos: .background))
+                .receive(on: DispatchQueue.main)
+                .tryMap(self.handleOutput)
+                .decode(type: T.self, decoder: JSONDecoder())
+                .sink { completion in
+                    
+                } receiveValue: { value in
+                    completion(.success(value))
+                }
+                .store(in: &self.cancelables)
+        }.eraseToAnyPublisher()
+    }
+    
     func getData<T:Codable>(from urlString: String, completion: @escaping ((Result<T,NetworkError>), URLResponse?, Data?) -> Void) {
         guard let url = URL(string: urlString) else {
             return completion(.failure(.badUrl), nil, nil)
@@ -121,6 +167,42 @@ class Networking {
             }
             completion(.success(decoded), response, data)
         }.resume()
+    }
+    
+    func postData<T:Codable, U:Codable>(to urlString: String, postData: T?, responseType: U.Type) throws -> AnyPublisher<U, Error> {
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.badUrl
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("\(notionVersion)", forHTTPHeaderField: "Notion-Version")
+        
+        if let postData = postData {
+            guard let jsonData = try? JSONEncoder().encode(postData) else {
+                print(postData)
+                print("Error: Trying to convert model to JSON data")
+                throw NetworkError.encodingError
+            }
+            
+            request.httpBody = jsonData
+        }
+                
+        return Future<U, Error> { completion in
+            URLSession.shared.dataTaskPublisher(for: request)
+                .subscribe(on: DispatchQueue.global(qos: .background))
+                .receive(on: DispatchQueue.main)
+                .tryMap(self.handleOutput)
+                .decode(type: U.self, decoder: JSONDecoder())
+                .sink { completion in
+                    
+                } receiveValue: { value in
+                    completion(.success(value))
+                }
+                .store(in: &self.cancelables)
+        }.eraseToAnyPublisher()
     }
     
     func postData<T:Codable, U:Codable>(to urlString: String, postData: T?, completionResponse: @escaping (Result<U, NetworkError>, URLResponse?, Data?, Bool) -> Void) {
@@ -174,6 +256,42 @@ class Networking {
         }.resume()
     }
     
+    func patchData<T:Codable, U:Codable>(to urlString: String, patchData: T?) throws -> AnyPublisher<U, Error> {
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.badUrl
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("\(notionVersion)", forHTTPHeaderField: "Notion-Version")
+        
+        if let patchData = patchData {
+            guard let jsonData = try? JSONEncoder().encode(patchData) else {
+                print(patchData)
+                print("Error: Trying to convert model to JSON data")
+                throw NetworkError.encodingError
+            }
+            
+            request.httpBody = jsonData
+        }
+        
+        return Future<U, Error> { completion in
+            URLSession.shared.dataTaskPublisher(for: request)
+                .subscribe(on: DispatchQueue.global(qos: .background))
+                .receive(on: DispatchQueue.main)
+                .tryMap(self.handleOutput)
+                .decode(type: U.self, decoder: JSONDecoder())
+                .sink { completion in
+                    
+                } receiveValue: { value in
+                    completion(.success(value))
+                }
+                .store(in: &self.cancelables)
+        }.eraseToAnyPublisher()
+    }
+    
     func patchData<T:Codable, U:Codable>(to urlString: String, patchData: T?, completionResponse: @escaping (Result<U, NetworkError>, URLResponse?, Data?, Bool) -> Void) {
         guard let url = URL(string: urlString) else {
             return completionResponse(.failure(.badUrl), nil, nil, false)
@@ -223,6 +341,32 @@ class Networking {
             
             return completionResponse(.success(decoded), response, data, true)
         }.resume()
+    }
+    
+    func deleteData<T:Codable>(from urlString: String) throws -> AnyPublisher<T, Error> {
+        guard let url = URL(string: urlString) else {
+            throw NetworkError.badUrl
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("\(notionVersion)", forHTTPHeaderField: "Notion-Version")
+        
+        return Future<T, Error> { completion in
+            URLSession.shared.dataTaskPublisher(for: request)
+                .subscribe(on: DispatchQueue.global(qos: .background))
+                .receive(on: DispatchQueue.main)
+                .tryMap(self.handleOutput)
+                .decode(type: T.self, decoder: JSONDecoder())
+                .sink { completion in
+                    
+                } receiveValue: { value in
+                    completion(.success(value))
+                }
+                .store(in: &self.cancelables)
+        }.eraseToAnyPublisher()
     }
     
     func deleteData<T:Codable>(from urlString: String, completion: @escaping (Result<T, NetworkError>, URLResponse?, Data?, Bool) -> Void) {
