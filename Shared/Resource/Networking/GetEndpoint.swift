@@ -21,6 +21,25 @@ extension Networking {
         }
     }
     
+    func getIncome(startCursor: String? = nil) throws -> AnyPublisher<DefaultResponse<IncomeProperty>, Error> {
+        let urlString = baseDatabase + getDatabaseID(.incomeDatabaseID) + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<IncomeProperty>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
+        }
+    }
+    
     func getIncome(startCursor: String? = nil, completion: @escaping (Result<DefaultResponse<IncomeProperty>, NetworkError>) -> Void) {
         let urlString = baseDatabase + getDatabaseID(.incomeDatabaseID) + "/query"
         
@@ -35,6 +54,25 @@ extension Networking {
             self.defaultReturnData(result) { result in
                 return completion(result)
             }
+        }
+    }
+    
+    func getExpense(startCursor: String? = nil) throws -> AnyPublisher<DefaultResponse<ExpenseProperty>, Error> {
+        let urlString = baseDatabase + getDatabaseID(.expenseDatabaseID) + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<ExpenseProperty>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
         }
     }
     
@@ -56,6 +94,25 @@ extension Networking {
             self.defaultReturnData(result) { result in
                 return completion(result)
             }
+        }
+    }
+    
+    func getYearMonth(startCursor: String? = nil) throws -> AnyPublisher<DefaultResponse<YearMonthProperty>, Error> {
+        let urlString = baseDatabase + getDatabaseID(.yearMonthDatabaseID) + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<YearMonthProperty>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
         }
     }
     
@@ -119,6 +176,25 @@ extension Networking {
                     return completion(.failure(error))
                 }
             }
+        }
+    }
+    
+    func getTemplateModel(startCursor: String? = nil) throws -> AnyPublisher<DefaultResponse<TemplateModelProperty>, Error> {
+        let urlString = baseDatabase + getDatabaseID(.templateModelDatabaseID) + "/query"
+        
+        let post = Query(
+            startCursor: startCursor,
+            sorts: [
+                Sort(property: "Name", direction: SortDirection.ascending.rawValue)
+            ]
+        )
+        
+        do {
+            let result = try postData(to: urlString, postData: post, responseType: DefaultResponse<TemplateModelProperty>.self)
+                .eraseToAnyPublisher()
+            return result
+        } catch {
+            throw error
         }
     }
     
