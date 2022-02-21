@@ -112,6 +112,30 @@ struct ShowErrorAlertViewModifier: ViewModifier {
     }
 }
 
+struct DiscardChangesAlertViewModifier: ViewModifier {
+    @Binding var isShowAlert: Bool
+    var discardAction: (() -> Void)?
+    
+    init(isShowAlert: Binding<Bool>, discardAction: (() -> Void)?) {
+        self._isShowAlert = isShowAlert
+        self.discardAction = discardAction
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .alert("Are you sure?", isPresented: $isShowAlert) {
+                Button("Discard Changes", role: .destructive) {
+                    if let discardAction = discardAction {
+                        discardAction()
+                    }
+                }
+            } message: {
+                Text("Do you want to dicard any changes?")
+            }
+        
+    }
+}
+
 extension View {
     func loadingView(_ isLoading: Bool, isNeedDisable: Bool = true) -> some View {
         modifier(LoadingViewModifier(isLoading, isNeedDisable: isNeedDisable))
@@ -123,6 +147,10 @@ extension View {
     
     func showErrorAlert(isShowErrorMessageAlert: Binding<Bool>, errorMessage: ErrorMessage, action: (() -> Void)? = nil) -> some View {
         modifier(ShowErrorAlertViewModifier(isShowErrorMessageAlert: isShowErrorMessageAlert, errorMessage: errorMessage, action: action))
+    }
+    
+    func discardChangesAlert(isShowAlert: Binding<Bool>, discardAction: (() -> Void)?) -> some View {
+        modifier(DiscardChangesAlertViewModifier(isShowAlert: isShowAlert, discardAction: discardAction))
     }
     
     func networkErrorAlert(action: (() -> Void)? = nil) -> some View {

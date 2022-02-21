@@ -66,6 +66,17 @@ class AddIncomeViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
+    var isChanged: Bool {
+        (
+            value != income.value ||
+            selectedAccount != income.account ||
+            selectedCategory != income.category ||
+            selectedSubcategory != income.subcategory ||
+            date != income.date ||
+            note != income.note
+        )
+    }
+    
     init(income: Income?) {
         if let income = income {
             self.income = income
@@ -82,16 +93,18 @@ class AddIncomeViewModel: ObservableObject {
                 isUpdate = true
             }
         } else {
+            date = Date()
             self.income = Income(
                 blockID: "",
                 id: UUID().uuidString,
                 yearMonth: "",
                 value: 0,
-                account: "",
+                account: "Wil",
                 category: "",
                 subcategory: "",
                 note: ""
             )
+            self.income.date = date
         }
     }
     

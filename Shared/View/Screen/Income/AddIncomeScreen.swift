@@ -14,6 +14,7 @@ struct AddIncomeScreen: View {
     var refesh: () -> Void
     
     @State private var isShowTypeAddScreen = false
+    @State private var isShowDiscardAlert = false
     
     init(income: Income? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddIncomeViewModel(income: income))
@@ -96,6 +97,9 @@ struct AddIncomeScreen: View {
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
             .networkErrorAlert()
+            .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
+                presentationMode.wrappedValue.dismiss()
+            }
             .navigationTitle("Add Income")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
@@ -104,9 +108,13 @@ struct AddIncomeScreen: View {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+                        if viewModel.isChanged {
+                            isShowDiscardAlert.toggle()
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     } label: {
-                        Text("Cancel")
+                        Text(viewModel.isChanged ? "Discard" : "Cancel")
                     }
                 }
 #endif
@@ -121,6 +129,7 @@ struct AddIncomeScreen: View {
                     } label: {
                         Text(viewModel.saveTitle)
                     }
+                    .disabled(!viewModel.isChanged)
                 }
             }
             .sheet(isPresented: $isShowTypeAddScreen) {

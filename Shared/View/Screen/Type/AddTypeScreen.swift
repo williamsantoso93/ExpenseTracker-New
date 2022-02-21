@@ -12,6 +12,8 @@ struct AddTypeScreen: View {
     @StateObject var viewModel: AddTypeViewModel
     var refesh: () -> Void
         
+    @State private var isShowDiscardAlert = false
+    
     init(typeModel: TypeModel? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddTypeViewModel(typeModel: typeModel))
         self.refesh = refesh
@@ -52,6 +54,9 @@ struct AddTypeScreen: View {
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
             .networkErrorAlert()
+            .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
+                presentationMode.wrappedValue.dismiss()
+            }
             .navigationTitle("Add Type")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
@@ -60,9 +65,13 @@ struct AddTypeScreen: View {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+                        if viewModel.isChanged {
+                            isShowDiscardAlert.toggle()
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     } label: {
-                        Text("Cancel")
+                        Text(viewModel.isChanged ? "Discard" : "Cancel")
                     }
                 }
 #endif
@@ -77,6 +86,7 @@ struct AddTypeScreen: View {
                     } label: {
                         Text(viewModel.saveTitle)
                     }
+                    .disabled(!viewModel.isChanged)
                 }
             }
         }
