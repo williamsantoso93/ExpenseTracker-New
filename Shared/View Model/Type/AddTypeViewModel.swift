@@ -49,6 +49,15 @@ class AddTypeViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
+    var isChanged: Bool {
+        (
+            selectedType != typeModel.type ||
+            name != typeModel.name ||
+            selectedSubcategoryOf != typeModel.subcategoryOf ?? [] ||
+            selectedNature != typeModel.nature
+        )
+    }
+    
     init(typeModel: TypeModel?) {
         if let typeModel = typeModel {
             self.typeModel = typeModel

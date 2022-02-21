@@ -90,6 +90,21 @@ class AddExpenseViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
+    var isChanged: Bool {
+        (
+            value != expense.value ?? 0 ||
+            selectedAccount != expense.account ||
+            selectedCategory != expense.category ||
+            selectedSubcategory != expense.subcategory ||
+            selectedPayment != expense.paymentVia ||
+            selectedDuration != expense.duration ||
+            date != expense.date ||
+            ((selectedStore != "Other" && selectedStore != expense.store ?? "") ||
+             (selectedStore == "Other" && otherStore != expense.store ?? "")) ||
+            note != expense.note
+        )
+    }
+    
     init(expense: Expense?) {
         if let expense = expense {
             self.expense = expense

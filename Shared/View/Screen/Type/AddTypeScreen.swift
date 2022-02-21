@@ -77,6 +77,7 @@ struct AddTypeScreen: View {
                     } label: {
                         Text(viewModel.saveTitle)
                     }
+                    .disabled(!viewModel.isChanged)
                 }
             }
         }
