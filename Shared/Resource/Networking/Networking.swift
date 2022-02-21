@@ -97,7 +97,7 @@ class Networking {
     func handleOutput(_ output: URLSession.DataTaskPublisher.Output) throws -> Data {
         guard
             let response = output.response as? HTTPURLResponse else {
-                throw NetworkError.badUrl
+                throw URLError(.badServerResponse)
             }
         
         if response.statusCode > 300 {
@@ -358,7 +358,7 @@ class Networking {
         }.resume()
     }
     
-    func deleteData<T:Codable>(from urlString: String, responseType: T.Type) throws -> AnyPublisher<T, Error> {
+    func deleteData(from urlString: String) throws -> AnyPublisher<URLSession.DataTaskPublisher.Output, Error> {
         guard let url = URL(string: urlString) else {
             throw NetworkError.badUrl
         }
@@ -369,12 +369,10 @@ class Networking {
         request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
         request.setValue("\(notionVersion)", forHTTPHeaderField: "Notion-Version")
         
-        return Future<T, Error> { completion in
+        return Future<URLSession.DataTaskPublisher.Output, Error> { completion in
             URLSession.shared.dataTaskPublisher(for: request)
                 .subscribe(on: DispatchQueue.global(qos: .background))
                 .receive(on: DispatchQueue.main)
-                .tryMap(self.handleOutput)
-                .decode(type: T.self, decoder: JSONDecoder())
                 .sink { result in
                     switch result {
                     case .finished:

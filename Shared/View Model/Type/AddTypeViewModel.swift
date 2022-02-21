@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class AddTypeViewModel: ObservableObject {
     @Published var types = GlobalData.shared.types
@@ -48,6 +49,8 @@ class AddTypeViewModel: ObservableObject {
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
+    
+    var cancelables = Set<AnyCancellable>()
     
     init(typeModel: TypeModel?) {
         if let typeModel = typeModel {

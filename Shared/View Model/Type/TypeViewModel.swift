@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class TypeViewModel: ObservableObject {
     @Published var globalData = GlobalData.shared
@@ -13,6 +14,7 @@ class TypeViewModel: ObservableObject {
     var isNowShowData: Bool {
         globalData.types.allTypes.isEmpty
     }
+    var cancelables = Set<AnyCancellable>()
     
     @Published var searchText = ""
     func filterType(_ category: Types.TypeCategory) -> [TypeModel] {
@@ -35,10 +37,20 @@ class TypeViewModel: ObservableObject {
             print(index)
             print(typeModels[index])
             if let allTypeIndex = getAllTypesIndex(from: id) {
-                Networking.shared.delete(id: id) { isSuccess in
-                    if isSuccess {
-                        self.globalData.types.allTypes.remove(at: allTypeIndex)
-                    }
+                isLoading = true
+                
+                do {
+                    try Networking.shared.delete(id: id)
+                        .sink { _ in
+                            self.isLoading = false
+                        } receiveValue: { isSuccess in
+                            if isSuccess {
+                                self.globalData.types.allTypes.remove(at: allTypeIndex)
+                            }
+                        }
+                        .store(in: &self.cancelables)
+                } catch {
+                    print(error)
                 }
             }
         }

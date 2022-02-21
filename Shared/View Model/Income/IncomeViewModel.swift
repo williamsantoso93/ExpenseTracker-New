@@ -76,11 +76,20 @@ class IncomeViewModel: ObservableObject {
     func delete(at offsets: IndexSet) {
         offsets.forEach { index in
             let id = self.incomes[index].blockID
+            isLoading = true
             
-            Networking.shared.delete(id: id) { isSuccess in
-                if isSuccess {
-                    self.incomes.remove(at: index)
-                }
+            do {
+                try Networking.shared.delete(id: id)
+                    .sink { _ in
+                        self.isLoading = false
+                    } receiveValue: { isSuccess in
+                        if isSuccess {
+                            self.incomes.remove(at: index)
+                        }
+                    }
+                    .store(in: &self.cancelables)
+            } catch {
+                print(error)
             }
         }
     }
