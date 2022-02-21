@@ -24,6 +24,10 @@ class AddTypeViewModel: ObservableObject {
         "Want"
     ]
     
+    var isShowNature: Bool {
+        selectedType == "Expense" || selectedType == "Income"
+    }
+    
     var typesCategory: [String] {
         Types.TypeCategory.allCases.map { result in
             result.rawValue.capitalized
@@ -96,7 +100,7 @@ class AddTypeViewModel: ObservableObject {
             typeModel.type = try Validation.picker(selectedType, typeError: .noType)
             typeModel.name = try Validation.textField(name.trimWhitespace())
             typeModel.subcategoryOf = selectedSubcategoryOf.isEmpty ? nil : selectedSubcategoryOf
-            typeModel.nature = selectedNature
+            typeModel.nature = isShowNature ? selectedNature :  ""
             
             isLoading = true
             if isUpdate {

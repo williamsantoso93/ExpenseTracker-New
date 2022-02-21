@@ -73,11 +73,22 @@ class AddExpenseViewModel: ObservableObject {
     @Published var selectedSubcategory = ""
     @Published var selectedPayment = ""
     @Published var selectedDuration = ""
+    
     @Published var selectedStore = "Other"
+    var isEcommerceStore: Bool {
+        if let subcategory = getStoreSubcategory(from: selectedStore) {
+            if subcategory.contains("Store") {
+                return true
+            }
+        }
+        
+        return false
+    }
     var isOtherStore: Bool {
-        selectedStore == "Other"
+        selectedStore == "Other" || isEcommerceStore
     }
     @Published var otherStore = ""
+    
     @Published var selectedTemplateIndex = -1
     @Published var note = ""
     @Published var date = Date()
@@ -86,7 +97,7 @@ class AddExpenseViewModel: ObservableObject {
         isUpdate ? "Update" : "Save"
     }
     var isUpdate: Bool = false
-    
+        
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
@@ -147,6 +158,16 @@ class AddExpenseViewModel: ObservableObject {
     
     let noteSeparator = " | "
     
+    func getStoreSubcategory(from category: String) -> [String]? {
+        if let selectedStore = types.storeTypes.filter({ store in
+            store.name == category
+        }).first {
+            return selectedStore.subcategoryOf
+        }
+        
+        return nil
+    }
+    
     func checkStore(_ store: String?) {
         selectedStore = store ?? "Other"
         if let store = store {
@@ -183,7 +204,15 @@ class AddExpenseViewModel: ObservableObject {
             expense.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
             expense.paymentVia = try Validation.picker(selectedPayment, typeError: .noPaymentVia)
             expense.duration = try Validation.picker(selectedDuration, typeError: .noDuration)
-            expense.store = getStore().trimWhitespace()
+            if isEcommerceStore {
+                if !otherStore.isEmpty {
+                    expense.store = "\(selectedStore) | \(otherStore)"
+                } else {
+                    expense.store = selectedStore
+                }
+            } else {
+                expense.store = getStore().trimWhitespace()
+            }
             expense.note = note.trimWhitespace()
             expense.date = date
             
