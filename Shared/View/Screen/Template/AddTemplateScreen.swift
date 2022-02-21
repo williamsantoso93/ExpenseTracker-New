@@ -12,12 +12,13 @@ struct AddTemplatescreen: View {
     @StateObject var viewModel: AddTemplateViewModel
     var refesh: () -> Void
     
+    @State private var isShowTypeAddScreen = false
+    @State private var isShowDiscardAlert = false
+    
     init(templateModel: TemplateModel? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddTemplateViewModel(templateModel: templateModel))
         self.refesh = refesh
     }
-    
-    @State private var isShowTypeAddScreen = false
     
     var body: some View {
         NavigationView {
@@ -96,6 +97,9 @@ struct AddTemplatescreen: View {
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
             .networkErrorAlert()
+            .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
+                presentationMode.wrappedValue.dismiss()
+            }
             .navigationTitle("Add Template")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
@@ -104,9 +108,13 @@ struct AddTemplatescreen: View {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+                        if viewModel.isChanged {
+                            isShowDiscardAlert.toggle()
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     } label: {
-                        Text("Cancel")
+                        Text(viewModel.isChanged ? "Discard" : "Cancel")
                     }
                 }
 #endif

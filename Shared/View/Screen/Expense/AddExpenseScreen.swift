@@ -14,6 +14,7 @@ struct AddExpenseScreen: View {
     var refesh: () -> Void
     
     @State private var isShowTypeAddScreen = false
+    @State private var isShowDiscardAlert = false
     
     init(expense: Expense? = nil, refesh: @escaping () -> Void) {
         self._viewModel = StateObject(wrappedValue: AddExpenseViewModel(expense: expense))
@@ -130,6 +131,9 @@ struct AddExpenseScreen: View {
             .loadingView(viewModel.isLoading)
             .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
             .networkErrorAlert()
+            .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
+                presentationMode.wrappedValue.dismiss()
+            }
             .navigationTitle("Add Expsense")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
@@ -138,9 +142,13 @@ struct AddExpenseScreen: View {
 #if os(iOS)
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+                        if viewModel.isChanged {
+                            isShowDiscardAlert.toggle()
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     } label: {
-                        Text("Cancel")
+                        Text(viewModel.isChanged ? "Discard" : "Cancel")
                     }
                 }
 #endif
