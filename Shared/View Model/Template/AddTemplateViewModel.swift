@@ -97,6 +97,21 @@ class AddTemplateViewModel: ObservableObject {
         ]
     }
     
+    var isChanged: Bool {
+        (
+            name != templateModel.name ||
+            value != templateModel.value ?? 0 ||
+            selectedAccount != templateModel.account ||
+            selectedCategory != templateModel.category ||
+            selectedSubcategory != templateModel.subcategory ||
+            selectedPayment != templateModel.paymentVia ||
+            selectedDuration != templateModel.duration ||
+            ((selectedStore != "Other" && selectedStore != templateModel.store ?? "") ||
+             (selectedStore == "Other" && otherStore != templateModel.store ?? "")) ||
+            selectedType != templateModel.type
+        )
+    }
+    
     init(templateModel: TemplateModel?) {
         if let templateModel = templateModel {
             self.templateModel = templateModel
@@ -119,13 +134,13 @@ class AddTemplateViewModel: ObservableObject {
             self.templateModel = TemplateModel(
                 blockID: "",
                 name: "",
-                account: "",
+                account: "Wil",
                 category: "",
                 subcategory: "",
-                duration: "",
+                duration: "Monthly",
                 paymentVia: "",
                 store: "",
-                type: "",
+                type: "Expense",
                 value: 0
             )
         }
