@@ -134,13 +134,13 @@ class AddTemplateViewModel: ObservableObject {
             self.templateModel = TemplateModel(
                 blockID: "",
                 name: "",
-                account: "",
+                account: "Wil",
                 category: "",
                 subcategory: "",
-                duration: "",
+                duration: "Monthly",
                 paymentVia: "",
                 store: "",
-                type: "",
+                type: "Expense",
                 value: 0
             )
         }

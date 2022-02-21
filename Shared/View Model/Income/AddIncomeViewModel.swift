@@ -93,16 +93,18 @@ class AddIncomeViewModel: ObservableObject {
                 isUpdate = true
             }
         } else {
+            date = Date()
             self.income = Income(
                 blockID: "",
                 id: UUID().uuidString,
                 yearMonth: "",
                 value: 0,
-                account: "",
+                account: "Wil",
                 category: "",
                 subcategory: "",
                 note: ""
             )
+            self.income.date = date
         }
     }
     

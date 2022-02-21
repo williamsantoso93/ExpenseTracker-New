@@ -74,9 +74,9 @@ class AddTypeViewModel: ObservableObject {
             self.typeModel = TypeModel(
                 blockID: "",
                 name: "",
-                type: "",
+                type: "Expense",
                 subcategoryOf: [],
-                nature: ""
+                nature: "Must"
             )
         }
     }
