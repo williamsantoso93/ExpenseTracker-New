@@ -43,4 +43,9 @@ extension CoreDataManager {
         _ = CoreDataMapper.localToSubcategoryEntity(subcategory)
         save()
     }
+    
+    func createSubcategory(_ subcategory: Subcategory, mainCategoryEntity: CategoryEntity) {
+        _ = CoreDataMapper.localToSubcategoryEntity(subcategory, mainCategoryEntity: mainCategoryEntity)
+        save()
+    }
 }

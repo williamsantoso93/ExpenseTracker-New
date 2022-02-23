@@ -42,6 +42,7 @@
 		E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */; };
 		E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6F2776B433002E685F /* YearMonthCheck.swift */; };
 		E01A2A772776B46E002E685F /* AddTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A762776B46E002E685F /* AddTypeScreen.swift */; };
+		E01A4EB927C66F6000654E13 /* DummyTwoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A4EB827C66F6000654E13 /* DummyTwoScreen.swift */; };
 		E02830B82782B1FF001E8B51 /* FormulaProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02830B72782B1FF001E8B51 /* FormulaProperty.swift */; };
 		E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02830B72782B1FF001E8B51 /* FormulaProperty.swift */; };
 		E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031E2D3277DE67500DD449B /* RoolupProperty.swift */; };
@@ -188,6 +189,7 @@
 		E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeViewModel.swift; sourceTree = "<group>"; };
 		E01A2A6F2776B433002E685F /* YearMonthCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthCheck.swift; sourceTree = "<group>"; };
 		E01A2A762776B46E002E685F /* AddTypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeScreen.swift; sourceTree = "<group>"; };
+		E01A4EB827C66F6000654E13 /* DummyTwoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTwoScreen.swift; sourceTree = "<group>"; };
 		E02830B72782B1FF001E8B51 /* FormulaProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaProperty.swift; sourceTree = "<group>"; };
 		E031E2D3277DE67500DD449B /* RoolupProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolupProperty.swift; sourceTree = "<group>"; };
 		E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsercreen.swift; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 			isa = PBXGroup;
 			children = (
 				E0B9C33427C4DB3400D8BBE3 /* DummyScreen.swift */,
+				E01A4EB827C66F6000654E13 /* DummyTwoScreen.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */,
 				E0D6EF26277023CB00DF12AD /* NumberProperty.swift in Sources */,
 				E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */,
+				E01A4EB927C66F6000654E13 /* DummyTwoScreen.swift in Sources */,
 				E03C7023279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */,
 				E097D70E2770731C0093F5DA /* Income.swift in Sources */,
 				E006435A27740F7000B5108D /* SummaryViewModel.swift in Sources */,

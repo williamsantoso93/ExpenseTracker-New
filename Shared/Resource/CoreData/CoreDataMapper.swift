@@ -10,48 +10,48 @@ import CoreData
 
 //TODO: move to model
 struct Account: Codable {
-    let id: UUID
+    var id: UUID = UUID()
     let name: String
     var expenses: [Expense] = []
     var incomes: [Income] = []
 }
 
 struct Category: Codable {
-    let id: UUID
+    var id: UUID = UUID()
     let name: String
     let type: String
     var expenses: [Expense] = []
     var incomes: [Income] = []
-    var categoryNatures: [CategoryNature] = []
+    var categoryNature: CategoryNature? = nil
     var subcategoryOf: [Subcategory] = []
 }
 
 struct CategoryNature: Codable {
-    let id: UUID
+    var id: UUID = UUID()
     let name: String
     var categories: [Category] = []
 }
 
 struct Duration: Codable {
-    let id: UUID
+    var id: UUID = UUID()
     let name: String
     var expenses: [Expense] = []
 }
 
 struct Payment: Codable {
-    let id: UUID
+    var id: UUID = UUID()
     let name: String
     var expenses: [Expense] = []
 }
 
 struct Store: Codable {
-    let id: UUID
+    var id: UUID = UUID()
     let isHaveMultipleStore: Bool
     let name: String
 }
 
 struct Subcategory: Codable {
-    let id: UUID
+    var id: UUID = UUID()
     let name: String
     var expenses: [Expense] = []
     var incomes: [Income] = []
@@ -60,6 +60,7 @@ struct Subcategory: Codable {
 
 // ---
 struct CoreDataMapper {
+    static let manager = CoreDataManager.shared
     static let context = CoreDataManager.shared.context
     
     //MARK: - Account
@@ -99,10 +100,13 @@ struct CoreDataMapper {
     }
     
     static func categoryEntityToLocal(_ entity: CategoryEntity) -> Category {
-        Category(
+        let subcategories = entity.subcategoryOf?.allObjects as? [SubcategoryEntity] ?? []
+        
+        return Category(
             id: entity.id ?? UUID(),
             name: entity.name ?? "",
-            type: entity.type ?? ""
+            type: entity.type ?? "",
+            subcategoryOf: mapSubcategoryEntitiesToLocal(subcategories)
         )
     }
     
@@ -251,10 +255,17 @@ struct CoreDataMapper {
         }
     }
     
+    
     static func subcategoryEntityToLocal(_ entity: SubcategoryEntity) -> Subcategory {
-        Subcategory(
+        var mainCategory: Category? = nil
+        if let mainCategoryEntity = entity.mainCategory {
+            mainCategory = Category(id: mainCategoryEntity.id ?? UUID(), name: mainCategoryEntity.name ?? "", type: mainCategoryEntity.type ?? "")
+        }
+        
+        return Subcategory(
             id: entity.id ?? UUID(),
-            name: entity.name ?? ""
+            name: entity.name ?? "",
+            mainCategory: mainCategory
         )
     }
     
@@ -270,10 +281,26 @@ struct CoreDataMapper {
         entity.id = local.id
         entity.name = local.name
         if let mainCategory = local.mainCategory {
-            entity.mainCategory = localToCategoryEntity(mainCategory)
+            if let mainCategoryEntity = manager.getCategoryEntity(with: mainCategory.id) {
+                entity.mainCategory = mainCategoryEntity
+            }
         }
         
         return entity
     }
     
+    
+    static func localToSubcategoryEntity(_ local: Subcategory, mainCategoryEntity: CategoryEntity) -> SubcategoryEntity {
+        let entity = SubcategoryEntity(context: context)
+        
+        entity.id = local.id
+        entity.name = local.name
+        //        if let mainCategory = local.mainCategory {
+        //            if let mainCategoryEntity = manager.getCategoryEntity(with: mainCategory.id) {
+        //            }
+        //        }
+        
+        entity.mainCategory = mainCategoryEntity
+        return entity
+    }
 }

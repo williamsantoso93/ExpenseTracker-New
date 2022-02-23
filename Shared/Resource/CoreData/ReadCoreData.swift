@@ -34,11 +34,30 @@ extension CoreDataManager {
         return getSingleData(by: request)
     }
     
+    func getAccountEntity(with id: UUID) -> AccountEntity? {
+        let request = NSFetchRequest<AccountEntity>(entityName: EntityName.AccountEntity.rawValue)
+        
+        return getSingleData(by: request, with: id)
+    }
+    
     func getAccounts() -> [Account] {
         let request = NSFetchRequest<AccountEntity>(entityName: EntityName.AccountEntity.rawValue)
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(AccountEntity.name), ascending: true)]
         
         return CoreDataMapper.mapAccountEntitiesToLocal(getData(by: request))
+    }
+    
+    func getCategoryEntity(with id: UUID) -> CategoryEntity? {
+        let request = NSFetchRequest<CategoryEntity>(entityName: EntityName.CategoryEntity.rawValue)
+        
+        return getSingleData(by: request, with: id)
+    }
+    
+    func getCategoryEntities() -> [CategoryEntity] {
+        let request = NSFetchRequest<CategoryEntity>(entityName: EntityName.CategoryEntity.rawValue)
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(CategoryEntity.name), ascending: true)]
+        
+        return getData(by: request)
     }
     
     func getCategories() -> [Category] {

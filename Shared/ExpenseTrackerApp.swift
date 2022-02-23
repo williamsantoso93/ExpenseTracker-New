@@ -14,7 +14,7 @@ struct ExpenseTrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            DummyScreen()
+            DummyTwoScreen()
 #if os(iOS)
                 .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
 #endif
