@@ -467,8 +467,8 @@
 			children = (
 				E0B9C32F27C4D91800D8BBE3 /* CoreDataManager.swift */,
 				E00B169627C5CF750030C7B0 /* CoreDataMapper.swift */,
-				E00B168E27C5CC260030C7B0 /* ReadCoreData.swift */,
 				E00B169027C5CC3A0030C7B0 /* CreateCoreData.swift */,
+				E00B168E27C5CC260030C7B0 /* ReadCoreData.swift */,
 				E00B169227C5CC430030C7B0 /* UpdateCoreData.swift */,
 				E00B169427C5CC4F0030C7B0 /* DeleteCoreData.swift */,
 			);

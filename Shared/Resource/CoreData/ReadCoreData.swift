@@ -28,6 +28,12 @@ extension CoreDataManager {
         }
     }
     
+    func getSingleData<T>(by request: NSFetchRequest<T>, with id: UUID) -> T? {
+        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
+        
+        return getSingleData(by: request)
+    }
+    
     func getAccounts() -> [Account] {
         let request = NSFetchRequest<AccountEntity>(entityName: EntityName.AccountEntity.rawValue)
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(AccountEntity.name), ascending: true)]

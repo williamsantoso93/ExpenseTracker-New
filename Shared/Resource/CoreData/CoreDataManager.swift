@@ -55,6 +55,7 @@ class CoreDataManager {
             try context.save()
         } catch {
             GlobalData.shared.errorMessage = ErrorMessage(title: "Error Core Data", message: error.localizedDescription)
+            context.rollback()
         }
     }
 }
@@ -72,10 +73,10 @@ extension CoreDataManager {
         save()
     }
     
-    func deleteAccount(_ account: AccountEntity) {
-        context.delete(account)
-        save()
-    }
+//    func deleteAccount(_ account: AccountEntity) {
+//        context.delete(account)
+//        save()
+//    }
     
     func addExpense(account: AccountEntity) {
         let newExpense = ExpenseEntity(context: context)
