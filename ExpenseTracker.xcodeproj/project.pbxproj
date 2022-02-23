@@ -28,6 +28,11 @@
 		E006AA312770175A00980302 /* SummaryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006AA2F2770175A00980302 /* SummaryScreen.swift */; };
 		E006AA342770179E00980302 /* ExpenseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006AA332770179E00980302 /* ExpenseScreen.swift */; };
 		E006AA352770179E00980302 /* ExpenseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006AA332770179E00980302 /* ExpenseScreen.swift */; };
+		E00B168F27C5CC260030C7B0 /* ReadCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B168E27C5CC260030C7B0 /* ReadCoreData.swift */; };
+		E00B169127C5CC3A0030C7B0 /* CreateCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B169027C5CC3A0030C7B0 /* CreateCoreData.swift */; };
+		E00B169327C5CC430030C7B0 /* UpdateCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B169227C5CC430030C7B0 /* UpdateCoreData.swift */; };
+		E00B169527C5CC4F0030C7B0 /* DeleteCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B169427C5CC4F0030C7B0 /* DeleteCoreData.swift */; };
+		E00B169727C5CF750030C7B0 /* CoreDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B169627C5CF750030C7B0 /* CoreDataMapper.swift */; };
 		E00E1C452782250C0042496F /* MultiSelectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00E1C442782250C0042496F /* MultiSelectPickerView.swift */; };
 		E00E1C462782250C0042496F /* MultiSelectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00E1C442782250C0042496F /* MultiSelectPickerView.swift */; };
 		E0107A3F277457EA00825484 /* TypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0107A3E277457EA00825484 /* TypeScreen.swift */; };
@@ -94,6 +99,8 @@
 		E097D714277074BB0093F5DA /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D713277074BB0093F5DA /* Mapper.swift */; };
 		E0A9C12227B917A30003F7E4 /* CheckmarkProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */; };
 		E0A9C12327B917A30003F7E4 /* CheckmarkProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */; };
+		E0B9C33027C4D91800D8BBE3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9C32F27C4D91800D8BBE3 /* CoreDataManager.swift */; };
+		E0B9C33527C4DB3400D8BBE3 /* DummyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9C33427C4DB3400D8BBE3 /* DummyScreen.swift */; };
 		E0BF3AA1276F566B00FC902E /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3AA0276F566B00FC902E /* Tests_iOS.swift */; };
 		E0BF3AA3276F566B00FC902E /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3AA2276F566B00FC902E /* Tests_iOSLaunchTests.swift */; };
 		E0BF3AAD276F566B00FC902E /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3AAC276F566B00FC902E /* Tests_macOS.swift */; };
@@ -169,6 +176,11 @@
 		E006435B27740F8C00B5108D /* GlobalDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataViewModel.swift; sourceTree = "<group>"; };
 		E006AA2F2770175A00980302 /* SummaryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreen.swift; sourceTree = "<group>"; };
 		E006AA332770179E00980302 /* ExpenseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseScreen.swift; sourceTree = "<group>"; };
+		E00B168E27C5CC260030C7B0 /* ReadCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadCoreData.swift; sourceTree = "<group>"; };
+		E00B169027C5CC3A0030C7B0 /* CreateCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCoreData.swift; sourceTree = "<group>"; };
+		E00B169227C5CC430030C7B0 /* UpdateCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCoreData.swift; sourceTree = "<group>"; };
+		E00B169427C5CC4F0030C7B0 /* DeleteCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCoreData.swift; sourceTree = "<group>"; };
+		E00B169627C5CF750030C7B0 /* CoreDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMapper.swift; sourceTree = "<group>"; };
 		E00E1C442782250C0042496F /* MultiSelectPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectPickerView.swift; sourceTree = "<group>"; };
 		E0107A3E277457EA00825484 /* TypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeScreen.swift; sourceTree = "<group>"; };
 		E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeScreen.swift; sourceTree = "<group>"; };
@@ -195,12 +207,14 @@
 		E097D711277073760093F5DA /* TypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
 		E097D713277074BB0093F5DA /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkProperty.swift; sourceTree = "<group>"; };
+		E0B9C32F27C4D91800D8BBE3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E0B9C33427C4DB3400D8BBE3 /* DummyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyScreen.swift; sourceTree = "<group>"; };
 		E0BF3A86276F566B00FC902E /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		E0BF3A87276F566B00FC902E /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
 		E0BF3A88276F566B00FC902E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0BF3A89276F566B00FC902E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E0BF3A8A276F566B00FC902E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E0BF3A8F276F566B00FC902E /* Hitung Uang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hitung Uang.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0BF3A8F276F566B00FC902E /* Hitung Uang CD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hitung Uang CD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A95276F566B00FC902E /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A97276F566B00FC902E /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,6 +299,7 @@
 		E006AA272770162D00980302 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E0B9C33127C4DB1400D8BBE3 /* test */,
 				E006AA282770163300980302 /* Component */,
 				E006AA292770163B00980302 /* Screen */,
 			);
@@ -349,6 +364,7 @@
 				E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */,
 				E0050C2A2778003A00396C36 /* Networking */,
 				E0F9E82627797BC60082B310 /* Validation.swift */,
+				E0B9C32E27C4D90600D8BBE3 /* CoreData */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -435,6 +451,7 @@
 		E097D70A277072090093F5DA /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				E0BF3A85276F566B00FC902E /* ExpenseTracker.xcdatamodeld */,
 				E097D70B2770722E0093F5DA /* YearMonth.swift */,
 				E097D70D2770731C0093F5DA /* Income.swift */,
 				E097D70F277073220093F5DA /* Expense.swift */,
@@ -443,6 +460,27 @@
 				E0F9E823277977790082B310 /* ErrorMessage.swift */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		E0B9C32E27C4D90600D8BBE3 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9C32F27C4D91800D8BBE3 /* CoreDataManager.swift */,
+				E00B169627C5CF750030C7B0 /* CoreDataMapper.swift */,
+				E00B168E27C5CC260030C7B0 /* ReadCoreData.swift */,
+				E00B169027C5CC3A0030C7B0 /* CreateCoreData.swift */,
+				E00B169227C5CC430030C7B0 /* UpdateCoreData.swift */,
+				E00B169427C5CC4F0030C7B0 /* DeleteCoreData.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E0B9C33127C4DB1400D8BBE3 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9C33427C4DB3400D8BBE3 /* DummyScreen.swift */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		E0BF3A7F276F566A00FC902E = {
@@ -467,7 +505,6 @@
 				E006AA2A2770164900980302 /* View Model */,
 				E006AA272770162D00980302 /* View */,
 				E0BF3A8A276F566B00FC902E /* Assets.xcassets */,
-				E0BF3A85276F566B00FC902E /* ExpenseTracker.xcdatamodeld */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -475,7 +512,7 @@
 		E0BF3A90276F566B00FC902E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E0BF3A8F276F566B00FC902E /* Hitung Uang.app */,
+				E0BF3A8F276F566B00FC902E /* Hitung Uang CD.app */,
 				E0BF3A95276F566B00FC902E /* ExpenseTracker.app */,
 				E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */,
 				E0BF3AA8276F566B00FC902E /* Tests macOS.xctest */,
@@ -564,7 +601,7 @@
 			);
 			name = "ExpenseTracker (iOS)";
 			productName = "ExpenseTracker (iOS)";
-			productReference = E0BF3A8F276F566B00FC902E /* Hitung Uang.app */;
+			productReference = E0BF3A8F276F566B00FC902E /* Hitung Uang CD.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E0BF3A94276F566B00FC902E /* ExpenseTracker (macOS) */ = {
@@ -713,6 +750,8 @@
 				E097D710277073220093F5DA /* Expense.swift in Sources */,
 				E097D70C2770722E0093F5DA /* YearMonth.swift in Sources */,
 				E0050C2E2778006600396C36 /* GetEndpoint.swift in Sources */,
+				E00B169127C5CC3A0030C7B0 /* CreateCoreData.swift in Sources */,
+				E00B169327C5CC430030C7B0 /* UpdateCoreData.swift in Sources */,
 				E0107A3F277457EA00825484 /* TypeScreen.swift in Sources */,
 				E097D714277074BB0093F5DA /* Mapper.swift in Sources */,
 				E0D6EF38277028CB00DF12AD /* Networking.swift in Sources */,
@@ -722,7 +761,9 @@
 				E006AA342770179E00980302 /* ExpenseScreen.swift in Sources */,
 				E0BF3AB0276F566B00FC902E /* ExpenseTracker.xcdatamodeld in Sources */,
 				E002E2B82778B04700A7A1C5 /* TemplateScreen.swift in Sources */,
+				E00B169527C5CC4F0030C7B0 /* DeleteCoreData.swift in Sources */,
 				E006435C27740F8C00B5108D /* GlobalDataViewModel.swift in Sources */,
+				E00B169727C5CF750030C7B0 /* CoreDataMapper.swift in Sources */,
 				E0D6EF1D277021F000DF12AD /* SelectProperty.swift in Sources */,
 				E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */,
 				E0BF3AB6276F566B00FC902E /* Persistence.swift in Sources */,
@@ -737,11 +778,13 @@
 				E0F9E82727797BC60082B310 /* Validation.swift in Sources */,
 				E097D712277073760093F5DA /* TypeModel.swift in Sources */,
 				E006AA302770175A00980302 /* SummaryScreen.swift in Sources */,
+				E0B9C33527C4DB3400D8BBE3 /* DummyScreen.swift in Sources */,
 				E002E2B527789F7800A7A1C5 /* Setting.swift in Sources */,
 				E0D6EF1427701C1A00DF12AD /* DefaultResponse.swift in Sources */,
 				E0050C362778058400396C36 /* TextField.swift in Sources */,
 				E0D6EF0A27701B1400DF12AD /* AddExpenseScreen.swift in Sources */,
 				E01A2A6C2776B41E002E685F /* AddIncomeViewModel.swift in Sources */,
+				E00B168F27C5CC260030C7B0 /* ReadCoreData.swift in Sources */,
 				E0F9E824277977790082B310 /* ErrorMessage.swift in Sources */,
 				E01A2A772776B46E002E685F /* AddTypeScreen.swift in Sources */,
 				E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */,
@@ -750,6 +793,7 @@
 				E0BF3AB2276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */,
 				E0BF3AB4276F566B00FC902E /* ContentView.swift in Sources */,
+				E0B9C33027C4D91800D8BBE3 /* CoreDataManager.swift in Sources */,
 				E002E2B227789EC000A7A1C5 /* SettingProperty.swift in Sources */,
 				E0050C322778007600396C36 /* DeleteEndpoint.swift in Sources */,
 				E02830B82782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
@@ -1003,8 +1047,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
-				PRODUCT_NAME = "Hitung Uang";
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNwCD;
+				PRODUCT_NAME = "Hitung Uang CD";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1033,8 +1077,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
-				PRODUCT_NAME = "Hitung Uang";
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNwCD;
+				PRODUCT_NAME = "Hitung Uang CD";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
