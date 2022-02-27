@@ -4,7 +4,7 @@
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="account" inverseEntity="ExpenseEntity"/>
-        <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IncomeEntity" inverseName="acoount" inverseEntity="IncomeEntity"/>
+        <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IncomeEntity" inverseName="account" inverseEntity="IncomeEntity"/>
         <relationship name="templates" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TemplateEntity" inverseName="account" inverseEntity="TemplateEntity"/>
     </entity>
     <entity name="CategoryEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
@@ -49,8 +49,9 @@
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="acoount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="incomes" inverseEntity="AccountEntity"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="incomes" inverseEntity="AccountEntity"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="incomes" inverseEntity="CategoryEntity"/>
         <relationship name="label" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LabelEntity" inverseName="incomes" inverseEntity="LabelEntity"/>
         <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubcategoryEntity" inverseName="incomes" inverseEntity="SubcategoryEntity"/>
@@ -113,13 +114,13 @@
         <element name="CategoryNatureEntity" positionX="-36" positionY="9" width="128" height="74"/>
         <element name="DurationEntity" positionX="-18" positionY="27" width="128" height="89"/>
         <element name="ExpenseEntity" positionX="0" positionY="45" width="128" height="239"/>
-        <element name="IncomeEntity" positionX="18" positionY="63" width="128" height="179"/>
+        <element name="IncomeEntity" positionX="18" positionY="63" width="128" height="194"/>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="LabelEntity" positionX="0" positionY="135" width="128" height="104"/>
         <element name="PaymentEntity" positionX="36" positionY="81" width="128" height="89"/>
         <element name="StoreEntity" positionX="-9" positionY="36" width="128" height="74"/>
         <element name="SubcategoryEntity" positionX="0" positionY="45" width="128" height="119"/>
         <element name="TemplateEntity" positionX="9" positionY="54" width="128" height="239"/>
         <element name="YearMonthEntity" positionX="18" positionY="63" width="128" height="89"/>
-        <element name="LabelEntity" positionX="0" positionY="135" width="128" height="104"/>
     </elements>
 </model>

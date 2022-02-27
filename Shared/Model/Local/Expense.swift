@@ -19,3 +19,19 @@ struct Expense: Codable {
     var date: Date?
     var keywords: String?
 }
+
+struct ExpenseCD: Codable {
+    var id: UUID = UUID()
+    var note: String?
+    var value: Double = 0
+    var label: LabelModel?
+    var account: Account?
+    var category: Category?
+    var subcategory: Subcategory?
+    var duration: Duration?
+    var payment: Payment?
+    var store: String?
+    var date: Date = Date()
+    var dateCreated: Date = Date()
+    var dateUpdated: Date = Date()
+}

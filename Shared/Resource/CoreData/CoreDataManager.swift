@@ -24,6 +24,7 @@ class CoreDataManager {
     }
     
     enum EntityName: String {
+        case LabelEntity
         case AccountEntity
         case CategoryEntity
         case CategoryNatureEntity

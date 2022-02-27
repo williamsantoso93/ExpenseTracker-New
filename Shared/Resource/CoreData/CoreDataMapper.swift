@@ -19,6 +19,14 @@ struct CoreDataMapper {
         }
     }
     
+    static func labelEntityToLocal(_ entity: LabelEntity?) -> LabelModel? {
+        guard let entity = entity else {
+            return nil
+        }
+
+        return labelEntityToLocal(entity)
+    }
+    
     static func labelEntityToLocal(_ entity: LabelEntity) -> LabelModel {
         LabelModel(
             id: entity.id ?? UUID(),
@@ -46,6 +54,14 @@ struct CoreDataMapper {
         entities.map { entity in
             accountEntityToLocal(entity)
         }
+    }
+    
+    static func accountEntityToLocal(_ entity: AccountEntity?) -> Account? {
+        guard let entity = entity else {
+            return nil
+        }
+        
+        return accountEntityToLocal(entity)
     }
     
     static func accountEntityToLocal(_ entity: AccountEntity) -> Account {
@@ -77,24 +93,32 @@ struct CoreDataMapper {
         }
     }
     
+    static func categoryEntityToLocal(_ entity: CategoryEntity?) -> Category? {
+        guard let entity = entity else {
+            return nil
+        }
+        
+        return categoryEntityToLocal(entity)
+    }
+    
     static func categoryEntityToLocal(_ entity: CategoryEntity) -> Category {
         let subcategories = entity.subcategoryOf?.allObjects as? [SubcategoryEntity] ?? []
         
-        return Category(
-            id: entity.id ?? UUID(),
-            name: entity.name ?? "",
-            type: entity.type ?? "",
-            nature: categoryNatureEntityToLocalNoCategory(entity.nature),
-            subcategoryOf: mapSubcategoryEntitiesToLocal(subcategories)
-        )
+        var category = categoryEntityToLocalNoSubcategory(entity)
+        category.subcategoryOf = mapSubcategoryEntitiesToLocal(subcategories)
+        
+        return category
     }
     
     static func categoryEntityToLocalNoSubcategory(_ entity: CategoryEntity?) -> Category? {
         guard let entity = entity else {
             return nil
         }
-
-        return Category(
+        
+        return categoryEntityToLocalNoSubcategory(entity)
+    }
+    
+    static func categoryEntityToLocalNoSubcategory(_ entity: CategoryEntity) -> Category {Category(
             id: entity.id ?? UUID(),
             name: entity.name ?? "",
             type: entity.type ?? ""
@@ -129,24 +153,35 @@ struct CoreDataMapper {
         }
     }
     
-    static func categoryNatureEntityToLocalNoCategory(_ entity: CategoryNatureEntity?) -> CategoryNature? {
+    static func categoryNatureEntityToLocal(_ entity: CategoryNatureEntity?) -> CategoryNature? {
         guard let entity = entity else {
             return nil
         }
         
-        return CategoryNature(
-            id: entity.id ?? UUID(),
-            name: entity.name ?? ""
-        )
+        return categoryNatureEntityToLocal(entity)
     }
     
     static func categoryNatureEntityToLocal(_ entity: CategoryNatureEntity) -> CategoryNature {
         let categories = entity.categories?.allObjects as? [CategoryEntity] ?? []
         
-        return CategoryNature(
+        var nature = categoryNatureEntityToLocalNoCategory(entity)
+        nature.categories = mapCategoryEntitiesToLocal(categories)
+        
+        return nature
+    }
+    
+    static func categoryNatureEntityToLocalNoCategory(_ entity: CategoryNatureEntity?) -> CategoryNature? {
+        guard let entity = entity else {
+            return nil
+        }
+        
+        return categoryNatureEntityToLocalNoCategory(entity)
+    }
+    
+    static func categoryNatureEntityToLocalNoCategory(_ entity: CategoryNatureEntity) -> CategoryNature {
+        CategoryNature(
             id: entity.id ?? UUID(),
-            name: entity.name ?? "",
-            categories: mapCategoryEntitiesToLocal(categories)
+            name: entity.name ?? ""
         )
     }
     
@@ -171,6 +206,14 @@ struct CoreDataMapper {
         entities.map { entity in
             durationEntityToLocal(entity)
         }
+    }
+    
+    static func durationEntityToLocal(_ entity: DurationEntity?) -> Duration? {
+        guard let entity = entity else {
+            return nil
+        }
+        
+        return durationEntityToLocal(entity)
     }
     
     static func durationEntityToLocal(_ entity: DurationEntity) -> Duration {
@@ -202,6 +245,14 @@ struct CoreDataMapper {
         }
     }
     
+    static func paymentEntityToLocal(_ entity: PaymentEntity?) -> Payment? {
+        guard let entity = entity else {
+            return nil
+        }
+        
+        return paymentEntityToLocal(entity)
+    }
+    
     static func paymentEntityToLocal(_ entity: PaymentEntity) -> Payment {
         Payment(
             id: entity.id ?? UUID(),
@@ -229,6 +280,14 @@ struct CoreDataMapper {
         entities.map { entity in
             storeEntityToLocal(entity)
         }
+    }
+    
+    static func storeEntityToLocal(_ entity: StoreEntity?) -> Store? {
+        guard let entity = entity else {
+            return nil
+        }
+        
+        return storeEntityToLocal(entity)
     }
     
     static func storeEntityToLocal(_ entity: StoreEntity) -> Store {
@@ -262,6 +321,14 @@ struct CoreDataMapper {
         }
     }
     
+    static func subcategoryEntityToLocal(_ entity: SubcategoryEntity?) -> Subcategory? {
+        guard let entity = entity else {
+            return nil
+        }
+        
+        return subcategoryEntityToLocal(entity)
+    }
+    
     static func subcategoryEntityToLocal(_ entity: SubcategoryEntity) -> Subcategory {
         Subcategory(
             id: entity.id ?? UUID(),
@@ -290,14 +357,190 @@ struct CoreDataMapper {
         return entity
     }
     
+    //MARK: - Expense
+    static func mapExpenseEntitiesToLocal(_ entities: [ExpenseEntity]) -> [ExpenseCD] {
+        entities.map { entity in
+            expenseEntityToLocal(entity)
+        }
+    }
     
-    static func localToSubcategoryEntity(_ local: Subcategory, mainCategoryEntity: CategoryEntity) -> SubcategoryEntity {
-        let entity = SubcategoryEntity(context: context)
+    static func expenseEntityToLocal(_ entity: ExpenseEntity) -> ExpenseCD {
+        ExpenseCD(
+            id: entity.id ?? UUID(),
+            note: entity.note,
+            value: entity.value,
+            label: labelEntityToLocal(entity.label),
+            account: accountEntityToLocal(entity.account),
+            category: categoryEntityToLocal(entity.category),
+            subcategory: subcategoryEntityToLocal(entity.subcategory),
+            duration: durationEntityToLocal(entity.duration),
+            payment: paymentEntityToLocal(entity.payment),
+            store: entity.store,
+            date: entity.date ?? Date(),
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date()
+        )
+    }
+    
+    static func mapLocalToExpenseEntities(_ local: [ExpenseCD]) -> [ExpenseEntity] {
+        local.map { local in
+            localToExpenseEntity(local)
+        }
+    }
+    
+    static func localToExpenseEntity(_ local: ExpenseCD) -> ExpenseEntity {
+        let entity = ExpenseEntity(context: context)
         
         entity.id = local.id
-        entity.name = local.name
+        entity.date = local.date
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
+        entity.value = local.value
+        entity.note = local.note
+        entity.store = local.store
         
-        entity.mainCategory = mainCategoryEntity
+        if let id = local.label?.id {
+            entity.label = manager.getLabelEntity(with: id)
+        }
+        if let id = local.account?.id {
+            entity.account = manager.getAccountEntity(with: id)
+        }
+        if let id = local.category?.id {
+            entity.category = manager.getCategoryEntity(with: id)
+        }
+        if let id = local.subcategory?.id {
+            entity.subcategory = manager.getSubcategoryEntity(with: id)
+        }
+        if let id = local.duration?.id {
+            entity.duration = manager.getDurationEntity(with: id)
+        }
+        if let id = local.payment?.id {
+            entity.payment = manager.getPaymentEntity(with: id)
+        }
+        
+        //        entity.yearMonth
+        
+        return entity
+    }
+    
+    //MARK: - Income
+    static func mapIncomeEntitiesToLocal(_ entities: [IncomeEntity]) -> [IncomeCD] {
+        entities.map { entity in
+            incomeEntityToLocal(entity)
+        }
+    }
+    
+    static func incomeEntityToLocal(_ entity: IncomeEntity) -> IncomeCD {
+        IncomeCD(
+            id: entity.id ?? UUID(),
+            note: entity.note,
+            value: entity.value,
+            label: labelEntityToLocal(entity.label),
+            account: accountEntityToLocal(entity.account),
+            category: categoryEntityToLocal(entity.category),
+            subcategory: subcategoryEntityToLocal(entity.subcategory),
+            date: entity.date ?? Date(),
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date()
+        )
+    }
+    
+    static func mapLocalToIncomeEntities(_ local: [IncomeCD]) -> [IncomeEntity] {
+        local.map { local in
+            localToIncomeEntity(local)
+        }
+    }
+    
+    static func localToIncomeEntity(_ local: IncomeCD) -> IncomeEntity {
+        let entity = IncomeEntity(context: context)
+        
+        entity.id = local.id
+        entity.date = local.date
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
+        entity.value = local.value
+        entity.note = local.note
+        
+        if let id = local.label?.id {
+            entity.label = manager.getLabelEntity(with: id)
+        }
+        if let id = local.account?.id {
+            entity.account = manager.getAccountEntity(with: id)
+        }
+        if let id = local.category?.id {
+            entity.category = manager.getCategoryEntity(with: id)
+        }
+        if let id = local.subcategory?.id {
+            entity.subcategory = manager.getSubcategoryEntity(with: id)
+        }
+        
+        //        entity.yearMonth
+        
+        return entity
+    }
+    
+    //MARK: - TemplateModel
+    static func mapTemplateModelEntitiesToLocal(_ entities: [TemplateEntity]) -> [TemplateModelCD] {
+        entities.map { entity in
+            templateModelEntityToLocal(entity)
+        }
+    }
+    
+    static func templateModelEntityToLocal(_ entity: TemplateEntity) -> TemplateModelCD {
+        TemplateModelCD(
+            id: entity.id ?? UUID(),
+            name: entity.name,
+            value: entity.value,
+            label: labelEntityToLocal(entity.label),
+            account: accountEntityToLocal(entity.account),
+            category: categoryEntityToLocal(entity.category),
+            subcategory: subcategoryEntityToLocal(entity.subcategory),
+            duration: durationEntityToLocal(entity.duration),
+            payment: paymentEntityToLocal(entity.payment),
+            store: entity.store,
+            date: entity.date ?? Date(),
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date(),
+            type: entity.type ?? "expense"
+        )
+    }
+    
+    static func mapLocalToTemplateModelEntities(_ local: [TemplateModelCD]) -> [TemplateEntity] {
+        local.map { local in
+            localToTemplateModelEntity(local)
+        }
+    }
+    
+    static func localToTemplateModelEntity(_ local: TemplateModelCD) -> TemplateEntity {
+        let entity = TemplateEntity(context: context)
+        
+        entity.id = local.id
+        entity.date = local.date
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
+        entity.value = local.value
+        entity.name = local.name
+        entity.store = local.store
+        
+        if let id = local.label?.id {
+            entity.label = manager.getLabelEntity(with: id)
+        }
+        if let id = local.account?.id {
+            entity.account = manager.getAccountEntity(with: id)
+        }
+        if let id = local.category?.id {
+            entity.category = manager.getCategoryEntity(with: id)
+        }
+        if let id = local.subcategory?.id {
+            entity.subcategory = manager.getSubcategoryEntity(with: id)
+        }
+        if let id = local.duration?.id {
+            entity.duration = manager.getDurationEntity(with: id)
+        }
+        if let id = local.payment?.id {
+            entity.payment = manager.getPaymentEntity(with: id)
+        }
+        
         return entity
     }
 }
