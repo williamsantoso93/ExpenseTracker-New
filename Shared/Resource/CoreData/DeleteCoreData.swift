@@ -67,4 +67,22 @@ extension CoreDataManager {
         
         deleteSingleData(by: request, with: subcategory.id)
     }
+    
+    func deleteExpense(_ expense: ExpenseCD) {
+        let request = NSFetchRequest<SubcategoryEntity>(entityName: EntityName.ExpenseEntity.rawValue)
+        
+        deleteSingleData(by: request, with: expense.id)
+    }
+    
+    func deleteIncome(_ income: IncomeCD) {
+        let request = NSFetchRequest<SubcategoryEntity>(entityName: EntityName.IncomeEntity.rawValue)
+        
+        deleteSingleData(by: request, with: income.id)
+    }
+    
+    func deleteTemplateModel(_ templateModel: TemplateModelCD) {
+        let request = NSFetchRequest<SubcategoryEntity>(entityName: EntityName.TemplateEntity.rawValue)
+        
+        deleteSingleData(by: request, with: templateModel.id)
+    }
 }

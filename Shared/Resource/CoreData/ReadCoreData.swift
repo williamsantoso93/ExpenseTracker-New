@@ -160,10 +160,38 @@ extension CoreDataManager {
         return getSingleData(by: request, with: id)
     }
     
-//    func getExpenes() -> [Expense] {
-//        let request = NSFetchRequest<ExpenseEntity>(entityName: EntityName.ExpenseEntity.rawValue)
-//        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(ExpenseEntity.date), ascending: true)]
-//        
-//        return CoreDataMapper.mapSubcategoryEntitiesToLocal(getData(by: request))
-//    }
+    func getExpenes() -> [ExpenseCD] {
+        let request = NSFetchRequest<ExpenseEntity>(entityName: EntityName.ExpenseEntity.rawValue)
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(ExpenseEntity.date), ascending: true)]
+        
+        return CoreDataMapper.mapExpenseEntitiesToLocal(getData(by: request))
+    }
+    
+    //MARK: - Income
+    func getIncomeEntity(with id: UUID) -> IncomeEntity? {
+        let request = NSFetchRequest<IncomeEntity>(entityName: EntityName.IncomeEntity.rawValue)
+        
+        return getSingleData(by: request, with: id)
+    }
+    
+    func getIncomes() -> [IncomeCD] {
+        let request = NSFetchRequest<IncomeEntity>(entityName: EntityName.IncomeEntity.rawValue)
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(IncomeEntity.date), ascending: true)]
+        
+        return CoreDataMapper.mapIncomeEntitiesToLocal(getData(by: request))
+    }
+    
+    //MARK: - TemplateModel
+    func getTemplateModelEntity(with id: UUID) -> TemplateEntity? {
+        let request = NSFetchRequest<TemplateEntity>(entityName: EntityName.TemplateEntity.rawValue)
+        
+        return getSingleData(by: request, with: id)
+    }
+    
+    func getTemplateModels() -> [TemplateModelCD] {
+        let request = NSFetchRequest<TemplateEntity>(entityName: EntityName.TemplateEntity.rawValue)
+        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(TemplateEntity.date), ascending: true)]
+        
+        return CoreDataMapper.mapTemplateModelEntitiesToLocal(getData(by: request))
+    }
 }
