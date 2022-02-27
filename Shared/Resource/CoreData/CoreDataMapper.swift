@@ -29,7 +29,7 @@ struct Category: Codable {
     let type: String
     var expenses: [Expense] = []
     var incomes: [Income] = []
-    var categoryNature: CategoryNature? = nil
+    var nature: CategoryNature? = nil
     var subcategoryOf: [Subcategory] = []
 }
 
@@ -142,6 +142,7 @@ struct CoreDataMapper {
             id: entity.id ?? UUID(),
             name: entity.name ?? "",
             type: entity.type ?? "",
+            nature: categoryNatureEntityToLocalNoCategory(entity.nature),
             subcategoryOf: mapSubcategoryEntitiesToLocal(subcategories)
         )
     }
@@ -170,6 +171,11 @@ struct CoreDataMapper {
         entity.id = local.id
         entity.name = local.name
         entity.type = local.type
+        if let nature = local.nature {
+            if let natureEntity = manager.getCategoryNatureEntity(with: nature.id) {
+                entity.nature = natureEntity
+            }
+        }
         
         return entity
     }
@@ -179,6 +185,17 @@ struct CoreDataMapper {
         entities.map { entity in
             categoryNatureEntityToLocal(entity)
         }
+    }
+    
+    static func categoryNatureEntityToLocalNoCategory(_ entity: CategoryNatureEntity?) -> CategoryNature? {
+        guard let entity = entity else {
+            return nil
+        }
+        
+        return CategoryNature(
+            id: entity.id ?? UUID(),
+            name: entity.name ?? ""
+        )
     }
     
     static func categoryNatureEntityToLocal(_ entity: CategoryNatureEntity) -> CategoryNature {

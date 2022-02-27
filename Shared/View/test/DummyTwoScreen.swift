@@ -11,6 +11,7 @@ class DummyTwoViewModel: ObservableObject {
     let coreDataManager = CoreDataManager.shared
     @Published var accounts: [Account] = []
     @Published var categories: [Category] = []
+    @Published var categoryNatures: [CategoryNature] = []
     @Published var subcategories: [Subcategory] = []
     @Published var categoriesEntity: [CategoryEntity] = []
     
@@ -21,6 +22,7 @@ class DummyTwoViewModel: ObservableObject {
     func getData() {
         accounts = coreDataManager.getAccounts()
         categories = coreDataManager.getCategories()
+        categoryNatures = coreDataManager.getCategoryNatures()
         subcategories = coreDataManager.getSubcategories()
         categoriesEntity = coreDataManager.getCategoryEntities()
     }
@@ -42,7 +44,7 @@ class DummyTwoViewModel: ObservableObject {
     let types = ["expense", "income"]
     
     func createCategory() {
-        let newCategory = Category(name: "Category \(Int.random(in: 0..<100))", type: types[Int.random(in: 0...1)])
+        let newCategory = Category(name: "Category \(Int.random(in: 0..<100))", type: types[Int.random(in: 0...1)], nature: categoryNatures[Int.random(in: categoryNatures.indices)])
         
         coreDataManager.createCategory(newCategory)
         getData()
@@ -58,9 +60,8 @@ class DummyTwoViewModel: ObservableObject {
     func createSubcategory() {
         let newSubcategory = Subcategory(name: "Subcategory \(Int.random(in: 0..<100))", mainCategory: categories[Int.random(in: categories.indices)])
         
-        print(newSubcategory)
-        
-        coreDataManager.createSubcategory(newSubcategory, mainCategoryEntity: categoriesEntity[Int.random(in: categoriesEntity.indices)])
+        coreDataManager.createSubcategory(newSubcategory)
+//        coreDataManager.createSubcategory(newSubcategory, mainCategoryEntity: categoriesEntity[Int.random(in: categoriesEntity.indices)])
         getData()
     }
     
@@ -68,6 +69,26 @@ class DummyTwoViewModel: ObservableObject {
         guard let index = offsets.first else { return }
         let subcategory = subcategories[index]
         coreDataManager.deleteSubcategory(subcategory)
+        getData()
+    }
+    
+    let natures = ["must", "need", "want"]
+    
+    var count = 0
+    
+    func createCategoryNature() {
+        guard count < 3 else { return }
+        let newCategoryNature = CategoryNature(name: natures[count])
+        
+        coreDataManager.createCategoryNature(newCategoryNature)
+        getData()
+        count+=1
+    }
+    
+    func deleteCategoryNature(at offsets: IndexSet) {
+        guard let index = offsets.first else { return }
+        let categoryNature = categoryNatures[index]
+        coreDataManager.deleteCategoryNature(categoryNature)
         getData()
     }
 }
@@ -129,7 +150,10 @@ struct DummyTwoScreen: View {
                                 IdNameView(id: category.id, name: category.name)
                                 Text("type: \(category.type)")
                                 
+                                Text("categoryNature: \(category.nature?.name ?? "")")
+                                
                                 Text("subcategoryOf:")
+                                    .padding(.top, 8)
                                 VStack(alignment: .leading) {
                                     ForEach(category.subcategoryOf.indices, id:\.self) { index in
                                         let subcategoryOf = category.subcategoryOf[index]
@@ -158,6 +182,48 @@ struct DummyTwoScreen: View {
                                 } label: {
                                     Text("add")
                                 }
+                            }
+                        }
+                    }
+                }
+                
+                NavigationLink("Category Natures") {
+                    Form {
+                        ForEach(viewModel.categoryNatures.indices, id:\.self) { index in
+                            let categoryNature = viewModel.categoryNatures[index]
+                            
+                            VStack(alignment: .leading) {
+                                IdNameView(id: categoryNature.id, name: categoryNature.name)
+                                
+                                Text("categories:")
+                                VStack(alignment: .leading) {
+                                    ForEach(categoryNature.categories.indices, id:\.self) { index in
+                                        let category = categoryNature.categories[index]
+                                        
+                                        Text("- \(category.name)")
+                                    }
+                                }
+                                .padding(.leading, 8)
+                            }
+                        }
+                        .onDelete(perform: viewModel.deleteCategoryNature)
+                    }
+                    .navigationTitle("Category Natures")
+                    .toolbar {
+                        ToolbarItem {
+                            HStack {
+                                EditButton()
+                                Button {
+                                    viewModel.getData()
+                                } label: {
+                                    Text("get")
+                                }
+                                
+//                                Button {
+//                                    viewModel.createCategoryNature()
+//                                } label: {
+//                                    Text("add")
+//                                }
                             }
                         }
                     }

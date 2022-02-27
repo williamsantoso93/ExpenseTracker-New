@@ -67,6 +67,12 @@ extension CoreDataManager {
         return CoreDataMapper.mapCategoryEntitiesToLocal(getData(by: request))
     }
     
+    func getCategoryNatureEntity(with id: UUID) -> CategoryNatureEntity? {
+        let request = NSFetchRequest<CategoryNatureEntity>(entityName: EntityName.CategoryNatureEntity.rawValue)
+        
+        return getSingleData(by: request, with: id)
+    }
+    
     func getCategoryNatures() -> [CategoryNature] {
         let request = NSFetchRequest<CategoryNatureEntity>(entityName: EntityName.CategoryNatureEntity.rawValue)
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(CategoryNatureEntity.name), ascending: true)]
