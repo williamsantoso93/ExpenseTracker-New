@@ -29,41 +29,47 @@ struct AddExpenseScreen: View {
 #if os(iOS)
                         .keyboardType(.numberPad)
 #endif
-                    
-                    Picker("Account", selection: $viewModel.selectedAccount) {
-                        ForEach(viewModel.accounts, id: \.self) {
-                            Text($0)
+                    Group {
+                        Picker("Label", selection: $viewModel.selectedLabel) {
+                            ForEach(viewModel.labels, id: \.self) {
+                                Text($0)
+                            }
                         }
-                    }
-                    Picker("Category", selection: $viewModel.selectedCategory) {
-                        ForEach(viewModel.categories, id: \.self) {
-                            Text($0)
+                        Picker("Account", selection: $viewModel.selectedAccount) {
+                            ForEach(viewModel.accounts, id: \.self) {
+                                Text($0)
+                            }
                         }
-                    }
-                    Picker("Subcategory", selection: $viewModel.selectedSubcategory) {
-                        ForEach(viewModel.subcategories, id: \.self) {
-                            Text($0)
+                        Picker("Category", selection: $viewModel.selectedCategory) {
+                            ForEach(viewModel.categories, id: \.self) {
+                                Text($0)
+                            }
                         }
-                    }
-                    .disabled(viewModel.isSubCategoryDisabled)
-                    
-                    Picker("Payment Via", selection: $viewModel.selectedPayment) {
-                        ForEach(viewModel.paymentType, id: \.self) {
-                            Text($0)
+                        Picker("Subcategory", selection: $viewModel.selectedSubcategory) {
+                            ForEach(viewModel.subcategories, id: \.self) {
+                                Text($0)
+                            }
                         }
-                    }
-                    
-                    Picker("Duration", selection: $viewModel.selectedDuration) {
-                        ForEach(viewModel.durationType, id: \.self) {
-                            Text($0)
+                        .disabled(viewModel.isSubCategoryDisabled)
+                        
+                        Picker("Payment", selection: $viewModel.selectedPayment) {
+                            ForEach(viewModel.paymentType, id: \.self) {
+                                Text($0)
+                            }
                         }
-                    }
-                    
-                    DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
-                    
-                    Picker("Store", selection: $viewModel.selectedStore) {
-                        ForEach(viewModel.storeType, id: \.self) {
-                            Text($0)
+                        
+                        Picker("Duration", selection: $viewModel.selectedDuration) {
+                            ForEach(viewModel.durationType, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        
+                        DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
+                        
+                        Picker("Store", selection: $viewModel.selectedStore) {
+                            ForEach(viewModel.storeType, id: \.self) {
+                                Text($0)
+                            }
                         }
                     }
                     

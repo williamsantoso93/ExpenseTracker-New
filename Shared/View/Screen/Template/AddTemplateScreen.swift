@@ -35,6 +35,11 @@ struct AddTemplatescreen: View {
                         .keyboardType(.numberPad)
 #endif
                     
+                    Picker("Label", selection: $viewModel.selectedLabel) {
+                        ForEach(viewModel.labels, id: \.self) {
+                            Text($0)
+                        }
+                    }
                     Picker("Account", selection: $viewModel.selectedAccount) {
                         ForEach(viewModel.accounts, id: \.self) {
                             Text($0)
@@ -58,7 +63,7 @@ struct AddTemplatescreen: View {
                         }
                     }
                     if viewModel.selectedType == "Expense" {
-                        Picker("Payment Via", selection: $viewModel.selectedPayment) {
+                        Picker("Payment", selection: $viewModel.selectedPayment) {
                             ForEach(viewModel.paymentType, id: \.self) {
                                 Text($0)
                             }

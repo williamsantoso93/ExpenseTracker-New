@@ -9,8 +9,14 @@ import Foundation
 
 class AddTemplateViewModel: ObservableObject {
     @Published var templateModel: TemplateModel
+    @Published var selectedTemplateModel: TemplateModel
     @Published var types = GlobalData.shared.types
     
+    var labels: [String] {
+        types.labelTypes.map { result in
+            result.name
+        }
+    }
     var accounts: [String] {
         types.accountTypes.map { result in
             result.name
@@ -70,7 +76,14 @@ class AddTemplateViewModel: ObservableObject {
         valueString.toDouble() ?? 0
     }
     @Published var name = ""
-    @Published var selectedAccount = "Wil"
+    @Published var selectedLabel = "Wil"
+    @Published var selectedAccount = "" {
+        didSet {
+            if selectedAccount.contains("CC") {
+                selectedPayment = "Credit Card"
+            }
+        }
+    }
     @Published var selectedCategory = ""
     @Published var selectedSubcategory = ""
     @Published var selectedPayment = ""
@@ -99,28 +112,31 @@ class AddTemplateViewModel: ObservableObject {
     
     var isChanged: Bool {
         (
-            name != templateModel.name ||
-            value != templateModel.value ?? 0 ||
-            selectedAccount != templateModel.account ||
-            selectedCategory != templateModel.category ||
-            selectedSubcategory != templateModel.subcategory ||
-            selectedPayment != templateModel.paymentVia ||
-            selectedDuration != templateModel.duration ||
-            ((selectedStore != "Other" && selectedStore != templateModel.store ?? "") ||
-             (selectedStore == "Other" && otherStore != templateModel.store ?? "")) ||
-            selectedType != templateModel.type
+            name != selectedTemplateModel.name ||
+            value != selectedTemplateModel.value ?? 0 ||
+            selectedLabel != selectedTemplateModel.label ||
+            selectedAccount != selectedTemplateModel.account ||
+            selectedCategory != selectedTemplateModel.category ||
+            selectedSubcategory != selectedTemplateModel.subcategory ||
+            selectedPayment != selectedTemplateModel.payment ||
+            selectedDuration != selectedTemplateModel.duration ||
+            ((selectedStore != "Other" && selectedStore != selectedTemplateModel.store ?? "") ||
+             (selectedStore == "Other" && otherStore != selectedTemplateModel.store ?? "")) ||
+            selectedType != selectedTemplateModel.type
         )
     }
     
     init(templateModel: TemplateModel?) {
         if let templateModel = templateModel {
+            selectedTemplateModel = templateModel
             self.templateModel = templateModel
             name = templateModel.name ?? ""
             if let value = templateModel.value {
                 valueString = value.splitDigit()
             }
             selectedDuration = templateModel.duration ?? ""
-            selectedPayment = templateModel.paymentVia ?? ""
+            selectedPayment = templateModel.payment ?? ""
+            selectedLabel = templateModel.label ?? ""
             selectedAccount = templateModel.account ?? ""
             selectedCategory = templateModel.category ?? ""
             selectedSubcategory = templateModel.subcategory ?? ""
@@ -131,18 +147,20 @@ class AddTemplateViewModel: ObservableObject {
                 isUpdate = true
             }
         } else {
-            self.templateModel = TemplateModel(
+            let defaultTemplateModel = TemplateModel(
                 blockID: "",
                 name: "",
                 account: "Wil",
                 category: "",
                 subcategory: "",
                 duration: "Monthly",
-                paymentVia: "",
+                payment: "",
                 store: "",
                 type: "Expense",
                 value: 0
             )
+            self.templateModel = defaultTemplateModel
+            self.selectedTemplateModel = defaultTemplateModel
         }
     }
     
@@ -179,7 +197,8 @@ class AddTemplateViewModel: ObservableObject {
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         templateModel.value = value
         templateModel.duration = selectedDuration
-        templateModel.paymentVia = selectedPayment
+        templateModel.payment = selectedPayment
+        templateModel.label = selectedLabel
         templateModel.account = selectedAccount
         templateModel.category = selectedCategory
         templateModel.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
