@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class AddTemplateViewModel: ObservableObject {
     @Published var templateModel: TemplateModel
@@ -112,6 +113,8 @@ class AddTemplateViewModel: ObservableObject {
         )
     }
     
+    var cancellables = Set<AnyCancellable>()
+    
     init(templateModel: TemplateModel?) {
         if let templateModel = templateModel {
             self.templateModel = templateModel
@@ -195,10 +198,13 @@ class AddTemplateViewModel: ObservableObject {
                 return completion(isSuccess)
             }
         } else {
-            Networking.shared.postTemplateModel(templateModel) { isSuccess in
-                self.isLoading = false
-                return completion(isSuccess)
-            }
+            Networking.shared.postTemplateModel(templateModel)
+                .sink { _ in
+                    self.isLoading = false
+                } receiveValue: { isSuccess in
+                    return completion(isSuccess)
+                }
+                .store(in: &self.cancellables)
         }
     }
 }

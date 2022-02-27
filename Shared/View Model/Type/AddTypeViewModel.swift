@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class AddTypeViewModel: ObservableObject {
     @Published var types = GlobalData.shared.types
@@ -62,6 +63,8 @@ class AddTypeViewModel: ObservableObject {
         )
     }
     
+    var cancellables = Set<AnyCancellable>()
+    
     init(typeModel: TypeModel?) {
         if let typeModel = typeModel {
             self.typeModel = typeModel
@@ -104,15 +107,18 @@ class AddTypeViewModel: ObservableObject {
             
             isLoading = true
             if isUpdate {
-                self.isLoading = false
                 Networking.shared.updateType(typeModel) { isSuccess in
+                    self.isLoading = false
                     return completion(isSuccess)
                 }
             } else {
-                self.isLoading = false
-                Networking.shared.postType(typeModel) { isSuccess in
-                    return completion(isSuccess)
-                }
+                Networking.shared.postType(typeModel)
+                    .sink { _ in
+                        self.isLoading = false
+                    } receiveValue: { isSuccess in
+                        return completion(isSuccess)
+                    }
+                    .store(in: &self.cancellables)
             }
         } catch let error {
             if let error = error as? ValidationError {

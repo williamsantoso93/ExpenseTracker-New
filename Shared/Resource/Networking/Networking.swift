@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 enum NetworkError: Error {
     case badUrl
+    case responseError
     case decodingError(String)
     case encodingError
     case noData
@@ -17,6 +19,8 @@ enum NetworkError: Error {
     case statusCode(Int?)
     case errorResponse(ErrorResponse)
     case dataNotComplete
+    case isStatusOK(Bool)
+    case unknown
 }
 
 class Networking {
@@ -90,6 +94,50 @@ class Networking {
     
     static let shared = Networking()
     
+    var cancellables = Set<AnyCancellable>()
+    
+    func getData<T: Decodable>(from urlString: String, type: T.Type) -> Future<T, Error> {
+        return Future<T, Error> { futureCompletion in
+            guard let url = URL(string: urlString) else {
+                return futureCompletion(.failure(NetworkError.badUrl))
+            }
+            
+            var request = URLRequest(url: url)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("Bearer \(self.bearerToken)", forHTTPHeaderField: "Authorization")
+            request.setValue("\(self.notionVersion)", forHTTPHeaderField: "Notion-Version")
+            
+            URLSession.shared.dataTaskPublisher(for: url)
+                .tryMap { (data, response) -> Data in
+                    if let errorResponseDecoded = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                        DispatchQueue.main.async {
+                            GlobalData.shared.errorMessage = Mapper.errorMessageRemoteToLocal(errorResponseDecoded)
+                        }
+                        throw NetworkError.errorResponse(errorResponseDecoded)
+                    }
+                    guard let httpResponse = response as? HTTPURLResponse, 200...299 ~= httpResponse.statusCode else {
+                        throw NetworkError.responseError
+                    }
+                    return data
+                }
+                .decode(type: T.self, decoder: JSONDecoder())
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { (completion) in
+                    if case let .failure(error) = completion {
+                        switch error {
+                        case let decodingError as DecodingError:
+                            futureCompletion(.failure(decodingError))
+                        case let apiError as NetworkError:
+                            futureCompletion(.failure(apiError))
+                        default:
+                            futureCompletion(.failure(NetworkError.unknown))
+                        }
+                    }
+                }, receiveValue: { futureCompletion(.success($0)) })
+                .store(in: &self.cancellables)
+        }
+    }
+    
     func getData<T:Codable>(from urlString: String, completion: @escaping ((Result<T,NetworkError>), URLResponse?, Data?) -> Void) {
         guard let url = URL(string: urlString) else {
             return completion(.failure(.badUrl), nil, nil)
@@ -121,6 +169,119 @@ class Networking {
             }
             completion(.success(decoded), response, data)
         }.resume()
+    }
+    
+    func postDataNoResponse<T:Codable>(to urlString: String, postData: T?) -> Future<Bool, Error> {
+        return Future<Bool, Error> { futureCompletion in
+            guard let url = URL(string: urlString) else {
+                return futureCompletion(.failure(NetworkError.badUrl))
+            }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("Bearer \(self.bearerToken)", forHTTPHeaderField: "Authorization")
+            request.setValue("\(self.notionVersion)", forHTTPHeaderField: "Notion-Version")
+            
+            
+            if let postData = postData {
+                guard let jsonData = try? JSONEncoder().encode(postData) else {
+                    print(postData)
+                    print("Error: Trying to convert model to JSON data")
+                    return futureCompletion(.failure(NetworkError.encodingError))
+                }
+                
+                request.httpBody = jsonData
+            }
+            
+            URLSession.shared.dataTaskPublisher(for: request)
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        futureCompletion(.failure(error))
+                    }
+                }, receiveValue: { output in
+                    let data = output.data
+                    let response = output.response
+                    
+                    if let errorResponseDecoded = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                        print(urlString)
+                        DispatchQueue.main.async {
+                            GlobalData.shared.errorMessage = Mapper.errorMessageRemoteToLocal(errorResponseDecoded)
+                        }
+                        return futureCompletion(.failure(NetworkError.errorResponse(errorResponseDecoded)))
+                    }
+                    
+                    if response.isStatusOK() {
+                        return futureCompletion(.success(true))
+                    }
+                    return futureCompletion(.success(false))
+                })
+                .store(in: &self.cancellables)
+        }
+    }
+    
+    func postData<T:Codable, U:Codable>(to urlString: String, postData: T?, responseType: U.Type) -> Future<U, Error> {
+        return Future<U, Error> { futureCompletion in
+            guard let url = URL(string: urlString) else {
+                return futureCompletion(.failure(NetworkError.badUrl))
+            }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("Bearer \(self.bearerToken)", forHTTPHeaderField: "Authorization")
+            request.setValue("\(self.notionVersion)", forHTTPHeaderField: "Notion-Version")
+            
+            
+            if let postData = postData {
+                guard let jsonData = try? JSONEncoder().encode(postData) else {
+                    print(postData)
+                    print("Error: Trying to convert model to JSON data")
+                    return futureCompletion(.failure(NetworkError.encodingError))
+                }
+                
+                request.httpBody = jsonData
+            }
+            
+            URLSession.shared.dataTaskPublisher(for: request)
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        futureCompletion(.failure(error))
+                    }
+                }, receiveValue: { output in
+                    let data = output.data
+                    let response = output.response
+                    
+                    if let errorResponseDecoded = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                        print(urlString)
+                        DispatchQueue.main.async {
+                            GlobalData.shared.errorMessage = Mapper.errorMessageRemoteToLocal(errorResponseDecoded)
+                        }
+                        return futureCompletion(.failure(NetworkError.errorResponse(errorResponseDecoded)))
+                    }
+                    
+                    guard let decoded = try? JSONDecoder().decode(U.self, from: data) else {
+                        if response.isStatusOK() {
+                            return futureCompletion(.failure(NetworkError.isStatusOK(true)))
+                        }
+                        
+                        print(urlString)
+                        print(String(data: data, encoding: .utf8) ?? "no data")
+                        return futureCompletion(.failure(NetworkError.decodingError(data.jsonToString())))
+                    }
+                    
+                    return futureCompletion(.success(decoded))
+                })
+                .store(in: &self.cancellables)
+        }
     }
     
     func postData<T:Codable, U:Codable>(to urlString: String, postData: T?, completionResponse: @escaping (Result<U, NetworkError>, URLResponse?, Data?, Bool) -> Void) {

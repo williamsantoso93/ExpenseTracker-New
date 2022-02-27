@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import Combine
 
 class YearMonthCheck {
     static let shared = YearMonthCheck()
     
     let globalData = GlobalData.shared
+    
+    var cancellables = Set<AnyCancellable>()
         
     func getYearMonthID(_ date: Date, completion: @escaping (String) -> Void) {
         let yearMonth = globalData.yearMonths.filter { result in
@@ -38,12 +41,15 @@ class YearMonthCheck {
             year: year
         )
         
-        Networking.shared.postYearMonth(yearMonth) { isSuccess in
-            self.globalData.getYearMonth {
-                self.getYearMonthID(date) { id in
-                    return completion(id)
+        Networking.shared.postYearMonth(yearMonth)
+            .sink { _ in
+            } receiveValue: { isSuccess in
+                self.globalData.getYearMonth {
+                    self.getYearMonthID(date) { id in
+                        return completion(id)
+                    }
                 }
             }
-        }
+            .store(in: &self.cancellables)
     }
 }

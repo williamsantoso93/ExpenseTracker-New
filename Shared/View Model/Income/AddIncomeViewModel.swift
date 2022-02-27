@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class AddIncomeViewModel: ObservableObject {
     @Published var income: Income
@@ -77,6 +78,8 @@ class AddIncomeViewModel: ObservableObject {
         )
     }
     
+    var cancellables = Set<AnyCancellable>()
+    
     init(income: Income?) {
         if let income = income {
             self.income = income
@@ -137,10 +140,13 @@ class AddIncomeViewModel: ObservableObject {
                         return completion(isSuccess)
                     }
                 } else {
-                    Networking.shared.postIncome(self.income) { isSuccess in
-                        self.isLoading = false
-                        return completion(isSuccess)
-                    }
+                    Networking.shared.postIncome(self.income)
+                        .sink { _ in
+                            self.isLoading = false
+                        } receiveValue: { isSuccess in
+                            return completion(isSuccess)
+                        }
+                        .store(in: &self.cancellables)
                 }
             }
         } catch let error {

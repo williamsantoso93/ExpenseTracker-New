@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class AddExpenseViewModel: ObservableObject {
     @Published var expense: Expense
@@ -115,6 +116,8 @@ class AddExpenseViewModel: ObservableObject {
             note != expense.note
         )
     }
+    
+    var cancellables = Set<AnyCancellable>()
     
     init(expense: Expense?) {
         if let expense = expense {
@@ -232,10 +235,13 @@ class AddExpenseViewModel: ObservableObject {
                             return completion(isSuccess)
                         }
                     } else {
-                        Networking.shared.postExpense(self.expense) { isSuccess in
-                            self.isLoading = false
-                            return completion(isSuccess)
-                        }
+                        Networking.shared.postExpense(self.expense)
+                            .sink { _ in
+                                self.isLoading = false
+                            } receiveValue: { isSuccess in
+                                return completion(isSuccess)
+                            }
+                            .store(in: &self.cancellables)
                     }
                 }
             }
@@ -373,14 +379,16 @@ class AddExpenseViewModel: ObservableObject {
             YearMonthCheck.shared.getYearMonthID(date) { id in
                 expense.yearMonthID = id
                 
-                Networking.shared.postExpense(expense) { isSuccess in
-                    count += 1
-
-                    if count >= self.installmentMonth {
-                        self.isLoading = false
-                        return completion(true)
+                Networking.shared.postExpense(self.expense)
+                    .sink { _ in
+                        count += 1
+                    } receiveValue: { isSuccess in
+                        if count >= self.installmentMonth {
+                            self.isLoading = false
+                            return completion(true)
+                        }
                     }
-                }
+                    .store(in: &self.cancellables)
             }
         }
     }
