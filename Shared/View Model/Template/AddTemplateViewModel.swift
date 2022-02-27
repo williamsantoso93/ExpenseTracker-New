@@ -77,7 +77,13 @@ class AddTemplateViewModel: ObservableObject {
     }
     @Published var name = ""
     @Published var selectedLabel = "Wil"
-    @Published var selectedAccount = ""
+    @Published var selectedAccount = "" {
+        didSet {
+            if selectedAccount.contains("CC") {
+                selectedPayment = "Credit Card"
+            }
+        }
+    }
     @Published var selectedCategory = ""
     @Published var selectedSubcategory = ""
     @Published var selectedPayment = ""
