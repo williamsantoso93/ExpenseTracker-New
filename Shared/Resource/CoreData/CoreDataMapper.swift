@@ -8,64 +8,6 @@
 import Foundation
 import CoreData
 
-//TODO: move to model
-struct LabelModel: Codable {
-    var id: UUID = UUID()
-    let name: String
-    var expenses: [Expense] = []
-    var incomes: [Income] = []
-}
-
-struct Account: Codable {
-    var id: UUID = UUID()
-    let name: String
-    var expenses: [Expense] = []
-    var incomes: [Income] = []
-}
-
-struct Category: Codable {
-    var id: UUID = UUID()
-    let name: String
-    let type: String
-    var expenses: [Expense] = []
-    var incomes: [Income] = []
-    var nature: CategoryNature? = nil
-    var subcategoryOf: [Subcategory] = []
-}
-
-struct CategoryNature: Codable {
-    var id: UUID = UUID()
-    let name: String
-    var categories: [Category] = []
-}
-
-struct Duration: Codable {
-    var id: UUID = UUID()
-    let name: String
-    var expenses: [Expense] = []
-}
-
-struct Payment: Codable {
-    var id: UUID = UUID()
-    let name: String
-    var expenses: [Expense] = []
-}
-
-struct Store: Codable {
-    var id: UUID = UUID()
-    let isHaveMultipleStore: Bool
-    let name: String
-}
-
-struct Subcategory: Codable {
-    var id: UUID = UUID()
-    let name: String
-    var expenses: [Expense] = []
-    var incomes: [Income] = []
-    var mainCategory: Category? = nil
-}
-
-// ---
 struct CoreDataMapper {
     static let manager = CoreDataManager.shared
     static let context = CoreDataManager.shared.context
