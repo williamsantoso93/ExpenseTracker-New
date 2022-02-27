@@ -9,12 +9,18 @@ import Foundation
 
 class AddIncomeViewModel: ObservableObject {
     @Published var income: Income
+    @Published var selectedIncome: Income
     @Published var types = GlobalData.shared.types
     @Published var templateModels = GlobalData.shared.templateModels.filter { result in
         result.type == "Income"
     }
     @Published var isLoading = false
     
+    var labels: [String] {
+        types.labelTypes.map { result in
+            result.name
+        }
+    }
     var accounts: [String] {
         types.accountTypes.map { result in
             result.name
@@ -51,7 +57,9 @@ class AddIncomeViewModel: ObservableObject {
     var value: Double {
         valueString.toDouble() ?? 0
     }
-    @Published var selectedAccount = "Wil"
+    
+    @Published var selectedLabel = "Wil"
+    @Published var selectedAccount = ""
     @Published var selectedCategory = ""
     @Published var selectedSubcategory = ""
     @Published var note = ""
@@ -68,22 +76,25 @@ class AddIncomeViewModel: ObservableObject {
     
     var isChanged: Bool {
         (
-            value != income.value ||
-            selectedAccount != income.account ||
-            selectedCategory != income.category ||
-            selectedSubcategory != income.subcategory ||
-            date != income.date ||
-            note != income.note
+            value != selectedIncome.value ||
+            selectedLabel != selectedIncome.label ||
+            selectedAccount != selectedIncome.account ||
+            selectedCategory != selectedIncome.category ||
+            selectedSubcategory != selectedIncome.subcategory ||
+            date != selectedIncome.date ||
+            note != selectedIncome.note
         )
     }
     
     init(income: Income?) {
         if let income = income {
+            selectedIncome = income
             self.income = income
             note = income.note ?? ""
             if let value = income.value {
                 valueString = value.splitDigit()
             }
+            selectedLabel = income.label ?? ""
             selectedAccount = income.account ?? ""
             selectedCategory = income.category ?? ""
             selectedSubcategory = income.subcategory ?? ""
@@ -94,7 +105,7 @@ class AddIncomeViewModel: ObservableObject {
             }
         } else {
             date = Date()
-            self.income = Income(
+            let defaultIncome = Income(
                 blockID: "",
                 id: UUID().uuidString,
                 yearMonth: "",
@@ -104,6 +115,8 @@ class AddIncomeViewModel: ObservableObject {
                 subcategory: "",
                 note: ""
             )
+            self.income = defaultIncome
+            self.selectedIncome = defaultIncome
             self.income.date = date
         }
     }
@@ -122,6 +135,7 @@ class AddIncomeViewModel: ObservableObject {
         do {
             income.note = note.trimWhitespace()
             income.value = try Validation.numberTextField(valueString)
+            income.label = try Validation.picker(selectedLabel, typeError: .noLabel)
             income.account = try Validation.picker(selectedAccount, typeError: .noAccount)
             income.category = try Validation.picker(selectedCategory, typeError: .noCategory)
             income.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
@@ -165,7 +179,7 @@ class AddIncomeViewModel: ObservableObject {
             category: selectedCategory,
             subcategory: selectedSubcategory,
             duration: "Monthly",
-            paymentVia: "",
+            payment: "",
             store: "",
             type: "Income",
             value: value
@@ -182,6 +196,9 @@ class AddIncomeViewModel: ObservableObject {
         
         if let name = selectedTemplateModel.name {
             note = name
+        }
+        if let selectedLabel = selectedTemplateModel.label {
+            self.selectedLabel = selectedLabel
         }
         if let selectedAccount = selectedTemplateModel.account {
             self.selectedAccount = selectedAccount

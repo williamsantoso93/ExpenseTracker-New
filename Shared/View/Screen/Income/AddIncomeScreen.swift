@@ -30,6 +30,11 @@ struct AddIncomeScreen: View {
                         .keyboardType(.numberPad)
 #endif
                     
+                    Picker("Label", selection: $viewModel.selectedLabel) {
+                        ForEach(viewModel.labels, id: \.self) {
+                            Text($0)
+                        }
+                    }
                     Picker("Account", selection: $viewModel.selectedAccount) {
                         ForEach(viewModel.accounts, id: \.self) {
                             Text($0)
