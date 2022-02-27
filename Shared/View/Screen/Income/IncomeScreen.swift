@@ -22,6 +22,7 @@ struct IncomeScreen: View {
 //                            Text("id : \(income.id)")
 //                            Text("yearMonth : \(income.yearMonth ?? "")")
                             Text("value : \((income.value ?? 0).splitDigit())")
+                            Text("label : \(income.label ?? "-")")
                             Text("account : \(income.account ?? "-")")
                             Text("category : \(income.category ?? "-")")
                             Text("subcategory : \(income.subcategory ?? "-")")

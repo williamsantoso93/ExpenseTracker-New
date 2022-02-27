@@ -12,6 +12,7 @@ struct IncomeProperty: Codable {
     let id: TitleProperty?
     let yearMonth: RelationProperty?
     let value: NumberProperty?
+    let label: SingleSelectProperty?
     let account: SingleSelectProperty?
     let category: SingleSelectProperty?
     let subcategory: SingleSelectProperty?
@@ -21,6 +22,7 @@ struct IncomeProperty: Codable {
     
     enum CodingKeys: String, CodingKey {
         case yearMonth = "Year/Month"
+        case label = "Label"
         case account = "Account"
         case category = "Category"
         case subcategory = "Subcategory"

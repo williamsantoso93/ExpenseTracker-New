@@ -9,10 +9,26 @@ import Foundation
 
 // MARK: - TemplateModel
 struct TemplateModel: Codable, Hashable {
+    internal init(blockID: String, name: String? = nil, label: String? = nil, account: String? = nil, category: String? = nil, subcategory: String? = nil, duration: String? = nil, payment: String? = nil, store: String? = nil, type: String? = nil, value: Double? = nil, keywords: String? = nil) {
+        self.blockID = blockID
+        self.name = name
+        self.label = label
+        self.account = account
+        self.category = category
+        self.subcategory = subcategory
+        self.duration = duration
+        self.payment = payment
+        self.store = store
+        self.type = type
+        self.value = value
+        self.keywords = keywords
+    }
+    
     var blockID: String
     var name: String?
-    var account, category, subcategory, duration, paymentVia, store: String?
+    var label, account, category, subcategory, duration, payment, store: String?
     var type: String?
     var value: Double?
     var keywords: String?
+    
 }

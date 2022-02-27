@@ -56,11 +56,12 @@ struct Mapper {
             yearMonth: remote.yearMonth?.relation.first?.id,
             note: remote.note?.richText.first?.text.content,
             value: remote.value?.number,
+            label: remote.label?.select?.name ?? "",
             account: remote.account?.select?.name ?? "",
             category: remote.category?.select?.name ?? "",
             subcategory: remote.subcategory?.select?.name ?? "",
             duration: remote.duration?.select?.name ?? "",
-            paymentVia: remote.paymentVia?.select?.name ?? "",
+            payment: remote.payment?.select?.name ?? "",
             store: remote.store?.richText.first?.text.content,
             date: remote.date?.date.start.toDate(),
             keywords: remote.keywords?.formula.string
@@ -88,11 +89,12 @@ struct Mapper {
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
             note: textToRichTextProperty(local.note),
             value: NumberProperty(number: local.value ?? 0),
+            label: SingleSelectProperty(select: Select(name: local.label ?? "")),
             account: SingleSelectProperty(select: Select(name: local.account ?? "")),
             category: SingleSelectProperty(select: Select(name: local.category ?? "")),
             subcategory: textToSingleSelectProperty(local.subcategory),
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
-            paymentVia: SingleSelectProperty(select: Select(name: local.paymentVia ?? "")),
+            payment: SingleSelectProperty(select: Select(name: local.payment ?? "")),
             store: textToRichTextProperty(local.store),
             date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
         )
@@ -122,6 +124,7 @@ struct Mapper {
             id: remote.id?.title.first?.text.content ?? "",
             yearMonth: remote.yearMonth?.relation.first?.id,
             value: remote.value?.number,
+            label: remote.label?.select?.name ?? "",
             account: remote.account?.select?.name,
             category: remote.category?.select?.name,
             subcategory: remote.subcategory?.select?.name,
@@ -142,6 +145,7 @@ struct Mapper {
             id: TitleProperty(title: [Title(text: TextContent(content: local.id))]),
             yearMonth: RelationProperty(relation: [Relation(id: local.yearMonthID ?? "")]),
             value: NumberProperty(number: local.value ?? 0),
+            label: SingleSelectProperty(select: Select(name: local.label ?? "")),
             account: SingleSelectProperty(select: Select(name: local.account ?? "")),
             category: SingleSelectProperty(select: Select(name: local.category ?? "")),
             subcategory: textToSingleSelectProperty(local.subcategory),
@@ -195,11 +199,12 @@ struct Mapper {
         TemplateModel(
             blockID: id,
             name: remote.name?.title.first?.text.content,
+            label: remote.label?.select?.name ?? "",
             account: remote.account?.select?.name ?? "",
             category: remote.category?.select?.name ?? "",
             subcategory: remote.subcategory?.select?.name ?? "",
             duration: remote.duration?.select?.name ?? "",
-            paymentVia: remote.paymentVia?.select?.name ?? "",
+            payment: remote.payment?.select?.name ?? "",
             store: remote.store?.richText.first?.text.content,
             type: remote.type?.select?.name ?? "",
             value: remote.value?.number,
@@ -216,12 +221,13 @@ struct Mapper {
     static func templateModelLocalToRemote(_ local: TemplateModel) -> TemplateModelProperty {
         TemplateModelProperty(
             name: TitleProperty(title: [Title(text: TextContent(content: local.name ?? ""))]),
+            label: SingleSelectProperty(select: Select(name: local.label ?? "")),
             account: textToSingleSelectProperty(local.account),
             category: textToSingleSelectProperty(local.category),
             subcategory: textToSingleSelectProperty(local.subcategory),
             type: textToSingleSelectProperty(local.type),
             duration: textToSingleSelectProperty(local.duration),
-            paymentVia: textToSingleSelectProperty(local.paymentVia),
+            payment: textToSingleSelectProperty(local.payment),
             value: numberToNumberProperty(local.value),
             store: textToRichTextProperty(local.store)
         )

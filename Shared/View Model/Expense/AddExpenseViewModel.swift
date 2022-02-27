@@ -10,12 +10,18 @@ import SwiftUI
 
 class AddExpenseViewModel: ObservableObject {
     @Published var expense: Expense
+    @Published var selectedExpense: Expense
     @Published var types = GlobalData.shared.types
     @Published var templateModels = GlobalData.shared.templateModels.filter { result in
         result.type == "Expense"
     }
     @Published var isLoading = false
     
+    var labels: [String] {
+        types.labelTypes.map { result in
+            result.name
+        }
+    }
     var accounts: [String] {
         types.accountTypes.map { result in
             result.name
@@ -68,7 +74,14 @@ class AddExpenseViewModel: ObservableObject {
         valueString.toDouble() ?? 0
     }
     
-    @Published var selectedAccount = "Wil"
+    @Published var selectedLabel = "Wil"
+    @Published var selectedAccount = "" {
+        didSet {
+            if selectedAccount.contains("CC") {
+                selectedPayment = "Credit Card"
+            }
+        }
+    }
     @Published var selectedCategory = ""
     @Published var selectedSubcategory = ""
     @Published var selectedPayment = ""
@@ -103,27 +116,29 @@ class AddExpenseViewModel: ObservableObject {
     
     var isChanged: Bool {
         (
-            value != expense.value ?? 0 ||
-            selectedAccount != expense.account ||
-            selectedCategory != expense.category ||
-            selectedSubcategory != expense.subcategory ||
-            selectedPayment != expense.paymentVia ||
-            selectedDuration != expense.duration ||
-            date != expense.date ||
-            ((selectedStore != "Other" && selectedStore != expense.store ?? "") ||
-             (selectedStore == "Other" && otherStore != expense.store ?? "")) ||
-            note != expense.note
+            value != selectedExpense.value ?? 0 ||
+            selectedAccount != selectedExpense.account ||
+            selectedCategory != selectedExpense.category ||
+            selectedSubcategory != selectedExpense.subcategory ||
+            selectedPayment != selectedExpense.payment ||
+            selectedDuration != selectedExpense.duration ||
+            date != selectedExpense.date ||
+            ((selectedStore != "Other" && selectedStore != selectedExpense.store ?? "") ||
+             (selectedStore == "Other" && otherStore != selectedExpense.store ?? "")) ||
+            note != selectedExpense.note
         )
     }
     
     init(expense: Expense?) {
         if let expense = expense {
+            selectedExpense = expense
             self.expense = expense
             if let value = expense.value {
                 valueString = value.splitDigit()
             }
             selectedDuration = expense.duration ?? ""
-            selectedPayment = expense.paymentVia ?? ""
+            selectedPayment = expense.payment ?? ""
+            selectedLabel = expense.label ?? ""
             selectedAccount = expense.account ?? ""
             selectedCategory = expense.category ?? ""
             selectedSubcategory = expense.subcategory ?? ""
@@ -138,7 +153,7 @@ class AddExpenseViewModel: ObservableObject {
             }
         } else {
             date = Date()
-            self.expense = Expense(
+            let defaultExpense = Expense(
                 blockID: "",
                 id: UUID().uuidString,
                 yearMonth: "",
@@ -148,9 +163,11 @@ class AddExpenseViewModel: ObservableObject {
                 category: "",
                 subcategory: "",
                 duration: "Once",
-                paymentVia: "",
+                payment: "",
                 store: ""
             )
+            self.expense = defaultExpense
+            self.selectedExpense = defaultExpense
             selectedDuration = "Once"
             self.expense.date = date
         }
@@ -199,10 +216,11 @@ class AddExpenseViewModel: ObservableObject {
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             expense.value = try Validation.numberTextField(valueString)
+            expense.label = try Validation.picker(selectedLabel, typeError: .noLabel)
             expense.account = try Validation.picker(selectedAccount, typeError: .noAccount)
             expense.category = try Validation.picker(selectedCategory, typeError: .noCategory)
             expense.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
-            expense.paymentVia = try Validation.picker(selectedPayment, typeError: .noPaymentVia)
+            expense.payment = try Validation.picker(selectedPayment, typeError: .noPayment)
             expense.duration = try Validation.picker(selectedDuration, typeError: .noDuration)
             if isEcommerceStore {
                 if !otherStore.isEmpty {
@@ -261,7 +279,7 @@ class AddExpenseViewModel: ObservableObject {
             category: selectedCategory,
             subcategory: selectedSubcategory,
             duration: selectedDuration,
-            paymentVia: selectedPayment,
+            payment: selectedPayment,
             store: getStore(),
             type: "Expense",
             value: value
@@ -278,6 +296,9 @@ class AddExpenseViewModel: ObservableObject {
         if let selectedDuration = selectedTemplateModel.duration {
             self.selectedDuration = selectedDuration
         }
+        if let selectedLabel = selectedTemplateModel.label {
+            self.selectedLabel = selectedLabel
+        }
         if let selectedAccount = selectedTemplateModel.account {
             self.selectedAccount = selectedAccount
         }
@@ -287,7 +308,7 @@ class AddExpenseViewModel: ObservableObject {
         if let selectedSubcategory = selectedTemplateModel.subcategory {
             self.selectedSubcategory = selectedSubcategory
         }
-        if let selectedPayment = selectedTemplateModel.paymentVia {
+        if let selectedPayment = selectedTemplateModel.payment {
             self.selectedPayment = selectedPayment
         }
         if let valueString = selectedTemplateModel.value {
