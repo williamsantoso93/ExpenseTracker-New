@@ -365,8 +365,8 @@
 				E097D713277074BB0093F5DA /* Mapper.swift */,
 				E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */,
 				E0050C2A2778003A00396C36 /* Networking */,
-				E0F9E82627797BC60082B310 /* Validation.swift */,
 				E0B9C32E27C4D90600D8BBE3 /* CoreData */,
+				E0F9E82627797BC60082B310 /* Validation.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
