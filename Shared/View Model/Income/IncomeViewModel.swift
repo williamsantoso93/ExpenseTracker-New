@@ -9,11 +9,14 @@ import Foundation
 
 class IncomeViewModel: ObservableObject {
     @Published var incomes: [Income] = []
+    @Published var incomesCD: [IncomeCD] = []
     var startCursor: String? = nil
     @Published var isLoading = false
     var isNowShowData: Bool {
         incomes.isEmpty
     }
+    
+    let coreDataManager = CoreDataManager.shared
     
     init() {
         loadNewData()
@@ -30,8 +33,19 @@ class IncomeViewModel: ObservableObject {
         }
     }
     
+    var incomesCDFilterd: [IncomeCD] {
+        guard !searchText.isEmpty else {
+            return incomesCD
+        }
+        
+        return incomesCD.filter { result in
+            result.keywords.lowercased().contains(searchText.lowercased())
+        }
+    }
+    
     func loadNewData() {
         startCursor = nil
+        incomesCD = coreDataManager.getIncomes()
         getList { incomes in
             self.incomes = incomes
         }

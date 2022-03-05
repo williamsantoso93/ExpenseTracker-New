@@ -9,11 +9,18 @@ import SwiftUI
 
 class DummyTwoViewModel: ObservableObject {
     let coreDataManager = CoreDataManager.shared
+    @Published var labels: [LabelModel] = []
     @Published var accounts: [Account] = []
     @Published var categories: [Category] = []
     @Published var categoryNatures: [CategoryNature] = []
     @Published var subcategories: [Subcategory] = []
-    @Published var categoriesEntity: [CategoryEntity] = []
+    @Published var durations: [Duration] = []
+    @Published var payments: [Payment] = []
+    @Published var stores: [Store] = []
+    @Published var incomes: [IncomeCD] = []
+    @Published var expenes: [ExpenseCD] = []
+    @Published var templates: [TemplateModelCD] = []
+    
     
     init() {
         getData()
@@ -24,7 +31,31 @@ class DummyTwoViewModel: ObservableObject {
         categories = coreDataManager.getCategories()
         categoryNatures = coreDataManager.getCategoryNatures()
         subcategories = coreDataManager.getSubcategories()
-        categoriesEntity = coreDataManager.getCategoryEntities()
+        durations = coreDataManager.getDurations()
+        payments = coreDataManager.getPayments()
+        stores = coreDataManager.getStores()
+        incomes = coreDataManager.getIncomes()
+        expenes = coreDataManager.getExpenes()
+        templates = coreDataManager.getTemplateModels()
+    }
+    
+    func deleteAll() {
+//        //accounts
+//        for item in accounts {
+//            coreDataManager.deleteAccount(item)
+//        }
+//        //categories
+//        for item in categories {
+//            coreDataManager.deleteCategory(item)
+//        }
+//        //categoryNatures
+//        for item in categoryNatures {
+//            coreDataManager.deleteCategoryNature(item)
+//        }
+//        //subcategories
+//        for item in subcategories {
+//            coreDataManager.deleteSubcategory(item)
+//        }
     }
     
     func createAccount() {
@@ -61,7 +92,6 @@ class DummyTwoViewModel: ObservableObject {
         let newSubcategory = Subcategory(name: "Subcategory \(Int.random(in: 0..<100))", mainCategory: categories[Int.random(in: categories.indices)])
         
         coreDataManager.createSubcategory(newSubcategory)
-//        coreDataManager.createSubcategory(newSubcategory, mainCategoryEntity: categoriesEntity[Int.random(in: categoriesEntity.indices)])
         getData()
     }
     
@@ -90,18 +120,6 @@ class DummyTwoViewModel: ObservableObject {
         let categoryNature = categoryNatures[index]
         coreDataManager.deleteCategoryNature(categoryNature)
         getData()
-    }
-}
-
-struct IdNameView: View {
-    var id: UUID
-    var name: String
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("id: \(id.uuidString)")
-            Text("name: \(name)")
-        }
     }
 }
 

@@ -9,7 +9,7 @@ import Foundation
 
 struct LabelModel: Codable {
     var id: UUID = UUID()
-    let name: String
+    var name: String
     var expenses: [Expense] = []
     var incomes: [Income] = []
 }

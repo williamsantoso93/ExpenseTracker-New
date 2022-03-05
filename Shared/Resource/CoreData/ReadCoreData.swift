@@ -69,13 +69,6 @@ extension CoreDataManager {
         return getSingleData(by: request, with: id)
     }
     
-    func getCategoryEntities() -> [CategoryEntity] {
-        let request = NSFetchRequest<CategoryEntity>(entityName: EntityName.CategoryEntity.rawValue)
-        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(CategoryEntity.name), ascending: true)]
-        
-        return getData(by: request)
-    }
-    
     func getCategories() -> [Category] {
         let request = NSFetchRequest<CategoryEntity>(entityName: EntityName.CategoryEntity.rawValue)
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(CategoryEntity.name), ascending: true)]

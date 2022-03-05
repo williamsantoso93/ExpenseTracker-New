@@ -9,6 +9,11 @@ import Foundation
 import CoreData
 
 extension CoreDataManager {
+    func createLabel(_ labelModel: LabelModel) {
+        _ = CoreDataMapper.localToLabelEntity(labelModel)
+        save()
+    }
+    
     func createAccount(_ account: Account) {
         _ = CoreDataMapper.localToAccountEntity(account)
         save()
@@ -44,7 +49,18 @@ extension CoreDataManager {
         save()
     }
     
-    func createExpense(_ expense: Expense) {
+    func createExpense(_ expense: ExpenseCD) {
+        _ = CoreDataMapper.localToExpenseEntity(expense)
+        save()
+    }
+    
+    func createIncome(_ income: IncomeCD) {
+        _ = CoreDataMapper.localToIncomeEntity(income)
+        save()
+    }
+    
+    func createTemplateModel(_ templateModel: TemplateModelCD) {
+        _ = CoreDataMapper.localToTemplateModelEntity(templateModel)
         save()
     }
 }

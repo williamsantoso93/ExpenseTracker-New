@@ -18,23 +18,63 @@ struct IncomeScreen: View {
                     Button {
                         viewModel.selectIncome(income)
                     } label: {
-                        VStack(alignment: .leading) {
-//                            Text("id : \(income.id)")
-//                            Text("yearMonth : \(income.yearMonth ?? "")")
-                            Text("value : \((income.value ?? 0).splitDigit())")
-                            Text("label : \(income.label ?? "-")")
-                            Text("account : \(income.account ?? "-")")
-                            Text("category : \(income.category ?? "-")")
-                            Text("subcategory : \(income.subcategory ?? "-")")
-                            Text("note : \(income.note ?? "")")
-                            Text("date : \((income.date ?? Date()).toString())")
-                        }
+                        IncomeCell(income: income)
                     }
                     .onAppear {
                         viewModel.loadMoreList(of: index)
                     }
                 }
                 .onDelete(perform: viewModel.delete)
+            }
+        }
+        .loadingWithNoDataButton(viewModel.isLoading, isShowNoData: viewModel.isNowShowData, action: {
+            viewModel.isShowAddScreen.toggle()
+        })
+        .searchable(text: $viewModel.searchText)
+        .refreshable {
+            viewModel.loadNewData()
+        }
+        .navigationTitle("Income")
+        .toolbar {
+            ToolbarItem {
+                HStack {
+#if os(iOS)
+                    EditButton()
+#endif
+                    
+                    Button {
+                        viewModel.selectIncome()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $viewModel.isShowAddScreen) {
+            viewModel.selectedIncome = nil
+        } content: {
+            AddIncomeScreen(income: viewModel.selectedIncome) {
+                viewModel.loadNewData()
+            }
+        }
+    }
+}
+
+struct IncomeCDScreen: View {
+    @StateObject private var viewModel = IncomeViewModel()
+    
+    var body: some View {
+        Form {
+            if !viewModel.incomesCDFilterd.isEmpty {
+                ForEach(viewModel.incomesCDFilterd.indices, id:\.self) {index in
+                    let income = viewModel.incomesCDFilterd[index]
+                    Button {
+//                        viewModel.selectIncome(income)
+                    } label: {
+                        IncomeCDCell(income: income)
+                    }
+                }
+//                .onDelete(perform: viewModel.delete)
             }
         }
         .loadingWithNoDataButton(viewModel.isLoading, isShowNoData: viewModel.isNowShowData, action: {

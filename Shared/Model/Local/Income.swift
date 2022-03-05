@@ -34,4 +34,19 @@ struct IncomeCD: Codable {
     var date: Date = Date()
     var dateCreated: Date = Date()
     var dateUpdated: Date = Date()
+    
+    var keywords: String {
+        [
+            note ?? "" ,
+            "\(value)",
+            account?.name ?? "" ,
+            category?.name ?? "" ,
+            subcategory?.name ?? "" ,
+            label?.name ?? "" ,
+            label?.name ?? "" ,
+            date.toString(),
+            dateCreated.toString(),
+            dateUpdated.toString(),
+        ].joinedWithComma()
+    }
 }

@@ -24,6 +24,9 @@ struct SummaryScreen: View {
                     NavigationLink("Income") {
                         IncomeScreen()
                     }
+                    NavigationLink("IncomeCD") {
+                        IncomeCDScreen()
+                    }
                     NavigationLink("Expense") {
                         ExpenseScreen()
                     }
@@ -31,7 +34,10 @@ struct SummaryScreen: View {
                         TypeScreen()
                     }
                     NavigationLink("Template") {
-                        templateModelscreen()
+                        TemplateModelscreen()
+                    }
+                    NavigationLink("Others") {
+                        OthersScreen()
                     }
                 }
                 

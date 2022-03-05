@@ -27,6 +27,12 @@ extension CoreDataManager {
         deleteSingleData(entity)
     }
     
+    func deleteLabel(_ label: LabelModel) {
+        let request = NSFetchRequest<LabelEntity>(entityName: EntityName.LabelEntity.rawValue)
+        
+        deleteSingleData(by: request, with: label.id)
+    }
+    
     func deleteAccount(_ account: Account) {
         let request = NSFetchRequest<AccountEntity>(entityName: EntityName.AccountEntity.rawValue)
         

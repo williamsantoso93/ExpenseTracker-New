@@ -1,5 +1,5 @@
 //
-//  templateModelscreen.swift
+//  TemplateModelscreen.swift
 //  ExpenseTracker
 //
 //  Created by Ruangguru on 26/12/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct templateModelscreen: View {
+struct TemplateModelscreen: View {
     @ObservedObject var globalData = GlobalData.shared
     
     @StateObject var viewModel = TemplateViewModel()
@@ -25,17 +25,7 @@ struct templateModelscreen: View {
                             Button {
                                 viewModel.selectTemplate(templateModel)
                             } label: {
-                                VStack(alignment: .leading) {
-                                    Text("name : \(templateModel.name ?? "-")")
-                                    Text("store : \(templateModel.store ?? "-")")
-                                    Text("value : \((templateModel.value ?? 0).splitDigit())")
-                                    Text("label : \(templateModel.label ?? "-")")
-                                    Text("account : \(templateModel.account ?? "-")")
-                                    Text("category : \(templateModel.category ?? "-")")
-                                    Text("subcategory : \(templateModel.subcategory ?? "-")")
-                                    Text("duration : \(templateModel.duration ?? "-")")
-                                    Text("payment : \(templateModel.payment ?? "-")")
-                                }
+                                TemplateCell(templateModel: templateModel)
                             }
                         }
                     }
@@ -75,6 +65,6 @@ struct templateModelscreen: View {
 
 struct templateModelscreen_Previews: PreviewProvider {
     static var previews: some View {
-        templateModelscreen()
+        TemplateModelscreen()
     }
 }
