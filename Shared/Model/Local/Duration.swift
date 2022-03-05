@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct Duration: Codable {
+struct Duration: Identifiable, Codable, Hashable {
     var id: UUID = UUID()
-    let name: String
-    var expenses: [Expense] = []
+    var name: String
+    var dateCreated: Date = Date()
+    var dateUpdated: Date = Date()
+    var expenses: [ExpenseCD] = []
 }

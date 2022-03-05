@@ -30,7 +30,9 @@ struct CoreDataMapper {
     static func labelEntityToLocal(_ entity: LabelEntity) -> LabelModel {
         LabelModel(
             id: entity.id ?? UUID(),
-            name: entity.name ?? ""
+            name: entity.name ?? "",
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date()
         )
     }
     
@@ -45,6 +47,8 @@ struct CoreDataMapper {
         
         entity.id = local.id
         entity.name = local.name
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
         
         return entity
     }
@@ -82,6 +86,8 @@ struct CoreDataMapper {
         
         entity.id = local.id
         entity.name = local.name
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
         
         return entity
     }
@@ -105,6 +111,7 @@ struct CoreDataMapper {
         let subcategories = entity.subcategoryOf?.allObjects as? [SubcategoryEntity] ?? []
         
         var category = categoryEntityToLocalNoSubcategory(entity)
+        category.nature = categoryNatureEntityToLocalNoCategory(entity.nature)
         category.subcategoryOf = mapSubcategoryEntitiesToLocal(subcategories)
         
         return category
@@ -118,10 +125,13 @@ struct CoreDataMapper {
         return categoryEntityToLocalNoSubcategory(entity)
     }
     
-    static func categoryEntityToLocalNoSubcategory(_ entity: CategoryEntity) -> Category {Category(
+    static func categoryEntityToLocalNoSubcategory(_ entity: CategoryEntity) -> Category {
+        Category(
             id: entity.id ?? UUID(),
             name: entity.name ?? "",
-            type: entity.type ?? ""
+            type: entity.type ?? "",
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date()
         )
     }
     
@@ -137,6 +147,8 @@ struct CoreDataMapper {
         entity.id = local.id
         entity.name = local.name
         entity.type = local.type
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
         if let nature = local.nature {
             if let natureEntity = manager.getCategoryNatureEntity(with: nature.id) {
                 entity.nature = natureEntity
@@ -181,7 +193,9 @@ struct CoreDataMapper {
     static func categoryNatureEntityToLocalNoCategory(_ entity: CategoryNatureEntity) -> CategoryNature {
         CategoryNature(
             id: entity.id ?? UUID(),
-            name: entity.name ?? ""
+            name: entity.name ?? "",
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date()
         )
     }
     
@@ -196,6 +210,8 @@ struct CoreDataMapper {
         
         entity.id = local.id
         entity.name = local.name
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
         entity.categories?.addingObjects(from: mapLocalToCategoryEntities(local.categories))
         
         return entity
@@ -219,7 +235,9 @@ struct CoreDataMapper {
     static func durationEntityToLocal(_ entity: DurationEntity) -> Duration {
         Duration(
             id: entity.id ?? UUID(),
-            name: entity.name ?? ""
+            name: entity.name ?? "",
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date()
         )
     }
     
@@ -234,6 +252,8 @@ struct CoreDataMapper {
         
         entity.id = local.id
         entity.name = local.name
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
         
         return entity
     }
@@ -256,7 +276,9 @@ struct CoreDataMapper {
     static func paymentEntityToLocal(_ entity: PaymentEntity) -> Payment {
         Payment(
             id: entity.id ?? UUID(),
-            name: entity.name ?? ""
+            name: entity.name ?? "",
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date()
         )
     }
     
@@ -271,6 +293,8 @@ struct CoreDataMapper {
         
         entity.id = local.id
         entity.name = local.name
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
         
         return entity
     }
@@ -294,7 +318,9 @@ struct CoreDataMapper {
         Store(
             id: entity.id ?? UUID(),
             isHaveMultipleStore: entity.isHaveMultipleStore,
-            name: entity.name ?? ""
+            name: entity.name ?? "",
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date()
         )
     }
     
@@ -310,6 +336,8 @@ struct CoreDataMapper {
         entity.id = local.id
         entity.name = local.name
         entity.isHaveMultipleStore = local.isHaveMultipleStore
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
         
         return entity
     }
@@ -333,6 +361,8 @@ struct CoreDataMapper {
         Subcategory(
             id: entity.id ?? UUID(),
             name: entity.name ?? "",
+            dateCreated: entity.dateCreated ?? Date(),
+            dateUpdated: entity.dateUpdated ?? Date(),
             mainCategory: categoryEntityToLocalNoSubcategory(entity.mainCategory)
         )
     }
@@ -348,6 +378,8 @@ struct CoreDataMapper {
         
         entity.id = local.id
         entity.name = local.name
+        entity.dateCreated = local.dateCreated
+        entity.dateUpdated = local.dateUpdated
         if let mainCategory = local.mainCategory {
             if let mainCategoryEntity = manager.getCategoryEntity(with: mainCategory.id) {
                 entity.mainCategory = mainCategoryEntity

@@ -1,30 +1,21 @@
 //
-//  AddLabelScreen.swift
+//  AddSubcategoryScreen.swift
 //  ExpenseTracker
 //
-//  Created by William Santoso on 01/03/22.
+//  Created by William Santoso on 05/03/22.
 //
 
 import SwiftUI
 
-protocol AddViewModel: ObservableObject {
-    var saveTitle: String { get }
-    var isUpdate: Bool { get set }
-    var isChanged: Bool { get }
-    
-    var errorMessage: ErrorMessage { get set }
-    var isShowErrorMessage: Bool { get set }
-    
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void)
-    func delete(completion: @escaping (_ isSuccess: Bool) -> Void)
-}
-
-class AddLabelViewModel: ObservableObject {
+class AddSubcategoryViewModel: AddViewModel {
     let coreDataManager = CoreDataManager.shared
     
-    @Published var labelModel: LabelModel
-    @Published var selectedLabelModel: LabelModel
+    @Published var subcategory: Subcategory
+    @Published var selectedSubcategory: Subcategory
     @Published var name = ""
+    @Published var category: Category = Category(name: "", type: "")
+    
+    var categories: [Category] = []
     
     var saveTitle: String {
         isUpdate ? "Update" : "Save"
@@ -32,35 +23,43 @@ class AddLabelViewModel: ObservableObject {
     var isUpdate: Bool = false
     
     var isChanged: Bool {
-        name != selectedLabelModel.name
+        name != selectedSubcategory.name ||
+        category.name != selectedSubcategory.mainCategory?.name ?? ""
     }
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    init(labelModel: LabelModel?) {
-        if let labelModel = labelModel {
-            self.labelModel = labelModel
-            selectedLabelModel = labelModel
+    init(subcategory: Subcategory?) {
+        categories = coreDataManager.getCategories()
+        
+        if let subcategory = subcategory {
+            self.subcategory = subcategory
+            selectedSubcategory = subcategory
             
-            name = labelModel.name
+            name = subcategory.name
+            
+            if let mainCategory = categories.first(where: {$0.id == subcategory.mainCategory?.id}) {
+                category = mainCategory
+            }
             
             isUpdate = true
         } else {
-            let defaultLabel = LabelModel(name: "")
-            self.labelModel = defaultLabel
-            selectedLabelModel = defaultLabel
+            let defaultSubcategory = Subcategory(name: "")
+            self.subcategory = defaultSubcategory
+            selectedSubcategory = defaultSubcategory
         }
     }
     
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func save(completion: @escaping (Bool) -> Void) {
         do {
-            labelModel.name = try Validation.textField(name.trimWhitespace())
+            subcategory.name = try Validation.textField(name.trimWhitespace()) 
+            subcategory.mainCategory = try Validation.picker(inputName: category.name, input: category, typeError: .noCategory) as? Category
             
             if isUpdate {
-                coreDataManager.updateLabel(labelModel)
+                coreDataManager.updateSubcategory(subcategory)
             } else {
-                coreDataManager.createLabel(labelModel)
+                coreDataManager.createSubcategory(subcategory)
             }
             completion(true)
         } catch let error {
@@ -73,20 +72,20 @@ class AddLabelViewModel: ObservableObject {
         }
     }
     
-    func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        coreDataManager.deleteLabel(labelModel)
+    func delete(completion: @escaping (Bool) -> Void) {
+        coreDataManager.deleteSubcategory(subcategory)
         completion(true)
     }
 }
 
-struct AddLabelScreen: View {
+struct AddSubcategoryScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: AddLabelViewModel
+    @StateObject var viewModel: AddSubcategoryViewModel
     @State private var isShowDiscardAlert = false
     var refesh: () -> Void
     
-    init(labelModel: LabelModel? = nil, refesh: @escaping () -> Void = {}) {
-        _viewModel = StateObject(wrappedValue: AddLabelViewModel(labelModel: labelModel))
+    init(subcategory: Subcategory? = nil, refesh: @escaping () -> Void = {}) {
+        _viewModel = StateObject(wrappedValue: AddSubcategoryViewModel(subcategory: subcategory))
         self.refesh = refesh
     }
     
@@ -94,7 +93,13 @@ struct AddLabelScreen: View {
         NavigationView {
             Form {
                 Section {
-                    TextFiedForm(title: "Name", prompt: "Home", value: $viewModel.name)
+                    TextFiedForm(title: "Name", prompt: "Lunch", value: $viewModel.name)
+                    
+                    Picker("Main Catergory", selection: $viewModel.category) {
+                        ForEach(viewModel.categories, id:\.self) {
+                            Text($0.name.capitalized)
+                        }
+                    }
                 }
                 
                 if viewModel.isUpdate {
@@ -114,7 +119,7 @@ struct AddLabelScreen: View {
             .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
                 presentationMode.wrappedValue.dismiss()
             }
-            .navigationTitle("Add Label")
+            .navigationTitle("Add Subcategory")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
 #endif
@@ -150,8 +155,8 @@ struct AddLabelScreen: View {
     }
 }
 
-struct AddLabelScreen_Previews: PreviewProvider {
+struct AddSubcategoryScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddLabelScreen(labelModel: nil)
+        AddSubcategoryScreen()
     }
 }

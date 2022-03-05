@@ -1,30 +1,20 @@
 //
-//  AddLabelScreen.swift
+//  AddCategoryNatureScreen.swift
 //  ExpenseTracker
 //
-//  Created by William Santoso on 01/03/22.
+//  Created by William Santoso on 05/03/22.
 //
 
 import SwiftUI
 
-protocol AddViewModel: ObservableObject {
-    var saveTitle: String { get }
-    var isUpdate: Bool { get set }
-    var isChanged: Bool { get }
-    
-    var errorMessage: ErrorMessage { get set }
-    var isShowErrorMessage: Bool { get set }
-    
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void)
-    func delete(completion: @escaping (_ isSuccess: Bool) -> Void)
-}
-
-class AddLabelViewModel: ObservableObject {
+class AddCategoryNatureViewModel: AddViewModel {
     let coreDataManager = CoreDataManager.shared
     
-    @Published var labelModel: LabelModel
-    @Published var selectedLabelModel: LabelModel
+    @Published var categoryNature: CategoryNature
+    @Published var selectedCategoryNature: CategoryNature
     @Published var name = ""
+    @Published var categories: [Category] = []
+    
     
     var saveTitle: String {
         isUpdate ? "Update" : "Save"
@@ -32,35 +22,39 @@ class AddLabelViewModel: ObservableObject {
     var isUpdate: Bool = false
     
     var isChanged: Bool {
-        name != selectedLabelModel.name
+        name != selectedCategoryNature.name
     }
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    init(labelModel: LabelModel?) {
-        if let labelModel = labelModel {
-            self.labelModel = labelModel
-            selectedLabelModel = labelModel
+    init(categoryNature: CategoryNature?) {
+        if let categoryNature = categoryNature {
+            self.categoryNature = categoryNature
+            selectedCategoryNature = categoryNature
             
-            name = labelModel.name
+            name = categoryNature.name
+            categories = categoryNature.categories
             
             isUpdate = true
         } else {
-            let defaultLabel = LabelModel(name: "")
-            self.labelModel = defaultLabel
-            selectedLabelModel = defaultLabel
+            let defaultCategoryNature = CategoryNature(
+                name: ""
+            )
+            self.categoryNature = defaultCategoryNature
+            selectedCategoryNature = defaultCategoryNature
         }
     }
     
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func save(completion: @escaping (Bool) -> Void) {
         do {
-            labelModel.name = try Validation.textField(name.trimWhitespace())
+            categoryNature.name = try Validation.textField(name.trimWhitespace())
+            categoryNature.categories = categories
             
             if isUpdate {
-                coreDataManager.updateLabel(labelModel)
+                coreDataManager.updateCategoryNature(categoryNature)
             } else {
-                coreDataManager.createLabel(labelModel)
+                coreDataManager.createCategoryNature(categoryNature)
             }
             completion(true)
         } catch let error {
@@ -73,20 +67,20 @@ class AddLabelViewModel: ObservableObject {
         }
     }
     
-    func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        coreDataManager.deleteLabel(labelModel)
+    func delete(completion: @escaping (Bool) -> Void) {
+        coreDataManager.deleteCategoryNature(categoryNature)
         completion(true)
     }
 }
 
-struct AddLabelScreen: View {
+struct AddCategoryNatureScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: AddLabelViewModel
+    @StateObject var viewModel: AddCategoryNatureViewModel
     @State private var isShowDiscardAlert = false
     var refesh: () -> Void
     
-    init(labelModel: LabelModel? = nil, refesh: @escaping () -> Void = {}) {
-        _viewModel = StateObject(wrappedValue: AddLabelViewModel(labelModel: labelModel))
+    init(categoryNature: CategoryNature? = nil, refesh: @escaping () -> Void = {}) {
+        _viewModel = StateObject(wrappedValue: AddCategoryNatureViewModel(categoryNature: categoryNature))
         self.refesh = refesh
     }
     
@@ -94,7 +88,7 @@ struct AddLabelScreen: View {
         NavigationView {
             Form {
                 Section {
-                    TextFiedForm(title: "Name", prompt: "Home", value: $viewModel.name)
+                    TextFiedForm(title: "Name", prompt: "Must", value: $viewModel.name)
                 }
                 
                 if viewModel.isUpdate {
@@ -114,7 +108,7 @@ struct AddLabelScreen: View {
             .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
                 presentationMode.wrappedValue.dismiss()
             }
-            .navigationTitle("Add Label")
+            .navigationTitle("Add CategoryNature")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
 #endif
@@ -150,8 +144,8 @@ struct AddLabelScreen: View {
     }
 }
 
-struct AddLabelScreen_Previews: PreviewProvider {
+struct AddCategoryNatureScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddLabelScreen(labelModel: nil)
+        AddCategoryNatureScreen()
     }
 }

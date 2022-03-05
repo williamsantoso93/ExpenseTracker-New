@@ -23,7 +23,7 @@ struct Income: Codable {
     var keywords: String?
 }
 
-struct IncomeCD: Codable {
+struct IncomeCD: Identifiable, Codable, Hashable {
     var id: UUID = UUID()
     var note: String?
     var value: Double = 0

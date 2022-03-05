@@ -51,6 +51,27 @@ class CoreDataManager {
 //    var templateEntity: [TemplateEntity] = []
 //    var yearMonthEntity: [YearMonthEntity] = []
     
+    func save(completion: (_ isSuccess: Bool) -> Void = { isSuccess in }) {
+        do {
+            try context.save()
+            completion(true)
+        } catch {
+            GlobalData.shared.errorMessage = ErrorMessage(title: "Error Core Data", message: error.localizedDescription)
+            context.rollback()
+            completion(false)
+        }
+    }
+    
+    func saveThrows() throws {
+        do {
+            try context.save()
+        } catch {
+            GlobalData.shared.errorMessage = ErrorMessage(title: "Error Core Data", message: error.localizedDescription)
+            context.rollback()
+            throw error
+        }
+    }
+    
     func save() {
         do {
             try context.save()

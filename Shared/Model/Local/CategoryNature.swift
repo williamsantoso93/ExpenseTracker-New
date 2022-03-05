@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct CategoryNature: Codable {
+struct CategoryNature: Identifiable, Codable, Hashable {
     var id: UUID = UUID()
-    let name: String
+    var name: String
+    var dateCreated: Date = Date()
+    var dateUpdated: Date = Date()
     var categories: [Category] = []
 }

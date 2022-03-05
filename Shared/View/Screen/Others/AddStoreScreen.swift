@@ -1,30 +1,20 @@
 //
-//  AddLabelScreen.swift
+//  AddStoreScreen.swift
 //  ExpenseTracker
 //
-//  Created by William Santoso on 01/03/22.
+//  Created by William Santoso on 05/03/22.
 //
 
 import SwiftUI
 
-protocol AddViewModel: ObservableObject {
-    var saveTitle: String { get }
-    var isUpdate: Bool { get set }
-    var isChanged: Bool { get }
-    
-    var errorMessage: ErrorMessage { get set }
-    var isShowErrorMessage: Bool { get set }
-    
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void)
-    func delete(completion: @escaping (_ isSuccess: Bool) -> Void)
-}
-
-class AddLabelViewModel: ObservableObject {
+class AddStoreViewModel: AddViewModel {
     let coreDataManager = CoreDataManager.shared
     
-    @Published var labelModel: LabelModel
-    @Published var selectedLabelModel: LabelModel
+    @Published var store: Store
+    @Published var selectedStore: Store
     @Published var name = ""
+    @Published var isHaveMultipleStore: Bool = false
+    
     
     var saveTitle: String {
         isUpdate ? "Update" : "Save"
@@ -32,35 +22,41 @@ class AddLabelViewModel: ObservableObject {
     var isUpdate: Bool = false
     
     var isChanged: Bool {
-        name != selectedLabelModel.name
+        name != selectedStore.name ||
+        (isHaveMultipleStore != store.isHaveMultipleStore)
     }
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    init(labelModel: LabelModel?) {
-        if let labelModel = labelModel {
-            self.labelModel = labelModel
-            selectedLabelModel = labelModel
+    init(store: Store?) {
+        if let store = store {
+            self.store = store
+            selectedStore = store
             
-            name = labelModel.name
+            name = store.name
+            isHaveMultipleStore = store.isHaveMultipleStore
             
             isUpdate = true
         } else {
-            let defaultLabel = LabelModel(name: "")
-            self.labelModel = defaultLabel
-            selectedLabelModel = defaultLabel
+            let defaultStore = Store(
+                isHaveMultipleStore: false,
+                name: ""
+            )
+            self.store = defaultStore
+            selectedStore = defaultStore
         }
     }
     
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func save(completion: @escaping (Bool) -> Void) {
         do {
-            labelModel.name = try Validation.textField(name.trimWhitespace())
+            store.name = try Validation.textField(name.trimWhitespace())
+            store.isHaveMultipleStore = isHaveMultipleStore
             
             if isUpdate {
-                coreDataManager.updateLabel(labelModel)
+                coreDataManager.updateStore(store)
             } else {
-                coreDataManager.createLabel(labelModel)
+                coreDataManager.createStore(store)
             }
             completion(true)
         } catch let error {
@@ -73,20 +69,20 @@ class AddLabelViewModel: ObservableObject {
         }
     }
     
-    func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        coreDataManager.deleteLabel(labelModel)
+    func delete(completion: @escaping (Bool) -> Void) {
+        coreDataManager.deleteStore(store)
         completion(true)
     }
 }
 
-struct AddLabelScreen: View {
+struct AddStoreScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: AddLabelViewModel
+    @StateObject var viewModel: AddStoreViewModel
     @State private var isShowDiscardAlert = false
     var refesh: () -> Void
     
-    init(labelModel: LabelModel? = nil, refesh: @escaping () -> Void = {}) {
-        _viewModel = StateObject(wrappedValue: AddLabelViewModel(labelModel: labelModel))
+    init(store: Store? = nil, refesh: @escaping () -> Void = {}) {
+        _viewModel = StateObject(wrappedValue: AddStoreViewModel(store: store))
         self.refesh = refesh
     }
     
@@ -94,7 +90,8 @@ struct AddLabelScreen: View {
         NavigationView {
             Form {
                 Section {
-                    TextFiedForm(title: "Name", prompt: "Home", value: $viewModel.name)
+                    TextFiedForm(title: "Name", prompt: "Indomaret", value: $viewModel.name)
+                    Toggle("Is Multiple Store", isOn: $viewModel.isHaveMultipleStore)
                 }
                 
                 if viewModel.isUpdate {
@@ -114,7 +111,7 @@ struct AddLabelScreen: View {
             .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
                 presentationMode.wrappedValue.dismiss()
             }
-            .navigationTitle("Add Label")
+            .navigationTitle("Add Store")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
 #endif
@@ -150,8 +147,8 @@ struct AddLabelScreen: View {
     }
 }
 
-struct AddLabelScreen_Previews: PreviewProvider {
+struct AddStoreScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddLabelScreen(labelModel: nil)
+        AddStoreScreen()
     }
 }

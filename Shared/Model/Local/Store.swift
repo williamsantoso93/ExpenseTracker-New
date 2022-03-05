@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct Store: Codable {
+struct Store: Identifiable, Codable, Hashable {
     var id: UUID = UUID()
-    let isHaveMultipleStore: Bool
-    let name: String
+    var isHaveMultipleStore: Bool
+    var name: String
+    var dateCreated: Date = Date()
+    var dateUpdated: Date = Date()
 }

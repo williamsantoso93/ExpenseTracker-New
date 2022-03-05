@@ -83,6 +83,20 @@
 		E045C3B327CE4B0400D32EDA /* OthersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3B127CE4B0400D32EDA /* OthersViewModel.swift */; };
 		E045C3B527CE59A700D32EDA /* AddLabelScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3B427CE59A700D32EDA /* AddLabelScreen.swift */; };
 		E045C3B627CE59A700D32EDA /* AddLabelScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3B427CE59A700D32EDA /* AddLabelScreen.swift */; };
+		E07B130F27D349B400E7CCB1 /* AddAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B130E27D349B400E7CCB1 /* AddAccountScreen.swift */; };
+		E07B131027D349B400E7CCB1 /* AddAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B130E27D349B400E7CCB1 /* AddAccountScreen.swift */; };
+		E07B131227D34A6A00E7CCB1 /* AddCategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131127D34A6A00E7CCB1 /* AddCategoryScreen.swift */; };
+		E07B131327D34A6A00E7CCB1 /* AddCategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131127D34A6A00E7CCB1 /* AddCategoryScreen.swift */; };
+		E07B131527D34A7A00E7CCB1 /* AddSubcategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131427D34A7A00E7CCB1 /* AddSubcategoryScreen.swift */; };
+		E07B131627D34A7A00E7CCB1 /* AddSubcategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131427D34A7A00E7CCB1 /* AddSubcategoryScreen.swift */; };
+		E07B131827D34A8B00E7CCB1 /* AddDurationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131727D34A8B00E7CCB1 /* AddDurationScreen.swift */; };
+		E07B131927D34A8B00E7CCB1 /* AddDurationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131727D34A8B00E7CCB1 /* AddDurationScreen.swift */; };
+		E07B131B27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131A27D34A9B00E7CCB1 /* AddPaymentScreen.swift */; };
+		E07B131C27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131A27D34A9B00E7CCB1 /* AddPaymentScreen.swift */; };
+		E07B131E27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131D27D34AAB00E7CCB1 /* AddStoreScreen.swift */; };
+		E07B131F27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131D27D34AAB00E7CCB1 /* AddStoreScreen.swift */; };
+		E07B132427D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B132327D351F000E7CCB1 /* AddCategoryNatureScreen.swift */; };
+		E07B132527D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B132327D351F000E7CCB1 /* AddCategoryNatureScreen.swift */; };
 		E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C1277087D100F358D9 /* ExpenseViewModel.swift */; };
 		E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C327708FFC00F358D9 /* IncomeViewModel.swift */; };
 		E08178C62770900900F358D9 /* YearMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C52770900900F358D9 /* YearMonthViewModel.swift */; };
@@ -238,6 +252,13 @@
 		E045C3AE27CE4A8900D32EDA /* OthersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersScreen.swift; sourceTree = "<group>"; };
 		E045C3B127CE4B0400D32EDA /* OthersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersViewModel.swift; sourceTree = "<group>"; };
 		E045C3B427CE59A700D32EDA /* AddLabelScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLabelScreen.swift; sourceTree = "<group>"; };
+		E07B130E27D349B400E7CCB1 /* AddAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountScreen.swift; sourceTree = "<group>"; };
+		E07B131127D34A6A00E7CCB1 /* AddCategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryScreen.swift; sourceTree = "<group>"; };
+		E07B131427D34A7A00E7CCB1 /* AddSubcategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubcategoryScreen.swift; sourceTree = "<group>"; };
+		E07B131727D34A8B00E7CCB1 /* AddDurationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDurationScreen.swift; sourceTree = "<group>"; };
+		E07B131A27D34A9B00E7CCB1 /* AddPaymentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentScreen.swift; sourceTree = "<group>"; };
+		E07B131D27D34AAB00E7CCB1 /* AddStoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoreScreen.swift; sourceTree = "<group>"; };
+		E07B132327D351F000E7CCB1 /* AddCategoryNatureScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryNatureScreen.swift; sourceTree = "<group>"; };
 		E08178C1277087D100F358D9 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
 		E08178C327708FFC00F358D9 /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
 		E08178C52770900900F358D9 /* YearMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthViewModel.swift; sourceTree = "<group>"; };
@@ -485,6 +506,13 @@
 				E045C3AE27CE4A8900D32EDA /* OthersScreen.swift */,
 				E045C3B127CE4B0400D32EDA /* OthersViewModel.swift */,
 				E045C3B427CE59A700D32EDA /* AddLabelScreen.swift */,
+				E07B130E27D349B400E7CCB1 /* AddAccountScreen.swift */,
+				E07B131127D34A6A00E7CCB1 /* AddCategoryScreen.swift */,
+				E07B132327D351F000E7CCB1 /* AddCategoryNatureScreen.swift */,
+				E07B131427D34A7A00E7CCB1 /* AddSubcategoryScreen.swift */,
+				E07B131727D34A8B00E7CCB1 /* AddDurationScreen.swift */,
+				E07B131A27D34A9B00E7CCB1 /* AddPaymentScreen.swift */,
+				E07B131D27D34AAB00E7CCB1 /* AddStoreScreen.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -813,6 +841,7 @@
 			files = (
 				E0A9C12227B917A30003F7E4 /* CheckmarkProperty.swift in Sources */,
 				E002E2BF2778B17E00A7A1C5 /* AddTemplateViewModel.swift in Sources */,
+				E07B131527D34A7A00E7CCB1 /* AddSubcategoryScreen.swift in Sources */,
 				E08178C62770900900F358D9 /* YearMonthViewModel.swift in Sources */,
 				E097D710277073220093F5DA /* Expense.swift in Sources */,
 				E045C3A927CE497C00D32EDA /* ExpenseCell.swift in Sources */,
@@ -831,12 +860,15 @@
 				E002E2BB2778B04F00A7A1C5 /* AddTemplateScreen.swift in Sources */,
 				E006AA342770179E00980302 /* ExpenseScreen.swift in Sources */,
 				E0BF3AB0276F566B00FC902E /* ExpenseTracker.xcdatamodeld in Sources */,
+				E07B131E27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */,
 				E002E2B82778B04700A7A1C5 /* TemplateScreen.swift in Sources */,
 				E00B169527C5CC4F0030C7B0 /* DeleteCoreData.swift in Sources */,
 				E006435C27740F8C00B5108D /* GlobalDataViewModel.swift in Sources */,
 				E00B169727C5CF750030C7B0 /* CoreDataMapper.swift in Sources */,
 				E0D6EF1D277021F000DF12AD /* SelectProperty.swift in Sources */,
 				E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */,
+				E07B131827D34A8B00E7CCB1 /* AddDurationScreen.swift in Sources */,
+				E07B132427D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */,
 				E0BF3AB6276F566B00FC902E /* Persistence.swift in Sources */,
 				E045C3AC27CE49C600D32EDA /* TemplateCell.swift in Sources */,
 				E01A2A672776B3CF002E685F /* AddIncomeScreen.swift in Sources */,
@@ -844,6 +876,7 @@
 				E0D6EF232770232700DF12AD /* ExpenseProperty.swift in Sources */,
 				E08178C82770901000F358D9 /* TypeViewModel.swift in Sources */,
 				E045C3B527CE59A700D32EDA /* AddLabelScreen.swift in Sources */,
+				E07B131227D34A6A00E7CCB1 /* AddCategoryScreen.swift in Sources */,
 				E00E1C452782250C0042496F /* MultiSelectPickerView.swift in Sources */,
 				E0050C2C2778005A00396C36 /* PostEndpoint.swift in Sources */,
 				E045C3AF27CE4A8900D32EDA /* OthersScreen.swift in Sources */,
@@ -881,6 +914,7 @@
 				E014CDFD27CB5F1900F408D1 /* Account.swift in Sources */,
 				E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */,
 				E03C701D2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
+				E07B130F27D349B400E7CCB1 /* AddAccountScreen.swift in Sources */,
 				E0D6EF2F2770240900DF12AD /* RelationProperty.swift in Sources */,
 				E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */,
 				E0D6EF26277023CB00DF12AD /* NumberProperty.swift in Sources */,
@@ -888,6 +922,7 @@
 				E01A4EB927C66F6000654E13 /* DummyTwoScreen.swift in Sources */,
 				E014CDFA27CB5F0E00F408D1 /* LabelModel.swift in Sources */,
 				E03C7023279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */,
+				E07B131B27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */,
 				E097D70E2770731C0093F5DA /* Income.swift in Sources */,
 				E006435A27740F7000B5108D /* SummaryViewModel.swift in Sources */,
 				E0D6EF172770201B00DF12AD /* YearMonthProperty.swift in Sources */,
@@ -909,11 +944,13 @@
 				E09030D827781FF7003ED6B5 /* Mapper.swift in Sources */,
 				E0D6EF2D277023FE00DF12AD /* DateProperty.swift in Sources */,
 				E09030CE27781FF0003ED6B5 /* ExpenseProperty.swift in Sources */,
+				E07B131327D34A6A00E7CCB1 /* AddCategoryScreen.swift in Sources */,
 				E09030CB27781FE0003ED6B5 /* TypeViewModel.swift in Sources */,
 				E03FC18D277837620019F01D /* ViewModifier.swift in Sources */,
 				E002E2BC2778B04F00A7A1C5 /* AddTemplateScreen.swift in Sources */,
 				E09030C727781FE0003ED6B5 /* SummaryViewModel.swift in Sources */,
 				E045C3A727CE493200D32EDA /* IncomeCell.swift in Sources */,
+				E07B132527D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */,
 				E09030D727781FF7003ED6B5 /* GetEndpoint.swift in Sources */,
 				E002E2B92778B04700A7A1C5 /* TemplateScreen.swift in Sources */,
 				E006AA352770179E00980302 /* ExpenseScreen.swift in Sources */,
@@ -931,6 +968,8 @@
 				E014CDFB27CB5F0E00F408D1 /* LabelModel.swift in Sources */,
 				E006AA312770175A00980302 /* SummaryScreen.swift in Sources */,
 				E09030C427781FD8003ED6B5 /* AddTypeViewModel.swift in Sources */,
+				E07B131027D349B400E7CCB1 /* AddAccountScreen.swift in Sources */,
+				E07B131927D34A8B00E7CCB1 /* AddDurationScreen.swift in Sources */,
 				E014CE0427CB5F2B00F408D1 /* CategoryNature.swift in Sources */,
 				E0F9E82827797BC60082B310 /* Validation.swift in Sources */,
 				E014CE0727CB5F3F00F408D1 /* Duration.swift in Sources */,
@@ -945,6 +984,7 @@
 				E0F9E825277977790082B310 /* ErrorMessage.swift in Sources */,
 				E09030D527781FF0003ED6B5 /* TypeModel.swift in Sources */,
 				E09030C327781FD5003ED6B5 /* TextField.swift in Sources */,
+				E07B131C27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */,
 				E0BF3AB3276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E045C3B327CE4B0400D32EDA /* OthersViewModel.swift in Sources */,
 				E03C70212792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
@@ -953,6 +993,7 @@
 				E014CE0D27CB5F5200F408D1 /* Store.swift in Sources */,
 				E09030C827781FE0003ED6B5 /* IncomeViewModel.swift in Sources */,
 				E09030DA27781FF7003ED6B5 /* DeleteEndpoint.swift in Sources */,
+				E07B131627D34A7A00E7CCB1 /* AddSubcategoryScreen.swift in Sources */,
 				E002E2B327789EC000A7A1C5 /* SettingProperty.swift in Sources */,
 				E014CDFE27CB5F1900F408D1 /* Account.swift in Sources */,
 				E09030C627781FE0003ED6B5 /* YearMonthCheck.swift in Sources */,
@@ -964,6 +1005,7 @@
 				E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */,
 				E09030C527781FE0003ED6B5 /* AddExpenseViewModel.swift in Sources */,
 				E09030D427781FF0003ED6B5 /* IncomeProperty.swift in Sources */,
+				E07B131F27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */,
 				E045C3B627CE59A700D32EDA /* AddLabelScreen.swift in Sources */,
 				E014CE0A27CB5F4900F408D1 /* Payment.swift in Sources */,
 				E031E2D5277DE67500DD449B /* RoolupProperty.swift in Sources */,

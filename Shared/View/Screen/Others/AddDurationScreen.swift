@@ -1,30 +1,19 @@
 //
-//  AddLabelScreen.swift
+//  AddDurationScreen.swift
 //  ExpenseTracker
 //
-//  Created by William Santoso on 01/03/22.
+//  Created by William Santoso on 05/03/22.
 //
 
 import SwiftUI
 
-protocol AddViewModel: ObservableObject {
-    var saveTitle: String { get }
-    var isUpdate: Bool { get set }
-    var isChanged: Bool { get }
-    
-    var errorMessage: ErrorMessage { get set }
-    var isShowErrorMessage: Bool { get set }
-    
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void)
-    func delete(completion: @escaping (_ isSuccess: Bool) -> Void)
-}
-
-class AddLabelViewModel: ObservableObject {
+class AddDurationViewModel: AddViewModel {
     let coreDataManager = CoreDataManager.shared
     
-    @Published var labelModel: LabelModel
-    @Published var selectedLabelModel: LabelModel
+    @Published var duration: Duration
+    @Published var selectedDuration: Duration
     @Published var name = ""
+    
     
     var saveTitle: String {
         isUpdate ? "Update" : "Save"
@@ -32,35 +21,35 @@ class AddLabelViewModel: ObservableObject {
     var isUpdate: Bool = false
     
     var isChanged: Bool {
-        name != selectedLabelModel.name
+        name != selectedDuration.name
     }
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
     
-    init(labelModel: LabelModel?) {
-        if let labelModel = labelModel {
-            self.labelModel = labelModel
-            selectedLabelModel = labelModel
+    init(duration: Duration?) {
+        if let duration = duration {
+            self.duration = duration
+            selectedDuration = duration
             
-            name = labelModel.name
+            name = duration.name
             
             isUpdate = true
         } else {
-            let defaultLabel = LabelModel(name: "")
-            self.labelModel = defaultLabel
-            selectedLabelModel = defaultLabel
+            let defaultDuration = Duration(name: "")
+            self.duration = defaultDuration
+            selectedDuration = defaultDuration
         }
     }
     
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func save(completion: @escaping (Bool) -> Void) {
         do {
-            labelModel.name = try Validation.textField(name.trimWhitespace())
+            duration.name = try Validation.textField(name.trimWhitespace())
             
             if isUpdate {
-                coreDataManager.updateLabel(labelModel)
+                coreDataManager.updateDuration(duration)
             } else {
-                coreDataManager.createLabel(labelModel)
+                coreDataManager.createDuration(duration)
             }
             completion(true)
         } catch let error {
@@ -73,20 +62,20 @@ class AddLabelViewModel: ObservableObject {
         }
     }
     
-    func delete(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        coreDataManager.deleteLabel(labelModel)
+    func delete(completion: @escaping (Bool) -> Void) {
+        coreDataManager.deleteDuration(duration)
         completion(true)
     }
 }
 
-struct AddLabelScreen: View {
+struct AddDurationScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var viewModel: AddLabelViewModel
+    @StateObject var viewModel: AddDurationViewModel
     @State private var isShowDiscardAlert = false
     var refesh: () -> Void
     
-    init(labelModel: LabelModel? = nil, refesh: @escaping () -> Void = {}) {
-        _viewModel = StateObject(wrappedValue: AddLabelViewModel(labelModel: labelModel))
+    init(duration: Duration? = nil, refesh: @escaping () -> Void = {}) {
+        _viewModel = StateObject(wrappedValue: AddDurationViewModel(duration: duration))
         self.refesh = refesh
     }
     
@@ -94,7 +83,7 @@ struct AddLabelScreen: View {
         NavigationView {
             Form {
                 Section {
-                    TextFiedForm(title: "Name", prompt: "Home", value: $viewModel.name)
+                    TextFiedForm(title: "Name", prompt: "Monthly", value: $viewModel.name)
                 }
                 
                 if viewModel.isUpdate {
@@ -114,7 +103,7 @@ struct AddLabelScreen: View {
             .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
                 presentationMode.wrappedValue.dismiss()
             }
-            .navigationTitle("Add Label")
+            .navigationTitle("Add Duration")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
 #endif
@@ -150,8 +139,8 @@ struct AddLabelScreen: View {
     }
 }
 
-struct AddLabelScreen_Previews: PreviewProvider {
+struct AddDurationScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddLabelScreen(labelModel: nil)
+        AddDurationScreen()
     }
 }

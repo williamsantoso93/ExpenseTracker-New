@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountEntity" representedClassName="AccountEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="account" inverseEntity="ExpenseEntity"/>
@@ -8,6 +10,8 @@
         <relationship name="templates" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TemplateEntity" inverseName="account" inverseEntity="TemplateEntity"/>
     </entity>
     <entity name="CategoryEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="type" attributeType="String" defaultValueString="expense"/>
@@ -18,11 +22,15 @@
         <relationship name="templates" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TemplateEntity" inverseName="category" inverseEntity="TemplateEntity"/>
     </entity>
     <entity name="CategoryNatureEntity" representedClassName="CategoryNatureEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="nature" inverseEntity="CategoryEntity"/>
     </entity>
     <entity name="DurationEntity" representedClassName="DurationEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="expenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="duration" inverseEntity="ExpenseEntity"/>
@@ -61,6 +69,8 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="LabelEntity" representedClassName="LabelEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="label" inverseEntity="ExpenseEntity"/>
@@ -68,17 +78,23 @@
         <relationship name="templates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TemplateEntity" inverseName="label" inverseEntity="TemplateEntity"/>
     </entity>
     <entity name="PaymentEntity" representedClassName="PaymentEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="expenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="payment" inverseEntity="ExpenseEntity"/>
         <relationship name="templates" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TemplateEntity" inverseName="payment" inverseEntity="TemplateEntity"/>
     </entity>
     <entity name="StoreEntity" representedClassName="StoreEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isHaveMultipleStore" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
     </entity>
     <entity name="SubcategoryEntity" representedClassName="SubcategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="subcategory" inverseEntity="ExpenseEntity"/>
@@ -103,24 +119,26 @@
         <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubcategoryEntity" inverseName="templates" inverseEntity="SubcategoryEntity"/>
     </entity>
     <entity name="YearMonthEntity" representedClassName="YearMonthEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="yearMonth" inverseEntity="ExpenseEntity"/>
         <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IncomeEntity" inverseName="yearMonth" inverseEntity="IncomeEntity"/>
     </entity>
     <elements>
-        <element name="AccountEntity" positionX="-63" positionY="-9" width="128" height="104"/>
-        <element name="CategoryEntity" positionX="-54" positionY="0" width="128" height="149"/>
-        <element name="CategoryNatureEntity" positionX="-36" positionY="9" width="128" height="74"/>
-        <element name="DurationEntity" positionX="-18" positionY="27" width="128" height="89"/>
+        <element name="AccountEntity" positionX="-63" positionY="-9" width="128" height="134"/>
+        <element name="CategoryEntity" positionX="-54" positionY="0" width="128" height="179"/>
+        <element name="CategoryNatureEntity" positionX="-36" positionY="9" width="128" height="104"/>
+        <element name="DurationEntity" positionX="-18" positionY="27" width="128" height="119"/>
         <element name="ExpenseEntity" positionX="0" positionY="45" width="128" height="239"/>
         <element name="IncomeEntity" positionX="18" positionY="63" width="128" height="194"/>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="LabelEntity" positionX="0" positionY="135" width="128" height="104"/>
-        <element name="PaymentEntity" positionX="36" positionY="81" width="128" height="89"/>
-        <element name="StoreEntity" positionX="-9" positionY="36" width="128" height="74"/>
-        <element name="SubcategoryEntity" positionX="0" positionY="45" width="128" height="119"/>
+        <element name="LabelEntity" positionX="0" positionY="135" width="128" height="134"/>
+        <element name="PaymentEntity" positionX="36" positionY="81" width="128" height="119"/>
+        <element name="StoreEntity" positionX="-9" positionY="36" width="128" height="104"/>
+        <element name="SubcategoryEntity" positionX="0" positionY="45" width="128" height="149"/>
         <element name="TemplateEntity" positionX="9" positionY="54" width="128" height="239"/>
-        <element name="YearMonthEntity" positionX="18" positionY="63" width="128" height="89"/>
+        <element name="YearMonthEntity" positionX="18" positionY="63" width="128" height="119"/>
     </elements>
 </model>

@@ -20,7 +20,7 @@ struct Expense: Codable {
     var keywords: String?
 }
 
-struct ExpenseCD: Codable {
+struct ExpenseCD: Identifiable, Codable, Hashable {
     var id: UUID = UUID()
     var note: String?
     var value: Double = 0

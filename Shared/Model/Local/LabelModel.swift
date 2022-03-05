@@ -7,9 +7,11 @@
 
 import Foundation
 
-struct LabelModel: Codable {
+struct LabelModel: Identifiable, Codable, Hashable {
     var id: UUID = UUID()
     var name: String
-    var expenses: [Expense] = []
-    var incomes: [Income] = []
+    var dateCreated: Date = Date()
+    var dateUpdated: Date = Date()
+    var expenses: [ExpenseCD] = []
+    var incomes: [IncomeCD] = []
 }
