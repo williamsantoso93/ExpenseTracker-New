@@ -553,6 +553,7 @@ struct CoreDataMapper {
         entity.value = local.value
         entity.name = local.name
         entity.store = local.store
+        entity.type = local.type
         
         if let id = local.label?.id {
             entity.label = manager.getLabelEntity(with: id)

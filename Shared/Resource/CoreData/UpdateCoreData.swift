@@ -177,6 +177,7 @@ extension CoreDataManager {
             entity.value = local.value
             entity.name = local.name
             entity.store = local.store
+            entity.type = local.type
             
             if let id = local.label?.id {
                 entity.label = getLabelEntity(with: id)

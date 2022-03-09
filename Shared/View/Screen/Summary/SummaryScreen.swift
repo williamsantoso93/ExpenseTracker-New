@@ -55,6 +55,9 @@ struct SummaryScreen: View {
                     NavigationLink("ExpenseCD") {
                         ExpenseCDScreen()
                     }
+                    NavigationLink("Template") {
+                        TemplateCDScreen()
+                    }
                     Button("Add IncomeCD") {
                         viewModel.isAddIncomeCDShow.toggle()
                     }

@@ -98,6 +98,7 @@ struct AddIncomeCDScreen: View {
                     }
                 }
             }
+            .showErrorAlert(isShowErrorMessageAlert: $viewModel.isShowErrorMessage, errorMessage: viewModel.errorMessage)
             .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
                 presentationMode.wrappedValue.dismiss()
             }

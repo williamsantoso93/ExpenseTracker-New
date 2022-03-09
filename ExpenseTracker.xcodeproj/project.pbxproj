@@ -155,6 +155,16 @@
 		E092EADF27D89D9900F44150 /* IncomeCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EADD27D89D9900F44150 /* IncomeCDCell.swift */; };
 		E092EAE127D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */; };
 		E092EAE227D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */; };
+		E092EAE427D8A4FE00F44150 /* TemplateCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE327D8A4FE00F44150 /* TemplateCDScreen.swift */; };
+		E092EAE527D8A4FE00F44150 /* TemplateCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE327D8A4FE00F44150 /* TemplateCDScreen.swift */; };
+		E092EAE727D8A50600F44150 /* TemplateCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE627D8A50600F44150 /* TemplateCDCell.swift */; };
+		E092EAE827D8A50600F44150 /* TemplateCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE627D8A50600F44150 /* TemplateCDCell.swift */; };
+		E092EAEA27D8A51300F44150 /* AddTemplateCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE927D8A51300F44150 /* AddTemplateCDScreen.swift */; };
+		E092EAEB27D8A51300F44150 /* AddTemplateCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE927D8A51300F44150 /* AddTemplateCDScreen.swift */; };
+		E092EAED27D8A53000F44150 /* TemplateCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAEC27D8A53000F44150 /* TemplateCDViewModel.swift */; };
+		E092EAEE27D8A53000F44150 /* TemplateCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAEC27D8A53000F44150 /* TemplateCDViewModel.swift */; };
+		E092EAF027D8A53B00F44150 /* AddTemplateCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAEF27D8A53B00F44150 /* AddTemplateCDViewModel.swift */; };
+		E092EAF127D8A53B00F44150 /* AddTemplateCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAEF27D8A53B00F44150 /* AddTemplateCDViewModel.swift */; };
 		E097D70C2770722E0093F5DA /* YearMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70B2770722E0093F5DA /* YearMonth.swift */; };
 		E097D70E2770731C0093F5DA /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70D2770731C0093F5DA /* Income.swift */; };
 		E097D710277073220093F5DA /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70F277073220093F5DA /* Expense.swift */; };
@@ -296,6 +306,11 @@
 		E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCDScreen.swift; sourceTree = "<group>"; };
 		E092EADD27D89D9900F44150 /* IncomeCDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCDCell.swift; sourceTree = "<group>"; };
 		E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeCDScreen.swift; sourceTree = "<group>"; };
+		E092EAE327D8A4FE00F44150 /* TemplateCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCDScreen.swift; sourceTree = "<group>"; };
+		E092EAE627D8A50600F44150 /* TemplateCDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCDCell.swift; sourceTree = "<group>"; };
+		E092EAE927D8A51300F44150 /* AddTemplateCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTemplateCDScreen.swift; sourceTree = "<group>"; };
+		E092EAEC27D8A53000F44150 /* TemplateCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCDViewModel.swift; sourceTree = "<group>"; };
+		E092EAEF27D8A53B00F44150 /* AddTemplateCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTemplateCDViewModel.swift; sourceTree = "<group>"; };
 		E097D70B2770722E0093F5DA /* YearMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonth.swift; sourceTree = "<group>"; };
 		E097D70D2770731C0093F5DA /* Income.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		E097D70F277073220093F5DA /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -374,8 +389,11 @@
 			isa = PBXGroup;
 			children = (
 				E002E2B72778B04700A7A1C5 /* TemplateScreen.swift */,
+				E092EAE327D8A4FE00F44150 /* TemplateCDScreen.swift */,
 				E045C3AB27CE49C600D32EDA /* TemplateCell.swift */,
+				E092EAE627D8A50600F44150 /* TemplateCDCell.swift */,
 				E002E2BA2778B04F00A7A1C5 /* AddTemplateScreen.swift */,
+				E092EAE927D8A51300F44150 /* AddTemplateCDScreen.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -472,9 +490,9 @@
 				E08178C92770903000F358D9 /* IncomeScreen.swift */,
 				E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */,
 				E092EADD27D89D9900F44150 /* IncomeCDCell.swift */,
-				E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */,
 				E045C3A527CE493200D32EDA /* IncomeCell.swift */,
 				E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */,
+				E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */,
 			);
 			path = Income;
 			sourceTree = "<group>";
@@ -483,8 +501,8 @@
 			isa = PBXGroup;
 			children = (
 				E006AA332770179E00980302 /* ExpenseScreen.swift */,
-				E045C3A827CE497B00D32EDA /* ExpenseCell.swift */,
 				E092EACB27D8942800F44150 /* ExpenseCDScreen.swift */,
+				E045C3A827CE497B00D32EDA /* ExpenseCell.swift */,
 				E092EACE27D8943100F44150 /* ExpenseCDCell.swift */,
 				E0D6EF0927701B1400DF12AD /* AddExpenseScreen.swift */,
 				E065E72F27D3A29C0015E457 /* AddExpenseCDScreen.swift */,
@@ -567,7 +585,9 @@
 			isa = PBXGroup;
 			children = (
 				E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */,
+				E092EAEC27D8A53000F44150 /* TemplateCDViewModel.swift */,
 				E002E2BE2778B17E00A7A1C5 /* AddTemplateViewModel.swift */,
+				E092EAEF27D8A53B00F44150 /* AddTemplateCDViewModel.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -919,6 +939,7 @@
 				E092EAE127D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */,
 				E01A2A672776B3CF002E685F /* AddIncomeScreen.swift in Sources */,
 				E014CE0627CB5F3F00F408D1 /* Duration.swift in Sources */,
+				E092EAED27D8A53000F44150 /* TemplateCDViewModel.swift in Sources */,
 				E0D6EF232770232700DF12AD /* ExpenseProperty.swift in Sources */,
 				E08178C82770901000F358D9 /* TypeViewModel.swift in Sources */,
 				E045C3B527CE59A700D32EDA /* AddLabelScreen.swift in Sources */,
@@ -927,8 +948,10 @@
 				E00E1C452782250C0042496F /* MultiSelectPickerView.swift in Sources */,
 				E0050C2C2778005A00396C36 /* PostEndpoint.swift in Sources */,
 				E045C3AF27CE4A8900D32EDA /* OthersScreen.swift in Sources */,
+				E092EAEA27D8A51300F44150 /* AddTemplateCDScreen.swift in Sources */,
 				E014CE0C27CB5F5200F408D1 /* Store.swift in Sources */,
 				E08DD5062778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */,
+				E092EAE727D8A50600F44150 /* TemplateCDCell.swift in Sources */,
 				E08178CF2770959C00F358D9 /* YearMonthScreen.swift in Sources */,
 				E0F617F0277175AD00C546B7 /* AddExpenseViewModel.swift in Sources */,
 				E0F9E82727797BC60082B310 /* Validation.swift in Sources */,
@@ -951,6 +974,7 @@
 				E03C70202792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
 				E0BF3AB2276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */,
+				E092EAE427D8A4FE00F44150 /* TemplateCDScreen.swift in Sources */,
 				E0BF3AB4276F566B00FC902E /* ContentView.swift in Sources */,
 				E0B9C33027C4D91800D8BBE3 /* CoreDataManager.swift in Sources */,
 				E002E2B227789EC000A7A1C5 /* SettingProperty.swift in Sources */,
@@ -970,6 +994,7 @@
 				E092EADE27D89D9900F44150 /* IncomeCDCell.swift in Sources */,
 				E01A4EB927C66F6000654E13 /* DummyTwoScreen.swift in Sources */,
 				E014CDFA27CB5F0E00F408D1 /* LabelModel.swift in Sources */,
+				E092EAF027D8A53B00F44150 /* AddTemplateCDViewModel.swift in Sources */,
 				E03C7023279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */,
 				E07B131B27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */,
 				E097D70E2770731C0093F5DA /* Income.swift in Sources */,
@@ -1000,6 +1025,7 @@
 				E03FC18D277837620019F01D /* ViewModifier.swift in Sources */,
 				E002E2BC2778B04F00A7A1C5 /* AddTemplateScreen.swift in Sources */,
 				E09030C727781FE0003ED6B5 /* SummaryViewModel.swift in Sources */,
+				E092EAF127D8A53B00F44150 /* AddTemplateCDViewModel.swift in Sources */,
 				E045C3A727CE493200D32EDA /* IncomeCell.swift in Sources */,
 				E07B132527D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */,
 				E09030D727781FF7003ED6B5 /* GetEndpoint.swift in Sources */,
@@ -1044,6 +1070,7 @@
 				E07B131C27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */,
 				E0BF3AB3276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E092EADF27D89D9900F44150 /* IncomeCDCell.swift in Sources */,
+				E092EAEE27D8A53000F44150 /* TemplateCDViewModel.swift in Sources */,
 				E045C3B327CE4B0400D32EDA /* OthersViewModel.swift in Sources */,
 				E03C70212792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
 				E014CE0127CB5F2200F408D1 /* Category.swift in Sources */,
@@ -1057,8 +1084,11 @@
 				E014CDFE27CB5F1900F408D1 /* Account.swift in Sources */,
 				E09030C627781FE0003ED6B5 /* YearMonthCheck.swift in Sources */,
 				E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
+				E092EAE827D8A50600F44150 /* TemplateCDCell.swift in Sources */,
+				E092EAE527D8A4FE00F44150 /* TemplateCDScreen.swift in Sources */,
 				E0BF3AB5276F566B00FC902E /* ContentView.swift in Sources */,
 				E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */,
+				E092EAEB27D8A51300F44150 /* AddTemplateCDScreen.swift in Sources */,
 				E0D6EF21277021F800DF12AD /* TextProperty.swift in Sources */,
 				E03C701E2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
 				E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */,

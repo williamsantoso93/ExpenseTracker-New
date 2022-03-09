@@ -49,4 +49,21 @@ struct TemplateModelCD: Codable {
     var dateCreated: Date = Date()
     var dateUpdated: Date = Date()
     var type: String
+    
+    var keywords: String {
+        [
+            name ?? "",
+            "\(value)",
+            label?.name ?? "",
+            account?.name ?? "",
+            category?.name ?? "",
+            subcategory?.name ?? "",
+            duration?.name ?? "",
+            store ?? "",
+            type,
+            date.toStringFull(),
+            dateCreated.toStringFull(),
+            dateUpdated.toStringFull(),
+        ].joinedWithComma()
+    }
 }
