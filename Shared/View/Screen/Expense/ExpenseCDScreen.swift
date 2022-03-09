@@ -1,14 +1,14 @@
 //
-//  ExpenseScreen.swift
+//  ExpenseCDScreen.swift
 //  ExpenseTracker
 //
-//  Created by Ruangguru on 20/12/21.
+//  Created by William Santoso on 09/03/22.
 //
 
 import SwiftUI
 
-struct ExpenseScreen: View {
-    @StateObject private var viewModel = ExpenseViewModel()
+struct ExpenseCDScreen: View {
+    @StateObject private var viewModel = ExpenseCDViewModel()
     
     var body: some View {
         Form {
@@ -18,24 +18,18 @@ struct ExpenseScreen: View {
                     Button {
                         viewModel.selectExpense(expense)
                     } label: {
-                        ExpenseCell(expense: expense)
-                    }
-                    .onAppear {
-                        viewModel.loadMoreList(of: index)
+                        ExpenseCDCell(expense: expense)
                     }
                 }
                 .onDelete(perform: viewModel.delete)
             }
         }
-        .loadingWithNoDataButton(viewModel.isLoading, isShowNoData: viewModel.isNowShowData, action: {
-            viewModel.isShowAddScreen.toggle()
-        })
         .searchable(text: $viewModel.searchText)
         .refreshable {
-            viewModel.loadNewData()
+            viewModel.loadData()
         }
         .navigationTitle("Expense")
-        .toolbar {            
+        .toolbar {
             ToolbarItem {
                 HStack {
 #if os(iOS)
@@ -52,18 +46,15 @@ struct ExpenseScreen: View {
         .sheet(isPresented: $viewModel.isShowAddScreen) {
             viewModel.selectedExpense = nil
         } content: {
-            AddExpenseScreen(expense: viewModel.selectedExpense) {
-                viewModel.loadNewData()
+            AddExpenseCDScreen(expenseCD: viewModel.selectedExpense) {
+                viewModel.loadData()
             }
         }
-
     }
 }
 
-struct ExpenseScreen_Previews: PreviewProvider {
+struct ExpenseCDScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            ExpenseScreen()
-        }
+        ExpenseCDScreen()
     }
 }

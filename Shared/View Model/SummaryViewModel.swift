@@ -11,6 +11,8 @@ class SummaryViewModel: ObservableObject {
     @Published var isSelectUser = false
     @Published var isAddIncomeShow = false
     @Published var isAddExpenseShow = false
+    @Published var isAddIncomeCDShow = false
+    @Published var isAddExpenseCDShow = false
     
     init() {
         checkUser()

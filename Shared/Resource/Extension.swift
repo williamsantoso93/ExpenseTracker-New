@@ -116,6 +116,10 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func toStringFull() -> String {
+        self.toString(format: "EEEE, MMMM, d, dd, yyyy")
+    }
+    
     func addMonth(by n: Int = 1) -> Date? {
         var dateComponent = DateComponents()
         dateComponent.month = n

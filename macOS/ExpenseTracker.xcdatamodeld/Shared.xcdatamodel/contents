@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AccountEntity" representedClassName="AccountEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="account" inverseEntity="ExpenseEntity"/>
+        <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IncomeEntity" inverseName="acoount" inverseEntity="IncomeEntity"/>
+    </entity>
+    <entity name="CategoryEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="category" inverseEntity="ExpenseEntity"/>
+        <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IncomeEntity" inverseName="category" inverseEntity="IncomeEntity"/>
+        <relationship name="nature" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryNatureEntity" inverseName="categories" inverseEntity="CategoryNatureEntity"/>
+        <relationship name="subcategoryOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubcategoryEntity" inverseName="mainCategory" inverseEntity="SubcategoryEntity"/>
+    </entity>
+    <entity name="CategoryNatureEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="CategoryEntity" inverseName="nature" inverseEntity="CategoryEntity"/>
+    </entity>
+    <entity name="DurationEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ExpenseEntity" inverseName="duration" inverseEntity="ExpenseEntity"/>
+    </entity>
+    <entity name="ExpenseEntity" representedClassName="ExpenseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
+        <attribute name="store" optional="YES" attributeType="String"/>
+        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="expenses" inverseEntity="AccountEntity"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="expenses" inverseEntity="CategoryEntity"/>
+        <relationship name="duration" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DurationEntity" inverseName="expenses" inverseEntity="DurationEntity"/>
+        <relationship name="payment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PaymentEntity" inverseName="expenses" inverseEntity="PaymentEntity"/>
+        <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubcategoryEntity" inverseName="expenses" inverseEntity="SubcategoryEntity"/>
+        <relationship name="yearMonth" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YearMonthEntity" inverseName="expenses" inverseEntity="YearMonthEntity"/>
+    </entity>
+    <entity name="IncomeEntity" representedClassName="IncomeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="acoount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="incomes" inverseEntity="AccountEntity"/>
+        <relationship name="category" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="incomes" inverseEntity="CategoryEntity"/>
+        <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubcategoryEntity" inverseName="incomes" inverseEntity="SubcategoryEntity"/>
+        <relationship name="yearMonth" maxCount="1" deletionRule="Nullify" destinationEntity="YearMonthEntity" inverseName="incomes" inverseEntity="YearMonthEntity"/>
+    </entity>
+    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="PaymentEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ExpenseEntity" inverseName="payment" inverseEntity="ExpenseEntity"/>
+    </entity>
+    <entity name="StoreEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isHaveMultipleStore" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ExpenseEntity"/>
+    </entity>
+    <entity name="SubcategoryEntity" representedClassName="SubcategoryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="subcategory" inverseEntity="ExpenseEntity"/>
+        <relationship name="incomes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IncomeEntity" inverseName="subcategory" inverseEntity="IncomeEntity"/>
+        <relationship name="mainCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CategoryEntity" inverseName="subcategoryOf" inverseEntity="CategoryEntity"/>
+    </entity>
+    <entity name="TemplateEntity" representedClassName="ExpenseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateUpdated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="store" optional="YES" attributeType="String"/>
+        <attribute name="type" attributeType="String" defaultValueString="expense"/>
+        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="AccountEntity"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="CategoryEntity"/>
+        <relationship name="payment" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="PaymentEntity"/>
+        <relationship name="subcategory" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="SubcategoryEntity"/>
+    </entity>
+    <entity name="YearMonthEntity" representedClassName="YearMonthEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="expenses" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExpenseEntity" inverseName="yearMonth" inverseEntity="ExpenseEntity"/>
+        <relationship name="incomes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IncomeEntity" inverseName="yearMonth" inverseEntity="IncomeEntity"/>
+    </entity>
+    <elements>
+        <element name="Item" positionX="-47.96484375" positionY="-272.296875" width="128" height="44"/>
+        <element name="ExpenseEntity" positionX="-1122.546875" positionY="-161.56640625" width="128" height="238"/>
+        <element name="YearMonthEntity" positionX="-1455.78515625" positionY="27.8828125" width="128" height="103"/>
+        <element name="IncomeEntity" positionX="-1076.60546875" positionY="123.98828125" width="128" height="178"/>
+        <element name="CategoryEntity" positionX="-268.26953125" positionY="55.296875" width="128" height="148"/>
+        <element name="AccountEntity" positionX="-838.078125" positionY="-199.5703125" width="128" height="103"/>
+        <element name="SubcategoryEntity" positionX="79.94921875" positionY="273.14453125" width="128" height="118"/>
+        <element name="DurationEntity" positionX="-449.37109375" positionY="-148.21484375" width="128" height="88"/>
+        <element name="PaymentEntity" positionX="-113.48046875" positionY="-99.74609375" width="128" height="88"/>
+        <element name="StoreEntity" positionX="-272.46484375" positionY="-233.16015625" width="128" height="89"/>
+        <element name="CategoryNatureEntity" positionX="62.9921875" positionY="27.21875" width="128" height="88"/>
+        <element name="TemplateEntity" positionX="-362.69140625" positionY="496.96875" width="128" height="223"/>
+    </elements>
+</model>

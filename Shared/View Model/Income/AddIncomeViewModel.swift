@@ -131,6 +131,21 @@ class AddIncomeViewModel: ObservableObject {
         }
     }
     
+    func saveCD(completion: @escaping (_ isSuccess: Bool) -> Void) {
+//        var incomeCD: IncomeCD = .init(
+//            id: UUID(uuidString: income.id) ?? UUID(),
+//            note: income.note,
+//            value: income.value,
+//            label: <#T##LabelModel?#>,
+//            account: <#T##Account?#>,
+//            category: <#T##Category?#>,
+//            subcategory: <#T##Subcategory?#>,
+//            date: <#T##Date#>,
+//            dateCreated: Date(),
+//            dateUpdated: Date()
+//        )
+    }
+    
     func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
         do {
             income.note = note.trimWhitespace()

@@ -32,3 +32,38 @@ struct TemplateModel: Codable, Hashable {
     var keywords: String?
     
 }
+
+// MARK: - TemplateModelCD
+struct TemplateModelCD: Codable {
+    var id: UUID = UUID()
+    var name: String?
+    var value: Double = 0
+    var label: LabelModel?
+    var account: Account?
+    var category: Category?
+    var subcategory: Subcategory?
+    var duration: Duration?
+    var payment: Payment?
+    var store: String?
+    var date: Date = Date()
+    var dateCreated: Date = Date()
+    var dateUpdated: Date = Date()
+    var type: String
+    
+    var keywords: String {
+        [
+            name ?? "",
+            "\(value)",
+            label?.name ?? "",
+            account?.name ?? "",
+            category?.name ?? "",
+            subcategory?.name ?? "",
+            duration?.name ?? "",
+            store ?? "",
+            type,
+            date.toStringFull(),
+            dateCreated.toStringFull(),
+            dateUpdated.toStringFull(),
+        ].joinedWithComma()
+    }
+}

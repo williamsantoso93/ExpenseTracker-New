@@ -28,15 +28,37 @@
 		E006AA312770175A00980302 /* SummaryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006AA2F2770175A00980302 /* SummaryScreen.swift */; };
 		E006AA342770179E00980302 /* ExpenseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006AA332770179E00980302 /* ExpenseScreen.swift */; };
 		E006AA352770179E00980302 /* ExpenseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006AA332770179E00980302 /* ExpenseScreen.swift */; };
+		E00B168F27C5CC260030C7B0 /* ReadCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B168E27C5CC260030C7B0 /* ReadCoreData.swift */; };
+		E00B169127C5CC3A0030C7B0 /* CreateCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B169027C5CC3A0030C7B0 /* CreateCoreData.swift */; };
+		E00B169327C5CC430030C7B0 /* UpdateCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B169227C5CC430030C7B0 /* UpdateCoreData.swift */; };
+		E00B169527C5CC4F0030C7B0 /* DeleteCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B169427C5CC4F0030C7B0 /* DeleteCoreData.swift */; };
+		E00B169727C5CF750030C7B0 /* CoreDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00B169627C5CF750030C7B0 /* CoreDataMapper.swift */; };
 		E00E1C452782250C0042496F /* MultiSelectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00E1C442782250C0042496F /* MultiSelectPickerView.swift */; };
 		E00E1C462782250C0042496F /* MultiSelectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00E1C442782250C0042496F /* MultiSelectPickerView.swift */; };
 		E0107A3F277457EA00825484 /* TypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0107A3E277457EA00825484 /* TypeScreen.swift */; };
 		E0107A40277457EA00825484 /* TypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0107A3E277457EA00825484 /* TypeScreen.swift */; };
+		E014CDFA27CB5F0E00F408D1 /* LabelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CDF927CB5F0E00F408D1 /* LabelModel.swift */; };
+		E014CDFB27CB5F0E00F408D1 /* LabelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CDF927CB5F0E00F408D1 /* LabelModel.swift */; };
+		E014CDFD27CB5F1900F408D1 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CDFC27CB5F1900F408D1 /* Account.swift */; };
+		E014CDFE27CB5F1900F408D1 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CDFC27CB5F1900F408D1 /* Account.swift */; };
+		E014CE0027CB5F2200F408D1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CDFF27CB5F2200F408D1 /* Category.swift */; };
+		E014CE0127CB5F2200F408D1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CDFF27CB5F2200F408D1 /* Category.swift */; };
+		E014CE0327CB5F2B00F408D1 /* CategoryNature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0227CB5F2B00F408D1 /* CategoryNature.swift */; };
+		E014CE0427CB5F2B00F408D1 /* CategoryNature.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0227CB5F2B00F408D1 /* CategoryNature.swift */; };
+		E014CE0627CB5F3F00F408D1 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0527CB5F3F00F408D1 /* Duration.swift */; };
+		E014CE0727CB5F3F00F408D1 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0527CB5F3F00F408D1 /* Duration.swift */; };
+		E014CE0927CB5F4900F408D1 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0827CB5F4900F408D1 /* Payment.swift */; };
+		E014CE0A27CB5F4900F408D1 /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0827CB5F4900F408D1 /* Payment.swift */; };
+		E014CE0C27CB5F5200F408D1 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0B27CB5F5200F408D1 /* Store.swift */; };
+		E014CE0D27CB5F5200F408D1 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0B27CB5F5200F408D1 /* Store.swift */; };
+		E014CE0F27CB5F5A00F408D1 /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0E27CB5F5A00F408D1 /* Subcategory.swift */; };
+		E014CE1027CB5F5A00F408D1 /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014CE0E27CB5F5A00F408D1 /* Subcategory.swift */; };
 		E01A2A672776B3CF002E685F /* AddIncomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */; };
 		E01A2A6C2776B41E002E685F /* AddIncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */; };
 		E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */; };
 		E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A6F2776B433002E685F /* YearMonthCheck.swift */; };
 		E01A2A772776B46E002E685F /* AddTypeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A2A762776B46E002E685F /* AddTypeScreen.swift */; };
+		E01A4EB927C66F6000654E13 /* DummyTwoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01A4EB827C66F6000654E13 /* DummyTwoScreen.swift */; };
 		E02830B82782B1FF001E8B51 /* FormulaProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02830B72782B1FF001E8B51 /* FormulaProperty.swift */; };
 		E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02830B72782B1FF001E8B51 /* FormulaProperty.swift */; };
 		E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031E2D3277DE67500DD449B /* RoolupProperty.swift */; };
@@ -49,6 +71,34 @@
 		E03C7024279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */; };
 		E03FC18C277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
 		E03FC18D277837620019F01D /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03FC18B277837620019F01D /* ViewModifier.swift */; };
+		E045C3A627CE493200D32EDA /* IncomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3A527CE493200D32EDA /* IncomeCell.swift */; };
+		E045C3A727CE493200D32EDA /* IncomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3A527CE493200D32EDA /* IncomeCell.swift */; };
+		E045C3A927CE497C00D32EDA /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3A827CE497B00D32EDA /* ExpenseCell.swift */; };
+		E045C3AA27CE497C00D32EDA /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3A827CE497B00D32EDA /* ExpenseCell.swift */; };
+		E045C3AC27CE49C600D32EDA /* TemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3AB27CE49C600D32EDA /* TemplateCell.swift */; };
+		E045C3AD27CE49C600D32EDA /* TemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3AB27CE49C600D32EDA /* TemplateCell.swift */; };
+		E045C3AF27CE4A8900D32EDA /* OthersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3AE27CE4A8900D32EDA /* OthersScreen.swift */; };
+		E045C3B027CE4A8900D32EDA /* OthersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3AE27CE4A8900D32EDA /* OthersScreen.swift */; };
+		E045C3B227CE4B0400D32EDA /* OthersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3B127CE4B0400D32EDA /* OthersViewModel.swift */; };
+		E045C3B327CE4B0400D32EDA /* OthersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3B127CE4B0400D32EDA /* OthersViewModel.swift */; };
+		E045C3B527CE59A700D32EDA /* AddLabelScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3B427CE59A700D32EDA /* AddLabelScreen.swift */; };
+		E045C3B627CE59A700D32EDA /* AddLabelScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E045C3B427CE59A700D32EDA /* AddLabelScreen.swift */; };
+		E065E73027D3A29C0015E457 /* AddExpenseCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E065E72F27D3A29C0015E457 /* AddExpenseCDScreen.swift */; };
+		E065E73127D3A29C0015E457 /* AddExpenseCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E065E72F27D3A29C0015E457 /* AddExpenseCDScreen.swift */; };
+		E07B130F27D349B400E7CCB1 /* AddAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B130E27D349B400E7CCB1 /* AddAccountScreen.swift */; };
+		E07B131027D349B400E7CCB1 /* AddAccountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B130E27D349B400E7CCB1 /* AddAccountScreen.swift */; };
+		E07B131227D34A6A00E7CCB1 /* AddCategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131127D34A6A00E7CCB1 /* AddCategoryScreen.swift */; };
+		E07B131327D34A6A00E7CCB1 /* AddCategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131127D34A6A00E7CCB1 /* AddCategoryScreen.swift */; };
+		E07B131527D34A7A00E7CCB1 /* AddSubcategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131427D34A7A00E7CCB1 /* AddSubcategoryScreen.swift */; };
+		E07B131627D34A7A00E7CCB1 /* AddSubcategoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131427D34A7A00E7CCB1 /* AddSubcategoryScreen.swift */; };
+		E07B131827D34A8B00E7CCB1 /* AddDurationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131727D34A8B00E7CCB1 /* AddDurationScreen.swift */; };
+		E07B131927D34A8B00E7CCB1 /* AddDurationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131727D34A8B00E7CCB1 /* AddDurationScreen.swift */; };
+		E07B131B27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131A27D34A9B00E7CCB1 /* AddPaymentScreen.swift */; };
+		E07B131C27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131A27D34A9B00E7CCB1 /* AddPaymentScreen.swift */; };
+		E07B131E27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131D27D34AAB00E7CCB1 /* AddStoreScreen.swift */; };
+		E07B131F27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B131D27D34AAB00E7CCB1 /* AddStoreScreen.swift */; };
+		E07B132427D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B132327D351F000E7CCB1 /* AddCategoryNatureScreen.swift */; };
+		E07B132527D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B132327D351F000E7CCB1 /* AddCategoryNatureScreen.swift */; };
 		E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C1277087D100F358D9 /* ExpenseViewModel.swift */; };
 		E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C327708FFC00F358D9 /* IncomeViewModel.swift */; };
 		E08178C62770900900F358D9 /* YearMonthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08178C52770900900F358D9 /* YearMonthViewModel.swift */; };
@@ -87,6 +137,34 @@
 		E09030DA27781FF7003ED6B5 /* DeleteEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0050C312778007600396C36 /* DeleteEndpoint.swift */; };
 		E09030DB27781FF7003ED6B5 /* UpdateEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0050C2F2778006C00396C36 /* UpdateEndpoint.swift */; };
 		E09030DC27781FF7003ED6B5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF37277028CB00DF12AD /* Networking.swift */; };
+		E092EAC627D88E5800F44150 /* AddExpenseCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAC527D88E5800F44150 /* AddExpenseCDViewModel.swift */; };
+		E092EAC727D88E5800F44150 /* AddExpenseCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAC527D88E5800F44150 /* AddExpenseCDViewModel.swift */; };
+		E092EACC27D8942800F44150 /* ExpenseCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EACB27D8942800F44150 /* ExpenseCDScreen.swift */; };
+		E092EACD27D8942800F44150 /* ExpenseCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EACB27D8942800F44150 /* ExpenseCDScreen.swift */; };
+		E092EACF27D8943100F44150 /* ExpenseCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EACE27D8943100F44150 /* ExpenseCDCell.swift */; };
+		E092EAD027D8943100F44150 /* ExpenseCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EACE27D8943100F44150 /* ExpenseCDCell.swift */; };
+		E092EAD227D8944400F44150 /* ExpenseCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD127D8944400F44150 /* ExpenseCDViewModel.swift */; };
+		E092EAD327D8944400F44150 /* ExpenseCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD127D8944400F44150 /* ExpenseCDViewModel.swift */; };
+		E092EAD527D89D2C00F44150 /* AddIncomeCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD427D89D2C00F44150 /* AddIncomeCDViewModel.swift */; };
+		E092EAD627D89D2C00F44150 /* AddIncomeCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD427D89D2C00F44150 /* AddIncomeCDViewModel.swift */; };
+		E092EAD827D89D3B00F44150 /* IncomeCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD727D89D3B00F44150 /* IncomeCDViewModel.swift */; };
+		E092EAD927D89D3B00F44150 /* IncomeCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD727D89D3B00F44150 /* IncomeCDViewModel.swift */; };
+		E092EADB27D89D7C00F44150 /* IncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */; };
+		E092EADC27D89D7C00F44150 /* IncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */; };
+		E092EADE27D89D9900F44150 /* IncomeCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EADD27D89D9900F44150 /* IncomeCDCell.swift */; };
+		E092EADF27D89D9900F44150 /* IncomeCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EADD27D89D9900F44150 /* IncomeCDCell.swift */; };
+		E092EAE127D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */; };
+		E092EAE227D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */; };
+		E092EAE427D8A4FE00F44150 /* TemplateCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE327D8A4FE00F44150 /* TemplateCDScreen.swift */; };
+		E092EAE527D8A4FE00F44150 /* TemplateCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE327D8A4FE00F44150 /* TemplateCDScreen.swift */; };
+		E092EAE727D8A50600F44150 /* TemplateCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE627D8A50600F44150 /* TemplateCDCell.swift */; };
+		E092EAE827D8A50600F44150 /* TemplateCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE627D8A50600F44150 /* TemplateCDCell.swift */; };
+		E092EAEA27D8A51300F44150 /* AddTemplateCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE927D8A51300F44150 /* AddTemplateCDScreen.swift */; };
+		E092EAEB27D8A51300F44150 /* AddTemplateCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE927D8A51300F44150 /* AddTemplateCDScreen.swift */; };
+		E092EAED27D8A53000F44150 /* TemplateCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAEC27D8A53000F44150 /* TemplateCDViewModel.swift */; };
+		E092EAEE27D8A53000F44150 /* TemplateCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAEC27D8A53000F44150 /* TemplateCDViewModel.swift */; };
+		E092EAF027D8A53B00F44150 /* AddTemplateCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAEF27D8A53B00F44150 /* AddTemplateCDViewModel.swift */; };
+		E092EAF127D8A53B00F44150 /* AddTemplateCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAEF27D8A53B00F44150 /* AddTemplateCDViewModel.swift */; };
 		E097D70C2770722E0093F5DA /* YearMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70B2770722E0093F5DA /* YearMonth.swift */; };
 		E097D70E2770731C0093F5DA /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70D2770731C0093F5DA /* Income.swift */; };
 		E097D710277073220093F5DA /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70F277073220093F5DA /* Expense.swift */; };
@@ -94,6 +172,8 @@
 		E097D714277074BB0093F5DA /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D713277074BB0093F5DA /* Mapper.swift */; };
 		E0A9C12227B917A30003F7E4 /* CheckmarkProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */; };
 		E0A9C12327B917A30003F7E4 /* CheckmarkProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */; };
+		E0B9C33027C4D91800D8BBE3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9C32F27C4D91800D8BBE3 /* CoreDataManager.swift */; };
+		E0B9C33527C4DB3400D8BBE3 /* DummyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9C33427C4DB3400D8BBE3 /* DummyScreen.swift */; };
 		E0BF3AA1276F566B00FC902E /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3AA0276F566B00FC902E /* Tests_iOS.swift */; };
 		E0BF3AA3276F566B00FC902E /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3AA2276F566B00FC902E /* Tests_iOSLaunchTests.swift */; };
 		E0BF3AAD276F566B00FC902E /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BF3AAC276F566B00FC902E /* Tests_macOS.swift */; };
@@ -169,19 +249,47 @@
 		E006435B27740F8C00B5108D /* GlobalDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataViewModel.swift; sourceTree = "<group>"; };
 		E006AA2F2770175A00980302 /* SummaryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryScreen.swift; sourceTree = "<group>"; };
 		E006AA332770179E00980302 /* ExpenseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseScreen.swift; sourceTree = "<group>"; };
+		E00B168E27C5CC260030C7B0 /* ReadCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadCoreData.swift; sourceTree = "<group>"; };
+		E00B169027C5CC3A0030C7B0 /* CreateCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCoreData.swift; sourceTree = "<group>"; };
+		E00B169227C5CC430030C7B0 /* UpdateCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCoreData.swift; sourceTree = "<group>"; };
+		E00B169427C5CC4F0030C7B0 /* DeleteCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCoreData.swift; sourceTree = "<group>"; };
+		E00B169627C5CF750030C7B0 /* CoreDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMapper.swift; sourceTree = "<group>"; };
 		E00E1C442782250C0042496F /* MultiSelectPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectPickerView.swift; sourceTree = "<group>"; };
 		E0107A3E277457EA00825484 /* TypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeScreen.swift; sourceTree = "<group>"; };
+		E014CDF927CB5F0E00F408D1 /* LabelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelModel.swift; sourceTree = "<group>"; };
+		E014CDFC27CB5F1900F408D1 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		E014CDFF27CB5F2200F408D1 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E014CE0227CB5F2B00F408D1 /* CategoryNature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryNature.swift; sourceTree = "<group>"; };
+		E014CE0527CB5F3F00F408D1 /* Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		E014CE0827CB5F4900F408D1 /* Payment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
+		E014CE0B27CB5F5200F408D1 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		E014CE0E27CB5F5A00F408D1 /* Subcategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
 		E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeScreen.swift; sourceTree = "<group>"; };
 		E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeViewModel.swift; sourceTree = "<group>"; };
 		E01A2A6D2776B427002E685F /* AddTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeViewModel.swift; sourceTree = "<group>"; };
 		E01A2A6F2776B433002E685F /* YearMonthCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthCheck.swift; sourceTree = "<group>"; };
 		E01A2A762776B46E002E685F /* AddTypeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTypeScreen.swift; sourceTree = "<group>"; };
+		E01A4EB827C66F6000654E13 /* DummyTwoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTwoScreen.swift; sourceTree = "<group>"; };
 		E02830B72782B1FF001E8B51 /* FormulaProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormulaProperty.swift; sourceTree = "<group>"; };
 		E031E2D3277DE67500DD449B /* RoolupProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoolupProperty.swift; sourceTree = "<group>"; };
 		E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsercreen.swift; sourceTree = "<group>"; };
 		E03C701F2792F044005D6CDB /* SelectUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUserViewModel.swift; sourceTree = "<group>"; };
 		E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HideKeyboardAppWide.swift; sourceTree = "<group>"; };
 		E03FC18B277837620019F01D /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
+		E045C3A527CE493200D32EDA /* IncomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCell.swift; sourceTree = "<group>"; };
+		E045C3A827CE497B00D32EDA /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
+		E045C3AB27CE49C600D32EDA /* TemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCell.swift; sourceTree = "<group>"; };
+		E045C3AE27CE4A8900D32EDA /* OthersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersScreen.swift; sourceTree = "<group>"; };
+		E045C3B127CE4B0400D32EDA /* OthersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersViewModel.swift; sourceTree = "<group>"; };
+		E045C3B427CE59A700D32EDA /* AddLabelScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLabelScreen.swift; sourceTree = "<group>"; };
+		E065E72F27D3A29C0015E457 /* AddExpenseCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseCDScreen.swift; sourceTree = "<group>"; };
+		E07B130E27D349B400E7CCB1 /* AddAccountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountScreen.swift; sourceTree = "<group>"; };
+		E07B131127D34A6A00E7CCB1 /* AddCategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryScreen.swift; sourceTree = "<group>"; };
+		E07B131427D34A7A00E7CCB1 /* AddSubcategoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubcategoryScreen.swift; sourceTree = "<group>"; };
+		E07B131727D34A8B00E7CCB1 /* AddDurationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDurationScreen.swift; sourceTree = "<group>"; };
+		E07B131A27D34A9B00E7CCB1 /* AddPaymentScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentScreen.swift; sourceTree = "<group>"; };
+		E07B131D27D34AAB00E7CCB1 /* AddStoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoreScreen.swift; sourceTree = "<group>"; };
+		E07B132327D351F000E7CCB1 /* AddCategoryNatureScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryNatureScreen.swift; sourceTree = "<group>"; };
 		E08178C1277087D100F358D9 /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
 		E08178C327708FFC00F358D9 /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
 		E08178C52770900900F358D9 /* YearMonthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthViewModel.swift; sourceTree = "<group>"; };
@@ -189,18 +297,34 @@
 		E08178C92770903000F358D9 /* IncomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeScreen.swift; sourceTree = "<group>"; };
 		E08178CE2770959C00F358D9 /* YearMonthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthScreen.swift; sourceTree = "<group>"; };
 		E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViewModel.swift; sourceTree = "<group>"; };
+		E092EAC527D88E5800F44150 /* AddExpenseCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseCDViewModel.swift; sourceTree = "<group>"; };
+		E092EACB27D8942800F44150 /* ExpenseCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCDScreen.swift; sourceTree = "<group>"; };
+		E092EACE27D8943100F44150 /* ExpenseCDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCDCell.swift; sourceTree = "<group>"; };
+		E092EAD127D8944400F44150 /* ExpenseCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCDViewModel.swift; sourceTree = "<group>"; };
+		E092EAD427D89D2C00F44150 /* AddIncomeCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeCDViewModel.swift; sourceTree = "<group>"; };
+		E092EAD727D89D3B00F44150 /* IncomeCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCDViewModel.swift; sourceTree = "<group>"; };
+		E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCDScreen.swift; sourceTree = "<group>"; };
+		E092EADD27D89D9900F44150 /* IncomeCDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCDCell.swift; sourceTree = "<group>"; };
+		E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeCDScreen.swift; sourceTree = "<group>"; };
+		E092EAE327D8A4FE00F44150 /* TemplateCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCDScreen.swift; sourceTree = "<group>"; };
+		E092EAE627D8A50600F44150 /* TemplateCDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCDCell.swift; sourceTree = "<group>"; };
+		E092EAE927D8A51300F44150 /* AddTemplateCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTemplateCDScreen.swift; sourceTree = "<group>"; };
+		E092EAEC27D8A53000F44150 /* TemplateCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCDViewModel.swift; sourceTree = "<group>"; };
+		E092EAEF27D8A53B00F44150 /* AddTemplateCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTemplateCDViewModel.swift; sourceTree = "<group>"; };
 		E097D70B2770722E0093F5DA /* YearMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonth.swift; sourceTree = "<group>"; };
 		E097D70D2770731C0093F5DA /* Income.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		E097D70F277073220093F5DA /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		E097D711277073760093F5DA /* TypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeModel.swift; sourceTree = "<group>"; };
 		E097D713277074BB0093F5DA /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		E0A9C12127B917A30003F7E4 /* CheckmarkProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkProperty.swift; sourceTree = "<group>"; };
+		E0B9C32F27C4D91800D8BBE3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		E0B9C33427C4DB3400D8BBE3 /* DummyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyScreen.swift; sourceTree = "<group>"; };
 		E0BF3A86276F566B00FC902E /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		E0BF3A87276F566B00FC902E /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
 		E0BF3A88276F566B00FC902E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E0BF3A89276F566B00FC902E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E0BF3A8A276F566B00FC902E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E0BF3A8F276F566B00FC902E /* Hitung Uang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hitung Uang.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0BF3A8F276F566B00FC902E /* Hitung Uang CD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hitung Uang CD.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A95276F566B00FC902E /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0BF3A97276F566B00FC902E /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,7 +389,11 @@
 			isa = PBXGroup;
 			children = (
 				E002E2B72778B04700A7A1C5 /* TemplateScreen.swift */,
+				E092EAE327D8A4FE00F44150 /* TemplateCDScreen.swift */,
+				E045C3AB27CE49C600D32EDA /* TemplateCell.swift */,
+				E092EAE627D8A50600F44150 /* TemplateCDCell.swift */,
 				E002E2BA2778B04F00A7A1C5 /* AddTemplateScreen.swift */,
+				E092EAE927D8A51300F44150 /* AddTemplateCDScreen.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -285,6 +413,7 @@
 		E006AA272770162D00980302 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E0B9C33127C4DB1400D8BBE3 /* test */,
 				E006AA282770163300980302 /* Component */,
 				E006AA292770163B00980302 /* Screen */,
 			);
@@ -310,6 +439,7 @@
 				E006AA2E2770172A00980302 /* Expense */,
 				E01A2A732776B448002E685F /* Type */,
 				E002E2BD2778B05400A7A1C5 /* Template */,
+				E045C3A427CE48C900D32EDA /* Others */,
 				E0BF3A88276F566B00FC902E /* ContentView.swift */,
 				E03C701C2792EFA6005D6CDB /* SelectUsercreen.swift */,
 			);
@@ -348,6 +478,7 @@
 				E097D713277074BB0093F5DA /* Mapper.swift */,
 				E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */,
 				E0050C2A2778003A00396C36 /* Networking */,
+				E0B9C32E27C4D90600D8BBE3 /* CoreData */,
 				E0F9E82627797BC60082B310 /* Validation.swift */,
 			);
 			path = Resource;
@@ -357,7 +488,11 @@
 			isa = PBXGroup;
 			children = (
 				E08178C92770903000F358D9 /* IncomeScreen.swift */,
+				E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */,
+				E092EADD27D89D9900F44150 /* IncomeCDCell.swift */,
+				E045C3A527CE493200D32EDA /* IncomeCell.swift */,
 				E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */,
+				E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */,
 			);
 			path = Income;
 			sourceTree = "<group>";
@@ -366,7 +501,11 @@
 			isa = PBXGroup;
 			children = (
 				E006AA332770179E00980302 /* ExpenseScreen.swift */,
+				E092EACB27D8942800F44150 /* ExpenseCDScreen.swift */,
+				E045C3A827CE497B00D32EDA /* ExpenseCell.swift */,
+				E092EACE27D8943100F44150 /* ExpenseCDCell.swift */,
 				E0D6EF0927701B1400DF12AD /* AddExpenseScreen.swift */,
+				E065E72F27D3A29C0015E457 /* AddExpenseCDScreen.swift */,
 			);
 			path = Expense;
 			sourceTree = "<group>";
@@ -383,7 +522,9 @@
 			isa = PBXGroup;
 			children = (
 				E08178C327708FFC00F358D9 /* IncomeViewModel.swift */,
+				E092EAD727D89D3B00F44150 /* IncomeCDViewModel.swift */,
 				E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */,
+				E092EAD427D89D2C00F44150 /* AddIncomeCDViewModel.swift */,
 			);
 			path = Income;
 			sourceTree = "<group>";
@@ -415,6 +556,23 @@
 			path = Type;
 			sourceTree = "<group>";
 		};
+		E045C3A427CE48C900D32EDA /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				E045C3AE27CE4A8900D32EDA /* OthersScreen.swift */,
+				E045C3B127CE4B0400D32EDA /* OthersViewModel.swift */,
+				E045C3B427CE59A700D32EDA /* AddLabelScreen.swift */,
+				E07B130E27D349B400E7CCB1 /* AddAccountScreen.swift */,
+				E07B131127D34A6A00E7CCB1 /* AddCategoryScreen.swift */,
+				E07B132327D351F000E7CCB1 /* AddCategoryNatureScreen.swift */,
+				E07B131427D34A7A00E7CCB1 /* AddSubcategoryScreen.swift */,
+				E07B131727D34A8B00E7CCB1 /* AddDurationScreen.swift */,
+				E07B131A27D34A9B00E7CCB1 /* AddPaymentScreen.swift */,
+				E07B131D27D34AAB00E7CCB1 /* AddStoreScreen.swift */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		E08178CD2770952C00F358D9 /* YearMonth */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,7 +585,9 @@
 			isa = PBXGroup;
 			children = (
 				E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */,
+				E092EAEC27D8A53000F44150 /* TemplateCDViewModel.swift */,
 				E002E2BE2778B17E00A7A1C5 /* AddTemplateViewModel.swift */,
+				E092EAEF27D8A53B00F44150 /* AddTemplateCDViewModel.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -435,7 +595,16 @@
 		E097D70A277072090093F5DA /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				E0BF3A85276F566B00FC902E /* ExpenseTracker.xcdatamodeld */,
 				E097D70B2770722E0093F5DA /* YearMonth.swift */,
+				E014CDF927CB5F0E00F408D1 /* LabelModel.swift */,
+				E014CDFC27CB5F1900F408D1 /* Account.swift */,
+				E014CDFF27CB5F2200F408D1 /* Category.swift */,
+				E014CE0227CB5F2B00F408D1 /* CategoryNature.swift */,
+				E014CE0E27CB5F5A00F408D1 /* Subcategory.swift */,
+				E014CE0527CB5F3F00F408D1 /* Duration.swift */,
+				E014CE0827CB5F4900F408D1 /* Payment.swift */,
+				E014CE0B27CB5F5200F408D1 /* Store.swift */,
 				E097D70D2770731C0093F5DA /* Income.swift */,
 				E097D70F277073220093F5DA /* Expense.swift */,
 				E097D711277073760093F5DA /* TypeModel.swift */,
@@ -443,6 +612,28 @@
 				E0F9E823277977790082B310 /* ErrorMessage.swift */,
 			);
 			path = Local;
+			sourceTree = "<group>";
+		};
+		E0B9C32E27C4D90600D8BBE3 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9C32F27C4D91800D8BBE3 /* CoreDataManager.swift */,
+				E00B169627C5CF750030C7B0 /* CoreDataMapper.swift */,
+				E00B169027C5CC3A0030C7B0 /* CreateCoreData.swift */,
+				E00B168E27C5CC260030C7B0 /* ReadCoreData.swift */,
+				E00B169227C5CC430030C7B0 /* UpdateCoreData.swift */,
+				E00B169427C5CC4F0030C7B0 /* DeleteCoreData.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		E0B9C33127C4DB1400D8BBE3 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9C33427C4DB3400D8BBE3 /* DummyScreen.swift */,
+				E01A4EB827C66F6000654E13 /* DummyTwoScreen.swift */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		E0BF3A7F276F566A00FC902E = {
@@ -467,7 +658,6 @@
 				E006AA2A2770164900980302 /* View Model */,
 				E006AA272770162D00980302 /* View */,
 				E0BF3A8A276F566B00FC902E /* Assets.xcassets */,
-				E0BF3A85276F566B00FC902E /* ExpenseTracker.xcdatamodeld */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -475,7 +665,7 @@
 		E0BF3A90276F566B00FC902E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E0BF3A8F276F566B00FC902E /* Hitung Uang.app */,
+				E0BF3A8F276F566B00FC902E /* Hitung Uang CD.app */,
 				E0BF3A95276F566B00FC902E /* ExpenseTracker.app */,
 				E0BF3A9C276F566B00FC902E /* Tests iOS.xctest */,
 				E0BF3AA8276F566B00FC902E /* Tests macOS.xctest */,
@@ -542,7 +732,9 @@
 			isa = PBXGroup;
 			children = (
 				E08178C1277087D100F358D9 /* ExpenseViewModel.swift */,
+				E092EAD127D8944400F44150 /* ExpenseCDViewModel.swift */,
 				E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */,
+				E092EAC527D88E5800F44150 /* AddExpenseCDViewModel.swift */,
 			);
 			path = Expense;
 			sourceTree = "<group>";
@@ -564,7 +756,7 @@
 			);
 			name = "ExpenseTracker (iOS)";
 			productName = "ExpenseTracker (iOS)";
-			productReference = E0BF3A8F276F566B00FC902E /* Hitung Uang.app */;
+			productReference = E0BF3A8F276F566B00FC902E /* Hitung Uang CD.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E0BF3A94276F566B00FC902E /* ExpenseTracker (macOS) */ = {
@@ -707,41 +899,74 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E092EAD827D89D3B00F44150 /* IncomeCDViewModel.swift in Sources */,
 				E0A9C12227B917A30003F7E4 /* CheckmarkProperty.swift in Sources */,
 				E002E2BF2778B17E00A7A1C5 /* AddTemplateViewModel.swift in Sources */,
+				E07B131527D34A7A00E7CCB1 /* AddSubcategoryScreen.swift in Sources */,
 				E08178C62770900900F358D9 /* YearMonthViewModel.swift in Sources */,
 				E097D710277073220093F5DA /* Expense.swift in Sources */,
+				E045C3A927CE497C00D32EDA /* ExpenseCell.swift in Sources */,
 				E097D70C2770722E0093F5DA /* YearMonth.swift in Sources */,
 				E0050C2E2778006600396C36 /* GetEndpoint.swift in Sources */,
+				E045C3A627CE493200D32EDA /* IncomeCell.swift in Sources */,
+				E00B169127C5CC3A0030C7B0 /* CreateCoreData.swift in Sources */,
+				E00B169327C5CC430030C7B0 /* UpdateCoreData.swift in Sources */,
+				E014CE0F27CB5F5A00F408D1 /* Subcategory.swift in Sources */,
 				E0107A3F277457EA00825484 /* TypeScreen.swift in Sources */,
 				E097D714277074BB0093F5DA /* Mapper.swift in Sources */,
 				E0D6EF38277028CB00DF12AD /* Networking.swift in Sources */,
 				E0D6EF2C277023FE00DF12AD /* DateProperty.swift in Sources */,
+				E014CE0327CB5F2B00F408D1 /* CategoryNature.swift in Sources */,
+				E065E73027D3A29C0015E457 /* AddExpenseCDScreen.swift in Sources */,
 				E03FC18C277837620019F01D /* ViewModifier.swift in Sources */,
 				E002E2BB2778B04F00A7A1C5 /* AddTemplateScreen.swift in Sources */,
+				E092EAC627D88E5800F44150 /* AddExpenseCDViewModel.swift in Sources */,
+				E092EACF27D8943100F44150 /* ExpenseCDCell.swift in Sources */,
 				E006AA342770179E00980302 /* ExpenseScreen.swift in Sources */,
 				E0BF3AB0276F566B00FC902E /* ExpenseTracker.xcdatamodeld in Sources */,
+				E092EADB27D89D7C00F44150 /* IncomeCDScreen.swift in Sources */,
+				E07B131E27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */,
 				E002E2B82778B04700A7A1C5 /* TemplateScreen.swift in Sources */,
+				E00B169527C5CC4F0030C7B0 /* DeleteCoreData.swift in Sources */,
 				E006435C27740F8C00B5108D /* GlobalDataViewModel.swift in Sources */,
+				E00B169727C5CF750030C7B0 /* CoreDataMapper.swift in Sources */,
 				E0D6EF1D277021F000DF12AD /* SelectProperty.swift in Sources */,
 				E08178C2277087D100F358D9 /* ExpenseViewModel.swift in Sources */,
+				E07B131827D34A8B00E7CCB1 /* AddDurationScreen.swift in Sources */,
+				E07B132427D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */,
 				E0BF3AB6276F566B00FC902E /* Persistence.swift in Sources */,
+				E045C3AC27CE49C600D32EDA /* TemplateCell.swift in Sources */,
+				E092EAE127D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */,
 				E01A2A672776B3CF002E685F /* AddIncomeScreen.swift in Sources */,
+				E014CE0627CB5F3F00F408D1 /* Duration.swift in Sources */,
+				E092EAED27D8A53000F44150 /* TemplateCDViewModel.swift in Sources */,
 				E0D6EF232770232700DF12AD /* ExpenseProperty.swift in Sources */,
 				E08178C82770901000F358D9 /* TypeViewModel.swift in Sources */,
+				E045C3B527CE59A700D32EDA /* AddLabelScreen.swift in Sources */,
+				E092EAD227D8944400F44150 /* ExpenseCDViewModel.swift in Sources */,
+				E07B131227D34A6A00E7CCB1 /* AddCategoryScreen.swift in Sources */,
 				E00E1C452782250C0042496F /* MultiSelectPickerView.swift in Sources */,
 				E0050C2C2778005A00396C36 /* PostEndpoint.swift in Sources */,
+				E045C3AF27CE4A8900D32EDA /* OthersScreen.swift in Sources */,
+				E092EAEA27D8A51300F44150 /* AddTemplateCDScreen.swift in Sources */,
+				E014CE0C27CB5F5200F408D1 /* Store.swift in Sources */,
 				E08DD5062778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */,
+				E092EAE727D8A50600F44150 /* TemplateCDCell.swift in Sources */,
 				E08178CF2770959C00F358D9 /* YearMonthScreen.swift in Sources */,
 				E0F617F0277175AD00C546B7 /* AddExpenseViewModel.swift in Sources */,
 				E0F9E82727797BC60082B310 /* Validation.swift in Sources */,
 				E097D712277073760093F5DA /* TypeModel.swift in Sources */,
 				E006AA302770175A00980302 /* SummaryScreen.swift in Sources */,
+				E045C3B227CE4B0400D32EDA /* OthersViewModel.swift in Sources */,
+				E092EAD527D89D2C00F44150 /* AddIncomeCDViewModel.swift in Sources */,
+				E014CE0027CB5F2200F408D1 /* Category.swift in Sources */,
+				E0B9C33527C4DB3400D8BBE3 /* DummyScreen.swift in Sources */,
 				E002E2B527789F7800A7A1C5 /* Setting.swift in Sources */,
 				E0D6EF1427701C1A00DF12AD /* DefaultResponse.swift in Sources */,
 				E0050C362778058400396C36 /* TextField.swift in Sources */,
 				E0D6EF0A27701B1400DF12AD /* AddExpenseScreen.swift in Sources */,
 				E01A2A6C2776B41E002E685F /* AddIncomeViewModel.swift in Sources */,
+				E00B168F27C5CC260030C7B0 /* ReadCoreData.swift in Sources */,
 				E0F9E824277977790082B310 /* ErrorMessage.swift in Sources */,
 				E01A2A772776B46E002E685F /* AddTypeScreen.swift in Sources */,
 				E01A2A6E2776B427002E685F /* AddTypeViewModel.swift in Sources */,
@@ -749,20 +974,31 @@
 				E03C70202792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
 				E0BF3AB2276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
 				E01A2A702776B433002E685F /* YearMonthCheck.swift in Sources */,
+				E092EAE427D8A4FE00F44150 /* TemplateCDScreen.swift in Sources */,
 				E0BF3AB4276F566B00FC902E /* ContentView.swift in Sources */,
+				E0B9C33027C4D91800D8BBE3 /* CoreDataManager.swift in Sources */,
 				E002E2B227789EC000A7A1C5 /* SettingProperty.swift in Sources */,
 				E0050C322778007600396C36 /* DeleteEndpoint.swift in Sources */,
 				E02830B82782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
 				E0D6EF20277021F800DF12AD /* TextProperty.swift in Sources */,
 				E0D6EF322770259F00DF12AD /* IncomeProperty.swift in Sources */,
+				E014CE0927CB5F4900F408D1 /* Payment.swift in Sources */,
+				E014CDFD27CB5F1900F408D1 /* Account.swift in Sources */,
 				E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */,
 				E03C701D2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
+				E07B130F27D349B400E7CCB1 /* AddAccountScreen.swift in Sources */,
 				E0D6EF2F2770240900DF12AD /* RelationProperty.swift in Sources */,
 				E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */,
 				E0D6EF26277023CB00DF12AD /* NumberProperty.swift in Sources */,
 				E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */,
+				E092EADE27D89D9900F44150 /* IncomeCDCell.swift in Sources */,
+				E01A4EB927C66F6000654E13 /* DummyTwoScreen.swift in Sources */,
+				E014CDFA27CB5F0E00F408D1 /* LabelModel.swift in Sources */,
+				E092EAF027D8A53B00F44150 /* AddTemplateCDViewModel.swift in Sources */,
 				E03C7023279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */,
+				E07B131B27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */,
 				E097D70E2770731C0093F5DA /* Income.swift in Sources */,
+				E092EACC27D8942800F44150 /* ExpenseCDScreen.swift in Sources */,
 				E006435A27740F7000B5108D /* SummaryViewModel.swift in Sources */,
 				E0D6EF172770201B00DF12AD /* YearMonthProperty.swift in Sources */,
 				E0D6EF352770266000DF12AD /* TypeProperty.swift in Sources */,
@@ -774,6 +1010,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E092EAD927D89D3B00F44150 /* IncomeCDViewModel.swift in Sources */,
 				E0A9C12327B917A30003F7E4 /* CheckmarkProperty.swift in Sources */,
 				E002E2C02778B17E00A7A1C5 /* AddTemplateViewModel.swift in Sources */,
 				E09030C127781FC2003ED6B5 /* AddIncomeScreen.swift in Sources */,
@@ -783,10 +1020,14 @@
 				E09030D827781FF7003ED6B5 /* Mapper.swift in Sources */,
 				E0D6EF2D277023FE00DF12AD /* DateProperty.swift in Sources */,
 				E09030CE27781FF0003ED6B5 /* ExpenseProperty.swift in Sources */,
+				E07B131327D34A6A00E7CCB1 /* AddCategoryScreen.swift in Sources */,
 				E09030CB27781FE0003ED6B5 /* TypeViewModel.swift in Sources */,
 				E03FC18D277837620019F01D /* ViewModifier.swift in Sources */,
 				E002E2BC2778B04F00A7A1C5 /* AddTemplateScreen.swift in Sources */,
 				E09030C727781FE0003ED6B5 /* SummaryViewModel.swift in Sources */,
+				E092EAF127D8A53B00F44150 /* AddTemplateCDViewModel.swift in Sources */,
+				E045C3A727CE493200D32EDA /* IncomeCell.swift in Sources */,
+				E07B132527D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */,
 				E09030D727781FF7003ED6B5 /* GetEndpoint.swift in Sources */,
 				E002E2B92778B04700A7A1C5 /* TemplateScreen.swift in Sources */,
 				E006AA352770179E00980302 /* ExpenseScreen.swift in Sources */,
@@ -794,14 +1035,25 @@
 				E0BF3AB1276F566B00FC902E /* ExpenseTracker.xcdatamodeld in Sources */,
 				E0D6EF1E277021F000DF12AD /* SelectProperty.swift in Sources */,
 				E09030D627781FF0003ED6B5 /* DefaultResponse.swift in Sources */,
+				E092EACD27D8942800F44150 /* ExpenseCDScreen.swift in Sources */,
 				E09030D227781FF0003ED6B5 /* Expense.swift in Sources */,
 				E0BF3AB7276F566B00FC902E /* Persistence.swift in Sources */,
 				E00E1C462782250C0042496F /* MultiSelectPickerView.swift in Sources */,
+				E045C3AD27CE49C600D32EDA /* TemplateCell.swift in Sources */,
 				E09030DB27781FF7003ED6B5 /* UpdateEndpoint.swift in Sources */,
+				E045C3B027CE4A8900D32EDA /* OthersScreen.swift in Sources */,
+				E092EAD627D89D2C00F44150 /* AddIncomeCDViewModel.swift in Sources */,
 				E08DD5072778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */,
+				E014CDFB27CB5F0E00F408D1 /* LabelModel.swift in Sources */,
 				E006AA312770175A00980302 /* SummaryScreen.swift in Sources */,
 				E09030C427781FD8003ED6B5 /* AddTypeViewModel.swift in Sources */,
+				E07B131027D349B400E7CCB1 /* AddAccountScreen.swift in Sources */,
+				E07B131927D34A8B00E7CCB1 /* AddDurationScreen.swift in Sources */,
+				E092EAE227D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */,
+				E014CE0427CB5F2B00F408D1 /* CategoryNature.swift in Sources */,
 				E0F9E82827797BC60082B310 /* Validation.swift in Sources */,
+				E014CE0727CB5F3F00F408D1 /* Duration.swift in Sources */,
+				E045C3AA27CE497C00D32EDA /* ExpenseCell.swift in Sources */,
 				E0107A40277457EA00825484 /* TypeScreen.swift in Sources */,
 				E09030CD27781FE0003ED6B5 /* ExpenseViewModel.swift in Sources */,
 				E002E2B627789F7800A7A1C5 /* Setting.swift in Sources */,
@@ -811,26 +1063,46 @@
 				E0D6EF0B27701B1400DF12AD /* AddExpenseScreen.swift in Sources */,
 				E0F9E825277977790082B310 /* ErrorMessage.swift in Sources */,
 				E09030D527781FF0003ED6B5 /* TypeModel.swift in Sources */,
+				E092EAC727D88E5800F44150 /* AddExpenseCDViewModel.swift in Sources */,
+				E092EAD027D8943100F44150 /* ExpenseCDCell.swift in Sources */,
 				E09030C327781FD5003ED6B5 /* TextField.swift in Sources */,
+				E092EAD327D8944400F44150 /* ExpenseCDViewModel.swift in Sources */,
+				E07B131C27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */,
 				E0BF3AB3276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
+				E092EADF27D89D9900F44150 /* IncomeCDCell.swift in Sources */,
+				E092EAEE27D8A53000F44150 /* TemplateCDViewModel.swift in Sources */,
+				E045C3B327CE4B0400D32EDA /* OthersViewModel.swift in Sources */,
 				E03C70212792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
+				E014CE0127CB5F2200F408D1 /* Category.swift in Sources */,
 				E09030D027781FF0003ED6B5 /* TypeProperty.swift in Sources */,
+				E014CE0D27CB5F5200F408D1 /* Store.swift in Sources */,
 				E09030C827781FE0003ED6B5 /* IncomeViewModel.swift in Sources */,
+				E065E73127D3A29C0015E457 /* AddExpenseCDScreen.swift in Sources */,
 				E09030DA27781FF7003ED6B5 /* DeleteEndpoint.swift in Sources */,
+				E07B131627D34A7A00E7CCB1 /* AddSubcategoryScreen.swift in Sources */,
 				E002E2B327789EC000A7A1C5 /* SettingProperty.swift in Sources */,
+				E014CDFE27CB5F1900F408D1 /* Account.swift in Sources */,
 				E09030C627781FE0003ED6B5 /* YearMonthCheck.swift in Sources */,
 				E02830B92782B1FF001E8B51 /* FormulaProperty.swift in Sources */,
+				E092EAE827D8A50600F44150 /* TemplateCDCell.swift in Sources */,
+				E092EAE527D8A4FE00F44150 /* TemplateCDScreen.swift in Sources */,
 				E0BF3AB5276F566B00FC902E /* ContentView.swift in Sources */,
 				E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */,
+				E092EAEB27D8A51300F44150 /* AddTemplateCDScreen.swift in Sources */,
 				E0D6EF21277021F800DF12AD /* TextProperty.swift in Sources */,
 				E03C701E2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
 				E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */,
 				E09030C527781FE0003ED6B5 /* AddExpenseViewModel.swift in Sources */,
 				E09030D427781FF0003ED6B5 /* IncomeProperty.swift in Sources */,
+				E092EADC27D89D7C00F44150 /* IncomeCDScreen.swift in Sources */,
+				E07B131F27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */,
+				E045C3B627CE59A700D32EDA /* AddLabelScreen.swift in Sources */,
+				E014CE0A27CB5F4900F408D1 /* Payment.swift in Sources */,
 				E031E2D5277DE67500DD449B /* RoolupProperty.swift in Sources */,
 				E03C7024279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */,
 				E09030CF27781FF0003ED6B5 /* Income.swift in Sources */,
 				E0D6EF302770240900DF12AD /* RelationProperty.swift in Sources */,
+				E014CE1027CB5F5A00F408D1 /* Subcategory.swift in Sources */,
 				E0D6EF3D27702DE400DF12AD /* Extension.swift in Sources */,
 				E09030D927781FF7003ED6B5 /* PostEndpoint.swift in Sources */,
 				E0D6EF27277023CB00DF12AD /* NumberProperty.swift in Sources */,
@@ -1003,8 +1275,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
-				PRODUCT_NAME = "Hitung Uang";
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNwCD;
+				PRODUCT_NAME = "Hitung Uang CD";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1033,8 +1305,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
-				PRODUCT_NAME = "Hitung Uang";
+				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNwCD;
+				PRODUCT_NAME = "Hitung Uang CD";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

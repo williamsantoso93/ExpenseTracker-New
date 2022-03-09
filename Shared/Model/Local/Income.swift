@@ -22,3 +22,32 @@ struct Income: Codable {
     var date: Date?
     var keywords: String?
 }
+
+struct IncomeCD: Identifiable, Codable, Hashable {
+    var id: UUID = UUID()
+    var note: String?
+    var value: Double = 0
+    var label: LabelModel?
+    var account: Account?
+    var category: Category?
+    var subcategory: Subcategory?
+    var date: Date = Date()
+    var dateCreated: Date = Date()
+    var dateUpdated: Date = Date()
+    
+    var keywords: String {
+        [
+            note ?? "" ,
+            "\(value)",
+            account?.name ?? "" ,
+            category?.name ?? "" ,
+            subcategory?.name ?? "" ,
+            label?.name ?? "" ,
+            category?.name ?? "" ,
+            subcategory?.name ?? "" ,
+            date.toStringFull(),
+            dateCreated.toStringFull(),
+            dateUpdated.toStringFull(),
+        ].joinedWithComma()
+    }
+}

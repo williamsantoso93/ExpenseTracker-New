@@ -1,41 +1,38 @@
 //
-//  TemplateModelscreen.swift
+//  TemplateCDScreen.swift
 //  ExpenseTracker
 //
-//  Created by Ruangguru on 26/12/21.
+//  Created by William Santoso on 09/03/22.
 //
 
 import SwiftUI
 
-struct TemplateModelscreen: View {
-    @ObservedObject var globalData = GlobalData.shared
-    
-    @StateObject var viewModel = TemplateViewModel()
+struct TemplateCDScreen: View {
+    @StateObject private var viewModel = TemplateCDViewModel()
     
     var body: some View {
         Form {
-            if !globalData.templateModels.isEmpty {
+            if !viewModel.templateModels.isEmpty {
                 ForEach(viewModel.category, id:\.self) { category in
                     let templateModels = viewModel.filterTemplate(category)
                     
-                    Section(header: Text(category)) {
+                    Section(header: Text(category.capitalized)) {
                         ForEach(templateModels.indices, id:\.self) { index in
                             let templateModel = templateModels[index]
                             
                             Button {
                                 viewModel.selectTemplate(templateModel)
                             } label: {
-                                TemplateCell(templateModel: templateModel)
+                                TemplateCDCell(templateModel: templateModel)
                             }
                         }
                     }
                 }
             }
         }
-        .loadingView(GlobalData.shared.isLoading, isNeedDisable: false)
         .searchable(text: $viewModel.searchText)
         .refreshable {
-            GlobalData.shared.getTemplateModel()
+            viewModel.loadData()
         }
         .navigationTitle("Template")
         .toolbar {
@@ -44,9 +41,8 @@ struct TemplateModelscreen: View {
 #if os(iOS)
                     EditButton()
 #endif
-                    
                     Button {
-                        viewModel.isShowAddScreen.toggle()
+                        viewModel.selectTemplate()
                     } label: {
                         Image(systemName: "plus")
                     }
@@ -56,15 +52,15 @@ struct TemplateModelscreen: View {
         .sheet(isPresented: $viewModel.isShowAddScreen) {
             viewModel.selectedTemplate = nil
         } content: {
-            AddTemplatescreen(templateModel: viewModel.selectedTemplate) {
-                globalData.getTemplateModel()
+            AddTemplateCDScreen(templateModelCD: viewModel.selectedTemplate) {
+                viewModel.loadData()
             }
         }
     }
 }
 
-struct templateModelscreen_Previews: PreviewProvider {
+struct TemplateCDScreen_Previews: PreviewProvider {
     static var previews: some View {
-        TemplateModelscreen()
+        TemplateCDScreen()
     }
 }

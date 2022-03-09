@@ -19,3 +19,35 @@ struct Expense: Codable {
     var date: Date?
     var keywords: String?
 }
+
+struct ExpenseCD: Identifiable, Codable, Hashable {
+    var id: UUID = UUID()
+    var note: String?
+    var value: Double = 0
+    var label: LabelModel?
+    var account: Account?
+    var category: Category?
+    var subcategory: Subcategory?
+    var duration: Duration?
+    var payment: Payment?
+    var store: String?
+    var date: Date = Date()
+    var dateCreated: Date = Date()
+    var dateUpdated: Date = Date()
+    
+    var keywords: String {
+        [
+            note ?? "",
+            "\(value)",
+            label?.name ?? "",
+            account?.name ?? "",
+            category?.name ?? "",
+            subcategory?.name ?? "",
+            duration?.name ?? "",
+            store ?? "",
+            date.toStringFull(),
+            dateCreated.toStringFull(),
+            dateUpdated.toStringFull(),
+        ].joinedWithComma()
+    }
+}

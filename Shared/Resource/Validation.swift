@@ -16,7 +16,8 @@ enum ValidationError: Error {
     case noLabel
     case noAccount
     case noCategory
-    case noSubcateogry
+    case noCategoryNature
+    case noSubcategory
 }
 
 extension ValidationError {
@@ -62,7 +63,12 @@ extension ValidationError {
                 title: "Invalid Category",
                 message: "Please select Category"
             )
-        case .noSubcateogry:
+        case .noCategoryNature:
+            return ErrorMessage(
+                title: "Invalid Category Nature",
+                message: "Please select Category Nature"
+            )
+        case .noSubcategory:
             return ErrorMessage(
                 title: "Invalid Subcateogry",
                 message: "Please select Subcateogry"
@@ -91,6 +97,20 @@ class Validation {
             throw typeError
         }
         return inputDouble
+    }
+    
+    static func picker(inputName: String, input: Any, typeError: ValidationError) throws -> Any {
+        if inputName.isEmpty {
+            throw typeError
+        }
+        return input
+    }
+    
+    static func picker(_ input: Any?, typeError: ValidationError) throws -> Any {
+        if let input = input {
+            return input
+        }
+        throw typeError
     }
     
     static func picker(_ input: String, typeError: ValidationError) throws -> String {
