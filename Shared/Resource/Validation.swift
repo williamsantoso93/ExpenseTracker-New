@@ -17,7 +17,7 @@ enum ValidationError: Error {
     case noAccount
     case noCategory
     case noCategoryNature
-    case noSubcateogry
+    case noSubcategory
 }
 
 extension ValidationError {
@@ -68,7 +68,7 @@ extension ValidationError {
                 title: "Invalid Category Nature",
                 message: "Please select Category Nature"
             )
-        case .noSubcateogry:
+        case .noSubcategory:
             return ErrorMessage(
                 title: "Invalid Subcateogry",
                 message: "Please select Subcateogry"

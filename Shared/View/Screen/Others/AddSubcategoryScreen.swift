@@ -13,7 +13,7 @@ class AddSubcategoryViewModel: AddViewModel {
     @Published var subcategory: Subcategory
     @Published var selectedSubcategory: Subcategory
     @Published var name = ""
-    @Published var category: Category = Category(name: "", type: "")
+    @Published var category = Category(name: "", type: "")
     
     var categories: [Category] = []
     

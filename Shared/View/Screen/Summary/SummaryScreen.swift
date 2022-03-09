@@ -48,6 +48,12 @@ struct SummaryScreen: View {
                     Button("Add Expense") {
                         viewModel.isAddExpenseShow.toggle()
                     }
+                    Button("Add IncomeCD") {
+                        viewModel.isAddIncomeCDShow.toggle()
+                    }
+                    Button("Add ExpenseCD") {
+                        viewModel.isAddExpenseCDShow.toggle()
+                    }
                 }
                 .disabled(globalData.isLoading)
             }
@@ -91,6 +97,11 @@ struct SummaryScreen: View {
         .sheet(isPresented: $viewModel.isAddExpenseShow) {
         } content: {
             AddExpenseScreen() {
+            }
+        }
+        .sheet(isPresented: $viewModel.isAddExpenseCDShow) {
+        } content: {
+            AddExpenseCDScreen() {
             }
         }
     }
