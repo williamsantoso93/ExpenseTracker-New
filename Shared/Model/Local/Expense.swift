@@ -34,4 +34,20 @@ struct ExpenseCD: Identifiable, Codable, Hashable {
     var date: Date = Date()
     var dateCreated: Date = Date()
     var dateUpdated: Date = Date()
+    
+    var keywords: String {
+        [
+            note ?? "",
+            "\(value)",
+            label?.name ?? "",
+            account?.name ?? "",
+            category?.name ?? "",
+            subcategory?.name ?? "",
+            duration?.name ?? "",
+            store ?? "",
+            date.toStringFull(),
+            dateCreated.toStringFull(),
+            dateUpdated.toStringFull(),
+        ].joinedWithComma()
+    }
 }

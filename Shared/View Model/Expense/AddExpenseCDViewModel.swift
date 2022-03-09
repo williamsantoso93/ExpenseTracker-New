@@ -69,6 +69,7 @@ class AddExpenseCDViewModel: AddViewModel {
     
     var isChanged: Bool {
         value != selectedExpenseCD.value ||
+        selectedLabel.id != selectedExpenseCD.label?.id ||
         selectedAccount.id != selectedExpenseCD.account?.id ||
         selectedCategory.id != selectedExpenseCD.category?.id ||
         selectedSubcategory.id != selectedExpenseCD.subcategory?.id ||
@@ -85,7 +86,7 @@ class AddExpenseCDViewModel: AddViewModel {
     
     init(expenseCD: ExpenseCD?) {
 //        labels = coreDataManager.getLabels()
-//        accounts = coreDataManager.getAccounts()
+        accounts = coreDataManager.getAccounts()
 //        categories = coreDataManager.getCategories()
 //        payments = coreDataManager.getPayments()
 //        durations = coreDataManager.getDurations()
@@ -95,8 +96,8 @@ class AddExpenseCDViewModel: AddViewModel {
 //            result.type.lowercased() == "expense"
 //        }
         if let expenseCD = expenseCD {
-            selectedExpenseCD = expenseCD
             self.expenseCD = expenseCD
+            selectedExpenseCD = expenseCD
             
             valueString = expenseCD.value.splitDigit()
             if let selectedDuration = expenseCD.duration {
@@ -149,21 +150,27 @@ class AddExpenseCDViewModel: AddViewModel {
     }
     
     func checkStore(_ store: String?) {
-        let selectedStoreString = store ?? "Other"
+        let selectedStoreString = store ?? "other"
         if selectedStoreString.lowercased() == "other" {
             if let otherStore = getOtherStore() {
-                if let store = store {
-                    self.otherStore = store
-                    selectedStore = otherStore
-                }
+                self.otherStore = selectedStoreString
+                selectedStore = otherStore
+            }
+        } else {
+            if let selectedStore = getStore(from: selectedStoreString) {
+                self.selectedStore = selectedStore
             }
         }
     }
     
-    func getOtherStore() -> Store? {
+    func getStore(from storeName: String) -> Store? {
         stores.first { store in
-            store.name.lowercased() == "other"
+            store.name.lowercased() == storeName.lowercased()
         }
+    }
+    
+    func getOtherStore() -> Store? {
+        getStore(from: "other")
     }
     
     func getStore() -> String {

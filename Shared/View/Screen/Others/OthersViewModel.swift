@@ -19,7 +19,7 @@ class OthersViewModel: ObservableObject {
     @Published var payments: [Payment] = []
     @Published var stores: [Store] = []
     @Published var incomes: [IncomeCD] = []
-    @Published var expenes: [ExpenseCD] = []
+    @Published var expenses: [ExpenseCD] = []
     @Published var templates: [TemplateModelCD] = []
     
     init() {
@@ -36,7 +36,7 @@ class OthersViewModel: ObservableObject {
         payments = coreDataManager.getPayments()
         stores = coreDataManager.getStores()
         incomes = coreDataManager.getIncomes()
-        expenes = coreDataManager.getExpenes()
+        expenses = coreDataManager.getExpenses()
         templates = coreDataManager.getTemplateModels()
     }
     

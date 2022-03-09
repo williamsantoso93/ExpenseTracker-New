@@ -153,7 +153,7 @@ extension CoreDataManager {
         return getSingleData(by: request, with: id)
     }
     
-    func getExpenes() -> [ExpenseCD] {
+    func getExpenses() -> [ExpenseCD] {
         let request = NSFetchRequest<ExpenseEntity>(entityName: EntityName.ExpenseEntity.rawValue)
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(ExpenseEntity.date), ascending: true)]
         

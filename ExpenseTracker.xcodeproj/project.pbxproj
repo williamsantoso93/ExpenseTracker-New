@@ -139,6 +139,22 @@
 		E09030DC27781FF7003ED6B5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D6EF37277028CB00DF12AD /* Networking.swift */; };
 		E092EAC627D88E5800F44150 /* AddExpenseCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAC527D88E5800F44150 /* AddExpenseCDViewModel.swift */; };
 		E092EAC727D88E5800F44150 /* AddExpenseCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAC527D88E5800F44150 /* AddExpenseCDViewModel.swift */; };
+		E092EACC27D8942800F44150 /* ExpenseCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EACB27D8942800F44150 /* ExpenseCDScreen.swift */; };
+		E092EACD27D8942800F44150 /* ExpenseCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EACB27D8942800F44150 /* ExpenseCDScreen.swift */; };
+		E092EACF27D8943100F44150 /* ExpenseCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EACE27D8943100F44150 /* ExpenseCDCell.swift */; };
+		E092EAD027D8943100F44150 /* ExpenseCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EACE27D8943100F44150 /* ExpenseCDCell.swift */; };
+		E092EAD227D8944400F44150 /* ExpenseCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD127D8944400F44150 /* ExpenseCDViewModel.swift */; };
+		E092EAD327D8944400F44150 /* ExpenseCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD127D8944400F44150 /* ExpenseCDViewModel.swift */; };
+		E092EAD527D89D2C00F44150 /* AddIncomeCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD427D89D2C00F44150 /* AddIncomeCDViewModel.swift */; };
+		E092EAD627D89D2C00F44150 /* AddIncomeCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD427D89D2C00F44150 /* AddIncomeCDViewModel.swift */; };
+		E092EAD827D89D3B00F44150 /* IncomeCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD727D89D3B00F44150 /* IncomeCDViewModel.swift */; };
+		E092EAD927D89D3B00F44150 /* IncomeCDViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAD727D89D3B00F44150 /* IncomeCDViewModel.swift */; };
+		E092EADB27D89D7C00F44150 /* IncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */; };
+		E092EADC27D89D7C00F44150 /* IncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */; };
+		E092EADE27D89D9900F44150 /* IncomeCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EADD27D89D9900F44150 /* IncomeCDCell.swift */; };
+		E092EADF27D89D9900F44150 /* IncomeCDCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EADD27D89D9900F44150 /* IncomeCDCell.swift */; };
+		E092EAE127D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */; };
+		E092EAE227D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */; };
 		E097D70C2770722E0093F5DA /* YearMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70B2770722E0093F5DA /* YearMonth.swift */; };
 		E097D70E2770731C0093F5DA /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70D2770731C0093F5DA /* Income.swift */; };
 		E097D710277073220093F5DA /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = E097D70F277073220093F5DA /* Expense.swift */; };
@@ -272,6 +288,14 @@
 		E08178CE2770959C00F358D9 /* YearMonthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonthScreen.swift; sourceTree = "<group>"; };
 		E08DD5052778BAEF001DB5F0 /* TemplateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViewModel.swift; sourceTree = "<group>"; };
 		E092EAC527D88E5800F44150 /* AddExpenseCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseCDViewModel.swift; sourceTree = "<group>"; };
+		E092EACB27D8942800F44150 /* ExpenseCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCDScreen.swift; sourceTree = "<group>"; };
+		E092EACE27D8943100F44150 /* ExpenseCDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCDCell.swift; sourceTree = "<group>"; };
+		E092EAD127D8944400F44150 /* ExpenseCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCDViewModel.swift; sourceTree = "<group>"; };
+		E092EAD427D89D2C00F44150 /* AddIncomeCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeCDViewModel.swift; sourceTree = "<group>"; };
+		E092EAD727D89D3B00F44150 /* IncomeCDViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCDViewModel.swift; sourceTree = "<group>"; };
+		E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCDScreen.swift; sourceTree = "<group>"; };
+		E092EADD27D89D9900F44150 /* IncomeCDCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCDCell.swift; sourceTree = "<group>"; };
+		E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeCDScreen.swift; sourceTree = "<group>"; };
 		E097D70B2770722E0093F5DA /* YearMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearMonth.swift; sourceTree = "<group>"; };
 		E097D70D2770731C0093F5DA /* Income.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		E097D70F277073220093F5DA /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
@@ -446,6 +470,9 @@
 			isa = PBXGroup;
 			children = (
 				E08178C92770903000F358D9 /* IncomeScreen.swift */,
+				E092EADA27D89D7C00F44150 /* IncomeCDScreen.swift */,
+				E092EADD27D89D9900F44150 /* IncomeCDCell.swift */,
+				E092EAE027D89DA200F44150 /* AddIncomeCDScreen.swift */,
 				E045C3A527CE493200D32EDA /* IncomeCell.swift */,
 				E01A2A662776B3CF002E685F /* AddIncomeScreen.swift */,
 			);
@@ -457,6 +484,8 @@
 			children = (
 				E006AA332770179E00980302 /* ExpenseScreen.swift */,
 				E045C3A827CE497B00D32EDA /* ExpenseCell.swift */,
+				E092EACB27D8942800F44150 /* ExpenseCDScreen.swift */,
+				E092EACE27D8943100F44150 /* ExpenseCDCell.swift */,
 				E0D6EF0927701B1400DF12AD /* AddExpenseScreen.swift */,
 				E065E72F27D3A29C0015E457 /* AddExpenseCDScreen.swift */,
 			);
@@ -475,7 +504,9 @@
 			isa = PBXGroup;
 			children = (
 				E08178C327708FFC00F358D9 /* IncomeViewModel.swift */,
+				E092EAD727D89D3B00F44150 /* IncomeCDViewModel.swift */,
 				E01A2A6B2776B41E002E685F /* AddIncomeViewModel.swift */,
+				E092EAD427D89D2C00F44150 /* AddIncomeCDViewModel.swift */,
 			);
 			path = Income;
 			sourceTree = "<group>";
@@ -681,6 +712,7 @@
 			isa = PBXGroup;
 			children = (
 				E08178C1277087D100F358D9 /* ExpenseViewModel.swift */,
+				E092EAD127D8944400F44150 /* ExpenseCDViewModel.swift */,
 				E0F617EF277175AD00C546B7 /* AddExpenseViewModel.swift */,
 				E092EAC527D88E5800F44150 /* AddExpenseCDViewModel.swift */,
 			);
@@ -847,6 +879,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E092EAD827D89D3B00F44150 /* IncomeCDViewModel.swift in Sources */,
 				E0A9C12227B917A30003F7E4 /* CheckmarkProperty.swift in Sources */,
 				E002E2BF2778B17E00A7A1C5 /* AddTemplateViewModel.swift in Sources */,
 				E07B131527D34A7A00E7CCB1 /* AddSubcategoryScreen.swift in Sources */,
@@ -868,8 +901,10 @@
 				E03FC18C277837620019F01D /* ViewModifier.swift in Sources */,
 				E002E2BB2778B04F00A7A1C5 /* AddTemplateScreen.swift in Sources */,
 				E092EAC627D88E5800F44150 /* AddExpenseCDViewModel.swift in Sources */,
+				E092EACF27D8943100F44150 /* ExpenseCDCell.swift in Sources */,
 				E006AA342770179E00980302 /* ExpenseScreen.swift in Sources */,
 				E0BF3AB0276F566B00FC902E /* ExpenseTracker.xcdatamodeld in Sources */,
+				E092EADB27D89D7C00F44150 /* IncomeCDScreen.swift in Sources */,
 				E07B131E27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */,
 				E002E2B82778B04700A7A1C5 /* TemplateScreen.swift in Sources */,
 				E00B169527C5CC4F0030C7B0 /* DeleteCoreData.swift in Sources */,
@@ -881,11 +916,13 @@
 				E07B132427D351F000E7CCB1 /* AddCategoryNatureScreen.swift in Sources */,
 				E0BF3AB6276F566B00FC902E /* Persistence.swift in Sources */,
 				E045C3AC27CE49C600D32EDA /* TemplateCell.swift in Sources */,
+				E092EAE127D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */,
 				E01A2A672776B3CF002E685F /* AddIncomeScreen.swift in Sources */,
 				E014CE0627CB5F3F00F408D1 /* Duration.swift in Sources */,
 				E0D6EF232770232700DF12AD /* ExpenseProperty.swift in Sources */,
 				E08178C82770901000F358D9 /* TypeViewModel.swift in Sources */,
 				E045C3B527CE59A700D32EDA /* AddLabelScreen.swift in Sources */,
+				E092EAD227D8944400F44150 /* ExpenseCDViewModel.swift in Sources */,
 				E07B131227D34A6A00E7CCB1 /* AddCategoryScreen.swift in Sources */,
 				E00E1C452782250C0042496F /* MultiSelectPickerView.swift in Sources */,
 				E0050C2C2778005A00396C36 /* PostEndpoint.swift in Sources */,
@@ -898,6 +935,7 @@
 				E097D712277073760093F5DA /* TypeModel.swift in Sources */,
 				E006AA302770175A00980302 /* SummaryScreen.swift in Sources */,
 				E045C3B227CE4B0400D32EDA /* OthersViewModel.swift in Sources */,
+				E092EAD527D89D2C00F44150 /* AddIncomeCDViewModel.swift in Sources */,
 				E014CE0027CB5F2200F408D1 /* Category.swift in Sources */,
 				E0B9C33527C4DB3400D8BBE3 /* DummyScreen.swift in Sources */,
 				E002E2B527789F7800A7A1C5 /* Setting.swift in Sources */,
@@ -929,11 +967,13 @@
 				E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */,
 				E0D6EF26277023CB00DF12AD /* NumberProperty.swift in Sources */,
 				E031E2D4277DE67500DD449B /* RoolupProperty.swift in Sources */,
+				E092EADE27D89D9900F44150 /* IncomeCDCell.swift in Sources */,
 				E01A4EB927C66F6000654E13 /* DummyTwoScreen.swift in Sources */,
 				E014CDFA27CB5F0E00F408D1 /* LabelModel.swift in Sources */,
 				E03C7023279300C5005D6CDB /* HideKeyboardAppWide.swift in Sources */,
 				E07B131B27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */,
 				E097D70E2770731C0093F5DA /* Income.swift in Sources */,
+				E092EACC27D8942800F44150 /* ExpenseCDScreen.swift in Sources */,
 				E006435A27740F7000B5108D /* SummaryViewModel.swift in Sources */,
 				E0D6EF172770201B00DF12AD /* YearMonthProperty.swift in Sources */,
 				E0D6EF352770266000DF12AD /* TypeProperty.swift in Sources */,
@@ -945,6 +985,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E092EAD927D89D3B00F44150 /* IncomeCDViewModel.swift in Sources */,
 				E0A9C12327B917A30003F7E4 /* CheckmarkProperty.swift in Sources */,
 				E002E2C02778B17E00A7A1C5 /* AddTemplateViewModel.swift in Sources */,
 				E09030C127781FC2003ED6B5 /* AddIncomeScreen.swift in Sources */,
@@ -968,18 +1009,21 @@
 				E0BF3AB1276F566B00FC902E /* ExpenseTracker.xcdatamodeld in Sources */,
 				E0D6EF1E277021F000DF12AD /* SelectProperty.swift in Sources */,
 				E09030D627781FF0003ED6B5 /* DefaultResponse.swift in Sources */,
+				E092EACD27D8942800F44150 /* ExpenseCDScreen.swift in Sources */,
 				E09030D227781FF0003ED6B5 /* Expense.swift in Sources */,
 				E0BF3AB7276F566B00FC902E /* Persistence.swift in Sources */,
 				E00E1C462782250C0042496F /* MultiSelectPickerView.swift in Sources */,
 				E045C3AD27CE49C600D32EDA /* TemplateCell.swift in Sources */,
 				E09030DB27781FF7003ED6B5 /* UpdateEndpoint.swift in Sources */,
 				E045C3B027CE4A8900D32EDA /* OthersScreen.swift in Sources */,
+				E092EAD627D89D2C00F44150 /* AddIncomeCDViewModel.swift in Sources */,
 				E08DD5072778BAEF001DB5F0 /* TemplateViewModel.swift in Sources */,
 				E014CDFB27CB5F0E00F408D1 /* LabelModel.swift in Sources */,
 				E006AA312770175A00980302 /* SummaryScreen.swift in Sources */,
 				E09030C427781FD8003ED6B5 /* AddTypeViewModel.swift in Sources */,
 				E07B131027D349B400E7CCB1 /* AddAccountScreen.swift in Sources */,
 				E07B131927D34A8B00E7CCB1 /* AddDurationScreen.swift in Sources */,
+				E092EAE227D89DA200F44150 /* AddIncomeCDScreen.swift in Sources */,
 				E014CE0427CB5F2B00F408D1 /* CategoryNature.swift in Sources */,
 				E0F9E82827797BC60082B310 /* Validation.swift in Sources */,
 				E014CE0727CB5F3F00F408D1 /* Duration.swift in Sources */,
@@ -994,9 +1038,12 @@
 				E0F9E825277977790082B310 /* ErrorMessage.swift in Sources */,
 				E09030D527781FF0003ED6B5 /* TypeModel.swift in Sources */,
 				E092EAC727D88E5800F44150 /* AddExpenseCDViewModel.swift in Sources */,
+				E092EAD027D8943100F44150 /* ExpenseCDCell.swift in Sources */,
 				E09030C327781FD5003ED6B5 /* TextField.swift in Sources */,
+				E092EAD327D8944400F44150 /* ExpenseCDViewModel.swift in Sources */,
 				E07B131C27D34A9B00E7CCB1 /* AddPaymentScreen.swift in Sources */,
 				E0BF3AB3276F566B00FC902E /* ExpenseTrackerApp.swift in Sources */,
+				E092EADF27D89D9900F44150 /* IncomeCDCell.swift in Sources */,
 				E045C3B327CE4B0400D32EDA /* OthersViewModel.swift in Sources */,
 				E03C70212792F044005D6CDB /* SelectUserViewModel.swift in Sources */,
 				E014CE0127CB5F2200F408D1 /* Category.swift in Sources */,
@@ -1017,6 +1064,7 @@
 				E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */,
 				E09030C527781FE0003ED6B5 /* AddExpenseViewModel.swift in Sources */,
 				E09030D427781FF0003ED6B5 /* IncomeProperty.swift in Sources */,
+				E092EADC27D89D7C00F44150 /* IncomeCDScreen.swift in Sources */,
 				E07B131F27D34AAB00E7CCB1 /* AddStoreScreen.swift in Sources */,
 				E045C3B627CE59A700D32EDA /* AddLabelScreen.swift in Sources */,
 				E014CE0A27CB5F4900F408D1 /* Payment.swift in Sources */,

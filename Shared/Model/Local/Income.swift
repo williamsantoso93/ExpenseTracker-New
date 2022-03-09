@@ -43,10 +43,11 @@ struct IncomeCD: Identifiable, Codable, Hashable {
             category?.name ?? "" ,
             subcategory?.name ?? "" ,
             label?.name ?? "" ,
-            label?.name ?? "" ,
-            date.toString(),
-            dateCreated.toString(),
-            dateUpdated.toString(),
+            category?.name ?? "" ,
+            subcategory?.name ?? "" ,
+            date.toStringFull(),
+            dateCreated.toStringFull(),
+            dateUpdated.toStringFull(),
         ].joinedWithComma()
     }
 }

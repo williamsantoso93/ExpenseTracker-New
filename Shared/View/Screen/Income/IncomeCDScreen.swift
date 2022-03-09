@@ -1,14 +1,14 @@
 //
-//  IncomeScreen.swift
-//  ExpenseTracker (iOS)
+//  IncomeCDScreen.swift
+//  ExpenseTracker
 //
-//  Created by Ruangguru on 20/12/21.
+//  Created by William Santoso on 09/03/22.
 //
 
 import SwiftUI
 
-struct IncomeScreen: View {
-    @StateObject private var viewModel = IncomeViewModel()
+struct IncomeCDScreen: View {
+    @StateObject private var viewModel = IncomeCDViewModel()
     
     var body: some View {
         Form {
@@ -18,21 +18,15 @@ struct IncomeScreen: View {
                     Button {
                         viewModel.selectIncome(income)
                     } label: {
-                        IncomeCell(income: income)
-                    }
-                    .onAppear {
-                        viewModel.loadMoreList(of: index)
+                        IncomeCDCell(income: income)
                     }
                 }
                 .onDelete(perform: viewModel.delete)
             }
         }
-        .loadingWithNoDataButton(viewModel.isLoading, isShowNoData: viewModel.isNowShowData, action: {
-            viewModel.isShowAddScreen.toggle()
-        })
         .searchable(text: $viewModel.searchText)
         .refreshable {
-            viewModel.loadNewData()
+            viewModel.loadData()
         }
         .navigationTitle("Income")
         .toolbar {
@@ -53,15 +47,15 @@ struct IncomeScreen: View {
         .sheet(isPresented: $viewModel.isShowAddScreen) {
             viewModel.selectedIncome = nil
         } content: {
-            AddIncomeScreen(income: viewModel.selectedIncome) {
-                viewModel.loadNewData()
+            AddIncomeCDScreen(incomeCD: viewModel.selectedIncome) {
+                viewModel.loadData()
             }
         }
     }
 }
 
-struct IncomeScreen_Previews: PreviewProvider {
+struct IncomeCDScreen_Previews: PreviewProvider {
     static var previews: some View {
-        IncomeScreen()
+        IncomeCDScreen()
     }
 }

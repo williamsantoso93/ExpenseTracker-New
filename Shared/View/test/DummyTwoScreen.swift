@@ -35,7 +35,7 @@ class DummyTwoViewModel: ObservableObject {
         payments = coreDataManager.getPayments()
         stores = coreDataManager.getStores()
         incomes = coreDataManager.getIncomes()
-        expenes = coreDataManager.getExpenes()
+        expenes = coreDataManager.getExpenses()
         templates = coreDataManager.getTemplateModels()
     }
     

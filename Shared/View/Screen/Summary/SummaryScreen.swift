@@ -24,9 +24,6 @@ struct SummaryScreen: View {
                     NavigationLink("Income") {
                         IncomeScreen()
                     }
-                    NavigationLink("IncomeCD") {
-                        IncomeCDScreen()
-                    }
                     NavigationLink("Expense") {
                         ExpenseScreen()
                     }
@@ -48,6 +45,16 @@ struct SummaryScreen: View {
                     Button("Add Expense") {
                         viewModel.isAddExpenseShow.toggle()
                     }
+                }
+                .disabled(globalData.isLoading)
+                
+                Section {
+                    NavigationLink("IncomeCD") {
+                        IncomeCDScreen()
+                    }
+                    NavigationLink("ExpenseCD") {
+                        ExpenseCDScreen()
+                    }
                     Button("Add IncomeCD") {
                         viewModel.isAddIncomeCDShow.toggle()
                     }
@@ -55,7 +62,6 @@ struct SummaryScreen: View {
                         viewModel.isAddExpenseCDShow.toggle()
                     }
                 }
-                .disabled(globalData.isLoading)
             }
             .loadingView(globalData.isLoading, isNeedDisable: false)
             .navigationTitle("Summary")
@@ -97,6 +103,11 @@ struct SummaryScreen: View {
         .sheet(isPresented: $viewModel.isAddExpenseShow) {
         } content: {
             AddExpenseScreen() {
+            }
+        }
+        .sheet(isPresented: $viewModel.isAddIncomeCDShow) {
+        } content: {
+            AddIncomeCDScreen() {
             }
         }
         .sheet(isPresented: $viewModel.isAddExpenseCDShow) {
