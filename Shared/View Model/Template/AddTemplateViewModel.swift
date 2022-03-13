@@ -81,6 +81,10 @@ class AddTemplateViewModel: ObservableObject {
         didSet {
             if selectedAccount.contains("CC") {
                 selectedPayment = "Credit Card"
+            } else if selectedAccount.contains("Cash") {
+                selectedPayment = "Cash"
+            } else {
+                selectedPayment = "Transfer"
             }
         }
     }

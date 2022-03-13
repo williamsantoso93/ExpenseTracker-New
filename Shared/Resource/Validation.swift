@@ -13,6 +13,7 @@ enum ValidationError: Error {
     case noType
     case noDuration
     case noPayment
+    case noNote
     case noLabel
     case noAccount
     case noCategory
@@ -25,7 +26,7 @@ extension ValidationError {
         case .noName:
             return ErrorMessage(
                 title: "Invalid Name",
-                message: "Please input name"
+                message: "Please input Name"
             )
         case .noValue:
             return ErrorMessage(
@@ -46,6 +47,11 @@ extension ValidationError {
             return ErrorMessage(
                 title: "Invalid Payment",
                 message: "Please select Payment"
+            )
+        case .noNote:
+            return ErrorMessage(
+                title: "Invalid Note",
+                message: "Please input Note"
             )
         case .noLabel:
             return ErrorMessage(

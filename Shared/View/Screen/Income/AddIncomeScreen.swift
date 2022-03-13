@@ -54,10 +54,11 @@ struct AddIncomeScreen: View {
                     
                     DatePicker("Date", selection: $viewModel.date, displayedComponents: .date)
                     
-                    VStack(alignment: .leading, spacing: 2.0) {
+                    VStack(alignment: .leading, spacing: 8.0) {
                         Text("Note")
                         TextField("", text: $viewModel.note)
                     }
+                    .padding(.bottom, 4)
                 }
                 
                 if !viewModel.isUpdate {
