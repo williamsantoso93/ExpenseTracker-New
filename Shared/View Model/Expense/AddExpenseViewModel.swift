@@ -129,7 +129,7 @@ class AddExpenseViewModel: ObservableObject {
             date != selectedExpense.date ||
             ((selectedStore != "Other" && selectedStore != selectedExpense.store ?? "") ||
              (selectedStore == "Other" && otherStore != selectedExpense.store ?? "")) ||
-            note != selectedExpense.note
+            note != selectedExpense.note ?? ""
         )
     }
     

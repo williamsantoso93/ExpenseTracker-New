@@ -15,8 +15,12 @@ class ExpenseViewModel: ObservableObject {
         expenses.isEmpty
     }
     
-    init() {
-        loadNewData()
+    init(expenses: [Expense]) {
+        self.expenses = expenses
+        
+        if expenses.isEmpty {
+            loadNewData()
+        }
     }
     
     @Published var searchText = ""
@@ -47,6 +51,10 @@ class ExpenseViewModel: ObservableObject {
                     if data.hasMore {
                         if let nextCursor = data.nextCursor {
                             self.startCursor = nextCursor
+                            
+                            self.getList { expenses in
+                                self.expenses.append(contentsOf: expenses)
+                            }
                         }
                     } else {
                         self.startCursor = nil
