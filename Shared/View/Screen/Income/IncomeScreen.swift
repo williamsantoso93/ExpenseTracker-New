@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct IncomeScreen: View {
-    @StateObject private var viewModel = IncomeViewModel()
+    @StateObject private var viewModel: IncomeViewModel
+    
+    init(incomes: [Income] = []) {
+        _viewModel = StateObject(wrappedValue: IncomeViewModel(incomes: incomes))
+    }
     
     var body: some View {
         Form {

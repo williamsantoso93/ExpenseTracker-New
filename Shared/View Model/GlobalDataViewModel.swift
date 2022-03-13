@@ -11,9 +11,13 @@ class GlobalData: ObservableObject {
     @Published var types = Types()
     @Published var yearMonths = [YearMonth]()
     @Published var templateModels = [TemplateModel]()
+    @Published var incomes = [Income]()
+    @Published var expenses = [Expense]()
     @Published var isLoadingTypes = false
     @Published var isLoadingYearMonths = false
     @Published var isLoadingTemplateModel = false
+    @Published var isLoadingIncomes = false
+    @Published var isLoadingExpenses = false
     
     @Published var isLoadingDisplay: Bool = false
     var isLoading: Bool {
@@ -34,6 +38,11 @@ class GlobalData: ObservableObject {
         getYearMonth()
         getTemplateModel()
         isLoadingDisplay = false
+        
+        DispatchQueue.global(qos: .background).async {
+            self.getIncomes()
+            self.getExpenses()
+        }
     }
     
     func loadNewType() {
@@ -135,6 +144,60 @@ class GlobalData: ObservableObject {
                     print(error)
                 }
                 done()
+            }
+        }
+    }
+    
+    func getIncomes(startCursor: String? = nil, completion: @escaping () -> Void = {}) {
+        let newData = startCursor == nil
+        isLoadingIncomes = true
+        Networking.shared.getIncome(startCursor: startCursor) { (result: Result<DefaultResponse<IncomeProperty>, NetworkError>) in
+            DispatchQueue.main.async {
+                self.isLoadingIncomes = false
+                switch result {
+                case .success(let data):
+                    let results = Mapper.mapIncomeRemoteToLocal(data.results)
+                    if self.incomes.isEmpty || newData {
+                        self.incomes = results
+                    } else {
+                        self.incomes.append(contentsOf: results)
+                    }
+                    if data.hasMore {
+                        if let nextCursor = data.nextCursor {
+                            self.getIncomes(startCursor: nextCursor)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                completion()
+            }
+        }
+    }
+    
+    func getExpenses(startCursor: String? = nil, completion: @escaping () -> Void = {}) {
+        let newData = startCursor == nil
+        isLoadingExpenses = true
+        Networking.shared.getExpense(startCursor: startCursor) { (result: Result<DefaultResponse<ExpenseProperty>, NetworkError>) in
+            DispatchQueue.main.async {
+                self.isLoadingExpenses = false
+                switch result {
+                case .success(let data):
+                    let results = Mapper.mapExpenseRemoteToLocal(data.results)
+                    if self.expenses.isEmpty || newData {
+                        self.expenses = results
+                    } else {
+                        self.expenses.append(contentsOf: results)
+                    }
+                    if data.hasMore {
+                        if let nextCursor = data.nextCursor {
+                            self.getExpenses(startCursor: nextCursor)
+                        }
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                completion()
             }
         }
     }

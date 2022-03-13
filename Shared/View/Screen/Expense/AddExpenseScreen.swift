@@ -77,11 +77,11 @@ struct AddExpenseScreen: View {
                         TextField("Indomaret", text: $viewModel.otherStore)
                     }
                     
-                    VStack(alignment: .leading, spacing: 2.0) {
+                    VStack(alignment: .leading, spacing: 8.0) {
                         Text("Note")
-                        TextEditor(text: $viewModel.note)
-                            .frame(height: 150.0)
+                        TextField("", text: $viewModel.note)
                     }
+                    .padding(.bottom, 4)
                 }
                 
                 if !viewModel.isUpdate {
@@ -98,8 +98,14 @@ struct AddExpenseScreen: View {
                             NumberTextFiedForm(title: "Interest (%)", prompt: (5/10).splitDigit(), value: $viewModel.interestPercentageString)
                             
                             if viewModel.perMonthExpense > 0 {
-                                TextFiedForm(title: "Per Month", value: .constant(viewModel.perMonthExpenseWithInterest.splitDigit()))
-                                    .disabled(true)
+                                VStack(alignment: .leading) {
+                                    if !viewModel.note.isEmpty {
+                                        Text(viewModel.instalmentNote)
+                                    }
+                                    
+                                    TextFiedForm(title: "Per Month", value: .constant(viewModel.perMonthExpenseWithInterest.splitDigit()))
+                                        .disabled(true)
+                                }
                                 
                                 if viewModel.interest > 0 {
                                     VStack(alignment: .leading) {

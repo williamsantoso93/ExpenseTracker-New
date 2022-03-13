@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct ExpenseScreen: View {
-    @StateObject private var viewModel = ExpenseViewModel()
+    @StateObject private var viewModel: ExpenseViewModel
+    
+    init(expenses: [Expense] = []) {
+        _viewModel = StateObject(wrappedValue: ExpenseViewModel(expenses: expenses))
+    }
     
     var body: some View {
         Form {

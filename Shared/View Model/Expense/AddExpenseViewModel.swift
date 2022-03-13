@@ -79,6 +79,10 @@ class AddExpenseViewModel: ObservableObject {
         didSet {
             if selectedAccount.contains("CC") {
                 selectedPayment = "Credit Card"
+            } else if selectedAccount.contains("Cash") {
+                selectedPayment = "Cash"
+            } else {
+                selectedPayment = "Transfer"
             }
         }
     }
@@ -125,7 +129,7 @@ class AddExpenseViewModel: ObservableObject {
             date != selectedExpense.date ||
             ((selectedStore != "Other" && selectedStore != selectedExpense.store ?? "") ||
              (selectedStore == "Other" && otherStore != selectedExpense.store ?? "")) ||
-            note != selectedExpense.note
+            note != selectedExpense.note ?? ""
         )
     }
     
@@ -231,7 +235,8 @@ class AddExpenseViewModel: ObservableObject {
             } else {
                 expense.store = getStore().trimWhitespace()
             }
-            expense.note = note.trimWhitespace()
+            let note = note.trimWhitespace()
+            expense.note = isInstallment ? try Validation.textField(note, typeError: .noNote) : note
             expense.date = date
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
@@ -377,6 +382,10 @@ class AddExpenseViewModel: ObservableObject {
         return nil
     }
     
+    var instalmentNote: String {
+        isInstallment ? note + " | Installment " : ""
+    }
+    
     func saveInstallment(completion: @escaping (_ isSuccess: Bool) -> Void) {
         guard installmentMonth > 0 else { return }
         var count = 0
@@ -389,7 +398,7 @@ class AddExpenseViewModel: ObservableObject {
             if installment > 1 {
                 expense.date = expense.date?.addMonth(by: 1)
             }
-            expense.note = note + " | Installment \(installment) to \(installmentMonth)"
+            expense.note = instalmentNote + "\(installment) to \(installmentMonth)"
             guard let date = expense.date else { return }
             YearMonthCheck.shared.getYearMonthID(date) { id in
                 expense.yearMonthID = id

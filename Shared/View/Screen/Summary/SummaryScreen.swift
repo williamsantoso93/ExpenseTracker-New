@@ -22,11 +22,13 @@ struct SummaryScreen: View {
                         YearMonthScreen()
                     }
                     NavigationLink("Income") {
-                        IncomeScreen()
+                        IncomeScreen(incomes: globalData.incomes)
                     }
+                    .disabled(globalData.isLoadingIncomes)
                     NavigationLink("Expense") {
-                        ExpenseScreen()
+                        ExpenseScreen(expenses: globalData.expenses)
                     }
+                    .disabled(globalData.isLoadingExpenses)
                     NavigationLink("Type") {
                         TypeScreen()
                     }

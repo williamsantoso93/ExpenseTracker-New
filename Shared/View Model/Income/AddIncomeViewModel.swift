@@ -82,7 +82,7 @@ class AddIncomeViewModel: ObservableObject {
             selectedCategory != selectedIncome.category ||
             selectedSubcategory != selectedIncome.subcategory ||
             date != selectedIncome.date ||
-            note != selectedIncome.note
+            note != selectedIncome.note ?? ""
         )
     }
     
