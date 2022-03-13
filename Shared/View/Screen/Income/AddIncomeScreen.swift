@@ -56,8 +56,7 @@ struct AddIncomeScreen: View {
                     
                     VStack(alignment: .leading, spacing: 2.0) {
                         Text("Note")
-                        TextEditor(text: $viewModel.note)
-                            .frame(height: 150.0)
+                        TextField("", text: $viewModel.note)
                     }
                 }
                 
