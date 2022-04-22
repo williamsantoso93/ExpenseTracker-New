@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class AddIncomeViewModel: ObservableObject {
     @Published var income: Income
@@ -82,7 +83,8 @@ class AddIncomeViewModel: ObservableObject {
             selectedCategory != selectedIncome.category ||
             selectedSubcategory != selectedIncome.subcategory ||
             date != selectedIncome.date ||
-            note != selectedIncome.note ?? ""
+            note != selectedIncome.note ?? "" ||
+            isDoneExport != selectedIncome.isDoneExport
         )
     }
     
@@ -99,6 +101,7 @@ class AddIncomeViewModel: ObservableObject {
             selectedCategory = income.category ?? ""
             selectedSubcategory = income.subcategory ?? ""
             date = income.date ?? Date()
+            isDoneExport = income.isDoneExport
             
             if !income.blockID.isEmpty {
                 isUpdate = true
@@ -140,6 +143,7 @@ class AddIncomeViewModel: ObservableObject {
             income.category = try Validation.picker(selectedCategory, typeError: .noCategory)
             income.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
             income.date = date
+            income.isDoneExport = isDoneExport
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
                 self.income.yearMonthID = id
@@ -212,5 +216,31 @@ class AddIncomeViewModel: ObservableObject {
         if let valueString = selectedTemplateModel.value {
             self.valueString = valueString.splitDigit()
         }
+    }
+    
+    //MARK: - CopyExport
+    @Published var isDoneExport = false
+    
+    func copy() {
+        do {
+            let value = try Validation.numberTextField(valueString)
+            let valueString = value.splitDigit(with: ",")
+            let label = try Validation.picker(selectedLabel, typeError: .noLabel)
+            let account = try Validation.picker(selectedAccount, typeError: .noAccount)
+            let dateString = date.toString(format: "yyyy.MM.dd")
+            
+            UIPasteboard.general.string = "\(dateString) | \(account) | \(valueString) | \(label)"
+        } catch let error {
+            if let error = error as? ValidationError {
+                if let errorMessage = error.errorMessage {
+                    self.errorMessage = errorMessage
+                    isShowErrorMessage = true
+                }
+            }
+        }
+    }
+    
+    func copyNote() {
+        UIPasteboard.general.string = note.trimWhitespace()
     }
 }

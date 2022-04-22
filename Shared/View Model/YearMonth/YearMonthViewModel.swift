@@ -10,8 +10,47 @@ import Foundation
 import Foundation
 
 class YearMonthViewModel: ObservableObject {
-    var yearMonths: [YearMonth] {
-        GlobalData.shared.yearMonths
+    var yearMonths: [YearMonth] = []
+    
+    var incomes: [Income] {
+        get {
+            GlobalData.shared.incomes
+        }
+        set {
+            updateYearMonth()
+        }
+    }
+    
+    var expenses: [Expense] {
+        get {
+            GlobalData.shared.expenses
+        }
+        set {
+            updateYearMonth()
+        }
+    }
+    
+    func updateYearMonth() {
+//        let yearMonths = GlobalData.shared.yearMonths.map { yearMonth in
+//            var yearMonth = yearMonth
+//            let totalIncomes: Double = incomes.map { income in
+//                if income.yearMonth == yearMonth.name {
+//                    return income.value ?? 0
+//                }
+//                return 0
+//            }.reduce(0, +)
+//            let totalExpenses: Double = expenses.map { expense in
+//                if expense.yearMonth == yearMonth.name {
+//                    return expense.value ?? 0
+//                }
+//                return 0
+//            }.reduce(0, +)
+//            
+//            yearMonth.totalIncomes = totalIncomes
+//            yearMonth.totalExpenses = totalExpenses
+//            
+//            return yearMonth
+//        }
     }
     
     struct DisplayYearMonth {

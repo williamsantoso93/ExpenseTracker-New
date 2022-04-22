@@ -150,7 +150,9 @@ class GlobalData: ObservableObject {
     
     func getIncomes(startCursor: String? = nil, completion: @escaping () -> Void = {}) {
         let newData = startCursor == nil
-        isLoadingIncomes = true
+        DispatchQueue.main.async {
+            self.isLoadingIncomes = true
+        }
         Networking.shared.getIncome(startCursor: startCursor) { (result: Result<DefaultResponse<IncomeProperty>, NetworkError>) in
             DispatchQueue.main.async {
                 self.isLoadingIncomes = false
@@ -177,7 +179,9 @@ class GlobalData: ObservableObject {
     
     func getExpenses(startCursor: String? = nil, completion: @escaping () -> Void = {}) {
         let newData = startCursor == nil
-        isLoadingExpenses = true
+        DispatchQueue.main.async {
+            self.isLoadingExpenses = true
+        }
         Networking.shared.getExpense(startCursor: startCursor) { (result: Result<DefaultResponse<ExpenseProperty>, NetworkError>) in
             DispatchQueue.main.async {
                 self.isLoadingExpenses = false

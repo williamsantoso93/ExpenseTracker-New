@@ -17,6 +17,7 @@ struct ExpenseProperty: Codable {
     let store: RichTextProperty?
     let date: DateProperty?
     var keywords: FormulaProperty? = nil
+    var isDoneExport: CheckmarkProperty?
     
     enum CodingKeys: String, CodingKey {
         case yearMonth = "Year/Month"
@@ -32,5 +33,6 @@ struct ExpenseProperty: Codable {
         case category = "Category"
         case subcategory = "Subcategory"
         case keywords = "Keywords"
+        case isDoneExport = "Done Export"
     }
 }

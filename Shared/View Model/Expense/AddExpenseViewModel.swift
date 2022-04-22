@@ -129,7 +129,8 @@ class AddExpenseViewModel: ObservableObject {
             date != selectedExpense.date ||
             ((selectedStore != "Other" && selectedStore != selectedExpense.store ?? "") ||
              (selectedStore == "Other" && otherStore != selectedExpense.store ?? "")) ||
-            note != selectedExpense.note ?? ""
+            note != selectedExpense.note ?? "" ||
+            isDoneExport != selectedExpense.isDoneExport
         )
     }
     
@@ -150,7 +151,7 @@ class AddExpenseViewModel: ObservableObject {
             
             checkStore(expense.store)
             note = expense.note ?? ""
-            
+            isDoneExport = expense.isDoneExport
             
             if !expense.blockID.isEmpty {
                 isUpdate = true
@@ -238,6 +239,7 @@ class AddExpenseViewModel: ObservableObject {
             let note = note.trimWhitespace()
             expense.note = isInstallment ? try Validation.textField(note, typeError: .noNote) : note
             expense.date = date
+            expense.isDoneExport = isDoneExport
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
                 self.expense.yearMonthID = id
@@ -325,6 +327,61 @@ class AddExpenseViewModel: ObservableObject {
         if let name = selectedTemplateModel.name {
             if name != getStore() {
                 note = name
+            }
+        }
+    }
+    
+    //MARK: - CopyExport
+    @Published var isDoneExport = false
+        
+    func copy() {
+        do {
+            let value = try Validation.numberTextField(valueString)
+            let valueString = value.splitDigit(with: ",")
+            let label = try Validation.picker(selectedLabel, typeError: .noLabel)
+            let account = try Validation.picker(selectedAccount, typeError: .noAccount)
+            let dateString = date.toString(format: "yyyy.MM.dd")
+            
+            UIPasteboard.general.string = "\(dateString) | \(account) | \(valueString) | \(label)"
+        } catch let error {
+            if let error = error as? ValidationError {
+                if let errorMessage = error.errorMessage {
+                    self.errorMessage = errorMessage
+                    isShowErrorMessage = true
+                }
+            }
+        }
+    }
+    
+    func copyNote() {
+        do {
+            var note = note
+            var store = ""
+            let payment = " paid via " + (try Validation.picker(selectedPayment, typeError: .noPayment))
+            if isEcommerceStore {
+                if !otherStore.isEmpty {
+                    store = "\(selectedStore) | \(otherStore)"
+                } else {
+                    store = selectedStore
+                }
+            } else {
+                store = getStore().trimWhitespace()
+            }
+            
+            
+            if store.isEmpty {
+                note = note + payment
+            } else {
+                note = note + " at " + store + payment
+            }
+            
+            UIPasteboard.general.string = note.trimWhitespace()
+        } catch let error {
+            if let error = error as? ValidationError {
+                if let errorMessage = error.errorMessage {
+                    self.errorMessage = errorMessage
+                    isShowErrorMessage = true
+                }
             }
         }
     }

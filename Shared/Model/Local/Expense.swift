@@ -18,4 +18,5 @@ struct Expense: Codable {
     var label, account, category, subcategory, duration, payment, store: String?
     var date: Date?
     var keywords: String?
+    var isDoneExport: Bool = false
 }

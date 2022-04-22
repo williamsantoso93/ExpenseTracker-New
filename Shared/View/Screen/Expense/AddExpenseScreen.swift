@@ -84,6 +84,20 @@ struct AddExpenseScreen: View {
                     .padding(.bottom, 4)
                 }
                 
+                Section {
+                    Toggle("Is Done Export", isOn: $viewModel.isDoneExport)
+                    
+                    Button("Copy Expense") {
+                        viewModel.copy()
+                    }
+                    
+                    Button("Copy Note") {
+                        viewModel.copyNote()
+                    }
+                } header: {
+                    Text("Copy/Export")
+                }
+                
                 if !viewModel.isUpdate {
                     Section {
                         Toggle("Need Installment", isOn: $viewModel.isInstallment)

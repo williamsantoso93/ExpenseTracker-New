@@ -21,4 +21,5 @@ struct Income: Codable {
     var note: String?
     var date: Date?
     var keywords: String?
+    var isDoneExport: Bool = false
 }

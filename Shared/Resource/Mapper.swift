@@ -64,7 +64,8 @@ struct Mapper {
             payment: remote.payment?.select?.name ?? "",
             store: remote.store?.richText.first?.text.content,
             date: remote.date?.date.start.toDate(),
-            keywords: remote.keywords?.formula.string
+            keywords: remote.keywords?.formula.string,
+            isDoneExport: remote.isDoneExport?.checkbox ?? false
         )
     }
     
@@ -96,7 +97,8 @@ struct Mapper {
             duration: SingleSelectProperty(select: Select(name: local.duration ?? "")),
             payment: SingleSelectProperty(select: Select(name: local.payment ?? "")),
             store: textToRichTextProperty(local.store),
-            date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
+            date: DateProperty(date: DateModel(start: local.date?.toString() ?? "")),
+            isDoneExport: CheckmarkProperty(checkbox: local.isDoneExport)
         )
     }
     
@@ -130,7 +132,8 @@ struct Mapper {
             subcategory: remote.subcategory?.select?.name,
             note: remote.note?.richText.first?.text.content,
             date: remote.date?.date.start.toDate(),
-            keywords: remote.keywords?.formula.string
+            keywords: remote.keywords?.formula.string,
+            isDoneExport: remote.isDoneExport?.checkbox ?? false
         )
     }
     
@@ -150,7 +153,8 @@ struct Mapper {
             category: SingleSelectProperty(select: Select(name: local.category ?? "")),
             subcategory: textToSingleSelectProperty(local.subcategory),
             note: textToRichTextProperty(local.note),
-            date: DateProperty(date: DateModel(start: local.date?.toString() ?? ""))
+            date: DateProperty(date: DateModel(start: local.date?.toString() ?? "")),
+            isDoneExport: CheckmarkProperty(checkbox: local.isDoneExport)
         )
     }
     

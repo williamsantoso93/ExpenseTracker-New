@@ -32,9 +32,12 @@ struct ExpenseScreen: View {
                             Text("payment : \(expense.payment ?? "-")")
                             Text("label : \(expense.label ?? "-")")
                             Text("account : \(expense.account ?? "-")")
-                            Text("category : \(expense.category ?? "-")")
-                            Text("subcategory : \(expense.subcategory ?? "-")")
-                            Text("date : \((expense.date ?? Date()).toString())")
+                            Group {
+                                Text("category : \(expense.category ?? "-")")
+                                Text("subcategory : \(expense.subcategory ?? "-")")
+                                Text("date : \((expense.date ?? Date()).toString())")
+                                Text("isDoneExport : \(expense.isDoneExport ? "true" : "false")")
+                            }
                         }
                     }
                     .onAppear {

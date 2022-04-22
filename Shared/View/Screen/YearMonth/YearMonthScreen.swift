@@ -13,6 +13,21 @@ struct YearMonthScreen: View {
     
     var body: some View {
         Form {
+            Button("test") {
+                viewModel.updateYearMonth()
+                print(viewModel.yearMonths)
+            }
+            ForEach(viewModel.yearMonths.indices, id:\.self) { index in
+                let yearMonth = viewModel.yearMonths[index]
+                let totalIncomes = yearMonth.totalIncomes ?? 0
+                let totalExpenses = yearMonth.totalExpenses ?? 0
+                
+                VStack(alignment: .leading) {
+                    Text(yearMonth.month)
+                    Text("Total Income: Rp \(totalIncomes.splitDigit())")
+                    Text("Total Expense: Rp \(totalExpenses.splitDigit())")
+                }
+            }
             if !viewModel.displayYearMonths.isEmpty {
                 ForEach(viewModel.displayYearMonths.indices, id:\.self) {index in
                     let displayYearMonth = viewModel.displayYearMonths[index]
@@ -20,13 +35,13 @@ struct YearMonthScreen: View {
                     Section(header: Text(displayYearMonth.year)) {
                         ForEach(displayYearMonth.yearMonths.indices, id:\.self) { index in
                             let yearMonth = displayYearMonth.yearMonths[index]
-//                            let totalIncomes = yearMonth.totalIncomes ?? 0
-//                            let totalExpenses = yearMonth.totalExpenses ?? 0
+                            let totalIncomes = yearMonth.totalIncomes ?? 0
+                            let totalExpenses = yearMonth.totalExpenses ?? 0
                             
                             VStack(alignment: .leading) {
                                 Text(yearMonth.month)
-//                                Text("Total Income: Rp \(totalIncomes.splitDigit())")
-//                                Text("Total Expense: Rp \(totalExpenses.splitDigit())")
+                                Text("Total Income: Rp \(totalIncomes.splitDigit())")
+                                Text("Total Expense: Rp \(totalExpenses.splitDigit())")
                             }
                         }
                     }

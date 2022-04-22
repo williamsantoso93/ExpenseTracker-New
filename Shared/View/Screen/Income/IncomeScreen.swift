@@ -32,6 +32,7 @@ struct IncomeScreen: View {
                             Text("subcategory : \(income.subcategory ?? "-")")
                             Text("note : \(income.note ?? "")")
                             Text("date : \((income.date ?? Date()).toString())")
+                            Text("isDoneExport : \(income.isDoneExport ? "true" : "false")")
                         }
                     }
                     .onAppear {

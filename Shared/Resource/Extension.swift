@@ -64,6 +64,13 @@ extension String {
 }
 
 extension Double {
+    func splitDigit(with groupingSeparator: String) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 0
+        numberFormatter.groupingSeparator = groupingSeparator
+        return numberFormatter.string(from: NSNumber(value: self)) ?? ""
+    }
     func splitDigit() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
