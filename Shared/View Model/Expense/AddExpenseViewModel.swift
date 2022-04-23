@@ -334,7 +334,7 @@ class AddExpenseViewModel: ObservableObject {
     //MARK: - CopyExport
     @Published var isDoneExport = false
         
-    func copy() {
+    func shareExpense(completion: (String) -> Void) {
         do {
             let value = try Validation.numberTextField(valueString)
             let valueString = value.splitDigit(with: ",")
@@ -342,7 +342,7 @@ class AddExpenseViewModel: ObservableObject {
             let account = try Validation.picker(selectedAccount, typeError: .noAccount)
             let dateString = date.toString(format: "yyyy.MM.dd")
             
-            UIPasteboard.general.string = "\(dateString) | \(account) | \(valueString) | \(label)"
+            completion("\(dateString) | \(account) | \(valueString) | \(label)")
         } catch let error {
             if let error = error as? ValidationError {
                 if let errorMessage = error.errorMessage {

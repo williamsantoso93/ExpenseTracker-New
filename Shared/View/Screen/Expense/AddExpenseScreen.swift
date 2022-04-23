@@ -87,8 +87,24 @@ struct AddExpenseScreen: View {
                 Section {
                     Toggle("Is Done Export", isOn: $viewModel.isDoneExport)
                     
-                    Button("Copy Expense") {
-                        viewModel.copy()
+                    Button("Share Expense") {
+                        viewModel.shareExpense { expense in
+                            self.viewModel.copyNote()
+                            let activityVC = UIActivityViewController(activityItems: [expense], applicationActivities: nil)
+                            
+                            activityVC.excludedActivityTypes = [
+                                .airDrop,
+                                .addToReadingList,
+                                .postToFlickr,
+                                .postToVimeo,
+                                .openInIBooks,
+                                .print,
+                                .assignToContact,
+                                .saveToCameraRoll,
+                            ]
+                            
+                            UIApplication.shared.keyWindowPresentedController?.present(activityVC, animated: true)
+                        }
                     }
                     
                     Button("Copy Note") {

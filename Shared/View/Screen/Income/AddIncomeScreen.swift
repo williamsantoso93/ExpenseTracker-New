@@ -64,8 +64,25 @@ struct AddIncomeScreen: View {
                 Section {
                     Toggle("Is Done Export", isOn: $viewModel.isDoneExport)
                     
-                    Button("Copy Expense") {
-                        viewModel.copy()
+                    Button("Share Incone") {
+                        viewModel.shareIncome { income in
+                            let activityVC = UIActivityViewController(activityItems: [income], applicationActivities: nil)
+                            
+                            activityVC.excludedActivityTypes = [
+                                .airDrop,
+                                .addToReadingList,
+                                .postToFlickr,
+                                .postToVimeo,
+                                .openInIBooks,
+                                .print,
+                                .assignToContact,
+                                .saveToCameraRoll
+                            ]
+                            
+                            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true) {
+                                self.viewModel.copyNote()
+                            }
+                        }
                     }
                     
                     Button("Copy Note") {
