@@ -89,7 +89,6 @@ struct AddExpenseScreen: View {
                     
                     Button("Share Expense") {
                         viewModel.shareExpense { expense in
-                            self.viewModel.copyNote()
                             let activityVC = UIActivityViewController(activityItems: [expense], applicationActivities: nil)
                             
                             activityVC.excludedActivityTypes = [
@@ -103,7 +102,7 @@ struct AddExpenseScreen: View {
                                 .saveToCameraRoll,
                             ]
                             
-                            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true) {
+                            UIApplication.shared.keyWindowPresentedController?.present(activityVC, animated: true) {
                                 self.viewModel.copyNote()
                             }
                         }
@@ -178,7 +177,7 @@ struct AddExpenseScreen: View {
             .discardChangesAlert(isShowAlert: $isShowDiscardAlert) {
                 presentationMode.wrappedValue.dismiss()
             }
-            .navigationTitle("Add Expsense")
+            .navigationTitle("Add Expense")
 #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
 #endif

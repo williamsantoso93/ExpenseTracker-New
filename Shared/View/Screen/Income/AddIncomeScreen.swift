@@ -79,7 +79,7 @@ struct AddIncomeScreen: View {
                                 .saveToCameraRoll
                             ]
                             
-                            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true) {
+                            UIApplication.shared.keyWindowPresentedController?.present(activityVC, animated: true) {
                                 self.viewModel.copyNote()
                             }
                         }
