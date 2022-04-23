@@ -217,4 +217,20 @@ class GlobalData: ObservableObject {
             return nil
         }
     }
+    
+    func addIncome(_ income: Income?) {
+        guard let income = income else {
+            return
+        }
+
+        incomes.append(income)
+    }
+    
+    func addExpense(_ expense: Expense?) {
+        guard let expense = expense else {
+            return
+        }
+
+        expenses.append(expense)
+    }
 }

@@ -11,14 +11,14 @@ struct AddExpenseScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var globalData = GlobalData.shared
     @StateObject var viewModel: AddExpenseViewModel
-    var refesh: () -> Void
+    var dismiss: (Expense?, DismissType) -> Void
     
     @State private var isShowTypeAddScreen = false
     @State private var isShowDiscardAlert = false
     
-    init(expense: Expense? = nil, refesh: @escaping () -> Void) {
+    init(expense: Expense? = nil, dismiss: @escaping (Expense?, DismissType) -> Void) {
         self._viewModel = StateObject(wrappedValue: AddExpenseViewModel(expense: expense))
-        self.refesh = refesh
+        self.dismiss = dismiss
     }
     
     var body: some View {
@@ -103,7 +103,9 @@ struct AddExpenseScreen: View {
                                 .saveToCameraRoll,
                             ]
                             
-                            UIApplication.shared.keyWindowPresentedController?.present(activityVC, animated: true)
+                            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true) {
+                                self.viewModel.copyNote()
+                            }
                         }
                     }
                     
@@ -162,7 +164,7 @@ struct AddExpenseScreen: View {
                         Button("Delete", role: .destructive) {
                             viewModel.delete { isSuccess in
                                 if isSuccess {
-                                    refesh()
+                                    dismiss(nil, .refreshAll)
                                     presentationMode.wrappedValue.dismiss()
                                 }
                             }
@@ -196,9 +198,9 @@ struct AddExpenseScreen: View {
 #endif
                 ToolbarItem {
                     Button {
-                        viewModel.save { isSuccess in
+                        viewModel.save { isSuccess, expense, dismissType in
                             if isSuccess {
-                                refesh()
+                                dismiss(expense, dismissType)
                                 presentationMode.wrappedValue.dismiss()
                             }
                         }
@@ -259,6 +261,6 @@ struct AddExpenseScreen: View {
 
 struct AddExpenseScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddExpenseScreen() {}
+        AddExpenseScreen() {_,_ in }
     }
 }

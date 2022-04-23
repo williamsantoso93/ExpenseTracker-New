@@ -98,4 +98,14 @@ class IncomeViewModel: ObservableObject {
         selectedIncome = income
         isShowAddScreen = true
     }
+    
+    func updateSingle(_ income: Income?) {
+        guard let income = income else { return }
+        
+        guard let firstIndex = incomes.firstIndex(where: { item in
+            item.id == income.id
+        }) else { return }
+        
+        incomes[firstIndex] = income
+    }
 }

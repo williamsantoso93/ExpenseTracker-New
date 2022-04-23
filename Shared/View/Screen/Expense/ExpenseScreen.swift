@@ -72,8 +72,13 @@ struct ExpenseScreen: View {
         .sheet(isPresented: $viewModel.isShowAddScreen) {
             viewModel.selectedExpense = nil
         } content: {
-            AddExpenseScreen(expense: viewModel.selectedExpense) {
-                viewModel.loadNewData()
+            AddExpenseScreen(expense: viewModel.selectedExpense) { expense, dismissType in
+                switch dismissType {
+                case .refreshAll:
+                    viewModel.loadNewData()
+                case .updateSingle:
+                    viewModel.updateSingle(expense)
+                }
             }
         }
 

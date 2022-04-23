@@ -32,3 +32,8 @@ struct TemplateModel: Codable, Hashable {
     var keywords: String?
     
 }
+
+enum DismissType {
+    case refreshAll
+    case updateSingle
+}

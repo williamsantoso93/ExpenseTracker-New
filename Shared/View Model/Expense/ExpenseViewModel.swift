@@ -97,4 +97,14 @@ class ExpenseViewModel: ObservableObject {
         selectedExpense = expense
         isShowAddScreen = true
     }
+    
+    func updateSingle(_ expense: Expense?) {
+        guard let expense = expense else { return }
+        
+        guard let firstIndex = expenses.firstIndex(where: { item in
+            item.id == expense.id
+        }) else { return }
+        
+        expenses[firstIndex] = expense
+    }
 }

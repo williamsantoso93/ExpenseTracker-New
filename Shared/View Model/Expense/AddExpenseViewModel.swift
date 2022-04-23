@@ -121,9 +121,10 @@ class AddExpenseViewModel: ObservableObject {
     var isChanged: Bool {
         (
             value != selectedExpense.value ?? 0 ||
+            selectedLabel != selectedExpense.label ||
             selectedAccount != selectedExpense.account ||
             selectedCategory != selectedExpense.category ||
-            selectedSubcategory != selectedExpense.subcategory ||
+            selectedSubcategory != selectedExpense.subcategory ?? "" ||
             selectedPayment != selectedExpense.payment ||
             selectedDuration != selectedExpense.duration ||
             date != selectedExpense.date ||
@@ -218,7 +219,7 @@ class AddExpenseViewModel: ObservableObject {
         }
     }
     
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func save(completion: @escaping (_ isSuccess: Bool, _ expense: Expense, _ dismissType: DismissType) -> Void) {
         do {
             expense.value = try Validation.numberTextField(valueString)
             expense.label = try Validation.picker(selectedLabel, typeError: .noLabel)
@@ -248,18 +249,18 @@ class AddExpenseViewModel: ObservableObject {
                 if self.isUpdate {
                     Networking.shared.updateExpense(self.expense) { isSuccess in
                         self.isLoading = false
-                        return completion(isSuccess)
+                        return completion(isSuccess, self.expense, .updateSingle)
                     }
                 } else {
                     if self.isInstallment && (self.installmentMonth > 0) {
                         self.saveInstallment { isSuccess in
                             self.isLoading = false
-                            return completion(isSuccess)
+                            return completion(isSuccess, self.expense, .refreshAll)
                         }
                     } else {
                         Networking.shared.postExpense(self.expense) { isSuccess in
                             self.isLoading = false
-                            return completion(isSuccess)
+                            return completion(isSuccess, self.expense, .refreshAll)
                         }
                     }
                 }

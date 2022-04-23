@@ -81,7 +81,7 @@ class AddIncomeViewModel: ObservableObject {
             selectedLabel != selectedIncome.label ||
             selectedAccount != selectedIncome.account ||
             selectedCategory != selectedIncome.category ||
-            selectedSubcategory != selectedIncome.subcategory ||
+            selectedSubcategory != selectedIncome.subcategory ?? "" ||
             date != selectedIncome.date ||
             note != selectedIncome.note ?? "" ||
             isDoneExport != selectedIncome.isDoneExport
@@ -134,7 +134,7 @@ class AddIncomeViewModel: ObservableObject {
         }
     }
     
-    func save(completion: @escaping (_ isSuccess: Bool) -> Void) {
+    func save(completion: @escaping (_ isSuccess: Bool, _ income: Income, _ dismissType: DismissType) -> Void) {
         do {
             income.note = note.trimWhitespace()
             income.value = try Validation.numberTextField(valueString)
@@ -152,12 +152,12 @@ class AddIncomeViewModel: ObservableObject {
                 if self.isUpdate {
                     Networking.shared.updateIncome(self.income) { isSuccess in
                         self.isLoading = false
-                        return completion(isSuccess)
+                        return completion(isSuccess, self.income, .updateSingle)
                     }
                 } else {
                     Networking.shared.postIncome(self.income) { isSuccess in
                         self.isLoading = false
-                        return completion(isSuccess)
+                        return completion(isSuccess, self.income, .refreshAll)
                     }
                 }
             }

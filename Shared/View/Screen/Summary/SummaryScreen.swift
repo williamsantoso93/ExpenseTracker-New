@@ -81,12 +81,18 @@ struct SummaryScreen: View {
 #endif
         .sheet(isPresented: $viewModel.isAddIncomeShow) {
         } content: {
-            AddIncomeScreen() {
+            AddIncomeScreen() { income, dismissType  in
+                if dismissType == .refreshAll {
+                    globalData.addIncome(income)
+                }
             }
         }
         .sheet(isPresented: $viewModel.isAddExpenseShow) {
         } content: {
-            AddExpenseScreen() {
+            AddExpenseScreen() { expense, dismissType in
+                if dismissType == .refreshAll {
+                    globalData.addExpense(expense)
+                }
             }
         }
     }

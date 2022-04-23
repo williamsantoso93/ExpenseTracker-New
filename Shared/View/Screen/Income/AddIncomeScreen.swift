@@ -11,14 +11,14 @@ struct AddIncomeScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var globalData = GlobalData.shared
     @StateObject var viewModel: AddIncomeViewModel
-    var refesh: () -> Void
+    var dismiss: (Income?, DismissType) -> Void
     
     @State private var isShowTypeAddScreen = false
     @State private var isShowDiscardAlert = false
     
-    init(income: Income? = nil, refesh: @escaping () -> Void) {
+    init(income: Income? = nil, dismiss: @escaping (Income?, DismissType) -> Void) {
         self._viewModel = StateObject(wrappedValue: AddIncomeViewModel(income: income))
-        self.refesh = refesh
+        self.dismiss = dismiss
     }
     
     var body: some View {
@@ -64,7 +64,7 @@ struct AddIncomeScreen: View {
                 Section {
                     Toggle("Is Done Export", isOn: $viewModel.isDoneExport)
                     
-                    Button("Share Incone") {
+                    Button("Share Income") {
                         viewModel.shareIncome { income in
                             let activityVC = UIActivityViewController(activityItems: [income], applicationActivities: nil)
                             
@@ -122,7 +122,7 @@ struct AddIncomeScreen: View {
                         Button("Delete", role: .destructive) {
                             viewModel.delete { isSuccess in
                                 if isSuccess {
-                                    refesh()
+                                    dismiss(nil, .refreshAll)
                                     presentationMode.wrappedValue.dismiss()
                                 }
                             }
@@ -156,9 +156,9 @@ struct AddIncomeScreen: View {
 #endif
                 ToolbarItem {
                     Button {
-                        viewModel.save { isSuccess in
+                        viewModel.save { isSuccess, income, dismissType in
                             if isSuccess {
-                                refesh()
+                                dismiss(income, dismissType)
                                 presentationMode.wrappedValue.dismiss()
                             }
                         }
@@ -190,6 +190,6 @@ struct AddIncomeScreen: View {
 
 struct AddIncomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddIncomeScreen() {}
+        AddIncomeScreen() { _,_  in }
     }
 }
