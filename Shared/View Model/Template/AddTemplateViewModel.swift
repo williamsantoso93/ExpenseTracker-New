@@ -103,6 +103,7 @@ class AddTemplateViewModel: ObservableObject {
         isUpdate ? "Update" : "Save"
     }
     var isUpdate: Bool = false
+    @Published var isDoneExport = false
     
     @Published var errorMessage: ErrorMessage = ErrorMessage(title: "", message: "")
     @Published var isShowErrorMessage = false
@@ -126,7 +127,8 @@ class AddTemplateViewModel: ObservableObject {
             selectedDuration != selectedTemplateModel.duration ||
             ((selectedStore != "Other" && selectedStore != selectedTemplateModel.store ?? "") ||
              (selectedStore == "Other" && otherStore != selectedTemplateModel.store ?? "")) ||
-            selectedType != selectedTemplateModel.type
+            selectedType != selectedTemplateModel.type ||
+            isDoneExport != selectedTemplateModel.isDoneExport
         )
     }
     
@@ -146,6 +148,7 @@ class AddTemplateViewModel: ObservableObject {
             selectedSubcategory = templateModel.subcategory ?? ""
             selectedType = templateModel.type ?? ""
             checkStore(templateModel.store)
+            isDoneExport = templateModel.isDoneExport
             
             if !templateModel.blockID.isEmpty {
                 isUpdate = true
@@ -208,6 +211,7 @@ class AddTemplateViewModel: ObservableObject {
         templateModel.subcategory = selectedSubcategory.isEmpty ? nil : selectedSubcategory
         templateModel.type = selectedType
         templateModel.store = getStore()
+        templateModel.isDoneExport = isDoneExport
         
         templateModel.name = name.isEmpty ? templateModel.store : name.trimWhitespace()
         

@@ -212,7 +212,8 @@ struct Mapper {
             store: remote.store?.richText.first?.text.content,
             type: remote.type?.select?.name ?? "",
             value: remote.value?.number,
-            keywords: remote.keywords?.formula.string
+            keywords: remote.keywords?.formula.string,
+            isDoneExport: remote.isDoneExport?.checkbox ?? false
         )
     }
     
@@ -233,7 +234,8 @@ struct Mapper {
             duration: textToSingleSelectProperty(local.duration),
             payment: textToSingleSelectProperty(local.payment),
             value: numberToNumberProperty(local.value),
-            store: textToRichTextProperty(local.store)
+            store: textToRichTextProperty(local.store),
+            isDoneExport: CheckmarkProperty(checkbox: local.isDoneExport)
         )
     }
     

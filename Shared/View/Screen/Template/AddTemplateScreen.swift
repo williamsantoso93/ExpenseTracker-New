@@ -78,6 +78,7 @@ struct AddTemplatescreen: View {
                             TextField("Indomaret", text: $viewModel.otherStore)
                         }
                     }
+                    Toggle("Is Done Export", isOn: $viewModel.isDoneExport)
                 }
                 
                 Button {

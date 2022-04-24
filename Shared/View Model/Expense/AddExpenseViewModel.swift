@@ -330,6 +330,7 @@ class AddExpenseViewModel: ObservableObject {
                 note = name
             }
         }
+        isDoneExport = selectedTemplateModel.isDoneExport
     }
     
     //MARK: - CopyExport

@@ -35,6 +35,7 @@ struct templateModelscreen: View {
                                     Text("subcategory : \(templateModel.subcategory ?? "-")")
                                     Text("duration : \(templateModel.duration ?? "-")")
                                     Text("payment : \(templateModel.payment ?? "-")")
+                                    Text("DoneExport : \(templateModel.isDoneExport ? "true" : "false")")
                                 }
                             }
                         }

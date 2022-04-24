@@ -15,6 +15,7 @@ struct TemplateModelProperty: Codable {
     let value: NumberProperty?
     let store: RichTextProperty?
     var keywords: FormulaProperty? = nil
+    var isDoneExport: CheckmarkProperty?
     
     enum CodingKeys: String, CodingKey {
         case name = "Name"
@@ -28,5 +29,6 @@ struct TemplateModelProperty: Codable {
         case store = "Store"
         case value = "Value"
         case keywords = "Keywords"
+        case isDoneExport = "Done Export"
     }
 }

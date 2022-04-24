@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - TemplateModel
 struct TemplateModel: Codable, Hashable {
-    internal init(blockID: String, name: String? = nil, label: String? = nil, account: String? = nil, category: String? = nil, subcategory: String? = nil, duration: String? = nil, payment: String? = nil, store: String? = nil, type: String? = nil, value: Double? = nil, keywords: String? = nil) {
+    internal init(blockID: String, name: String? = nil, label: String? = nil, account: String? = nil, category: String? = nil, subcategory: String? = nil, duration: String? = nil, payment: String? = nil, store: String? = nil, type: String? = nil, value: Double? = nil, keywords: String? = nil, isDoneExport: Bool = false) {
         self.blockID = blockID
         self.name = name
         self.label = label
@@ -22,6 +22,7 @@ struct TemplateModel: Codable, Hashable {
         self.type = type
         self.value = value
         self.keywords = keywords
+        self.isDoneExport = isDoneExport
     }
     
     var blockID: String
@@ -30,6 +31,7 @@ struct TemplateModel: Codable, Hashable {
     var type: String?
     var value: Double?
     var keywords: String?
+    var isDoneExport: Bool = false
     
 }
 

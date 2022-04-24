@@ -222,8 +222,8 @@ class GlobalData: ObservableObject {
         guard let income = income else {
             return
         }
-
-        incomes.append(income)
+        
+//        incomes.insert(income, at: 0)
     }
     
     func addExpense(_ expense: Expense?) {
@@ -231,6 +231,6 @@ class GlobalData: ObservableObject {
             return
         }
 
-        expenses.append(expense)
+//        expenses.insert(expense, at: 0)
     }
 }
