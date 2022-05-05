@@ -10,7 +10,9 @@ import Foundation
 class AddTemplateViewModel: ObservableObject {
     @Published var templateModel: TemplateModel
     @Published var selectedTemplateModel: TemplateModel
-    @Published var types = GlobalData.shared.types
+    var types: Types {
+        GlobalData.shared.types
+    }
     
     var labels: [String] {
         types.labelTypes.map { result in

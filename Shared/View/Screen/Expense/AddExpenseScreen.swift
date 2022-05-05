@@ -24,6 +24,23 @@ struct AddExpenseScreen: View {
     var body: some View {
         NavigationView {
             Form {
+                if !viewModel.isUpdate {
+                    Section {
+                        Picker("Template", selection: $viewModel.selectedTemplateIndex) {
+                            ForEach(viewModel.templateModels.indices, id: \.self) { index in
+                                let templateModel = viewModel.templateModels[index]
+                                Text(templateModel.name ?? "")
+                                    .tag(index)
+                            }
+                        }
+                        .onChange(of: viewModel.selectedTemplateIndex) { index in
+                            viewModel.applyTemplate(at: index)
+                        }
+                    } header: {
+                        Text("Template")
+                    }
+                }
+
                 Section {
                     NumberTextFiedForm(title: "Value", prompt: "50000".splitDigitDouble(), value: $viewModel.valueString)
 #if os(iOS)
@@ -155,9 +172,9 @@ struct AddExpenseScreen: View {
                         Text("Installment")
                     }
                     
-                    templateSection
+                    addSection
                 } else {
-                    templateSection
+                    addSection
                     
                     Section {
                         Button("Delete", role: .destructive) {
@@ -212,35 +229,20 @@ struct AddExpenseScreen: View {
             .sheet(isPresented: $isShowTypeAddScreen) {
             } content: {
                 AddTypeScreen() {
-                    globalData.getTypes {
-                        viewModel.types = GlobalData.shared.types
-                    }
+                    globalData.getTypes()
                 }
             }
             .sheet(isPresented: $viewModel.isShowTemplateAddScreen) {
             } content: {
                 AddTemplatescreen(templateModel: viewModel.templateModel) {
-                    globalData.getTemplateModel(done:  {
-                        viewModel.templateModels = GlobalData.shared.templateModels
-                    })
+                    globalData.getTemplateModel()
                 }
             }
         }
     }
     
-    var templateSection: some View {
+    var addSection: some View {
         Section {
-            Picker("Template", selection: $viewModel.selectedTemplateIndex) {
-                ForEach(viewModel.templateModels.indices, id: \.self) { index in
-                    let templateModel = viewModel.templateModels[index]
-                    Text(templateModel.name ?? "")
-                        .tag(index)
-                }
-            }
-            .onChange(of: viewModel.selectedTemplateIndex) { index in
-                viewModel.applyTemplate(at: index)
-            }
-            
             Button {
                 isShowTypeAddScreen.toggle()
             } label: {
@@ -253,7 +255,7 @@ struct AddExpenseScreen: View {
                 Text("Add Template")
             }
         } header: {
-            Text("Template")
+            Text("Add")
         }
     }
 }

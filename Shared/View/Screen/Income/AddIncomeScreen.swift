@@ -24,6 +24,23 @@ struct AddIncomeScreen: View {
     var body: some View {
         NavigationView {
             Form {
+                if !viewModel.isUpdate {
+                    Section {
+                        Picker("Template", selection: $viewModel.selectedTemplateIndex) {
+                            ForEach(viewModel.templateModels.indices, id: \.self) { index in
+                                let templateModel = viewModel.templateModels[index]
+                                Text(templateModel.name ?? "")
+                                    .tag(index)
+                            }
+                        }
+                        .onChange(of: viewModel.selectedTemplateIndex) { index in
+                            viewModel.applyTemplate(at: index)
+                        }
+                    } header: {
+                        Text("Template")
+                    }
+                }
+                
                 Section {
                     NumberTextFiedForm(title: "Value", prompt: "50000".splitDigitDouble(), value: $viewModel.valueString)
 #if os(iOS)
@@ -94,17 +111,6 @@ struct AddIncomeScreen: View {
                 
                 if !viewModel.isUpdate {
                     Section {
-                        Picker("Template", selection: $viewModel.selectedTemplateIndex) {
-                            ForEach(viewModel.templateModels.indices, id: \.self) { index in
-                                let templateModel = viewModel.templateModels[index]
-                                Text(templateModel.name ?? "")
-                                    .tag(index)
-                            }
-                        }
-                        .onChange(of: viewModel.selectedTemplateIndex) { index in
-                            viewModel.applyTemplate(at: index)
-                        }
-                        
                         Button {
                             isShowTypeAddScreen.toggle()
                         } label: {
@@ -171,17 +177,13 @@ struct AddIncomeScreen: View {
             .sheet(isPresented: $isShowTypeAddScreen) {
             } content: {
                 AddTypeScreen() {
-                    globalData.getTypes {
-                        viewModel.types = GlobalData.shared.types
-                    }
+                    globalData.getTypes()
                 }
             }
             .sheet(isPresented: $viewModel.isShowTemplateAddScreen) {
             } content: {
                 AddTemplatescreen(templateModel: viewModel.templateModel) {
-                    globalData.getTemplateModel(done:  {
-                        viewModel.templateModels = GlobalData.shared.templateModels
-                    })
+                    globalData.getTemplateModel()
                 }
             }
         }

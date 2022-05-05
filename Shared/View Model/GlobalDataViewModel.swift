@@ -60,7 +60,7 @@ class GlobalData: ObservableObject {
         getTemplateModel()
     }
     
-    func getTypes(startCursor: String? = nil, completion: @escaping () -> Void = {}) {
+    func getTypes(startCursor: String? = nil) {
         let newData = startCursor == nil
         isLoadingTypes = true
         Networking.shared.getTypes(startCursor: startCursor) { (result: Result<DefaultResponse<TypeProperty>, NetworkError>) in
@@ -82,7 +82,6 @@ class GlobalData: ObservableObject {
                 case .failure(let error):
                     print(error)
                 }
-                completion()
             }
         }
     }
@@ -117,7 +116,7 @@ class GlobalData: ObservableObject {
         }
     }
     
-    func getTemplateModel(startCursor: String? = nil, completion: (() -> Void)? = nil, done: @escaping () -> Void = {}) {
+    func getTemplateModel(startCursor: String? = nil) {
         let newData = startCursor == nil
         isLoadingTemplateModel = true
         Networking.shared.getTemplateModel(startCursor: startCursor) { (result: Result<DefaultResponse<TemplateModelProperty>, NetworkError>) in
@@ -135,15 +134,10 @@ class GlobalData: ObservableObject {
                         if let nextCursor = data.nextCursor {
                             self.getTemplateModel(startCursor: nextCursor)
                         }
-                    } else {
-                        if let completion = completion {
-                            return completion()
-                        }
                     }
                 case .failure(let error):
                     print(error)
                 }
-                done()
             }
         }
     }

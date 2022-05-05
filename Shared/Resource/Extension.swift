@@ -129,6 +129,17 @@ extension Date {
         
         return Calendar.current.date(byAdding: dateComponent, to: self)
     }
+    
+    func isSameDate(with date: Date) -> Bool {
+        let selfDate = self.toString()
+        let compareDate = date.toString()
+        
+        if selfDate == compareDate {
+            return true
+        }
+        
+        return false
+    }
 }
 
 extension Array where Element == String {

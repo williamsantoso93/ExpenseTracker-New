@@ -11,9 +11,13 @@ import SwiftUI
 class AddExpenseViewModel: ObservableObject {
     @Published var expense: Expense
     @Published var selectedExpense: Expense
-    @Published var types = GlobalData.shared.types
-    @Published var templateModels = GlobalData.shared.templateModels.filter { result in
-        result.type == "Expense"
+    var types: Types {
+        GlobalData.shared.types
+    }
+    var templateModels: [TemplateModel]  {
+        GlobalData.shared.templateModels.filter { result in
+            result.type == "Expense"
+        }
     }
     @Published var isLoading = false
     
@@ -121,13 +125,13 @@ class AddExpenseViewModel: ObservableObject {
     var isChanged: Bool {
         (
             value != selectedExpense.value ?? 0 ||
-            selectedLabel != selectedExpense.label ||
-            selectedAccount != selectedExpense.account ||
-            selectedCategory != selectedExpense.category ||
+            selectedLabel != selectedExpense.label ?? "Wil" ||
+            selectedAccount != selectedExpense.account ?? "" ||
+            selectedCategory != selectedExpense.category ?? "" ||
             selectedSubcategory != selectedExpense.subcategory ?? "" ||
             selectedPayment != selectedExpense.payment ||
             selectedDuration != selectedExpense.duration ||
-            date != selectedExpense.date ||
+            !date.isSameDate(with: selectedExpense.date ?? Date()) ||
             ((selectedStore != "Other" && selectedStore != selectedExpense.store ?? "") ||
              (selectedStore == "Other" && otherStore != selectedExpense.store ?? "")) ||
             note != selectedExpense.note ?? "" ||
@@ -144,7 +148,7 @@ class AddExpenseViewModel: ObservableObject {
             }
             selectedDuration = expense.duration ?? ""
             selectedPayment = expense.payment ?? ""
-            selectedLabel = expense.label ?? ""
+            selectedLabel = expense.label ?? "Wil"
             selectedAccount = expense.account ?? ""
             selectedCategory = expense.category ?? ""
             selectedSubcategory = expense.subcategory ?? ""
@@ -165,7 +169,7 @@ class AddExpenseViewModel: ObservableObject {
                 yearMonth: "",
                 note: "",
                 value: 0,
-                account: "Wil",
+                account: "",
                 category: "",
                 subcategory: "",
                 duration: "Once",

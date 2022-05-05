@@ -11,9 +11,13 @@ import SwiftUI
 class AddIncomeViewModel: ObservableObject {
     @Published var income: Income
     @Published var selectedIncome: Income
-    @Published var types = GlobalData.shared.types
-    @Published var templateModels = GlobalData.shared.templateModels.filter { result in
-        result.type == "Income"
+    var types: Types {
+        GlobalData.shared.types
+    }
+    var templateModels: [TemplateModel]  {
+        GlobalData.shared.templateModels.filter { result in
+            result.type == "Income"
+        }
     }
     @Published var isLoading = false
     
@@ -78,11 +82,11 @@ class AddIncomeViewModel: ObservableObject {
     var isChanged: Bool {
         (
             value != selectedIncome.value ||
-            selectedLabel != selectedIncome.label ||
-            selectedAccount != selectedIncome.account ||
-            selectedCategory != selectedIncome.category ||
+            selectedLabel != selectedIncome.label ?? "Wil" ||
+            selectedAccount != selectedIncome.account ?? "" ||
+            selectedCategory != selectedIncome.category ?? "" ||
             selectedSubcategory != selectedIncome.subcategory ?? "" ||
-            date != selectedIncome.date ||
+            !date.isSameDate(with: selectedIncome.date ?? Date()) ||
             note != selectedIncome.note ?? "" ||
             isDoneExport != selectedIncome.isDoneExport
         )
@@ -96,7 +100,7 @@ class AddIncomeViewModel: ObservableObject {
             if let value = income.value {
                 valueString = value.splitDigit()
             }
-            selectedLabel = income.label ?? ""
+            selectedLabel = income.label ?? "Wil"
             selectedAccount = income.account ?? ""
             selectedCategory = income.category ?? ""
             selectedSubcategory = income.subcategory ?? ""
@@ -113,7 +117,7 @@ class AddIncomeViewModel: ObservableObject {
                 id: UUID().uuidString,
                 yearMonth: "",
                 value: 0,
-                account: "Wil",
+                account: "",
                 category: "",
                 subcategory: "",
                 note: ""
