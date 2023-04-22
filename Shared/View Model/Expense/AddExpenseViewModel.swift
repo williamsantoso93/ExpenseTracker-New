@@ -81,13 +81,7 @@ class AddExpenseViewModel: ObservableObject {
     @Published var selectedLabel = "Wil"
     @Published var selectedAccount = "" {
         didSet {
-            if selectedAccount.contains("CC") {
-                selectedPayment = "Credit Card"
-            } else if selectedAccount.contains("Cash") {
-                selectedPayment = "Cash"
-            } else {
-                selectedPayment = "Transfer"
-            }
+            setPayment()
         }
     }
     @Published var selectedCategory = ""
@@ -162,7 +156,7 @@ class AddExpenseViewModel: ObservableObject {
                 isUpdate = true
             }
         } else {
-            date = Date()
+            date = Util.stringToDate(date: Util.getUserDefaultValue(key: .expenseDate))
             let defaultExpense = Expense(
                 blockID: "",
                 id: UUID().uuidString,
@@ -176,10 +170,25 @@ class AddExpenseViewModel: ObservableObject {
                 payment: "",
                 store: ""
             )
+            let account = Util.getUserDefaultValue(key: .account)
+            self.selectedAccount = account.isEmpty ? "BCA" : account
+            let label = Util.getUserDefaultValue(key: .label)
+            self.selectedLabel = label.isEmpty ? "Wil" : label
             self.expense = defaultExpense
             self.selectedExpense = defaultExpense
             selectedDuration = "Once"
             self.expense.date = date
+            self.setPayment()
+        }
+    }
+    
+    private func setPayment() {
+        if selectedAccount.contains("CC") {
+            selectedPayment = "Credit Card"
+        } else if selectedAccount.contains("Cash") {
+            selectedPayment = "Cash"
+        } else {
+            selectedPayment = "Transfer"
         }
     }
     
@@ -247,9 +256,15 @@ class AddExpenseViewModel: ObservableObject {
             expense.isDoneExport = isDoneExport
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
-                self.expense.yearMonthID = id
+                if let yearMonth = self.expense.yearMonth,
+                   !yearMonth.isEmpty {
+                    self.expense.yearMonthID = yearMonth
+                } else {
+                    self.expense.yearMonthID = id
+                }
                 
                 self.isLoading = true
+                self.saveData()
                 if self.isUpdate {
                     Networking.shared.updateExpense(self.expense) { isSuccess in
                         self.isLoading = false
@@ -277,6 +292,12 @@ class AddExpenseViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func saveData() {
+        Util.setUserDefaultValue(key: .expenseDate, value: Util.dateToString(date: date))
+        Util.setUserDefaultValue(key: .account, value: selectedAccount)
+        Util.setUserDefaultValue(key: .label, value: selectedLabel)
     }
     
     //MARK: - Template

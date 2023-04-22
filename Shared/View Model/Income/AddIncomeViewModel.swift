@@ -150,7 +150,12 @@ class AddIncomeViewModel: ObservableObject {
             income.isDoneExport = isDoneExport
             
             YearMonthCheck.shared.getYearMonthID(date) { id in
-                self.income.yearMonthID = id
+                if let yearMonth = self.income.yearMonth,
+                   !yearMonth.isEmpty {
+                    self.income.yearMonthID = yearMonth
+                } else {
+                    self.income.yearMonthID = id
+                }
                 
                 self.isLoading = true
                 if self.isUpdate {

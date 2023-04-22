@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7AF2D3B729F372E3008EF80E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF2D3B629F372E3008EF80E /* Util.swift */; };
+		7AF2D3B829F372E3008EF80E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF2D3B629F372E3008EF80E /* Util.swift */; };
 		E002E2B227789EC000A7A1C5 /* SettingProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002E2B127789EC000A7A1C5 /* SettingProperty.swift */; };
 		E002E2B327789EC000A7A1C5 /* SettingProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002E2B127789EC000A7A1C5 /* SettingProperty.swift */; };
 		E002E2B527789F7800A7A1C5 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = E002E2B427789F7800A7A1C5 /* Setting.swift */; };
@@ -155,6 +157,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7AF2D3B629F372E3008EF80E /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		E002E2B127789EC000A7A1C5 /* SettingProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProperty.swift; sourceTree = "<group>"; };
 		E002E2B427789F7800A7A1C5 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		E002E2B72778B04700A7A1C5 /* TemplateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateScreen.swift; sourceTree = "<group>"; };
@@ -346,6 +349,7 @@
 			children = (
 				E0BF3A89276F566B00FC902E /* Persistence.swift */,
 				E0D6EF3B27702DE400DF12AD /* Extension.swift */,
+				7AF2D3B629F372E3008EF80E /* Util.swift */,
 				E097D713277074BB0093F5DA /* Mapper.swift */,
 				E03C7022279300C5005D6CDB /* HideKeyboardAppWide.swift */,
 				E0050C2A2778003A00396C36 /* Networking */,
@@ -758,6 +762,7 @@
 				E0D6EF20277021F800DF12AD /* TextProperty.swift in Sources */,
 				E0D6EF322770259F00DF12AD /* IncomeProperty.swift in Sources */,
 				E08178C427708FFC00F358D9 /* IncomeViewModel.swift in Sources */,
+				7AF2D3B729F372E3008EF80E /* Util.swift in Sources */,
 				E03C701D2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
 				E0D6EF2F2770240900DF12AD /* RelationProperty.swift in Sources */,
 				E0D6EF3C27702DE400DF12AD /* Extension.swift in Sources */,
@@ -825,6 +830,7 @@
 				E0BF3AB5276F566B00FC902E /* ContentView.swift in Sources */,
 				E09030C227781FD1003ED6B5 /* AddTypeScreen.swift in Sources */,
 				E0D6EF21277021F800DF12AD /* TextProperty.swift in Sources */,
+				7AF2D3B829F372E3008EF80E /* Util.swift in Sources */,
 				E03C701E2792EFA6005D6CDB /* SelectUsercreen.swift in Sources */,
 				E09030CC27781FE0003ED6B5 /* GlobalDataViewModel.swift in Sources */,
 				E09030C527781FE0003ED6B5 /* AddExpenseViewModel.swift in Sources */,
@@ -1008,6 +1014,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
 				PRODUCT_NAME = "Hitung Uang";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1038,6 +1047,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.williamsantoso.ExpenseTrackerNw;
 				PRODUCT_NAME = "Hitung Uang";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

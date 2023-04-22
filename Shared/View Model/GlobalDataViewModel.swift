@@ -38,6 +38,7 @@ class GlobalData: ObservableObject {
         getYearMonth()
         getTemplateModel()
         isLoadingDisplay = false
+        Util.removeUserDefaultString()
         
         DispatchQueue.global(qos: .background).async {
             self.getIncomes()
@@ -187,11 +188,11 @@ class GlobalData: ObservableObject {
                     } else {
                         self.expenses.append(contentsOf: results)
                     }
-                    if data.hasMore {
-                        if let nextCursor = data.nextCursor {
-                            self.getExpenses(startCursor: nextCursor)
-                        }
-                    }
+//                    if data.hasMore {
+//                        if let nextCursor = data.nextCursor {
+//                            self.getExpenses(startCursor: nextCursor)
+//                        }
+//                    }
                 case .failure(let error):
                     print(error)
                 }
